@@ -26,7 +26,7 @@ _paginate: skip
 
 # Lecture 1
 
-## Introduction to Advanced Programming
+## Introduction to the course. The UNIX shell. The build process.
 
 ### Pasquale Claudio Africa
 
@@ -388,18 +388,7 @@ Source: https://pypl.github.io/PYPL.html
 ---
 
 # Overview of build automation tools:
-  - Introduction to build automation tools like Make and CMake.
-    - Explain the purpose of build automation tools in simplifying complex build processes.
-    - Provide a high-level overview of how these tools work.
 
 ---
 
 # Conclusion
-- Recap of key points covered in this comprehensive lecture:
-  - Highlight the main concepts and skills learned, including shell commands, shell scripting, and the software build process.
-- Encouragement to explore further, practice, and apply the knowledge gained:
-  - Emphasize the importance of hands-on practice and experimentation.
-  - Suggest additional resources for students to deepen their understanding.
-- Preparing students for the next lecture and assignments:
-  - Provide an overview of the topics to be covered in the next lecture.
-  - Mention any assignments or readings students should complete before the next class.

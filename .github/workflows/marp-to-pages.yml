@@ -1,0 +1,6 @@
+- name: Marp Build
+  uses: docker://marpteam/marp-cli:v1.7.0
+  with:
+    args: -I lectures/ -o build/lectures/
+  env:
+    MARP_USER: root:root

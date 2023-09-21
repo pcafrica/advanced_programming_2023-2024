@@ -1,21 +1,5 @@
 <!--
-marp: true
-theme: default
-color: black
-size: 16:9
-
-style: |
-  section {
-    font-size: 25px
-  }
-  section.frame {
-    justify-content: flex-start;
-    padding: 30px;
-  }
-  section.titlepage {
-    justify-content: center;
-    padding: 75px;
-  }
+title: Lecture 1
 
 class: frame
 _class: titlepage

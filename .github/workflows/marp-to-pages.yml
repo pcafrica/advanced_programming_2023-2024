@@ -20,7 +20,7 @@ jobs:
       - name: Marp Build
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
-          args: -I lectures/ -o lectures/
+          args: --bespoke.progressbar --theme style/custom.css -I lectures/ -o lectures/
         env:
           MARP_USER: root:root
 

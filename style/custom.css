@@ -1,0 +1,22 @@
+/* custom.css */
+/* @theme custom */
+
+@import 'default';
+
+h1 {
+    color: black;
+}
+
+section {
+    font-size: 25px;
+}
+
+section.frame {
+    justify-content: flex-start;
+    padding: 30px;
+}
+
+section.titlepage {
+    justify-content: center;
+    padding: 75px;
+}

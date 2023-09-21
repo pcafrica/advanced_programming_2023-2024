@@ -1,6 +1,6 @@
 FILES_MD:=$(wildcard *.md)
 FILES_HTML:=$(patsubst %.md,%.html, $(FILES_MD))
-FILES_BACKUP:=$(addsuffix .backup,$(FILES_MD))
+FILES_BACKUP:=$(addsuffix .backup, $(FILES_MD))
 
 MARP_EXE?=marp
 MARP_OPTS?=--bespoke.progressbar --theme ../style/custom.css

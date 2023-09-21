@@ -9,22 +9,24 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
       pages: write
       id-token: write
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Marp Build
+      - name: Build
         uses: docker://marpteam/marp-cli:v1.7.0
         with:
           args: --bespoke.progressbar --theme style/custom.css -I lectures/ -o lectures/
         env:
           MARP_USER: root:root
 
-      - name: Setup Pages
+      - name: Setup pages
         uses: actions/configure-pages@v3
 
       - name: Upload artifact

@@ -14,9 +14,9 @@ This work is licensed under a
 # Timetable
 | Date            | Time          | Room | Topic                                                                                                        |
 | --------------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------ |
-| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | TBA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Introduction to the course. The UNIX shell. The build process.](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01-intro_unix.html) |
+| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Introduction to the course. The UNIX shell. The build process.](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01-intro_unix.html) |
 | Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Live programming session. |
-| Tue 03 Oct 2023 | 14:00 - 16:00 | 005 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. |
+| Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. |
 | Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
@@ -25,7 +25,7 @@ This work is licensed under a
 | Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Smart pointers.Containers and algorithms from the Standard Template Library. New features of C++14/17/20. |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | Debugging and profiling: introduction to GDB and Valgrind. |
-|~Thu 02 Nov 2023~|               | 005 |
+|~Thu 02 Nov 2023~| ---           | --- | --- |
 | Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to GNU Make and CMake. |
 | Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |

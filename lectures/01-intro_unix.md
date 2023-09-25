@@ -1,7 +1,6 @@
 <!--
 title: Lecture 1
 
-class: frame
 _class: titlepage
 
 paginate: true
@@ -9,34 +8,59 @@ _paginate: skip
 -->
 
 # Lecture 1
+<br>
 
 ## Introduction to the course. The UNIX shell. The build process.
+<br>
+<br>
 
-### Pasquale Claudio Africa
+#### Advanced Programming - SISSA, UniTS, 2023 - 2024
 
-### 26 Sep 2023
+###### Pasquale Claudio Africa
+
+###### 26 Sep 2023
+
+---
+
+# About me
+
+# Experience
+
+# Research interests
+
 
 ---
 
 # Outline
 
-1. Course overview.
+1. Course introduction.
 2. History of C++.
 3. History of Python.
-4. Introduction to the UNIX shell.
-5. Introduction to `git`.
+4. The build process.
+5. Introduction to the UNIX shell.
+6. Introduction to `git`.
 
 ---
 
-# Course overview
-Welcome to the *Advanced Programming* course.
+<!--
+_class: titlepage
+_paginate: skip
+-->
 
-Objectives and expectations:
-- Advanced programming concepts, specifically in C++ and Python.
+# Course overview.
+
+---
+
+# Objectives and expectations
 - UNIX shell and the software build process.
+- Advanced programming concepts, specifically in C++ and Python.
 - Object-oriented and generic programming paradigms.
 - Common data structures, algorithms, libraries for scientific computing.
 - Software development tools in Linux (software documentation, version control, testing, and project management).
+
+## Required skills:
+- Former knowledge of programming fundamentals (syntax, data types, variables, control structures, functions).
+- Prior experience with C, C++, Java, or Python, is **recommended**, not mandatory.
 
 ---
 
@@ -47,16 +71,44 @@ Objectives and expectations:
 Lectures at SISSA, check the website for info.
 
 ## Course material:
-- [MOODLE2](https://moodle2.units.it/): please **subscribe** to course
-- github
+- [MOODLE2](https://moodle2.units.it/): please **subscribe** to the "Advanced Programming" course.
+- [GitHub](https://github.com/pcafrica/advanced_programming_2023-2024): timetable, lecture notes and slides, exercise sessions.
+- [Microsoft Teams](https://teams.microsoft.com/l/team/19%3aEIKgrGVL57W04_30eEccPsxL1E6SwQxOn914a-rwiIY1%40thread.tacv2/conversations?groupId=161c59e5-2a78-4bd8-8eb2-085d0d2ea5a8&tenantId=a54b3635-128c-460f-b967-6ded8df82e75): live streaming, recordings.
 
-## Resources:
-- Books
-- Internet
+## Other resources:
+- Books (see
+- Internet (plenty of free or paid resources)
 
 ---
 
-# Exam
+# Practical info
+
+Course content
+Bring your laptop
+
+# Office hours
+- Use Forum on [MOODLE2](https://moodle2.units.it/), engage with each other!
+
+- Wrap-up day-by-day
+- Engage with exercises
+- Ask questions
+
+---
+
+# Exams
+
+---
+
+# Laptop configuration
+https://ubuntu.com/tutorials/install-ubuntu-desktop
+ 
+---
+
+# AI2S Welcome Day
+
+- When: 27 Sep, 19:00 - 01:00
+- Where: Loft (via Giovanni e Demetrio Economo 12)
+- Form: http://bit.ly/AI2SWelcomeDay
 
 ---
 
@@ -77,6 +129,26 @@ Lectures at SISSA, check the website for info.
   - The need for scalable and efficient software solutions.
   - Increased reliance on data-driven decision-making.
 - Job market competitiveness and higher earning potential for skilled programmers.
+
+---
+
+# Why should I learn programming in the ChatGPT era?
+
+- Artifial Intelligence has **no** creativity!
+- 
+
+---
+
+<!--
+_class: noborder
+-->
+
+# Time for a poll!
+<br><br><br><br>
+
+# http://etc.ch/TVQS
+
+![bg right:50% w:500](http://etc.ch/TVQS?qr)
 
 ---
 
@@ -137,7 +209,7 @@ Another significant innovation in C++ was the introduction of templates. Templat
 
 ## Standardization efforts
 The C++ language has continued to evolve through a series of standards, each introducing new features and improvements. Notable standards include C++98, C++11, C++14, C++17, and C++20. These standards have added features like smart pointers, lambda expressions, range-based for loops, and modules, enhancing the language's expressiveness and safety.
-
+<br>
 ## Open source and the C++ community
 C++'s success can be attributed in part to the vibrant open-source community that has formed around it. Open-source libraries and frameworks, such as the Boost C++ Libraries, have extended C++'s functionality and encouraged collaborative development.
 
@@ -182,7 +254,7 @@ Guido named the language after his love for the British comedy group Monty Pytho
 
 ## Python 0.9.0
 Python's first public release, Python 0.9.0, occurred in February 1991. This release introduced essential features like exception handling, functions, and modules, which laid the foundation for the language's future growth.
-
+<br>
 ## The Python Software Foundation
 In 2001, the Python Software Foundation (PSF) was established as a non-profit organization to promote and support Python. The PSF plays a crucial role in managing Python's development, organizing conferences (e.g., PyCon), and providing grants and resources to the Python community.
 
@@ -215,8 +287,10 @@ The history of Python is a testament to the enduring impact of a well-designed p
 ---
 
 # Popularity of programming languages
+<br>
 
-![](images/01_popularity.png)
+![w:1200](images/01_popularity.png)
+<br>
 
 Source: https://pypl.github.io/PYPL.html
 
@@ -268,6 +342,147 @@ Source: https://pypl.github.io/PYPL.html
    - Pandas is a powerful library for data manipulation and analysis.
    - It offers data structures like DataFrames and Series, making it convenient for handling structured data.
    - Pandas is widely used in data science and scientific research for tasks such as data cleaning, exploration, and analysis.
+
+---
+
+<!--
+_class: titlepage
+_paginate: skip
+-->
+
+# The build process:<br>Preprocessor, Compiler, Linker, Loader.
+
+---
+
+## Lecture Overview
+
+- Explore the roles of the preprocessor, compiler, linker, and loader.
+- Understand the build process.
+- Identify common issues during compilation and linking.
+- Appreciate efficient code generation and optimization.
+
+### Learning Objectives
+
+- Explain preprocessor, compiler, linker, loader functions.
+- Describe the build process sequence.
+- Recognize compilation and linking problems.
+- Understand code generation and optimization importance.
+
+---
+
+# Preprocessor
+
+## The Preprocessor: Overview
+
+- Handles directives and macros before compilation.
+- Originated for code reusability and organization.
+
+### Preprocessor Directives
+
+- `#include`: Includes header files.
+- `#define`: Defines macros for code replacement.
+- `#ifdef`, `#ifndef`, `#else`, `#endif`: Conditional compilation.
+- `#pragma`: Compiler-specific directives.
+
+### Macros
+
+- Example: `#define SQUARE(x) ((x) * (x))`
+- Usage: `int result = SQUARE(5); // Expands to: ((5) * (5))`
+
+---
+
+# Compiler
+
+## The Compiler: Role and Significance
+
+- Translates source code into assembly/machine code.
+- Evolved with programming languages and instructions.
+
+### Compilation Process
+
+1. Lexical analysis: Tokenization.
+2. Syntax analysis (parsing): Syntax tree.
+3. Semantic analysis: Checking.
+4. Code generation: Assembly/machine code.
+5. Optimization: Efficiency improvement.
+6. Output: Object files.
+
+### Compiler Options
+
+- `-O`: Optimization levels.
+- `-g`: Debugging info.
+- `-std`: C++ standard.
+
+---
+
+# Linker
+
+## The Linker: Connecting Object Files
+
+- Combines object files into an executable.
+- Supports modular code.
+
+### Linking Process
+
+1. Symbol resolution: Match symbols.
+2. Relocation: Adjust addresses.
+3. Output: Executable.
+4. Linker errors/warnings.
+5. Example: `g++ -o my_program main.o helper.o`
+
+### Static vs. Dynamic Linking
+
+- Static: Larger binary, library inclusion.
+- Dynamic: Smaller, runtime library reference.
+
+---
+
+# Loader
+
+## The Loader: Bringing Executables to Memory
+
+- Loads executables for execution.
+- Tied to memory management evolution.
+
+### Loading Process
+
+1. Memory allocation: Reserve memory.
+2. Relocation: Adjust addresses.
+3. Initialization: Set up environment.
+4. Execution: Start execution.
+
+### Example
+
+```
+Loading program: my_program
+Memory allocated: 0x1000 - 0x3000
+Relocating addresses...
+Initializing...
+Executing...
+```
+
+
+### Dynamic Linking at Runtime
+
+- Inclusion of external libraries during execution.
+- Enhances flexibility.
+
+---
+
+# Conclusion
+
+## Key Takeaways
+
+- Understand build process.
+- Roles of preprocessor, compiler, linker, loader.
+- Compiler options and linking impact.
+- Dynamic linking for flexibility.
+
+## Encouragement and Next Steps
+
+- Practice coding and building.
+- Explore advanced compiler features.
+- Preview debugging and profiling techniques.
 
 ---
 
@@ -656,8 +871,8 @@ Clone the course repository:
 ```
 git clone --recursive git@github.com:pcafrica/advanced_programming_2023-2024.git
 ```
-<br />
-<br />
+<br>
+<br>
 
 ---
 

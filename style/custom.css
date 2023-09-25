@@ -4,19 +4,44 @@
 @import 'default';
 
 h1 {
-    color: black;
+    color: #4949e7;
+    padding-bottom: 5px;
+    border-bottom: solid;
 }
 
-small {
-    font-size: 25px;
+section.noborder h1 {
+    color: #4949e7;
+    padding-bottom: 5px;
+    border-bottom: none;
 }
 
-section.frame {
+h2, h3, h4, h5, h6 {
+    margin-top: 10px;
+    padding-bottom: 0px;
+}
+
+a {
+    background-color: #4949e7;
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+section {
     justify-content: flex-start;
     padding: 30px;
+    font-size: 28px;
 }
 
 section.titlepage {
     justify-content: center;
     padding: 75px;
+    font-size: 30px;
+}
+
+section::after {
+  content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
 }

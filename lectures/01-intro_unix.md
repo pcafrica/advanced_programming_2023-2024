@@ -12,9 +12,8 @@ _paginate: skip
 
 ## Introduction to the course. The UNIX shell. The build process.
 <br>
-<br>
 
-#### Advanced Programming - SISSA, UniTS, 2023 - 2024
+#### Advanced Programming - SISSA, UniTS, 2023-2024
 
 ###### Pasquale Claudio Africa
 
@@ -23,22 +22,15 @@ _paginate: skip
 ---
 
 # About me
+- Assistant Professor (RTDa) in Numerical Analysis at SISSA since March 2023.
+- Ph.D. in *Mathematical Models and Methods in Engineering*, Politecnico di Milano, 2019. 
+- M.Sc. and B.Sc. in *Mathematical Engineering*, Politecnico di Milano, 2010-2015.
 
 # Experience
+Taught several courses on advanced programming, numerical analysis, mathematical models and scientific computing. Main languages: C++, Python, MATLAB, ...
 
 # Research interests
-
-
----
-
-# Outline
-
-1. Course introduction.
-2. History of C++.
-3. History of Python.
-4. The build process.
-5. Introduction to the UNIX shell.
-6. Introduction to `git`.
+High-Performance Computing (HPC), computational methods to solve complex mathematical problems in science and engineering, numerical methods for Partial Differential Equations (PDEs), mathematical modeling of the human heart.
 
 ---
 
@@ -58,7 +50,7 @@ _paginate: skip
 - Common data structures, algorithms, libraries for scientific computing.
 - Software development tools in Linux (software documentation, version control, testing, and project management).
 
-## Required skills:
+# Required skills
 - Former knowledge of programming fundamentals (syntax, data types, variables, control structures, functions).
 - Prior experience with C, C++, Java, or Python, is **recommended**, not mandatory.
 
@@ -68,74 +60,140 @@ _paginate: skip
 - Instructor: Pasquale Claudio Africa <pafrica@sissa.it>
 - Tutor: Marco Feder <mfeder@sissa.it>
 
-Lectures at SISSA, check the website for info.
-
-## Course material:
+# Course material
 - [MOODLE2](https://moodle2.units.it/): please **subscribe** to the "Advanced Programming" course.
 - [GitHub](https://github.com/pcafrica/advanced_programming_2023-2024): timetable, lecture notes and slides, exercise sessions.
 - [Microsoft Teams](https://teams.microsoft.com/l/team/19%3aEIKgrGVL57W04_30eEccPsxL1E6SwQxOn914a-rwiIY1%40thread.tacv2/conversations?groupId=161c59e5-2a78-4bd8-8eb2-085d0d2ea5a8&tenantId=a54b3635-128c-460f-b967-6ded8df82e75): live streaming, recordings.
 
-## Other resources:
-- Books (see
-- Internet (plenty of free or paid resources)
+# Other resources
+- Books (see course syllabus on MOODLE2/GitHub.
+- Internet (plenty of free or paid resources).
 
 ---
 
 # Practical info
 
-Course content
-Bring your laptop
+Lectures at SISSA, check [GitHub](https://github.com/pcafrica/advanced_programming_2023-2024) for detailed timetable, lecture topics, rooms.
 
-# Office hours
+Course balance:
+- ~50% C++, ~50% Python
+- ~50% frontal lectures, ~50% live programming sessions
+
+For live programming sessions please **bring your own laptop**.
+
+# Questions?
 - Use Forum on [MOODLE2](https://moodle2.units.it/), engage with each other!
-
-- Wrap-up day-by-day
-- Engage with exercises
-- Ask questions
+- Office hours: no fixed time slot, please send me or the tutor an email to book a session.
 
 ---
 
 # Exams
 
+1. **Homework assignments**:
+   - Throughout the course, you will be assigned 2-4 homework projects to complete either individually or in groups.
+   - Your submission should include solution code and a concise presentation with supporting slides, outlining your proposed solution and design choices.
+2. **Computer-based written exam**:
+   - Programming questions and exercises, to be submitted digitally.
+
+3. (Optional) **Oral discussion**, upon request (by either students or the instructor). It can increase or decrease your grade by up to 3 points.
+
+Maximum achievable grade: 30 + honors (granted in exceptional cases).
+
+---
+
+# Recommendations
+
+1. **Study day by day**
+   - Create a study schedule.
+   - Set clear goals.
+   - Prioritize consistency.
+
+2. **Practice regularly**
+   - Solve exercises on your own.
+   - Programming is (mostly) learnt by doing, not by reading.
+
+3. **Interact**:
+   - Engage in discussions on MOODLE2 forums.
+   - Seek help when needed.
+   - Share your knowledge with others.
+
 ---
 
 # Laptop configuration
-https://ubuntu.com/tutorials/install-ubuntu-desktop
+
+Please bring your own laptop with a working Linux or UNIX environment, whether standalone, dual boot, or virtualized.
+
+For beginners: https://ubuntu.com/tutorials/install-ubuntu-desktop.
  
----
+You can write code using any **text editor** (such as Emacs, Vim, or Nano), or an Integrated Development Environment (**IDE**) (such as VSCode, Eclipse, or Code::Blocks).
 
-# AI2S Welcome Day
+# Requirements
+- C++ compiler with full support for C++17, such as GCC 10 or newer, or Clang 11 or newer.
+- Python 3. [Jupyter](https://docs.jupyter.org/en/latest/install/notebook-classic.html) is recommended, but not mandatory.
 
-- When: 27 Sep, 19:00 - 01:00
-- Where: Loft (via Giovanni e Demetrio Economo 12)
-- Form: http://bit.ly/AI2SWelcomeDay
-
----
-
-# Importance of advanced programming skills:
-  - In today's technology landscape, advanced programming is crucial for developing complex software systems.
-  - **Career Opportunities and Industry Demands:**
-    - Advanced programming skills open up a wide range of career opportunities:
-      - Software Developer: Design and develop software applications.
-      - Systems Architect: Plan and design complex software systems.
-      - Data Scientist/Engineer: Analyze and process data using advanced algorithms.
-      - DevOps Engineer: Automate software development and deployment processes.
-      - Cybersecurity Analyst: Secure software systems and networks.
+Any recent Linux distribution, such as Ubuntu 22.04 or newer, or Debian 11 or newer, or macOS system that meets these requirements should be suitable for the course.
 
 ---
 
-# Industry demands for advanced programming skills are driven by:
-  - Rapid technological advancements.
-  - The need for scalable and efficient software solutions.
-  - Increased reliance on data-driven decision-making.
+# Windows users
+- [Windows Subsystem for Linux (WSL) 2](https://learn.microsoft.com/en-us/windows/wsl/install). Ubuntu version recommended, then follow Ubuntu-specific instructions.
+- Virtual machine (such as [VirtualBox](https://www.virtualbox.org/)).
+- (**Expert users**) Dual boot.
+
+# macOS users
+- [Xcode](https://developer.apple.com/xcode/): provides Clang.
+- [Homebrew](https://brew.sh/): provides GCC, Clang, Python 3.
+
+# Linux users
+- Install GCC and Python 3 using your package manager (such as apt, yum, pacman).
+
+---
+
+# Industry demands for advanced programming skills
+- Rapid technological advancements.
+- Need for scalable and efficient software solutions.
+- Increased reliance on data-driven decision-making.
 - Job market competitiveness and higher earning potential for skilled programmers.
+
+**Career Opportunities and Industry Demands:**
+- Software Developer: Design and develop software applications.
+- Systems Architect: Plan and design complex software systems.
+- Data Scientist/Engineer: Analyze and process data using advanced algorithms.
+- DevOps Engineer: Automate software development and deployment processes.
+- Cybersecurity Analyst: Secure software systems and networks.
+
+---
+
+# Importance of advanced programming skills
+- **Data Manipulation**: C++ and Python enable efficient handling of large datasets and complex data structures.
+- **Algorithm Development**: Proficiency in these languages is crucial for coding and optimizing complex mathematical and scientific algorithms.
+- **Tool Integration**: Advanced programming skills facilitate the integration of various tools and libraries for data analysis and scientific computing.
+- **Customization**: C++ and Python allow customization of software tools to meet specific project requirements.
+- **Performance Optimization**: These languages enable the writing of high-performance code, vital for resource-intensive calculations.
+- **Machine Learning**: Python is a primary language for machine learning, and C++ can be used for performance-critical components.
+
+---
+
+# Importance of advanced programming skills
+- **Visualization**: Python's libraries like Matplotlib and C++'s graphics capabilities aid in creating informative visualizations.
+- **Reproducibility**: Well-structured code in C++ and Python ensures research reproducibility and collaboration.
+- **Prototyping**: Python facilitates rapid prototyping and experimentation for hypothesis testing and model development.
+- **Automation**: Automation of repetitive tasks in data preprocessing and analysis streamlines workflows.
+- **Security**: C++ can be employed for secure and efficient data handling, important in data science and scientific computing.
+- **Scalability**: Both languages are suitable for building scalable systems and algorithms to handle growing data and computing needs.
 
 ---
 
 # Why should I learn programming in the ChatGPT era?
 
-- Artifial Intelligence has **no** creativity!
-- 
+1. You can't understand/modify/improve a text written in French, unless you are proficient in French!
+2. Career opportunities:
+   - Coding opens doors to a diverse array of high-demand careers in technology and data-driven sectors.
+   - It cultivates critical thinking and problem-solving skills.
+3. AI and chatbots **lack** creativity!
+   - They derive knowledge from historical data.
+   - Innovation, idea generation, implementation of novel concepts through software and technology remain a **human** prerogative (at least for now).
+5. Understand how Artificial Intelligence (AI) and chatbots work under the hood.
 
 ---
 
@@ -149,6 +207,31 @@ _class: noborder
 # http://etc.ch/TVQS
 
 ![bg right:50% w:500](http://etc.ch/TVQS?qr)
+
+---
+
+<!--
+_class: titlepage
+_paginate: skip
+-->
+
+# Welcome to the course!
+<br>
+
+## Reminder: AI2S Welcome Day
+- When: 27 Sep (**tomorrow**), 19:00 - 01:00
+- Where: Loft (via Giovanni e Demetrio Economo 12)
+- Form: http://bit.ly/AI2SWelcomeDay
+
+---
+
+# Outline
+
+1. History of C++.
+2. History of Python.
+3. The build process.
+4. Introduction to the UNIX shell.
+5. Introduction to `git`.
 
 ---
 
@@ -356,8 +439,9 @@ _paginate: skip
 
 ## Lecture Overview
 
-- Explore the roles of the preprocessor, compiler, linker, and loader.
+- Understand the difference between compiled and interpreted languages.
 - Understand the build process.
+- Explore the roles of the preprocessor, compiler, linker, and loader.
 - Identify common issues during compilation and linking.
 - Appreciate efficient code generation and optimization.
 
@@ -370,36 +454,38 @@ _paginate: skip
 
 ---
 
+# Compiled vs. interpreted languages
+
+![bg 95%](images/01_compiled.svg)
+![bg 90%](images/01_interpreted.svg)
+
+---
+
+![bg fit](images/01_build_process.svg)
+
+---
+
 # Preprocessor
-
-## The Preprocessor: Overview
-
 - Handles directives and macros before compilation.
 - Originated for code reusability and organization.
 
-### Preprocessor Directives
-
+### Preprocessor directives
 - `#include`: Includes header files.
 - `#define`: Defines macros for code replacement.
 - `#ifdef`, `#ifndef`, `#else`, `#endif`: Conditional compilation.
 - `#pragma`: Compiler-specific directives.
 
 ### Macros
-
 - Example: `#define SQUARE(x) ((x) * (x))`
 - Usage: `int result = SQUARE(5); // Expands to: ((5) * (5))`
 
 ---
 
 # Compiler
-
-## The Compiler: Role and Significance
-
 - Translates source code into assembly/machine code.
 - Evolved with programming languages and instructions.
 
-### Compilation Process
-
+### Compilation process
 1. Lexical analysis: Tokenization.
 2. Syntax analysis (parsing): Syntax tree.
 3. Semantic analysis: Checking.
@@ -407,8 +493,7 @@ _paginate: skip
 5. Optimization: Efficiency improvement.
 6. Output: Object files.
 
-### Compiler Options
-
+### Compiler options
 - `-O`: Optimization levels.
 - `-g`: Debugging info.
 - `-std`: C++ standard.
@@ -416,43 +501,33 @@ _paginate: skip
 ---
 
 # Linker
-
-## The Linker: Connecting Object Files
-
 - Combines object files into an executable.
 - Supports modular code.
 
-### Linking Process
-
+### Linking process
 1. Symbol resolution: Match symbols.
 2. Relocation: Adjust addresses.
 3. Output: Executable.
 4. Linker errors/warnings.
 5. Example: `g++ -o my_program main.o helper.o`
 
-### Static vs. Dynamic Linking
-
+### Static vs. dynamic linking
 - Static: Larger binary, library inclusion.
 - Dynamic: Smaller, runtime library reference.
 
 ---
 
 # Loader
-
-## The Loader: Bringing Executables to Memory
-
 - Loads executables for execution.
 - Tied to memory management evolution.
 
-### Loading Process
-
+### Loading process
 1. Memory allocation: Reserve memory.
 2. Relocation: Adjust addresses.
 3. Initialization: Set up environment.
 4. Execution: Start execution.
 
 ### Example
-
 ```
 Loading program: my_program
 Memory allocated: 0x1000 - 0x3000
@@ -462,27 +537,9 @@ Executing...
 ```
 
 
-### Dynamic Linking at Runtime
-
+### Dynamic linking at runtime
 - Inclusion of external libraries during execution.
 - Enhances flexibility.
-
----
-
-# Conclusion
-
-## Key Takeaways
-
-- Understand build process.
-- Roles of preprocessor, compiler, linker, loader.
-- Compiler options and linking impact.
-- Dynamic linking for flexibility.
-
-## Encouragement and Next Steps
-
-- Practice coding and building.
-- Explore advanced compiler features.
-- Preview debugging and profiling techniques.
 
 ---
 
@@ -501,7 +558,7 @@ _paginate: skip
 
 From [http://www.linfo.org/shell.html](http://www.linfo.org/shell.html):
 
-*"A shell is a program that provides the traditional, text-only user interface for Linux and other Unix-like operating systems. Its primary function is to read commands that are typed into a console [...] and then execute (i.e., run) them. The term shell derives its name from the fact that it is an outer layer of an operating system. A shell is an interface between the user and the internal parts of the OS (at the very core of which is the kernel)."*
+> A shell is a program that provides the traditional, text-only user interface for Linux and other Unix-like operating systems. Its primary function is to read commands that are typed into a console [...] and then execute (i.e., run) them. The term shell derives its name from the fact that it is an outer layer of an operating system. A shell is an interface between the user and the internal parts of the OS (at the very core of which is the kernel).
 
 ---
 
@@ -881,4 +938,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# **Have fun!**
+# Have fun!
+
+---
+

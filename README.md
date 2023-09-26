@@ -14,7 +14,7 @@ This work is licensed under a
 # Timetable
 | Date            | Time          | Room | Topic                                                                                                        |
 | --------------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------ |
-| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | [Introduction to the course. The UNIX shell. The build process.](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01-intro_unix.html) |
+| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Introduction to the course. The UNIX shell. The build process. <br>[[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/lectures/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01-intro_unix.html)] |
 | Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. |
 | Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |

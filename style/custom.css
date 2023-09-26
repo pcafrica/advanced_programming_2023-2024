@@ -45,3 +45,15 @@ section.titlepage {
 section::after {
   content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
 }
+
+section.warning {
+    justify-content: center;
+    padding: 75px;
+    font-size: 30px;
+}
+
+section.warning h1 {
+    color: #f60248;
+    padding-bottom: 5px;
+    border-bottom: solid;
+}

@@ -19,10 +19,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Build
+      - name: Build lectures
         uses: docker://marpteam/marp-cli:latest
         with:
           args: --bespoke.progress --theme style/custom.css -I lectures/ -o lectures/
+        env:
+          MARP_USER: root:root
+
+      - name: Build labs
+        uses: docker://marpteam/marp-cli:latest
+        with:
+          args: --bespoke.progress --theme style/custom.css -I labs/ -o labs/
         env:
           MARP_USER: root:root
 

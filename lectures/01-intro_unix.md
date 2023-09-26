@@ -22,15 +22,15 @@ _paginate: skip
 ---
 
 # About me
-- Assistant Professor (RTDa) in Numerical Analysis at SISSA since March 2023.
+- B.Sc. and M.Sc. in *Mathematical Engineering*, Politecnico di Milano, 2010-2015.
 - Ph.D. in *Mathematical Models and Methods in Engineering*, Politecnico di Milano, 2019. 
-- M.Sc. and B.Sc. in *Mathematical Engineering*, Politecnico di Milano, 2010-2015.
+- Assistant Professor (RTDa) in Numerical Analysis at SISSA since March 2023.
 
-# Experience
-Taught several courses on advanced programming, numerical analysis, mathematical modeling and scientific computing. Main languages: C++, Python, MATLAB, ...
+# Teaching experience
+Advanced programming, numerical analysis, mathematical modeling and scientific computing. Main languages: C++, MPI, OpenMP, Python, MATLAB/Octave.
 
 # Research interests
-High-Performance Computing (HPC), computational methods to solve complex mathematical problems in science and engineering, numerical methods for Partial Differential Equations (PDEs), mathematical modeling in medicine.
+High-Performance Computing (HPC), mathematical models and computational methods to solve problems in science and engineering, numerical methods for Partial Differential Equations (PDEs).
 
 ---
 
@@ -39,20 +39,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# Course overview.
-
----
-
-# Objectives and expectations
-- UNIX shell and the software build process.
-- Advanced programming concepts, specifically in C++ and Python.
-- Object-oriented and generic programming paradigms.
-- Common data structures, algorithms, libraries for scientific computing.
-- Software development tools in Linux (software documentation, version control, testing, and project management).
-
-# Required skills
-- Former knowledge of programming fundamentals (syntax, data types, variables, control structures, functions).
-- Prior experience with C, C++, Java, or Python, is **recommended**, not mandatory.
+# Course overview
 
 ---
 
@@ -88,6 +75,19 @@ For live programming sessions please **bring your own laptop**.
 
 ---
 
+# Objectives and expectations
+- UNIX shell and the software build process.
+- Advanced programming concepts, specifically in C++ and Python.
+- Object-oriented and generic programming paradigms.
+- Common data structures, algorithms, libraries for scientific computing.
+- Software development tools in UNIX/Linux (software documentation, version control, testing, and project management).
+
+# Required skills
+- Former knowledge of programming fundamentals (syntax, data types, variables, control structures, functions).
+- Prior experience with C, C++, Java, or Python, is **recommended**, not mandatory.
+
+---
+
 # Exams
 
 1. **Homework assignments**:
@@ -102,11 +102,10 @@ Maximum achievable grade: **30** + honors (granted in exceptional cases).
 
 ---
 
-# Recommendations
+# Some advice
 
 1. **Study day by day**
-   - Create a study schedule.
-   - Set clear goals.
+   - Create a study schedule and set clear goals.
    - Prioritize consistency.
 
 2. **Practice regularly**
@@ -116,13 +115,13 @@ Maximum achievable grade: **30** + honors (granted in exceptional cases).
 3. **Interact**:
    - Engage in discussions on MOODLE2 forums.
    - Seek help when needed.
-   - Share your knowledge with others.
+   - **Share your knowledge with others**.
 
 ---
 
 # Laptop configuration
 
-Please bring your own laptop with a working Linux or UNIX environment, whether standalone, dual boot, or virtualized.
+Please **bring your own laptop** with a working UNIX/Linux environment, whether standalone, dual boot, or virtualized.
 
 For beginners: https://ubuntu.com/tutorials/install-ubuntu-desktop.
  
@@ -156,12 +155,13 @@ Any recent Linux distribution, such as Ubuntu $\geq$ 22.04, or Debian $\geq$ 11,
 - Increased reliance on data-driven decision-making.
 - Job market competitiveness and higher earning potential for skilled programmers.
 
-**Career opportunities and industry demands:**
-- Software developer: Design and develop software applications.
-- Systems architect: Plan and design complex software systems.
-- Data scientist/engineer: Analyze and process data using advanced algorithms.
-- DevOps engineer: Automate software development and deployment processes.
-- Cybersecurity analyst: Secure software systems and networks.
+**Career opportunities:**
+- **Software developer**: Design and develop software applications.
+- **Systems architect**: Plan and design complex software systems.
+- **Data scientist/engineer**: Analyze and process data using advanced algorithms.
+- **DevOps engineer**: Automate software development and deployment processes.
+- **Cybersecurity analyst**: Secure software systems and networks.
+- **Research & Development**: Contribute to scientific research with innovative solutions.
 
 ---
 
@@ -187,7 +187,7 @@ Any recent Linux distribution, such as Ubuntu $\geq$ 22.04, or Debian $\geq$ 11,
 
 # Why should I learn programming in the ChatGPT era?
 
-1. You can't really understand/modify/improve a text written in French, unless you are proficient in French!
+1. You can't really understand/modify/improve a text written in English, unless you are proficient in English!
 2. Career opportunities:
    - Coding opens doors to a diverse array of high-demand careers in technology and data-driven sectors.
    - It cultivates critical thinking and problem-solving skills.
@@ -221,7 +221,7 @@ _paginate: skip
 - Where: Loft (via Giovanni e Demetrio Economo 12)
 - Form: http://bit.ly/AI2SWelcomeDay
 
-# Welcome to the course!
+# Welcome to the Advanced Programming!
 <br>
 
 ---
@@ -241,7 +241,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# History of C++.
+# History of C++
 
 ---
 
@@ -295,7 +295,7 @@ Another significant innovation in C++ was the introduction of templates. Templat
 # C++ in the modern era
 
 ## Standardization efforts
-The C++ language has continued to evolve through a series of standards, each introducing new features and improvements. Notable standards include C++98, C++11, C++14, C++17, and C++20. These standards have added features like smart pointers, lambda expressions, range-based for loops, and modules, enhancing the language's expressiveness and safety.
+The C++ language has continued to evolve through a series of standards, each introducing new features and improvements. Notable standards include C++98, C++11, C++14, C++17, and C++20 (C++23 expected soon). These standards have added features like smart pointers, lambda expressions, range-based for loops, and modules, enhancing the language's expressiveness and safety.
 <br>
 ## Open source and the C++ community
 C++'s success can be attributed in part to the vibrant open-source community that has formed around it. Open-source libraries and frameworks, such as the Boost C++ Libraries, have extended C++'s functionality and encouraged collaborative development.
@@ -317,7 +317,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# History of Python.
+# History of Python
 
 ---
 
@@ -399,11 +399,11 @@ _class: titlepage
 _paginate: skip
 -->
 
-# The build process:<br>Preprocessor, Compiler, Linker, Loader.
+# The build process:<br>Preprocessor, Compiler, Linker, Loader
 
 ---
 
-# Lecture overview
+# Chapter overview
 
 - Understand the difference between compiled and interpreted languages.
 - Understand the build process.
@@ -464,7 +464,7 @@ _paginate: skip
 2. Relocation: Adjust addresses.
 3. Output: Executable.
 4. Linker errors/warnings.
-5. Example: `g++ -o my_program main.o helper.o`
+5. Example: `g++ main.o helper.o -o my_program`
 
 ### Static vs. dynamic linking
 - Static: Larger binary, library inclusion.
@@ -493,7 +493,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# Introduction to the UNIX shell.
+# Introduction to the UNIX shell
 
 ---
 
@@ -513,11 +513,13 @@ From [http://www.linfo.org/shell.html](http://www.linfo.org/shell.html):
 
 macOS has replaced it with [zsh](https://support.apple.com/en-us/HT208050), which is mostly compatible with `Bash`, since v10.15 Catalina.
 
+Other shells available: tsh, ksh, csh, Dash, Fish, Windows PowerShell, ...
+
 ---
 
 # Variables and environmental variables
 
-Since the shell is a program, as in all programs there are variables. You can assign a value to a variable with the equal sign **(no spaces!)**, for instance type `A=1`. You can then retrieve its value using the dollar sign and curly braces, for instance to display it the user may type `echo ${A}`. Some variables can affect the way running processes will behave on a computer, these are called **environmental variables**. For this reason, some variables are set by default, for instance to display the user home directory type `echo ${HOME}`. To set an environmental variable just prepend `export`, for instance `export PATH="/usr/sbin:$PATH"` adds the folder `/usr/sbin` to the `PATH` environment variable. `PATH` specifies a set of directories where executable programs are located.
+As shell is a program, it has its variables. You can assign a value to a variable with the equal sign **(no spaces!)**, for instance type `A=1`. You can then retrieve its value using the dollar sign and curly braces, for instance to display it the user may type `echo ${A}`. Some variables can affect the way running processes will behave on a computer, these are called **environmental variables**. For this reason, some variables are set by default, for instance to display the user home directory type `echo ${HOME}`. To set an environmental variable just prepend `export`, for instance `export PATH="/usr/sbin:$PATH"` adds the folder `/usr/sbin` to the `PATH` environment variable. `PATH` specifies a set of directories where executable programs are located.
 
 ---
 
@@ -531,7 +533,7 @@ Since the shell is a program, as in all programs there are variables. You can as
 # Types of shell (interactive vs. non-interactive)
 
 - In an **interactive** shell (login or non-login) you can interactively type or interrupt commands. For example a graphic terminal (non-login) or a virtual terminal (login). In an interactive shell the prompt variable must be set (`$PS1`).
-- A **non-interactive** (sub)shell is usually run from an automated process. Input and output are not exposed (unless explicitly handled by the calling process). This is normally a non-login shell, because the calling user has logged in already. A shell running a script is always a non-interactive shell (but the script can emulate an interactive shell by prompting the user to input values).
+- A **non-interactive** shell is usually run from an automated process. Input and output are not exposed (unless explicitly handled by the calling process). This is normally a non-login shell, because the calling user has logged in already. A shell running a script is always a non-interactive shell (but the script can emulate an interactive shell by prompting the user to input values).
 
 ---
 
@@ -546,6 +548,8 @@ Initialization files are hidden files stored in the user's home directory, execu
 ---
 
 # Initialization files
+
+Initialization files in a shell are scripts or configuration files that are executed or sourced when the shell starts. These files are used to set up the shell environment, customize its behavior, and define various settings that affect how the shell operates.
 
 - **login**:
   - `/etc/profile`, `/etc/profile.d/*`, `~/.profile` for Bourne-compatible shells
@@ -622,9 +626,9 @@ Finally, remember that the **first line of the script** tells the shell which in
 
 Some commands, like `cd` are executed directly by the shell, without creating a subprocess.
 
-Indeed it would be impossible the have `cd` as a regular command! Why?
+Indeed it would be impossible the have `cd` as a regular command!
 
-**Answer**: a subprocess cannot change the state of the calling process, whereas `cd` needs to change the value of the environmental variable `PWD`(that contains the name of the current working directory).
+**The reason is**: a subprocess cannot change the state of the calling process, whereas `cd` needs to change the value of the environmental variable `PWD`(that contains the name of the current working directory).
 
 ---
 
@@ -637,17 +641,16 @@ In general a **command** can refer to:
 
 The shell looks for executables with a given name within directories specified in the environment variable `PATH`, whereas aliases and functions are usually sourced by the `.bashrc` file (or equivalent).
 
-To check what `command_name` is: `type command_name`.
-
-To check its location: `which command_name`.
+- To check what `command_name` is: `type command_name`.
+- To check its location: `which command_name`.
 
 ---
 
 # A warning about filenames
 
-In order to live happily and without worries, **don't** use spaces nor accented characters in filenames!
+:warning: In order to live happily and without worries, **don't** use spaces nor accented characters in filenames!
 
-Space characters in file names should be forbidden by law! The space is used as separation character, having it in a file name makes things a lot more complicated in any script (not just `bash` scripts).
+Space characters in file names should be forbidden by law! The space is used as separation character, having it in a file name makes things a lot more complicated in any script (not just `Bash` scripts).
 
 Use underscores (snake case): `my_wonderful_file_name`, or uppercase characters (camel case): `myWonderfulFileName`, or hyphens: `my-wonderful-file-name`, or a mixture:
 `myWonderful_file-name`, instead.
@@ -670,11 +673,11 @@ But **not** `my wonderful file name`. It is not wonderful at all if it has to be
 # Redirection, pipelines and filters
 
 We can add operators between commands in order to chain them together.
-- The pipe operator `|`, forwards the output of one command to another. *E.g.*, `cat /etc/passwd | grep user` checks system information about "user".
-- The redirect operator `>` sends the standard output of one command to a file. *E.g.*, `ls > files-in-this-folder.txt` saves a file with the list of files.
+- The pipe operator `|`, forwards the output of one command to another. E.g., `cat /etc/passwd | grep my_username` checks system information about "my_username".
+- The redirect operator `>` sends the standard output of one command to a file. E.g., `ls > files-in-this-folder.txt` saves a file with the list of files.
 - The append operator `>>` appends the output of one command to a file.
 - The operator `&>` sends the standard output and the standard error to file.
-- `&&`  pipe is activated only if the return status of the first command is 0. It is used to chain commands together: *e.g.*, `sudo apt update && sudo apt upgrade`
+- `&&`  pipe is activated only if the return status of the first command is 0. It is used to chain commands together: e.g., `sudo apt update && sudo apt upgrade`
 - `||` pipe is activated only if the return status of first command is different from 0.
 - `;` is a way to execute to commands regardless of the output status.
 - `$?` is a variable containing the output status of the last command.
@@ -683,7 +686,7 @@ We can add operators between commands in order to chain them together.
 
 # Advanced commands
 - `tr` stands for **translate**. It supports a range of transformations including uppercase to lowercase, squeezing repeating characters, deleting specific characters, and basic find and replace. For instance:
-     - `echo "Welcome to Advanced Programming" | tr [a-z] [A-Z]` converts all characters to upper case.
+     - `echo "Welcome to Advanced Programming!" | tr [a-z] [A-Z]` converts all characters to upper case.
      - `echo -e "A;B;c\n1,2;1,4;1,8" | tr "," "." | tr ";" ","` replaces commas with dots and semi-colons with commas.
      - `echo "My ID is 73535" | tr -d [:digit:]` deletes all the digits from the string.
 
@@ -695,14 +698,14 @@ We can add operators between commands in order to chain them together.
     - `echo "UNIX is great OS. UNIX is open source." | sed "s/UNIX/Linux/2"` replaces the second occurrence of "UNIX" with "Linux".
     - `echo "UNIX is great OS. UNIX is open source." | sed "s/UNIX/Linux/g"` replaces all occurrencies of "UNIX" with "Linux".
     - `echo -e "ABC\nabc" | sed "/abc/d"` delete lines matching "abc".
-    - `echo -e "1\n2\n3\n4\n5\n6\n7\n8" | sed"'3,6d"` delete lines from 3 to 6.
+    - `echo -e "1\n2\n3\n4\n5\n6\n7\n8" | sed "3,6d"` delete lines from 3 to 6.
 
 ---
 
 # Advanced commands
 - `cut` is a command for cutting out the sections from each line of files and writing the result to standard output.
      - `cut -b 1-3,7- state.txt` cut bytes (`-b`) from 1 to 3 and from 7 to end of the line
-     - `echo -e "A,B,C\n1.22,1.2,3\n5,6,7\n9.99999,0,0" | cut -d "," -f 1` get the first column of a CSV (`-d` specifies the column delimiter, `-f n` specifies to pick the n-th column from each line)
+     - `echo -e "A,B,C\n1.22,1.2,3\n5,6,7\n9.99999,0,0" | cut -d "," -f 1` get the first column of a CSV (`-d` specifies the column delimiter, `-f n` specifies to pick the $n$-th column from each line)
  - `find` is used to find files in specified directories that meet certain conditions. For example: `find . -type d -name "*lib*"` find all directories (not files) starting from the current one (`.`) whose name contain "lib".
  - `locate` is less powerful than `find` but much faster since it relies on a database that is updated on a daily base or manually using the command `updatedb`. For example: `locate -i foo` finds all files or directories whose name contains `foo` ignoring case.
 
@@ -716,11 +719,8 @@ echo "$a"
 echo '$a'
 ```
 The output of a command can be converted into a string and assigned to a variable for later reuse:
-```
-list=`ls -l`
-``` 
-or
-```
+```bash
+list=`ls -l` # Or, equivalently:
 list=$(ls -l)
 ```
 
@@ -728,11 +728,11 @@ list=$(ls -l)
 
 # Processes
 
-- Launch a command and send it in the background: `./my_command &`
-
-- `Ctrl-Z` suspends the current subprocess and `bg` reactivates the suspended subprocess in the background.
+- Run a command in background: `./my_command &`
+- `Ctrl-Z` suspends the current subprocess.
 - `jobs` lists all subprocesses running in the background in the terminal.
-- `fg %n` brings back to the foreground the n-th subprocess in the background.
+- `bg %n` reactivates the $n$-th subprocess and sends it to the background.
+- `fg %n` brings the $n$-th subprocess back to the foreground.
 - `Ctrl-C` terminates the subprocess in the foreground (when not trapped).
 - `kill pid` sends termination signal to the subprocess with id `pid`. You can get a list of the most computationally expensive processes with `top` and a complete list with `ps aux` (usually `ps aux` is filtered through a pipe with `grep`)
 
@@ -758,7 +758,7 @@ _class: titlepage
 _paginate: skip
 -->
 
-# Introduction to `git`.
+# Introduction to `git`
 
 ---
 
@@ -794,7 +794,7 @@ If you have to work on the same files, the best practice is to create a new `bra
 # Other useful `git` commands
 
 - `git diff` shows the differences between your code and the last commit.
-- `git status` lists the status of all the files (*e.g.* which files have been changed, which are new, which are deleted and which have been added).
+- `git status` lists the status of all the files (e.g. which files have been changed, which are new, which are deleted and which have been added).
 - `git log` shows the history of commits.
 - `git checkout` switches to a specific commit or brach.
 - `git stash` temporarily hides all the modified tracked files.
@@ -856,7 +856,7 @@ _class: warning
 _paginate: skip
 -->
 
-# Warning
+# :warning: Warning
 
 ## Please get your laptop ready by Thursday!
 
@@ -867,4 +867,4 @@ _class: titlepage
 _paginate: skip
 -->
 
-# Have a great semester!
+# :tada: Have a great semester!

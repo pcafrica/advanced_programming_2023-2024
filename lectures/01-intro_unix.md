@@ -44,8 +44,8 @@ _paginate: skip
 ---
 
 # Practical info
-- Instructor: Pasquale Claudio Africa <pafrica@sissa.it>
-- Tutor: Marco Feder <mfeder@sissa.it>
+- **Instructor**: Pasquale Claudio Africa <pafrica@sissa.it>
+- **Tutor**: Marco Feder <mfeder@sissa.it>
 
 # Course material
 - [MOODLE2](https://moodle2.units.it/): please **subscribe** to the "Advanced Programming" course.

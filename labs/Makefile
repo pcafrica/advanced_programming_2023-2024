@@ -1,4 +1,4 @@
-FILES_MD:=$(wildcard *.md)
+FILES_MD:=$(shell find . -type f -name "*.md")
 FILES_HTML:=$(patsubst %.md,%.html, $(FILES_MD))
 FILES_BACKUP:=$(addsuffix .backup, $(FILES_MD))
 

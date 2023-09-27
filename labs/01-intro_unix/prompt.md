@@ -34,7 +34,7 @@ Perform the following tasks in your command-line terminal.
 8. Move `README.md` to folder `test2`.
 9. Move all `.txt` files to `test2` in one command.
 10. Remove `f3.dat`.
-11. Remove all contents of `test2` and the folder itself in one command.
+11. Remove all contents of `test1` and the folder itself in one command.
 
 ---
 
@@ -62,15 +62,14 @@ After downloading the dataset, perform the following analyses using only Bash co
 
 In this exercise, you'll create a Bash script that automates the process of creating a backup of a specified directory. The script should accomplish the following tasks:
 
-1. Prompt the user to enter the directory they want to back up.
+1. Receive the directory to backup as an input argument.
 2. Create a timestamped backup folder inside a specified backup directory.
 3. Copy all files and directories from the user-specified directory to the backup folder.
 4. Compress the backup folder into a single archive file.
-5. Display a message indicating the successful completion of the backup.
 
-**Note**: You can use basic commands like `read`, `mkdir`, `cp`, `tar`, and `echo` to complete this exercise.
+**Note**: You can use basic commands like `read`, `mkdir`, `cp`, `tar`, and `echo`.
 
-**Hint**: You can generate a timestamp in the format *YYYYMMDD_hhmmss* using the command `date +%Y%m%d_%H%M%S`.
+**Hint**: Generate a timestamp in the format *YYYYMMDD_hhmmss* with `date +%Y%m%d_%H%M%S`.
 
 ---
 

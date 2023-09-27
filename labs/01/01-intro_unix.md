@@ -83,7 +83,7 @@ In this exercise, you'll create a Bash script that automates the process of crea
    4. Compress the backup folder into a single archive file `backup_<timestamp>.tar.gz`.
    5. Display a message indicating the successful completion of the backup process.
 3. Test your script by running it in your terminal. Ensure it performs all the specified tasks correctly.
-4. **Bonus**: Implement error handling in your script. For example, check if the specified input directory exists.
+4. (**Bonus**) Implement error handling in your script. For example, check if the specified input directory exists.
 
 ---
 

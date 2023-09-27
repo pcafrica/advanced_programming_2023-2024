@@ -48,7 +48,7 @@ _paginate: skip
 - **Tutor**: Marco Feder <mfeder@sissa.it>
 
 # Course material
-- [MOODLE2](https://moodle2.units.it/): please **subscribe** to the "Advanced Programming" course.
+- [MOODLE2](https://moodle2.units.it/course/view.php?id=11400): please **subscribe** to the "Advanced Programming" course.
 - [GitHub](https://github.com/pcafrica/advanced_programming_2023-2024): timetable, lecture notes and slides, exercise sessions.
 - [Microsoft Teams](https://teams.microsoft.com/l/team/19%3aEIKgrGVL57W04_30eEccPsxL1E6SwQxOn914a-rwiIY1%40thread.tacv2/conversations?groupId=161c59e5-2a78-4bd8-8eb2-085d0d2ea5a8&tenantId=a54b3635-128c-460f-b967-6ded8df82e75): live streaming, recordings.
 
@@ -69,7 +69,7 @@ Course balance (approximate):
 For live programming sessions please **bring your own laptop**.
 
 # Questions?
-- Use Forum on [MOODLE2](https://moodle2.units.it/).
+- Use Forum on MOODLE2.
 - Engage with each other!
 - **Office hours**: send me or the tutor an email to book a session.
 

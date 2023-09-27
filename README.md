@@ -1,3 +1,9 @@
+# Advanced Programming: course material
+This repository contains material for the *Advanced Programming* course. Academic Year 2023-2024.
+<br>
+
+This course is offered jointly by SISSA (International School for Advanced Studies) and UniTS (Università degli Studi di Trieste), Trieste, Italy.
+
 # License
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]

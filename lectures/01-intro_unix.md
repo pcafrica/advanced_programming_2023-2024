@@ -591,10 +591,11 @@ To get a little hang of the bash, let’s try a few simple commands:
 
 # Basic Bash commands
 
-- `mkdir` stands for **Make directory** and is used to make a new directory or a folder.
+- `cp` stands for **Copy** and it moves one or more files or directories from one place to another. We need to specify what we want to move, i.e., the source and where we want to move them, i.e., the destination.
 - `mv` stands for **Move** and it moves one or more files or directories from one place to another. We need to specify what we want to move, i.e., the source and where we want to move them, i.e., the destination.
 - `touch` command is used to create new, empty files. It is also used to change the timestamps on existing files and directories.
-- `rm` stands for **Remove** and it removes files or directories. By default, it does not remove directories, but if used as `rm -r *` within a directory, then every directory and file inside that directory is deleted (`*` is a special characters that matches everything).
+- `mkdir` stands for **Make directory** and is used to make a new directory or a folder.
+- `rm` stands for **Remove** and it removes files or directories. By default, it does not remove directories, unless you provide the flag `rm -r` (`-r` means recursively).<br>:warning: **Warning**: Files removed via `rm` are lost forever, please be careful!
 
 ---
 

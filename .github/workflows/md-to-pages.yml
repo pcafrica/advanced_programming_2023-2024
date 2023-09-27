@@ -19,6 +19,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Converts Markdown to HTML
+        uses: jaywcjlove/markdown-to-html-cli@main
+        with:
+          source: README.md
+          output: index.html
+          github-corners: https://github.com/pcafrica/advanced_programming_2023-2024
+
       - name: Build lectures
         uses: docker://marpteam/marp-cli:latest
         with:

@@ -5,6 +5,8 @@
 ########################################
 
 filename=HPC_2k.log_structured.csv
+wget https://raw.githubusercontent.com/logpai/loghub/master/HPC/${filename}
+
 
 ########################################
 # 1.                                   #

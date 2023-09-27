@@ -2,6 +2,8 @@
 .#*
 *~
 *.backup
+*.csv
 *.html
+*.log
 *.pdf
 *insync*

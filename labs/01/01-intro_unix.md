@@ -7,7 +7,7 @@ paginate: true
 _paginate: skip
 -->
 
-# Laboratory 1
+# Laboratory 01
 <br>
 
 ## The UNIX shell.

@@ -57,3 +57,13 @@ section.warning h1 {
     padding-bottom: 5px;
     border-bottom: solid;
 }
+
+section.green a {
+    background: none;
+    color: #69e781;
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

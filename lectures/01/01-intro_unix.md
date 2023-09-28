@@ -7,7 +7,7 @@ paginate: true
 _paginate: skip
 -->
 
-# Lecture 1
+# Lecture 01
 <br>
 
 ## Introduction to the course. The UNIX shell. The build process.

@@ -34,11 +34,11 @@ This work is licensed under a
 | Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Live programming session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/labs/01/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/labs/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/labs/01/01-intro_unix.pdf)]|
 | Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. |
 | Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
-| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
+| Tue 10 Oct 2023 | 14:00 - 16:00 | TBA | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
-| Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Lambda functions and functors. Templates and generic programming. |
+| Tue 17 Oct 2023 | 14:00 - 16:00 | TBA | Lambda functions and functors. Templates and generic programming. |
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
-| Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Smart pointers.Containers and algorithms from the Standard Template Library. New features of C++14/17/20. |
+| Tue 24 Oct 2023 | 14:00 - 16:00 | TBA | Smart pointers.Containers and algorithms from the Standard Template Library. New features of C++14/17/20. |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | Debugging and profiling: introduction to GDB and Valgrind. |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
@@ -48,7 +48,7 @@ This work is licensed under a
 | Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
-| Tue 28 Nov 2023 | 14:00 - 16:00 | 136-137 | Live programming session. |
+| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Live programming session. |
 | Thu 30 Nov 2023 | 14:00 - 16:00 | 136-137 | Modules and packages. Introduction to NumPy and SciPy for scientific computing. Plotting. |
 | Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Live programming session. |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to pandas for data analysis. Integrating C++ and Python codes. |

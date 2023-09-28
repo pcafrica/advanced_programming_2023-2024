@@ -26,17 +26,31 @@ jobs:
           output: index.html
           github-corners: https://github.com/pcafrica/advanced_programming_2023-2024
 
-      - name: Build lectures
+      - name: Build lectures HTML
         uses: docker://marpteam/marp-cli:latest
         with:
           args: --bespoke.progress --theme style/custom.css -I lectures/ -o lectures/
         env:
           MARP_USER: root:root
 
-      - name: Build labs
+      - name: Build lectures PDF
+        uses: docker://marpteam/marp-cli:latest
+        with:
+          args: --bespoke.progress --theme style/custom.css -I lectures/ -o lectures/ --pdf --pdf-outlines
+        env:
+          MARP_USER: root:root
+
+      - name: Build labs HTML
         uses: docker://marpteam/marp-cli:latest
         with:
           args: --bespoke.progress --theme style/custom.css -I labs/ -o labs/
+        env:
+          MARP_USER: root:root
+
+      - name: Build labs PDF
+        uses: docker://marpteam/marp-cli:latest
+        with:
+          args: --bespoke.progress --theme style/custom.css -I labs/ -o labs/ --pdf --pdf-outlines
         env:
           MARP_USER: root:root
 

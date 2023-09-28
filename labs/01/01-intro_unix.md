@@ -112,7 +112,7 @@ git push origin main
 
 # Exercise 4: hands on `git`. Collaborative file management (3/3)
 
-## Conflict management:
+## How to deal with `git` conflicts
 The first person to complete this process will experience no issues. However, subsequent participants may encounter merge conflicts.
 
 Git will mark the conflicting sections in the file. You'll see these sections surrounded by `<<<<<<<`, `=======`, and `>>>>>>>` markers.

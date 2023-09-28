@@ -69,7 +69,7 @@ Course balance (approximate):
 For live programming sessions please **bring your own laptop**.
 
 # Questions?
-- Use Forum on MOODLE2.
+- Use Forum on MOODLE2 or Discussions on GitHub.
 - Engage with each other!
 - **Office hours**: send me or the tutor an email to book a session.
 
@@ -113,7 +113,7 @@ Maximum achievable grade: **30** + honors (granted in exceptional cases).
    - Programming is (mostly) learnt by doing, not by reading.
 
 3. **Interact**:
-   - Engage in discussions on MOODLE2 forums.
+   - Engage in discussions on MOODLE2 forums and GitHub.
    - Seek help when needed.
    - **Share your knowledge with others**.
 

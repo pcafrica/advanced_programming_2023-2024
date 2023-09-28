@@ -1,5 +1,5 @@
 <!--
-title: Lecture 1
+title: Lecture 01
 
 _class: titlepage
 

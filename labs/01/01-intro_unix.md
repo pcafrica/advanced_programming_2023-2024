@@ -1,5 +1,5 @@
 <!--
-title: Laboratory 1
+title: Laboratory 01
 
 _class: titlepage
 

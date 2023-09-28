@@ -5,7 +5,11 @@
 ########################################
 
 filename=HPC_2k.log_structured.csv
-wget https://raw.githubusercontent.com/logpai/loghub/master/HPC/${filename}
+
+if [ ! -f "${filename}" ]
+then
+    wget https://raw.githubusercontent.com/logpai/loghub/master/HPC/${filename}
+fi
 
 
 ########################################
@@ -37,8 +41,8 @@ echo "Number of \"unavailable\" events reported: $(grep "E13" ${filename} | wc -
 # 4.                                   #
 ########################################
 
-echo \
-"Number of unique nodes that have reported events E32 or E33: \
+echo "\
+Number of unique nodes that have reported events E32 or E33: \
 $(grep "E32\|E33" ${filename} | cut -d, -f3 | sort | uniq | wc -l)"
 
 
@@ -46,8 +50,8 @@ $(grep "E32\|E33" ${filename} | cut -d, -f3 | sort | uniq | wc -l)"
 # 5.                                   #
 ########################################
 
-echo \
-"Number of times that node \"gige7\" has reported event E15: \
+echo "\
+Number of times that node \"gige7\" has reported event E15: \
 $(grep "gige7.*E15" ${filename} | wc -l)"
 
 

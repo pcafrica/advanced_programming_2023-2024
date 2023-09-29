@@ -1,10 +1,8 @@
 <!--
 title: Laboratory 01
+paginate: true
 
 _class: titlepage
-
-paginate: true
-_paginate: skip
 -->
 
 # Laboratory 01

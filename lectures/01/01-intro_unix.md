@@ -1,10 +1,8 @@
 <!--
 title: Lecture 01
+paginate: true
 
 _class: titlepage
-
-paginate: true
-_paginate: skip
 -->
 
 # Lecture 01
@@ -36,7 +34,6 @@ High-Performance Computing (HPC), mathematical models and computational methods 
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # Course overview
@@ -213,7 +210,6 @@ _class: noborder
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 ## Reminder for DSAI/SDIC students: AI2S Welcome Day
@@ -238,7 +234,6 @@ _paginate: skip
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # History of C++
@@ -314,7 +309,6 @@ The history of C++ is a testament to the enduring power of a well-designed progr
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # History of Python
@@ -396,7 +390,6 @@ Source: https://pypl.github.io/PYPL.html
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # The build process:<br>Preprocessor, Compiler, Linker, Loader
@@ -490,7 +483,6 @@ _paginate: skip
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # Introduction to the UNIX shell
@@ -756,7 +748,6 @@ There is also an info facility that sometimes provides more information: `info c
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # Introduction to `git`
@@ -854,7 +845,6 @@ from inside the cloned folder.
 
 <!--
 _class: warning
-_paginate: skip
 -->
 
 # :warning: Warning
@@ -865,7 +855,6 @@ _paginate: skip
 
 <!--
 _class: titlepage
-_paginate: skip
 -->
 
 # :tada: Have a great semester!

@@ -116,12 +116,16 @@ To run the compiled program:
 - Variables must be declared with a specific type.
 - Type errors are detected and reported at compile time.
 - This helps prevent runtime errors and enhances code reliability.
-- Example:
+
+## Example
 
 ```cpp
 int x = 5;
 char ch = 'A';
 float f = 3.14;
+
+x = 1.6;        // Illegal
+f = "a string"; // Illegal
 ```
 
 ---
@@ -134,16 +138,35 @@ _class: titlepage
 
 ---
 
+# Fundamental types
+
+| Data Type                | Size (Bytes) |
+|--------------------------|--------------|
+| `bool`                   | 1            |
+| (`unsigned`) `char`      | 1            |
+| (`unsigned`) `short`     | 2            |
+| (`unsigned`) `int`       | 4            |
+| (`unsigned`) `long`      | 4 or 8       |
+| (`unsigned`) `long long` | 8            |
+| `float`                  | 4            |
+| `double`                 | 8            |
+| `long double`            | 8, 12, or 16 |
+
+---
+
 # Integer numbers
 
 - C++ provides several integer types with varying sizes. 
 - Common integer types include `int`, `short`, `long`, and `long long`.
 - The range of values that can be stored depends on the type.
-- Example:
+
+## Example
 
 ```cpp
 int age = 30;
+
 short population = 32000;
+
 long long largeNumber = 123456789012345;
 ```
 
@@ -154,11 +177,54 @@ long long largeNumber = 123456789012345;
 - C++ supports floating-point types for representing real numbers. 
 - Common floating-point types include `float`, `double`, and `long double`.
 - These types can represent decimal fractions.
-- Example:
+
+## Example
 
 ```cpp
 float pi = 3.14;
+
 double gravity = 9.81;
+```
+
+---
+
+# Floating-point arithmetic
+
+Floating-point arithmetic is a method for representing and performing operations on real numbers $\pm f \cdot b^e$ in a binary format (i.e., $b=2$).
+
+- **Representation**: Floating-point numbers consist of three components: sign $s$: 0 (positive), 1 (negative), significand $f$, and exponent $e$.
+
+- **Normalized numbers**: In normalized form, the most significant bit of the significand is always 1, allowing for a wide range of values to be represented efficiently.
+
+- **IEEE 754 standard**: The most commonly adopted standard for floating-point arithmetic is the [IEEE 754 Standard for Floating-Point Arithmetic](https://ieeexplore.ieee.org/document/8766229). This standard specifies the formats, precision, rounding rules, and handling of special values like NaN (Not-a-Number) and infinity.
+
+---
+
+# Floating-point arithmetic limitations
+
+```cpp
+double epsilon = 1.0; // Machine epsilon.
+
+while (1.0 + epsilon != 1.0) {
+    epsilon /= 2.0;
+}
+```
+
+```cpp
+double a = 0.1, b = 0.2, c = 0.3;
+
+if (a + b == c) { // Unsafe comparison.
+    // This may not always be true due to precision limitations.
+}
+```
+
+```cpp
+double x = 1.0, y = 1.0 / 3.0;
+double sum = y + y + y;
+
+if (std::abs(x - sum) < tolerance) { // Safer comparison.
+    // Use tolerance to handle potential rounding errors.
+}
 ```
 
 ---
@@ -167,11 +233,19 @@ double gravity = 9.81;
 
 - Characters are represented using the `char` type. 
 - Strings are sequences of characters and are represented using the `std::string` type.
-- Example:
+
+
+## Example
 
 ```cpp
 char grade = 'A';
+
 std::string name = "John";
+
+std::string greeting = "Hello, ";
+
+// Concatenate strings
+std::string message = greeting + name;
 ```
 
 ---
@@ -181,11 +255,13 @@ std::string name = "John";
 - C++ has a built-in Boolean type called `bool`. 
 - It can have two values: `true` or `false`.
 - Useful for conditional statements and logical operations.
-- Example:
+
+## Example
 
 ```cpp
-bool isTrue = true;
-bool isFalse = false;
+bool is_true = true;
+
+bool is_false = false;
 ```
 
 ---
@@ -195,13 +271,18 @@ bool isFalse = false;
 - Variables are named memory locations used to store data.
 - They must be declared with a specific type before use.
 - Variables can be modified and accessed in your program.
-- Example:
+
+## Example
 
 ```cpp
-int x = 5;  // Declaration and initialization
-x = 10;     // Variable modification
-int y;      // Declaration without initialization
-y = 20;     // Initialization after declaration
+int x = 5; // Declaration and initialization
+x = 10;    // Variable modification
+
+int y;  // Declaration with default initialization
+y = 20; // Initialization after declaration
+
+const double a = 3.7;
+a = 5; // Error!
 ```
 
 ---
@@ -211,11 +292,18 @@ y = 20;     // Initialization after declaration
 - Pointers are variables that store memory addresses.
 - They allow you to work with memory directly. 
 - Declared using `*` symbol.
-- Example:
+
+## Example
 
 ```cpp
 int number = 42;
-int* pointerToNumber = &number; // Pointer to 'number'
+
+int* pointer = &number; // Pointer to 'number'
+
+// Create a dynamic integer with new
+int* dynamic_variable = new int;
+*dynamic_variable = 5;
+delete dynamic_variable;
 ```
 
 ---
@@ -225,7 +313,8 @@ int* pointerToNumber = &number; // Pointer to 'number'
 - References provide an alias for an existing variable. 
 - Declared using `&` symbol.
 - Provide an alternative way to access a variable.
-- Example:
+
+## Example
 
 ```cpp
 int a = 10;
@@ -239,12 +328,22 @@ int& refA = a; // Reference to 'a'
 - Arrays are collections of elements of the same type.
 - Elements are accessed by their index (position).
 - Arrays have a fixed size.
-- Example:
+
+## Example
 
 ```cpp
 int numbers[5]; // Array declaration
 numbers[0] = 1; // Assigning values to elements
 numbers[1] = 2;
+
+// Create a dynamic array of integers with new
+int* dynamicArray = new int[5];
+
+for (int i = 0; i < 5; ++i) {
+    dynamicArray[i] = i * 2;
+}
+
+delete[] dynamicArray;
 ```
 
 
@@ -258,22 +357,29 @@ _class: titlepage
 
 ---
 
-# Conditional statements
+# `if`, `elseif`, `else`
 
 - Conditional statements allow you to execute different code based on conditions. 
 - In C++, we use `if`, `else if`, and `else` statements for conditional execution.
-- Example:
+
+## Example
 
 ```cpp
 int x = 10;
 
 if (x > 5) {
     std::cout << "x is greater than 5." << std::endl;
-} else {
+} else if (x > 3) {
+    std::cout << "x is greater than 3 but not greater than 5." << std::endl;
+}
+else {
     std::cout << "x is not greater than 5." << std::endl;
 }
 ```
 
+---
+
+# `switch`, `case`
 
 ---
 
@@ -289,7 +395,8 @@ _class: titlepage
 - Functions are blocks of code that perform a specific task.
 - Functions are defined with a return type, name, and parameters.
 - They can be called to execute their code.
-- Example:
+
+## Example
 
 ```cpp
 int add(int a, int b) {
@@ -301,19 +408,27 @@ int result = add(3, 4); // Calling the 'add' function
 
 ---
 
+# Pass by value vs. pointer vs. reference
+
+
+---
+
 # Operators
 
 - Operators are symbols used to perform operations on variables and values. 
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%` 
 - Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=` 
 - Logical operators: `&&`, `||`, `!`
-- Example:
+
+## Example
 
 ```cpp
 int x = 5;
 int y = 3;
 bool isTrue = (x > y) && (x != 0); // Logical expression
 ```
+
+# TODO: i++
 
 ---
 
@@ -329,7 +444,8 @@ _class: titlepage
 
 - Enumerations (enums) allow you to define a set of named values.
 - Enums provide a way to create user-defined data types.
-- Example:
+
+## Example
 
 ```cpp
 enum Color {
@@ -348,7 +464,8 @@ Color myColor = Green;
 - Unions allow you to define a type that can hold different data types.
 - Only one member of a union can be accessed at a time.
 - Useful for optimizing memory usage.
-- Example:
+
+## Example
 
 ```cpp
 union MyUnion {
@@ -367,7 +484,8 @@ data.intValue = 42;
 - Structs (structures) allow you to group related data members into a single unit.
 - Members can have different data types.
 - Structs provide a way to create custom data structures.
-- Example:
+
+## Example
 
 ```cpp
 struct Point {
@@ -386,7 +504,8 @@ p.y = 5;
 
 - POD classes are classes with simple data members and no user-defined constructors or destructors.
 - They have C-like semantics and can be used in low-level operations.
-- Example:
+
+## Example
 
 ```cpp
 class Rectangle {
@@ -404,6 +523,10 @@ r.height = 20;
 
 # Looking towards classes
 
+- Object-oriented programming (OOP) is a programming paradigm that uses classes and objects.
+- C++ is an object-oriented language that supports OOP principles.
+- Classes are user-defined data types that encapsulate data and behavior.
+- OOP promotes code reusability, modularity, and organization.
 
 ---
 
@@ -445,7 +568,8 @@ int x = 5; // Definition of 'x'
 
 - Variable declarations specify their type and name.
 - A declaration without initialization reserves memory but doesn't assign a value.
-- Example:
+
+## Example
 
 ```cpp
 extern int x; // Declaration of 'x'
@@ -456,7 +580,8 @@ extern int x; // Declaration of 'x'
 # Defining variables
 
 - Variables are defined when they are declared and initialized.
-- Example:
+
+## Example
 
 ```cpp
 int x = 5; // Definition and initialization of 'x'
@@ -468,7 +593,8 @@ int x = 5; // Definition and initialization of 'x'
 
 - Initialization sets the initial value of a variable at the time of declaration.
 - C++ supports various forms of initialization, including direct, copy, and list initialization.
-- Example:
+
+## Example
 
 ```cpp
 int x = 5;            // Direct initialization
@@ -481,7 +607,8 @@ int z{15};            // Uniform initialization (preferred)
 # Declaring functions
 - Function declarations provide information about a function's interface.
 - They specify the return type, name, and parameter types.
-- Example:
+
+## Example
 
 ```cpp
 int add(int a, int b); // Declaration of 'add' function
@@ -492,7 +619,8 @@ int add(int a, int b); // Declaration of 'add' function
 # Defining functions
 - Function definitions specify the implementation of a function.
 - They include the function's return type, name, parameters, and code block.
-- Example:
+
+## Example
 
 ```cpp
 int add(int a, int b) { // Definition of 'add' function
@@ -507,7 +635,8 @@ int add(int a, int b) { // Definition of 'add' function
 - A function prototype is a declaration that provides enough information for the compiler to use the function.
 - Prototypes are typically placed in header files.
 - They enable the separation of interface (declaration) and implementation (definition).
-- Example:
+
+## Example
 
 ```cpp
 // Function prototype in a header file
@@ -710,8 +839,3 @@ _class: titlepage
 -->
 
 # :arrow_right: Classes and object-oriented programming
-
-- Object-oriented programming (OOP) is a programming paradigm that uses classes and objects.
-- C++ is an object-oriented language that supports OOP principles.
-- Classes are user-defined data types that encapsulate data and behavior.
-- OOP promotes code reusability, modularity, and organization.

@@ -729,7 +729,7 @@ int add(int a, int b) {
 
 ---
 
-# The need for header huards
+# The need for header guards
 
 - Header guards (or include guards) prevent multiple inclusions of the same header file.
 - They ensure that a header file is included only once during compilation.

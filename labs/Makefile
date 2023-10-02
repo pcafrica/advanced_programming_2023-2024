@@ -17,4 +17,4 @@ clean:
 distclean: clean
 	$(RM) $(FILES_BACKUP) $(FILES_TMP)
 
-.PHONY: all clean
+.PHONY: all clean distclean

@@ -35,7 +35,7 @@ C++ is:
 - Backward compatible (unlike Python... :disappointed:). Old code compiles (almost) seamlessly.
 - :evergreen_tree: It is [**green**](https://medium.com/codex/what-are-the-greenest-programming-languages-e738774b1957)!
 
-$^1$Not everybody agrees on the definition of *strongly typed*.
+$^1$ Not everybody agrees on the definition of *strongly typed*.
 
 ---
 

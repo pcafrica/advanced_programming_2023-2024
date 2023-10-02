@@ -267,6 +267,27 @@ bool is_false = false;
 
 ---
 
+# `auto`
+
+In many situations, the compiler can determine the correct type of an object using the initialization value.
+
+```cpp
+auto a{42};       // int
+auto b{12L};      // long
+auto c{5.0F};     // float
+auto d{10.0};     // double
+auto e{false};    // bool
+auto f{"string"}; // char[7]
+
+// C++11 
+auto fun1(const int i) -> int { return 2 * i; }
+
+// C++14 
+auto fun2(const int i) { return 2 * i; }
+```
+
+---
+
 <!--
 _class: titlepage
 -->

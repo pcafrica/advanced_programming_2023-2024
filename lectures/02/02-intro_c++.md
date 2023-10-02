@@ -42,13 +42,14 @@ $^1$Not everybody agrees on the definition of *strongly typed*.
 # Outline
 
 1. Structure of a basic C++ program
-2. Fundamental types, variables, pointers, references, arrays
-3. Conditional statements
-4. Functions and operators
-5. User-defined types: `struct`, `enum`, `union`, POD classes
-6. Declarations and definitions
-7. Code organization
-8. The build toolchain in practice
+2. Fundamental types
+3. Memory management: variables, pointers, references, arrays
+4. Conditional statements
+5. Functions and operators
+6. User-defined types: `struct`, `enum`, `union`, POD classes
+7. Declarations and definitions
+8. Code organization
+9. The build toolchain in practice
 
 ---
 
@@ -81,13 +82,13 @@ int main() {
 }
 ```
 
- 
-- `#include <iostream>`: Includes the Input/Output stream library. 
-- `int main()`: Entry point of the program. 
-- `std::cout`: Standard output stream. 
-- `<<`: Stream insertion operator. 
-- `"Hello, world!"`: Text to be printed. 
-- `<< std::endl`: End-of-line character. 
+
+- `#include <iostream>`: Includes the Input/Output stream library.
+- `int main()`: Entry point of the program.
+- `std::cout`: Standard output stream.
+- `<<`: Stream insertion operator.
+- `"Hello, world!"`: Text to be printed.
+- `<< std::endl`: End-of-line character.
 - `return 0;`: Indicates successful program execution.
 
 ---
@@ -156,7 +157,7 @@ _class: titlepage
 
 # Integer numbers
 
-- C++ provides several integer types with varying sizes. 
+- C++ provides several integer types with varying sizes.
 - Common integer types include `int`, `short`, `long`, and `long long`.
 - The range of values that can be stored depends on the type.
 
@@ -174,7 +175,7 @@ long long largeNumber = 123456789012345;
 
 # Floating-point numbers
 
-- C++ supports floating-point types for representing real numbers. 
+- C++ supports floating-point types for representing real numbers.
 - Common floating-point types include `float`, `double`, and `long double`.
 - These types can represent decimal fractions.
 
@@ -231,7 +232,7 @@ if (std::abs(x - sum) < tolerance) { // Safer comparison.
 
 # Characters and strings
 
-- Characters are represented using the `char` type. 
+- Characters are represented using the `char` type.
 - Strings are sequences of characters and are represented using the `std::string` type.
 
 
@@ -252,7 +253,7 @@ std::string message = greeting + name;
 
 # Boolean types
 
-- C++ has a built-in Boolean type called `bool`. 
+- C++ has a built-in Boolean type called `bool`.
 - It can have two values: `true` or `false`.
 - Useful for conditional statements and logical operations.
 
@@ -263,6 +264,65 @@ bool is_true = true;
 
 bool is_false = false;
 ```
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Memory management: variables, pointers, references, arrays
+
+---
+
+# Heap vs. stack
+
+- Programs use memory to store data and variables.
+- Memory is divided into two main areas: the stack and the heap.
+
+
+## Stack memory
+- **Stack**: A region of memory for function call frames.
+- Variables stored on the stack have a fixed size and scope.
+- Memory is allocated and deallocated automatically.
+- Well-suited for small, short-lived variables.
+
+## Heap memory
+- **Heap**: A region of dynamic memory for data with varying lifetimes.
+- Variables on the heap have a dynamic size and longer lifetimes.
+- Memory allocation and deallocation are explicit (manual).
+- Used for objects with unknown or extended lifetimes.
+
+---
+
+# Variables and pointers
+
+- Variables stored on the stack are typically accessed directly.
+- Pointers to stack variables can be used safely within their scope.
+- Heap-allocated variables require pointers for access.
+- Pointers to heap variables must be managed carefully.
+
+```cpp
+int stack_var = 42; // Stack variable
+int* stack_ptr = &stack_var; // Pointer to stack variable
+
+int* heap_ptr = new int(42); // Pointer to heap variable
+// ...
+delete heap_ptr;
+```
+
+---
+
+# Lifetime and scope
+
+- Stack variables have a limited lifetime within their scope.
+- Heap variables can have a longer lifetime beyond their defining scope.
+- Deallocating heap memory is the programmer's responsibility.
+
+## Best practices
+- Use the stack for small, short-lived variables.
+- Use the heap for dynamic data with extended lifetimes.
+- Always deallocate heap memory to prevent memory leaks.
 
 ---
 
@@ -290,7 +350,7 @@ a = 5; // Error!
 # Pointers
 
 - Pointers are variables that store memory addresses.
-- They allow you to work with memory directly. 
+- They allow you to work with memory directly.
 - Declared using `*` symbol.
 
 ## Example
@@ -310,7 +370,7 @@ delete dynamic_variable;
 
 # References
 
-- References provide an alias for an existing variable. 
+- References provide an alias for an existing variable.
 - Declared using `&` symbol.
 - Provide an alternative way to access a variable.
 
@@ -318,7 +378,12 @@ delete dynamic_variable;
 
 ```cpp
 int a = 10;
-int& refA = a; // Reference to 'a'
+int& ref = a; // Reference to 'a'
+
+ref = 20; // Modifies 'a'
+
+int b = 10;
+ref = b; // 'ref' still refers to 'a'!
 ```
 
 ---
@@ -327,7 +392,7 @@ int& refA = a; // Reference to 'a'
 
 - Arrays are collections of elements of the same type.
 - Elements are accessed by their index (position).
-- Arrays have a fixed size.
+- C++ provides the much safer `std::array<type>`, `std::vector<type>`.
 
 ## Example
 
@@ -336,14 +401,14 @@ int numbers[5]; // Array declaration
 numbers[0] = 1; // Assigning values to elements
 numbers[1] = 2;
 
-// Create a dynamic array of integers with new
-int* dynamicArray = new int[5];
+
+int* dynamic_array = new int[5];
 
 for (int i = 0; i < 5; ++i) {
-    dynamicArray[i] = i * 2;
+    dynamic_array[i] = i * 2;
 }
 
-delete[] dynamicArray;
+delete[] dynamic_array;
 ```
 
 
@@ -357,9 +422,9 @@ _class: titlepage
 
 ---
 
-# `if`, `elseif`, `else`
+# `if` ... `else if` ... `else`
 
-- Conditional statements allow you to execute different code based on conditions. 
+- Conditional statements allow you to execute different code based on conditions.
 - In C++, we use `if`, `else if`, and `else` statements for conditional execution.
 
 ## Example
@@ -379,7 +444,25 @@ else {
 
 ---
 
-# `switch`, `case`
+# `switch` ... `case`
+
+- The `switch` statement is a control flow structure in C++ used for making decisions based on the value of an expression.
+- It's an alternative to using a series of `if` ... `else` statements for multiple conditional checks.
+
+## Example
+```cpp
+switch (expression) {
+    case constant1:
+        // Code to execute if expression == constant1
+        break;
+    case constant2:
+        // Code to execute if expression == constant2
+        break;
+    // ... more cases ...
+    default:
+        // Code to execute if expression doesn't match any case.
+}
+```
 
 ---
 
@@ -408,16 +491,150 @@ int result = add(3, 4); // Calling the 'add' function
 
 ---
 
-# Pass by value vs. pointer vs. reference
+# `void`
 
+- `void` is a data type that represents the absence of a specific type.
+- It indicates that a function does not return any value or that a pointer does not have a defined type.
+
+## Example
+```cpp
+void greet() {
+    std::cout << "Hello, world!" << std::endl;
+}
+
+void* generic_ptr;
+int x = 10;
+
+generic_ptr = &x; // Can point to any data type
+```
+
+---
+
+# Pass by value vs. pointer vs. reference (1/2)
+
+```cpp
+void modify_by_copy(int x) {
+    // Creates a copy of 'x' inside the function
+    x = 20; // Changes the copy 'x', not the original value
+}
+
+void modify_by_ptr(int* ptr) {
+    *ptr = 30; // Modifies the original value via the pointer
+}
+
+void modify_by_ref(int& ref) {
+    ref = 40; // Modifies the original value through the reference
+}
+```
+
+---
+
+# Pass by value vs. pointer vs. reference (2/2)
+
+```cpp
+int value = 10;
+
+modify_by_copy(value); // Pass by value
+std::cout << value << std::endl; // Output: 10
+
+modify_by_ptr(&value); // Pass by pointer
+std::cout << value << std::endl; // Output: 30
+
+modify_by_ref(value); // Pass by reference
+std::cout << value << std::endl; // Output: 40
+```
+
+## Best practices
+- Pass by value for small, non-mutable data.
+- Pass by pointer for modifying values or working with arrays.
+- Pass by reference for efficiency and direct modification of values.
+
+---
+
+# Return by value vs. pointer vs. reference (1/2)
+
+```cpp
+int get_copy() {
+    return 42; // Returns a copy of the value
+}
+
+int* get_ptr() {
+    int* arr = new int[5];
+    // Populate the array
+    return arr; // Returns a pointer to the array
+}
+
+int& get_ref() {
+    static int value = 10;
+    return value; // Returns a reference to 'value'
+}
+```
+
+---
+
+# Return by value vs. pointer vs. reference (2/2)
+
+```cpp
+int result1 = get_copy(); // Return by value
+
+int* result2 = get_ptr(); // Return by pointer
+result2[2] = 5;
+delete[] result2; // Warning!
+
+int& result3 = get_ref(); // Return by reference
+result3 = 20;
+```
+
+## Best practices
+- Return by value for small, non-mutable data.
+- Return by pointer for dynamically allocated data.
+- Return by reference for efficiency and direct modification of data.
+
+---
+
+# `const` correctness (1/2)
+
+```cpp
+void print_value(const int x) {
+    // x = 42; // Error: Cannot modify 'x'
+}
+
+const int get_copy() {
+    const int x = 42;
+    return x;
+}
+
+int result = get_copy();
+// result = 10; // Safe, it's a copy!
+
+const int age = 30; // Immutable variable
+const int* ptr_to_const = &age; // Pointer to constant integer
+
+ptr_to_const = &result; // Now pointing to another variable
+*ptr_to_const = 42; // Error: Cannot modify pointed object
+```
+
+---
+
+# `const` correctness (2/2)
+
+## Benefits
+- Prevents unintended modifications: Helps avoid accidental data modifications, enhancing code safety.
+- Self-documenting code: Makes code more self-documenting by indicating the intent of data usage.
+- Compiler optimizations: Allows the compiler to perform certain optimizations, as it knows that const data won't change.
+
+## Best practices
+- Const correctness is a valuable practice for writing safe and maintainable C++ code.
+- Use `const` to indicate read-only data and functions.
+- Incorrectly using `const` can lead to compiler errors or unexpected behavior.
 
 ---
 
 # Operators
 
-- Operators are symbols used to perform operations on variables and values. 
-- Arithmetic operators: `+`, `-`, `*`, `/`, `%` 
-- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=` 
+- Operators are symbols used to perform operations on variables and values.
+- Arithmetic operators: `+`, `-`, `*`, `/`, `%`
+- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
 - Logical operators: `&&`, `||`, `!`
 
 ## Example
@@ -425,10 +642,51 @@ int result = add(3, 4); // Calling the 'add' function
 ```cpp
 int x = 5;
 int y = 3;
-bool isTrue = (x > y) && (x != 0); // Logical expression
+bool is_true = (x > y) && (x != 0); // Logical expression
+int z = (x > y) ? 2 : 1; // Ternary operator
 ```
 
-# TODO: i++
+---
+
+# Increment operators
+
+1. **Pre-increment (`++var`)**:
+   - Increases the variable's value before using it.
+   - The updated value is immediately reflected.
+
+2. **Post-increment (`var++`)**:
+   - Uses the current value of the variable before incrementing.
+   - The variable's value is increased after its current value is used.
+
+
+```cpp
+int a = 5;
+int b = ++a; // Pre-increment
+// a is now 6, b is also 6
+
+int c = a++; // Post-increment
+// a is now 7, but c is 6
+```
+
+---
+
+# Function overloading
+
+- Function overloading is a feature in C++ that allows you to define multiple functions with the same name but different parameters.
+- The compiler selects the appropriate function based on the number or types of arguments during the function call.
+
+```cpp
+void print(int x) {
+    std::cout << "Integer value: " << x << std::endl;
+}
+
+double print(double x) {
+    std::cout << "Double value: " << x << std::endl;
+}
+
+print(3); // Calls the int version
+print(2.5); // Calls the double version
+```
 
 ---
 
@@ -454,7 +712,7 @@ enum Color {
     Blue
 };
 
-Color myColor = Green;
+Color my_color = Green;
 ```
 
 ---
@@ -469,12 +727,14 @@ Color myColor = Green;
 
 ```cpp
 union MyUnion {
-    int intValue;
-    float floatValue;
+    int int_value;
+    float float_value;
 };
 
 MyUnion data;
-data.intValue = 42;
+data.int_value = 42;
+
+float x = data.float_value; // Undefined behavior!
 ```
 
 ---
@@ -498,9 +758,11 @@ p.x = 3;
 p.y = 5;
 ```
 
+Actually, in C++ `struct` is just a special type of `class`. When Referring to C-style structs, a more proper name would be **Plain Old Data (POD) structs**.
+
 ---
 
-# User-defined types: Plain Old Data (POD) classes
+# User-defined types: Plain Old Data (POD) structs
 
 - POD classes are classes with simple data members and no user-defined constructors or destructors.
 - They have C-like semantics and can be used in low-level operations.
@@ -508,8 +770,7 @@ p.y = 5;
 ## Example
 
 ```cpp
-class Rectangle {
-public:
+struct Rectangle {
     int width;
     int height;
 };
@@ -517,6 +778,9 @@ public:
 Rectangle r;
 r.width = 10;
 r.height = 20;
+
+Rectangle s{5, 10};
+Rectangle t = s; // POD structs are trivially copyable
 ```
 
 ---
@@ -526,6 +790,7 @@ r.height = 20;
 - Object-oriented programming (OOP) is a programming paradigm that uses classes and objects.
 - C++ is an object-oriented language that supports OOP principles.
 - Classes are user-defined data types that encapsulate data and behavior.
+- Classes extend structs by including **member functions** other than data.
 - OOP promotes code reusability, modularity, and organization.
 
 ---
@@ -597,16 +862,17 @@ int x = 5; // Definition and initialization of 'x'
 ## Example
 
 ```cpp
-int x = 5;            // Direct initialization
-int y(10);            // Constructor-style initialization
-int z{15};            // Uniform initialization (preferred)
+int x = 5; // Direct initialization
+int y(10); // Constructor-style initialization
+int z{15}; // Uniform initialization (preferred)
 ```
 
 ---
 
 # Declaring functions
-- Function declarations provide information about a function's interface.
+- Function declarations provide enough information for the compiler to use the function.
 - They specify the return type, name, and parameter types.
+- Function declarations are typically placed in header files.
 
 ## Example
 
@@ -619,6 +885,7 @@ int add(int a, int b); // Declaration of 'add' function
 # Defining functions
 - Function definitions specify the implementation of a function.
 - They include the function's return type, name, parameters, and code block.
+- They are typically placed in source files.
 
 ## Example
 
@@ -626,21 +893,6 @@ int add(int a, int b); // Declaration of 'add' function
 int add(int a, int b) { // Definition of 'add' function
     return a + b;
 }
-```
-
----
-
-# Function prototypes
-
-- A function prototype is a declaration that provides enough information for the compiler to use the function.
-- Prototypes are typically placed in header files.
-- They enable the separation of interface (declaration) and implementation (definition).
-
-## Example
-
-```cpp
-// Function prototype in a header file
-int add(int a, int b);
 ```
 
 ---
@@ -656,7 +908,7 @@ _class: titlepage
 # Modular programming
 
 - Modular programming divides code into separate modules or units.
-- Each module focuses on a specific task or functionality. 
+- Each module focuses on a specific task or functionality.
 - Benefits:
   - Improved code organization and readability
   - Easier maintenance and debugging
@@ -667,9 +919,9 @@ _class: titlepage
 
 # Building blocks of C++ code modules
 
-- C++ code modules consist of: 
-- Header files (`.h` or `.hpp`) for declarations 
-- Source files (`.cpp`) for definitions 
+- C++ code modules consist of:
+- Header files (`.h` or `.hpp`) for declarations
+- Source files (`.cpp`) for definitions
 - Implementation files (`.cpp`) for non-template classes
 - Header files contain function prototypes and class declarations.
 - Source files contain function and class definitions.
@@ -684,9 +936,7 @@ _class: titlepage
 - Example of a header file:
 
 ```cpp
-// MyModule.h
-#pragma once
-
+// my_module.hpp
 int add(int a, int b); // Function prototype
 ```
 
@@ -710,8 +960,8 @@ int add(int a, int b); // Function prototype
 - Example of a source file:
 
 ```cpp
-// MyModule.cpp
-#include "MyModule.h" // Include the corresponding header
+// my_module.cpp
+#include "my_module.hpp" // Include the corresponding header
 
 int add(int a, int b) {
     return a + b;
@@ -720,24 +970,34 @@ int add(int a, int b) {
 
 ---
 
-# Compiling source files
-
-- Compilation is the process of translating source code into machine code. 
-- C++ source files are typically compiled into object files (`.o` or `.obj`).
-- Object files are then linked together to create an executable. 
-- The `g++` or `clang++` compiler is commonly used for C++ compilation.
-
----
-
 # The need for header guards
 
 - Header guards (or include guards) prevent multiple inclusions of the same header file.
 - They ensure that a header file is included only once during compilation.
 - Header guards are essential to avoid redefinition errors.
-- Example of a header guard:
+
+Without header guards, if a header file is included multiple times in a source file or across multiple source files, it can lead to redefinition errors.
+
+---
+
+# How to implement header guards
+
+- Place `#ifndef`, `#define`, and `#endif` or `#pragma once` directives in the header file.
+- Use a unique identifier (usually based on the filename) as the guard symbol.
+
+**Example (file `my_module.h`)**:
 
 ```cpp
-// MyModule.h
+#ifndef MY_MODULE_H__
+#define MY_MODULE_H__
+
+// ... header content ...
+
+#endif
+```
+
+Modern compilers also support:
+```cpp
 #pragma once
 
 // ... header content ...
@@ -745,26 +1005,9 @@ int add(int a, int b) {
 
 ---
 
-# How to implement header guards
-
-- Place `#pragma once` or `#ifndef`, `#define`, and `#endif` directives in the header file.
-- Use a unique identifier (usually based on the filename) as the guard symbol.
-- Example of header guards:
-
-```cpp
-// MyModule.h
-#pragma once // or: #ifndef MYMODULE_H #define MYMODULE_H
-
-// ... header content ...
-
-// #endif // Add this line for the ifndef/define approach
-```
-
----
-
 # Preventing header file inclusion issues
 
-- To avoid issues with header file inclusions:
+To avoid issues with header file inclusions:
 - Include necessary headers in your source files.
 - Avoid circular dependencies (A includes B, and B includes A).
 - Use forward declarations when possible to minimize dependencies.
@@ -780,12 +1023,23 @@ int add(int a, int b) {
 - Variables declared outside of any function or class have global scope.
 - Namespaces help organize code and avoid naming conflicts.
 
+```cpp
+int x = 10;
+
+{ // Manually define a scope
+    int y = 20;
+    // ...
+} // Destroy all variables local to the scope
+
+std::cout << y << std::endl; // Error: 'y' is undefined
+```
+
 ---
 
 # Using namespaces for organization
 
 - Namespaces group related declarations to avoid naming collisions.
-- They provide a way to organize code into logical units. 
+- They provide a way to organize code into logical units.
 - Namespace members are accessed using the `::` operator.
 - Example of using a namespace:
 
@@ -796,7 +1050,10 @@ namespace Math {
     }
 }
 
-int result = Math::add(3, 4); // Accessing a namespace member
+int result1 = Math::add(3, 4); // Accessing a namespace member
+
+using namespace Math; // Useful, but dangerous due to possible name clashes.
+int result2 = add(3, 4);
 ```
 
 ---
@@ -812,9 +1069,22 @@ _class: titlepage
 # Preprocessor and compiler
 
 - The preprocessor (`cpp`) handles preprocessing directives.
-- It includes headers, performs macro substitution, and removes comments. 
-- The compiler (`g++`, `clang++`) translates source code into object files. 
+- It includes headers, performs macro substitution, and removes comments.
+- The compiler (`g++`, `clang++`) translates source code into object files.
 - Preprocessor and compiler commands are combined when you run `g++` or `clang++`.
+
+## Example
+Project with three files: `module.hpp`, `module.cpp`, `main.cpp`.
+
+```bash
+g++ -E module.cpp -o module_preprocessed.cpp
+g++ -E main.cpp -o main_preprocessed.cpp
+```
+
+```bash
+g++ -c module_preprocessed.cpp -o module.o
+g++ -c main_preprocessed.cpp -o main.o
+```
 
 ---
 
@@ -824,6 +1094,17 @@ _class: titlepage
 - It creates an executable program from multiple object files.
 - Linker errors occur if functions or variables are not defined.
 
+## Example
+```bash
+g++ module.o main.o -o my_program
+```
+
+Link against an external library:
+```
+g++ module.o main.o -o my_program -lmy_lib -L/path/to/my/lib
+```
+In this example, the `-lmy_lib` flag is used to link against the library `libmy_lib.so`. The `-l` flag is followed by the library name without the `lib` prefix and without the file extension `.so` (dynamic) or `.a` (static).
+
 ---
 
 # Loader
@@ -831,6 +1112,17 @@ _class: titlepage
 - The loader loads the executable program into memory for execution.
 - It allocates memory for the program's data and code sections.
 - The operating system's loader handles this task.
+
+## Example
+```bash
+./my_program
+```
+
+If linked against an external dynamic library, the loader has to know where it is located. The list of directories where to find dynamic libraries is contained in the colon-separated environment variable `LD_LIBRARY_PATH`.
+```bash
+export LD_LIBRARY_PATH+=:/path/to/my/lib
+./my_program
+```
 
 ---
 

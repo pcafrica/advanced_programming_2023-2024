@@ -1,0 +1,8 @@
+SUBDIRS:=lectures labs
+
+$(MAKECMDGOALS) all: $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@ $(MAKECMDGOALS)
+
+.PHONY: all $(MAKECMDGOALS) $(SUBDIRS)

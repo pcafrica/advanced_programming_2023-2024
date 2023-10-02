@@ -46,7 +46,7 @@ $^1$ Not everybody agrees on the definition of *strongly typed*.
 3. Memory management: variables, pointers, references, arrays
 4. Conditional statements
 5. Functions and operators
-6. User-defined types: `struct`, `enum`, `union`, POD classes
+6. User-defined types: `enum`, `union`, `struct`, POD structs
 7. Declarations and definitions
 8. Code organization
 9. The build toolchain in practice
@@ -88,7 +88,7 @@ int main() {
 - `std::cout`: Standard output stream.
 - `<<`: Stream insertion operator.
 - `"Hello, world!"`: Text to be printed.
-- `<< std::endl`: End-of-line character.
+- `<< std::endl`: Newline character.
 - `return 0;`: Indicates successful program execution.
 
 ---
@@ -98,15 +98,18 @@ int main() {
 To compile the program:
 
 ```bash
-g++ -o HelloWorld HelloWorld.cpp
+g++ -o hello_world hello_world.cpp
 ```
-
-
 
 To run the compiled program:
 
 ```bash
-./HelloWorld
+./hello_world
+```
+
+To check exit code:
+```bash
+echo $?
 ```
 
 ---
@@ -125,8 +128,8 @@ int x = 5;
 char ch = 'A';
 float f = 3.14;
 
-x = 1.6;        // Illegal
-f = "a string"; // Illegal
+x = 1.6;        // Legal, but truncated to the 'int' 1.
+f = "a string"; // Illegal.
 ```
 
 ---
@@ -193,7 +196,7 @@ double gravity = 9.81;
 
 Floating-point arithmetic is a method for representing and performing operations on real numbers $\pm f \cdot b^e$ in a binary format (i.e., $b=2$).
 
-- **Representation**: Floating-point numbers consist of three components: sign $s$: 0 (positive), 1 (negative), significand $f$, and exponent $e$.
+- **Representation**: Floating-point numbers consist of three components: sign $s$ (0: positive, 1: negative), significand $f$, and exponent $e$.
 
 - **Normalized numbers**: In normalized form, the most significant bit of the significand is always 1, allowing for a wide range of values to be represented efficiently.
 
@@ -239,14 +242,14 @@ if (std::abs(x - sum) < tolerance) { // Safer comparison.
 ## Example
 
 ```cpp
-char grade = 'A';
+char comma = ',';
 
 std::string name = "John";
 
-std::string greeting = "Hello, ";
+std::string greeting = "Hello";
 
-// Concatenate strings
-std::string message = greeting + name;
+// Concatenate strings.
+std::string message = greeting + comma + ' ' + name;
 ```
 
 ---
@@ -256,6 +259,7 @@ std::string message = greeting + name;
 - C++ has a built-in Boolean type called `bool`.
 - It can have two values: `true` or `false`.
 - Useful for conditional statements and logical operations.
+- Numbers can be converted to Boolean.
 
 ## Example
 
@@ -263,6 +267,27 @@ std::string message = greeting + name;
 bool is_true = true;
 
 bool is_false = false;
+
+if (-1.5) // true.
+    // ...
+
+if (0) // false.
+    // ...
+```
+
+---
+
+# Initialization
+
+- Initialization sets the initial value of a variable at the time of declaration.
+- C++ supports various forms of initialization, including direct, copy, and list initialization.
+
+## Example
+
+```cpp
+int x = 5; // Direct initialization.
+int y(10); // Constructor-style initialization.
+int z{15}; // Uniform initialization (preferred).
 ```
 
 ---
@@ -272,17 +297,17 @@ bool is_false = false;
 In many situations, the compiler can determine the correct type of an object using the initialization value.
 
 ```cpp
-auto a{42};       // int
-auto b{12L};      // long
-auto c{5.0F};     // float
-auto d{10.0};     // double
-auto e{false};    // bool
-auto f{"string"}; // char[7]
+auto a{42};       // int.
+auto b{12L};      // long.
+auto c{5.0F};     // float.
+auto d{10.0};     // double.
+auto e{false};    // bool.
+auto f{"string"}; // char[7].
 
-// C++11 
+// C++11.
 auto fun1(const int i) -> int { return 2 * i; }
 
-// C++14 
+// C++14.
 auto fun2(const int i) { return 2 * i; }
 ```
 
@@ -324,10 +349,10 @@ _class: titlepage
 - Pointers to heap variables must be managed carefully.
 
 ```cpp
-int stack_var = 42; // Stack variable
-int* stack_ptr = &stack_var; // Pointer to stack variable
+int stack_var = 42; // Stack variable.
+int* stack_ptr = &stack_var; // Pointer to stack variable.
 
-int* heap_ptr = new int(42); // Pointer to heap variable
+int* heap_ptr = new int(42); // Pointer to heap variable.
 // ...
 delete heap_ptr;
 ```
@@ -356,11 +381,11 @@ delete heap_ptr;
 ## Example
 
 ```cpp
-int x = 5; // Declaration and initialization
-x = 10;    // Variable modification
+int x = 5; // Declaration and initialization.
+x = 10;    // Variable modification.
 
-int y;  // Declaration with default initialization
-y = 20; // Initialization after declaration
+int y;  // Declaration with default initialization.
+y = 20; // Initialization after declaration.
 
 const double a = 3.7;
 a = 5; // Error!
@@ -379,13 +404,32 @@ a = 5; // Error!
 ```cpp
 int number = 42;
 
-int* pointer = &number; // Pointer to 'number'
+int* pointer = &number; // Pointer to 'number'.
 
-// Create a dynamic integer with new
+// Create a dynamic integer with new.
 int* dynamic_variable = new int;
 *dynamic_variable = 5;
 delete dynamic_variable;
 ```
+
+---
+
+# Pointers: common problems
+
+```cpp
+int* arr = new int[5]; // Dynamically allocate an integer array.
+
+// Access and use the array beyond its allocated size.
+for (int i = 0; i <= 5; i++) {
+    arr[i] = i;
+}
+
+// Forgot to delete the dynamically allocated array, causing a memory leak.
+// delete[] arr;
+
+// Attempt to access memory beyond the allocated array's bounds, causing undefined behavior.
+std::cout << arr[10] << std::endl;
+ ```
 
 ---
 
@@ -399,12 +443,13 @@ delete dynamic_variable;
 
 ```cpp
 int a = 10;
-int& ref = a; // Reference to 'a'
+int& ref = a; // Reference to 'a'.
 
-ref = 20; // Modifies 'a'
+ref = 20; // Modifies 'a'.
 
 int b = 10;
-ref = b; // 'ref' still refers to 'a'!
+ref = b;
+ref = 5; // What's now the value of 'a' and 'b'?
 ```
 
 ---
@@ -418,10 +463,8 @@ ref = b; // 'ref' still refers to 'a'!
 ## Example
 
 ```cpp
-int numbers[5]; // Array declaration
-numbers[0] = 1; // Assigning values to elements
-numbers[1] = 2;
-
+int numbers[5]; // Array declaration.
+numbers[0] = 1; // Assigning values to elements.
 
 int* dynamic_array = new int[5];
 
@@ -457,8 +500,7 @@ if (x > 5) {
     std::cout << "x is greater than 5." << std::endl;
 } else if (x > 3) {
     std::cout << "x is greater than 3 but not greater than 5." << std::endl;
-}
-else {
+} else {
     std::cout << "x is not greater than 5." << std::endl;
 }
 ```
@@ -467,17 +509,16 @@ else {
 
 # `switch` ... `case`
 
-- The `switch` statement is a control flow structure in C++ used for making decisions based on the value of an expression.
-- It's an alternative to using a series of `if` ... `else` statements for multiple conditional checks.
+- The `switch` statement is a control flow structure alternative to using multiple `if` ... `else` statements based on the value of an expression.
 
 ## Example
 ```cpp
 switch (expression) {
     case constant1:
-        // Code to execute if expression == constant1
+        // Code to execute if expression == constant1.
         break;
     case constant2:
-        // Code to execute if expression == constant2
+        // Code to execute if expression == constant2.
         break;
     // ... more cases ...
     default:
@@ -507,7 +548,7 @@ int add(int a, int b) {
     return a + b;
 }
 
-int result = add(3, 4); // Calling the 'add' function
+int result = add(3, 4); // Calling the 'add' function.
 ```
 
 ---
@@ -516,6 +557,7 @@ int result = add(3, 4); // Calling the 'add' function
 
 - `void` is a data type that represents the absence of a specific type.
 - It indicates that a function does not return any value or that a pointer does not have a defined type.
+- Dangerous to use.
 
 ## Example
 ```cpp
@@ -526,7 +568,7 @@ void greet() {
 void* generic_ptr;
 int x = 10;
 
-generic_ptr = &x; // Can point to any data type
+generic_ptr = &x; // Can point to any data type.
 ```
 
 ---
@@ -535,16 +577,16 @@ generic_ptr = &x; // Can point to any data type
 
 ```cpp
 void modify_by_copy(int x) {
-    // Creates a copy of 'x' inside the function
-    x = 20; // Changes the copy 'x', not the original value
+    // Creates a copy of 'x' inside the function.
+    x = 20; // Changes the copy 'x', not the original value.
 }
 
 void modify_by_ptr(int* ptr) {
-    *ptr = 30; // Modifies the original value via the pointer
+    *ptr = 30; // Modifies the original value via the pointer.
 }
 
 void modify_by_ref(int& ref) {
-    ref = 40; // Modifies the original value through the reference
+    ref = 40; // Modifies the original value through the reference.
 }
 ```
 
@@ -555,14 +597,14 @@ void modify_by_ref(int& ref) {
 ```cpp
 int value = 10;
 
-modify_by_copy(value); // Pass by value
-std::cout << value << std::endl; // Output: 10
+modify_by_copy(value); // Pass by value.
+std::cout << value << std::endl; // Output: 10.
 
 modify_by_ptr(&value); // Pass by pointer
-std::cout << value << std::endl; // Output: 30
+std::cout << value << std::endl; // Output: 30.
 
 modify_by_ref(value); // Pass by reference
-std::cout << value << std::endl; // Output: 40
+std::cout << value << std::endl; // Output: 40.
 ```
 
 ## Best practices
@@ -576,18 +618,18 @@ std::cout << value << std::endl; // Output: 40
 
 ```cpp
 int get_copy() {
-    return 42; // Returns a copy of the value
+    return 42; // Returns a copy of the value.
 }
 
 int* get_ptr() {
     int* arr = new int[5];
-    // Populate the array
-    return arr; // Returns a pointer to the array
+    // ...
+    return arr; // Returns a pointer to the array.
 }
 
 int& get_ref() {
     static int value = 10;
-    return value; // Returns a reference to 'value'
+    return value; // Returns a reference to 'value'.
 }
 ```
 
@@ -596,13 +638,13 @@ int& get_ref() {
 # Return by value vs. pointer vs. reference (2/2)
 
 ```cpp
-int result1 = get_copy(); // Return by value
+int result1 = get_copy(); // Return by value.
 
-int* result2 = get_ptr(); // Return by pointer
+int* result2 = get_ptr(); // Return by pointer.
 result2[2] = 5;
-delete[] result2; // Warning!
+delete[] result2; // Beware of memory leaks!
 
-int& result3 = get_ref(); // Return by reference
+int& result3 = get_ref(); // Return by reference.
 result3 = 20;
 ```
 
@@ -617,7 +659,7 @@ result3 = 20;
 
 ```cpp
 void print_value(const int x) {
-    // x = 42; // Error: Cannot modify 'x'
+    // x = 42; // Error: Cannot modify 'x'.
 }
 
 const int get_copy() {
@@ -626,14 +668,16 @@ const int get_copy() {
 }
 
 int result = get_copy();
-// result = 10; // Safe, it's a copy!
+result = 10; // Safe, it's a copy!
 
-const int age = 30; // Immutable variable
-const int* ptr_to_const = &age; // Pointer to constant integer
+const int age = 30; // Immutable variable.
+const int* ptr_to_const = &age; // Pointer to constant integer.
 
-ptr_to_const = &result; // Now pointing to another variable
-*ptr_to_const = 42; // Error: Cannot modify pointed object
+ptr_to_const = &result; // Now pointing to another variable.
+*ptr_to_const = 42; // Error: cannot modify pointed object.
 ```
+
+**Question**: how to declare a constant pointer to a non-constant `int`?
 
 ---
 
@@ -655,16 +699,20 @@ ptr_to_const = &result; // Now pointing to another variable
 
 - Operators are symbols used to perform operations on variables and values.
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
+- Arithmetic and assignment operators: `+=`, `-=`, `*=`, `/=`, `%=`
 - Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
 - Logical operators: `&&`, `||`, `!`
 
 ## Example
 
 ```cpp
-int x = 5;
-int y = 3;
-bool is_true = (x > y) && (x != 0); // Logical expression
-int z = (x > y) ? 2 : 1; // Ternary operator
+int x = 5, y = 3;
+bool is_true = (x > y) && (x != 0); // Logical expression.
+int z = (x > y) ? 2 : 1; // Ternary operator.
+
+x += 2; // 7.
+y *= 4; // 12.
+z /= 2; // 1.
 ```
 
 ---
@@ -673,20 +721,19 @@ int z = (x > y) ? 2 : 1; // Ternary operator
 
 1. **Pre-increment (`++var`)**:
    - Increases the variable's value before using it.
-   - The updated value is immediately reflected.
+   - The updated value is immediately reflected. No temporary needed: **more efficient**.
 
 2. **Post-increment (`var++`)**:
    - Uses the current value of the variable before incrementing.
    - The variable's value is increased after its current value is used.
 
-
 ```cpp
 int a = 5;
-int b = ++a; // Pre-increment
-// a is now 6, b is also 6
+int b = ++a; // Pre-increment.
+// a is now 6, b is also 6.
 
-int c = a++; // Post-increment
-// a is now 7, but c is 6
+int c = a++; // Post-increment.
+// a is now 7, but c is 6.
 ```
 
 ---
@@ -705,8 +752,8 @@ double print(double x) {
     std::cout << "Double value: " << x << std::endl;
 }
 
-print(3); // Calls the int version
-print(2.5); // Calls the double version
+print(3); // Calls the int version.
+print(2.5); // Calls the double version.
 ```
 
 ---
@@ -801,7 +848,7 @@ r.width = 10;
 r.height = 20;
 
 Rectangle s{5, 10};
-Rectangle t = s; // POD structs are trivially copyable
+Rectangle t = s; // POD structs are trivially copyable.
 ```
 
 ---
@@ -824,28 +871,24 @@ _class: titlepage
 
 ---
 
-# What are declarations?
+# Declaration
 
 - Declarations inform the compiler about the existence of variables or functions.
-- They provide type information but do not allocate memory or provide implementation details.
-- Example of variable declaration:
+- They provide type information but do not allocate memory or provide implementation.
 
 ```cpp
-int x; // Declaration of 'x'
+int x; // Declaration of 'x'.
 
-extern int y; // Declaration of 'y'
+extern int y; // Declaration of 'y'.
 ```
 
----
-
-# What are definitions?
+# Definition
 
 - Definitions provide the actual implementation of variables or functions.
 - They allocate memory for variables or specify the behavior of functions.
-- Example of variable definition:
 
 ```cpp
-int x = 5; // Definition of 'x'
+int x = 5; // Definition of 'x'.
 ```
 
 ---
@@ -858,7 +901,11 @@ int x = 5; // Definition of 'x'
 ## Example
 
 ```cpp
-extern int x; // Declaration of 'x'
+int x; // Declaration of 'x'.
+
+extern int y; // Declaration of 'y'.
+
+struct X; // Forward-declaration.
 ```
 
 ---
@@ -870,22 +917,7 @@ extern int x; // Declaration of 'x'
 ## Example
 
 ```cpp
-int x = 5; // Definition and initialization of 'x'
-```
-
----
-
-# Initialization
-
-- Initialization sets the initial value of a variable at the time of declaration.
-- C++ supports various forms of initialization, including direct, copy, and list initialization.
-
-## Example
-
-```cpp
-int x = 5; // Direct initialization
-int y(10); // Constructor-style initialization
-int z{15}; // Uniform initialization (preferred)
+int x = 5; // Definition and initialization of 'x'.
 ```
 
 ---
@@ -898,7 +930,7 @@ int z{15}; // Uniform initialization (preferred)
 ## Example
 
 ```cpp
-int add(int a, int b); // Declaration of 'add' function
+int add(int a, int b); // Declaration of 'add' function.
 ```
 
 ---
@@ -911,7 +943,7 @@ int add(int a, int b); // Declaration of 'add' function
 ## Example
 
 ```cpp
-int add(int a, int b) { // Definition of 'add' function
+int add(int a, int b) { // Definition of 'add' function.
     return a + b;
 }
 ```
@@ -949,40 +981,35 @@ _class: titlepage
 
 ---
 
-# Header files: purpose and role
+# Header files
 
 - Header files (`.h` or `.hpp`) contain declarations and prototypes.
 - They define the interface to a module or class.
 - Header files are included in source files to access declarations.
-- Example of a header file:
 
 ```cpp
 // my_module.hpp
-int add(int a, int b); // Function prototype
+int add(int a, int b); // Function prototype.
 ```
 
----
-
-# Header files: best practices
-
+## Best practices
 - Use include guards or `#pragma once` to prevent multiple inclusions.
 - Include only necessary headers to reduce compilation time.
 - Keep header files concise and focused on declarations.
 - Use descriptive and unique names for header files.
-- Comment complex or non-obvious declarations.
+- Document complex or non-obvious declarations.
 
 ---
 
-# Source files: role and contents
+# Source files
 
 - Source files (`.cpp`) contain the definitions of functions and classes.
 - They implement the functionality declared in header files.
 - Source files include header files for access to declarations.
-- Example of a source file:
 
 ```cpp
 // my_module.cpp
-#include "my_module.hpp" // Include the corresponding header
+#include "my_module.hpp" // Include the corresponding header.
 
 int add(int a, int b) {
     return a + b;
@@ -1012,7 +1039,7 @@ Without header guards, if a header file is included multiple times in a source f
 #ifndef MY_MODULE_H__
 #define MY_MODULE_H__
 
-// ... header content ...
+// ...
 
 #endif
 ```
@@ -1021,7 +1048,7 @@ Modern compilers also support:
 ```cpp
 #pragma once
 
-// ... header content ...
+// ...
 ```
 
 ---
@@ -1047,12 +1074,12 @@ To avoid issues with header file inclusions:
 ```cpp
 int x = 10;
 
-{ // Manually define a scope
+{ // Manually define a scope.
     int y = 20;
     // ...
-} // Destroy all variables local to the scope
+} // Destroy all variables local to the scope.
 
-std::cout << y << std::endl; // Error: 'y' is undefined
+std::cout << y << std::endl; // Error: 'y' is undefined here.
 ```
 
 ---
@@ -1071,7 +1098,7 @@ namespace Math {
     }
 }
 
-int result1 = Math::add(3, 4); // Accessing a namespace member
+int result1 = Math::add(3, 4); // Accessing a namespace member.
 
 using namespace Math; // Useful, but dangerous due to possible name clashes.
 int result2 = add(3, 4);
@@ -1094,15 +1121,14 @@ _class: titlepage
 - The compiler (`g++`, `clang++`) translates source code into object files.
 - Preprocessor and compiler commands are combined when you run `g++` or `clang++`.
 
-## Example
-Project with three files: `module.hpp`, `module.cpp`, `main.cpp`.
+### Example (project with three files: `module.hpp`, `module.cpp`, `main.cpp`):
 
 ```bash
+# Preprocessor.
 g++ -E module.cpp -o module_preprocessed.cpp
 g++ -E main.cpp -o main_preprocessed.cpp
-```
 
-```bash
+# Compiler.
 g++ -c module_preprocessed.cpp -o module.o
 g++ -c main_preprocessed.cpp -o main.o
 ```

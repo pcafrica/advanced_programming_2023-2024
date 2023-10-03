@@ -140,7 +140,7 @@ unsigned int y{3.0}; // Uniform initialization: illegal.
 _class: titlepage
 -->
 
-# Fundamental types, variables, pointers, references, arrays
+# Fundamental types
 
 ---
 
@@ -357,6 +357,7 @@ int* stack_ptr = &stack_var; // Pointer to stack variable.
 int* heap_ptr = new int(42); // Pointer to heap variable.
 // ...
 delete heap_ptr;
+heap_ptr = nullptr;
 ```
 
 ---
@@ -411,7 +412,9 @@ int* pointer = &number; // Pointer to 'number'.
 // Create a dynamic integer with new.
 int* dynamic_variable = new int;
 *dynamic_variable = 5;
+// Deallocate it.
 delete dynamic_variable;
+dynamic_variable = nullptr;
 ```
 
 ---

@@ -98,7 +98,7 @@ int main() {
 To compile the program:
 
 ```bash
-g++ -o hello_world hello_world.cpp
+g++ hello_world.cpp -o hello_world
 ```
 
 To run the compiled program:
@@ -130,6 +130,8 @@ float f = 3.14;
 
 x = 1.6;        // Legal, but truncated to the 'int' 1.
 f = "a string"; // Illegal.
+
+unsigned int y{3.0}; // Uniform initialization: illegal.
 ```
 
 ---
@@ -628,7 +630,7 @@ int* get_ptr() {
 }
 
 int& get_ref() {
-    static int value = 10;
+    static int value = 10; // Beware: if not static, undefined behavior.
     return value; // Returns a reference to 'value'.
 }
 ```
@@ -642,7 +644,7 @@ int result1 = get_copy(); // Return by value.
 
 int* result2 = get_ptr(); // Return by pointer.
 result2[2] = 5;
-delete[] result2; // Beware of memory leaks!
+delete[] result2; // Beware: memory leaks.
 
 int& result3 = get_ref(); // Return by reference.
 result3 = 20;
@@ -671,7 +673,7 @@ int result = get_copy();
 result = 10; // Safe, it's a copy!
 
 const int age = 30; // Immutable variable.
-const int* ptr_to_const = &age; // Pointer to constant integer.
+const int* ptr_to_const = &age; // Pointer to an integer which is constant.
 
 ptr_to_const = &result; // Now pointing to another variable.
 *ptr_to_const = 42; // Error: cannot modify pointed object.
@@ -774,8 +776,8 @@ _class: titlepage
 ## Example
 
 ```cpp
-enum Color {
-    Red,
+enum Color : unsigned int {
+    Red = 0,
     Green,
     Blue
 };
@@ -832,15 +834,15 @@ Actually, in C++ `struct` is just a special type of `class`. When Referring to C
 
 # Plain Old Data (POD) structs
 
-- POD classes are classes with simple data members and no user-defined constructors or destructors.
+- POD structs are classes with simple data members and no user-defined constructors or destructors.
 - They have C-like semantics and can be used in low-level operations.
 
 ## Example
 
 ```cpp
 struct Rectangle {
-    int width;
-    int height;
+    double width;
+    double height;
 };
 
 Rectangle r;
@@ -878,8 +880,8 @@ _class: titlepage
 
 ```cpp
 int x; // Declaration of 'x'.
-
 extern int y; // Declaration of 'y'.
+struct X; // Forward-declaration.
 ```
 
 # Definition
@@ -889,35 +891,6 @@ extern int y; // Declaration of 'y'.
 
 ```cpp
 int x = 5; // Definition of 'x'.
-```
-
----
-
-# Declaring variables
-
-- Variable declarations specify their type and name.
-- A declaration without initialization reserves memory but doesn't assign a value.
-
-## Example
-
-```cpp
-int x; // Declaration of 'x'.
-
-extern int y; // Declaration of 'y'.
-
-struct X; // Forward-declaration.
-```
-
----
-
-# Defining variables
-
-- Variables are defined when they are declared and initialized.
-
-## Example
-
-```cpp
-int x = 5; // Definition and initialization of 'x'.
 ```
 
 ---
@@ -1078,6 +1051,7 @@ int x = 10;
     int y = 20;
     // ...
 } // Destroy all variables local to the scope.
+// Beware: dynamically allocated variables must be deleted manually.
 
 std::cout << y << std::endl; // Error: 'y' is undefined here.
 ```
@@ -1125,8 +1099,8 @@ _class: titlepage
 
 ```bash
 # Preprocessor.
-g++ -E module.cpp -o module_preprocessed.cpp
-g++ -E main.cpp -o main_preprocessed.cpp
+g++ -E module.cpp -I/path/to/include/dir -o module_preprocessed.cpp
+g++ -E main.cpp -I/path/to/include/dir -o main_preprocessed.cpp
 
 # Compiler.
 g++ -c module_preprocessed.cpp -o module.o

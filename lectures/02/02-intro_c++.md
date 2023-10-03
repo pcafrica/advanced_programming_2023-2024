@@ -705,7 +705,7 @@ ptr_to_const = &result; // Now pointing to another variable.
 - Operators are symbols used to perform operations on variables and values.
 - Arithmetic operators: `+`, `-`, `*`, `/`, `%`
 - Arithmetic and assignment operators: `+=`, `-=`, `*=`, `/=`, `%=`
-- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`
+- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`, `<=>` (C++20)
 - Logical operators: `&&`, `||`, `!`
 
 ## Example

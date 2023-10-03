@@ -766,7 +766,7 @@ _class: titlepage
 
 ---
 
-# User-defined types: `enum`
+# `enum`
 
 - Enumerations (enums) allow you to define a set of named values.
 - Enums provide a way to create user-defined data types.
@@ -785,7 +785,7 @@ Color my_color = Green;
 
 ---
 
-# User-defined types: `union`
+# `union`
 
 - Unions allow you to define a type that can hold different data types.
 - Only one member of a union can be accessed at a time.
@@ -807,7 +807,7 @@ float x = data.float_value; // Undefined behavior!
 
 ---
 
-# User-defined types: `struct`
+# `struct`
 
 - Structs (structures) allow you to group related data members into a single unit.
 - Members can have different data types.
@@ -830,7 +830,7 @@ Actually, in C++ `struct` is just a special type of `class`. When Referring to C
 
 ---
 
-# User-defined types: Plain Old Data (POD) structs
+# Plain Old Data (POD) structs
 
 - POD classes are classes with simple data members and no user-defined constructors or destructors.
 - They have C-like semantics and can be used in low-level operations.

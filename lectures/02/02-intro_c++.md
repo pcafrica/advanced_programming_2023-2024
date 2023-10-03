@@ -623,18 +623,18 @@ std::cout << value << std::endl; // Output: 40.
 
 ```cpp
 int get_copy() {
-    return 42; // Returns a copy of the value.
+    return 42; // Return a copy of the value.
 }
 
 int* get_ptr() {
     int* arr = new int[5];
     // ...
-    return arr; // Returns a pointer to the array.
+    return arr; // Return a pointer to the array.
 }
 
 int& get_ref() {
     static int value = 10; // Beware: if not static, undefined behavior.
-    return value; // Returns a reference to 'value'.
+    return value; // Return a reference to 'value'.
 }
 ```
 
@@ -799,15 +799,15 @@ Color my_color = Green;
 ## Example
 
 ```cpp
-union MyUnion {
-    int int_value;
-    float float_value;
+union Duration {
+    int seconds;
+    short hours;
 };
 
-MyUnion data;
-data.int_value = 42;
+Duration d;
+d.seconds = 259200;
 
-float x = data.float_value; // Undefined behavior!
+short h = d.hours; // Contains garbage: undefined behavior.
 ```
 
 ---

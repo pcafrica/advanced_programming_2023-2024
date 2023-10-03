@@ -753,7 +753,7 @@ void print(int x) {
     std::cout << "Integer value: " << x << std::endl;
 }
 
-double print(double x) {
+void print(double x) {
     std::cout << "Double value: " << x << std::endl;
 }
 

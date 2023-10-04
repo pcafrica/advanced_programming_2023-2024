@@ -225,8 +225,7 @@ if (a + b == c) { // Unsafe comparison.
 ```
 
 ```cpp
-double x = 1.0, y = 1.0 / 3.0;
-double sum = y + y + y;
+double x = 1.0, y = 1.0 / 3.0; double sum = y + y + y;
 
 if (std::abs(x - sum) < tolerance) { // Safer comparison.
     // Use tolerance to handle potential rounding errors.
@@ -1009,15 +1008,15 @@ Without header guards, if a header file is included multiple times in a source f
 - Place `#ifndef`, `#define`, and `#endif` or `#pragma once` directives in the header file.
 - Use a unique identifier (usually based on the filename) as the guard symbol.
 
-**Example (file `my_module.h`)**:
+**Example (file `my_module.hpp`)**:
 
 ```cpp
-#ifndef MY_MODULE_H__
-#define MY_MODULE_H__
+#ifndef MY_MODULE_HPP__
+#define MY_MODULE_HPP__
 
 // ...
 
-#endif
+#endif // MY_MODULE_HPP__
 ```
 
 Modern compilers also support:

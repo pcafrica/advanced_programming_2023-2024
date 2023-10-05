@@ -1,11 +1,11 @@
 <!--
-title: Laboratory 02
+title: Exercise session 02
 paginate: true
 
 _class: titlepage
 -->
 
-# Laboratory 02
+# Exercise session 02
 <br>
 
 ## Introduction to C++.

@@ -40,17 +40,17 @@ jobs:
         env:
           MARP_USER: root:root
 
-      - name: Build labs HTML
+      - name: Build exercise sessions HTML
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I labs/ -o labs/
+          args: --bespoke.progress --theme style/custom.css -I exercises/ -o exercises/
         env:
           MARP_USER: root:root
 
-      - name: Build labs PDF
+      - name: Build exercise sessions PDF
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I labs/ -o labs/ --pdf --pdf-outlines
+          args: --bespoke.progress --theme style/custom.css -I exercises/ -o exercises/ --pdf --pdf-outlines
         env:
           MARP_USER: root:root
 

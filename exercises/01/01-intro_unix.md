@@ -1,11 +1,11 @@
 <!--
-title: Laboratory 01
+title: Exercise session 01
 paginate: true
 
 _class: titlepage
 -->
 
-# Laboratory 01
+# Exercise session 01
 <br>
 
 ## The UNIX shell.

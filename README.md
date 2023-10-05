@@ -31,28 +31,28 @@ This work is licensed under a
 | Date            | Time          | Room | Topic                                                                                                        |
 | --------------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------ |
 | Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Introduction to the course. The UNIX shell. The build process. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/lectures/01/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.pdf)] |
-| Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Live programming session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/labs/01/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/labs/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/labs/01/01-intro_unix.pdf)] |
+| Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/01/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.pdf)] |
 | Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/lectures/02/02-intro_c++.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-intro_c++.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-intro_c++.pdf)] |
-| Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/labs/02/02-intro_c++.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/labs/02/02-intro_c++.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/labs/02/02-intro_c++.pdf)] |
+| Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/02/02-intro_c++.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-intro_c++.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-intro_c++.pdf)] |
 | Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
-| Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Lambda functions and functors. Templates and generic programming. |
-| Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Smart pointers.Containers and algorithms from the Standard Template Library. New features of C++14/17/20. |
-| Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | Debugging and profiling: introduction to GDB and Valgrind. |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
-| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to GNU Make and CMake. |
-| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
-| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Live programming session. |
+| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
-| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Live programming session. |
+| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
 | Thu 30 Nov 2023 | 14:00 - 16:00 | 136-137 | Modules and packages. Introduction to NumPy and SciPy for scientific computing. Plotting. |
-| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Live programming session. |
+| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to pandas for data analysis. Integrating C++ and Python codes. |
-| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Live programming session. |
+| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Best practices for writing reliable code: error handling, unit testing, and software documentation. |
 | Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |

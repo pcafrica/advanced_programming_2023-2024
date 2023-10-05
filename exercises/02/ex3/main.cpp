@@ -19,7 +19,7 @@ int main() {
 
   if (numbers.empty()) {
     std::cout << "Invalid input. Please enter numbers." << std::endl;
-    continue;
+    return 1;
   }
 
   // Calculate and display statistics.

@@ -1,5 +1,5 @@
 <!--
-title: Lecture 02
+title: Homework 01
 paginate: true
 
 _class: titlepage
@@ -62,7 +62,7 @@ Please stick to the following rules:
   void vmult(dst,src); //performs dst=M*src (`dst` and `src`: destination and source, respectively)
   ```
 - use meaningful names that reflect the behaviour of the function.
-- decide which arguments of each member function should be const-qualified and which ones should not be.
+- carefully decide which arguments of each member function should be const-qualified and which ones should not be.
 **Penalties will be assigned if const-correctness will not be guaranteed by your interface.**
 
 ---
@@ -82,7 +82,7 @@ Compile your code using the following [compilation flags](https://gcc.gnu.org/on
   
 
 ## Testing
-Test the correctness of your program by checking the your matrix-vector products give expected results. Here are some tips:
+Test the correctness of your program by checking that your matrix-vector products give expected results. Here are some tips:
 - if $v= \vec{1}$, then $$\bigl(M\vec v\bigr)_i=\sum_{j=1}^{n_{cols}} M[i][j] \underbrace{v[j]}_{1}=\sum_{j=1}^{n_{cols}} M[i][j]$$ (i.e. you get the sum of $i$-th row)
 
 - if $v=\vec e_i$ ($i$-th vector of the canonical basis), then $$M \vec e_i = \text{i-th column of $M$}$$

@@ -24,8 +24,8 @@ _class: titlepage
 1. Introduction to Object-Oriented Programming (OOP)
 2. Classes and objects in C++
 3. Notes on code organization
-4. Operator overloading
-5. Encapsulation and access control
+4. Encapsulation and access control
+5. Operator overloading
 6. Class collaborations
 
 ---
@@ -186,7 +186,7 @@ When used in the context of classes, `const` can be applied to member variables,
 ```cpp
 class MyClass {
 public:
-    MyClass(int x) : value(x) {}  // Constructor initializes the const member
+    MyClass(int x) : value(x) {}  // Constructor initializes the const member.
 
     void print_value() const {
         // value *= 2; // Illegal!
@@ -215,8 +215,8 @@ public:
     }
 };
 
-MyClass obj1;       // Create a non-const object
-const MyClass obj2; // Create a const object
+MyClass obj1;       // Create a non-const object.
+const MyClass obj2; // Create a const object.
 
 obj1.print(); // Calls the non-const version.
 obj2.print(); // Calls the const version.
@@ -414,6 +414,15 @@ book3 = book1; // Copying using the copy assignment operator.
 
 A destructor is another special member function that is used to clean up resources held by an object before it goes out of scope or is explicitly deleted. Destructors have the same name as the class but preceded by a tilde (`~`). They are called automatically when an object's lifetime ends.
 
+## Rule of three
+
+If a class defines (or deletes) one of the three special member functions:
+  - destructor
+  - copy constructor
+  - copy assignment operator
+
+then it should probably provide all three of them.
+
 ---
 
 # Destructor (2/2)
@@ -439,6 +448,14 @@ public:
     FileHandler file{"data.txt"}; // Automatically destroyed when going out of scope.
 } // When going out of scope, destructor is called, and the file is closed.
 ```
+
+---
+
+# Constructors and destructor<br>implicitly declared by the compilers
+
+![w:600px](images/03_compiler_implicit.png)
+
+Source: https://howardhinnant.github.io/classdecl.html
 
 ---
 
@@ -516,7 +533,7 @@ public:
     int add(int a, int b);
 };
 
-MyClass::add(int a, int b) // inline keyword is implicit here.
+int MyClass::add(int a, int b) // inline keyword is implicit here.
 {
     return a + b;
 }
@@ -550,7 +567,7 @@ public:
 
 // my_class.cpp
 
-#include "MyClass.h"
+#include "my_class.h"
 
 int MyClass::add(int a, int b) {
     return a + b;
@@ -578,105 +595,6 @@ int MyClass::add(int a, int b) {
 3. Consider code readability and maintainability when making a choice.
 
 In practice, a combination of both in-class and out-of-class definitions is often used, with the goal of keeping the code organized, maintainable, and efficient.
-
----
-
-<!--
-_class: titlepage
--->
-
-# Operator overloading
-
----
-
-# Operator overloading (1/2)
-Operator overloading is a feature in C++ that allows you to define custom behaviors for operators when used with objects of your own class. In essence, it enables you to extend the functionality of operators beyond their predefined meanings, making objects of your class work with operators in a way that makes sense for your class's context.
-
-## Why use operator overloading?
-
-Operator overloading can improve code readability and maintainability by allowing you to write more natural and expressive code. It lets you use operators like `+`, `-`, `*`, `/`, and others to perform operations specific to your class, just as you would with built-in data types.
-
----
-
-# Operator overloading (2/2)
-
-```cpp
-class Complex {
-public:
-    double real;
-    double imag;
-
-    Complex operator+(const Complex& other) {
-        Complex result;
-        result.real = this->real + other.real;
-        result.imag = this->imag + other.imag;
-        return result;
-    }
-};
-
-Complex a{2.0, 3.0};
-Complex b{1.0, 2.0};
-Complex c = a + b; // Using the overloaded '+' operator.
-```
-
----
-
-# Commonly overloaded operators
-
-While you can overload many C++ operators, here are some of the most commonly overloaded operators:
-
-- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, etc.
-- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`, `<=>` (since C++20), etc.
-- Assignment operators: `=`, `+=`, `-=`, etc.
-- Increment/decrement operators: `++`, `--`.
-- Stream insertion/extraction operators: `<<`, `>>` (used for input and output).
-- Function call operator: `()` (used to create objects that act like functions).
-- Subscript operator: `[]` (used to access elements of an array-like class).
-- Member access operator: `->` (used to access members of an object through a pointer).
-
----
-
-# Overloading as a member vs. non-member function
-
-You can overload operators as member functions or non-member functions.
-
-- When overloaded as a **member function**, the left operand is an object of the class, and the right operand is passed as a parameter.
-- When overloaded as a **non-member function**, both operands are passed as parameters. This is often preferred when the left operand is not an object of the class you're overloading the operator for. Sometimes, you may need to access private members of a class when overloading an operator. In such cases, you can declare the overloaded operator function as a friend of the class. This allows the operator function to access the private members of the class.
-
----
-
-# `friend` functions
-
-```cpp
-class MyClass {
-public:
-    MyClass(int v) : value(v) {}
-
-    // Declaring the '<<' operator as a friend function.
-    friend std::ostream& operator<<(std::ostream& os, const MyClass& obj);
-
-private:
-    int value;
-};
-
-// Overloading the '<<' operator as a non-member function (outside the class).
-std::ostream& operator<<(std::ostream& os, const MyClass& obj) {
-    os << obj.value;
-    return os;
-}
-
-MyClass obj;
-std::cout << obj << std::endl;
-```
-
----
-
-# Operator overloading: best practices
-
-1. **Operators that cannot be overloaded**: Some operators, like `::`, `.*`, and `? :`, cannot be overloaded.
-2. **Don't change the basic meaning of an operator**: Overloading should make sense in the context of your class. For example, overloading `+` for string concatenation is intuitive, but overloading it for subtraction is not.
-3. **Be mindful of operator precedence and associativity**: Overloaded operators should follow the same precedence and associativity rules as their built-in counterparts (such as in expressions like `2 * 3 + 1`).
-4. **Avoid excessive overloading**: Overloading too many operators can make your code less readable and harder to maintain. Focus on overloading the operators that provide significant benefits.
 
 ---
 
@@ -845,6 +763,105 @@ Circle circle{5.0};
 Cylinder cylinder;
 const double volume = cylinder.get_volume(circle); // Cylinder accesses Circle's private member 'radius'.
 ```
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Operator overloading
+
+---
+
+# Operator overloading (1/2)
+Operator overloading is a feature in C++ that allows you to define custom behaviors for operators when used with objects of your own class. In essence, it enables you to extend the functionality of operators beyond their predefined meanings, making objects of your class work with operators in a way that makes sense for your class's context.
+
+## Why use operator overloading?
+
+Operator overloading can improve code readability and maintainability by allowing you to write more natural and expressive code. It lets you use operators like `+`, `-`, `*`, `/`, and others to perform operations specific to your class, just as you would with built-in data types.
+
+---
+
+# Operator overloading (2/2)
+
+```cpp
+class Complex {
+public:
+    double real;
+    double imag;
+
+    Complex operator+(const Complex& other) {
+        Complex result;
+        result.real = this->real + other.real;
+        result.imag = this->imag + other.imag;
+        return result;
+    }
+};
+
+Complex a{2.0, 3.0};
+Complex b{1.0, 2.0};
+Complex c = a + b; // Using the overloaded '+' operator.
+```
+
+---
+
+# Commonly overloaded operators
+
+While you can overload many C++ operators, here are some of the most commonly overloaded operators:
+
+- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, etc.
+- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`, `<=>` (since C++20), etc.
+- Assignment operators: `=`, `+=`, `-=`, etc.
+- Increment/decrement operators: `++`, `--`.
+- Stream insertion/extraction operators: `<<`, `>>` (used for input and output).
+- Function call operator: `()` (used to create objects that act like functions).
+- Subscript operator: `[]` (used to access elements of an array-like class).
+- Member access operator: `->` (used to access members of an object through a pointer).
+
+---
+
+# Overloading as a member vs. non-member function
+
+You can overload operators as member functions or non-member functions.
+
+- When overloaded as a **member function**, the left operand is an object of the class, and the right operand is passed as a parameter.
+- When overloaded as a **non-member function**, both operands are passed as parameters. This is often preferred when the left operand is not an object of the class you're overloading the operator for. Sometimes, you may need to access private members of a class when overloading an operator. In such cases, you can declare the overloaded operator function as a friend of the class. This allows the operator function to access the private members of the class.
+
+---
+
+# `friend` functions
+
+```cpp
+class MyClass {
+public:
+    MyClass(int v) : value(v) {}
+
+    // Declaring the '<<' operator as a friend function.
+    friend std::ostream& operator<<(std::ostream& os, const MyClass& obj);
+
+private:
+    int value;
+};
+
+// Overloading the '<<' operator as a non-member function (outside the class).
+std::ostream& operator<<(std::ostream& os, const MyClass& obj) {
+    os << obj.value;
+    return os;
+}
+
+MyClass obj;
+std::cout << obj << std::endl;
+```
+
+---
+
+# Operator overloading: best practices
+
+1. **Operators that cannot be overloaded**: Some operators, like `::`, `.*`, and `? :`, cannot be overloaded.
+2. **Don't change the basic meaning of an operator**: Overloading should make sense in the context of your class. For example, overloading `+` for string concatenation is intuitive, but overloading it for subtraction is not.
+3. **Be mindful of operator precedence and associativity**: Overloaded operators should follow the same precedence and associativity rules as their built-in counterparts (such as in expressions like `2 * 3 + 1`).
+4. **Avoid excessive overloading**: Overloading too many operators can make your code less readable and harder to maintain. Focus on overloading the operators that provide significant benefits.
 
 ---
 

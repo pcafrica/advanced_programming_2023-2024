@@ -21,12 +21,12 @@ _class: titlepage
 
 # Outline
 
-- Introduction to Object-Oriented Programming (OOP)
-- Classes and objects in C++
-- Operator overloading
-- Notes on code organization
-- Encapsulation and access control
-- Class collaborations
+1. Introduction to Object-Oriented Programming (OOP)
+2. Classes and objects in C++
+3. Notes on code organization
+4. Operator overloading
+5. Encapsulation and access control
+6. Class collaborations
 
 ---
 
@@ -34,15 +34,21 @@ _class: titlepage
 _class: titlepage
 -->
 
-# Introduction to Object-Oriented Programming (OOP)
+# Introduction to<br>Object-Oriented Programming (OOP)
 
 ---
 
 # What is OOP?
 
 - OOP is a programming paradigm that revolves around objects.
-- Objects represent instances of classes, encapsulating data and behavior.
+- Objects represent instances of classes, encapsulating data **and behavior**.
 - Key principles include encapsulation, inheritance, and polymorphism.
+
+## OOP in C++
+
+- C++ is not (only) a OOP language.
+- C++ is a multi-paradigm programming language that supports procedural, object-oriented, and generic programming.
+- C++ allows developers to combine these paradigms effectively for various programming tasks.
 
 ---
 
@@ -75,14 +81,6 @@ _class: titlepage
 
 ---
 
-# OOP in C++
-
-- C++ is not (only) a OOP language.
-- C++ is a multi-paradigm programming language that supports procedural, object-oriented, and generic programming.
-- C++ allows developers to combine these paradigms effectively for various programming tasks.
-
----
-
 # Creating objects (1/2)
 
 In C++, objects are instances of classes. Here's an example of creating and using a `Car` object:
@@ -90,7 +88,7 @@ In C++, objects are instances of classes. Here's an example of creating and usin
 ```cpp
 class Car {
 public:
-    std::string make;
+    std::string manufacturer;
     std::string model;
     unsigned int year;
 
@@ -107,7 +105,7 @@ public:
 ```cpp
 Car my_car; // Creating an object of class Car.
 
-my_car.make = "Toyota";
+my_car.manufacturer = "Toyota";
 my_car.model = "Camry";
 my_car.year = 2023;
 
@@ -117,7 +115,7 @@ my_car.start_engine(); // Invoking a method.
 // This works also for dynamically allocated objects.
 Car* my_car_ptr;
 
-my_car_ptr->make = "Alfa Romeo";
+my_car_ptr->manufacturer = "Alfa Romeo";
 my_car_ptr->model = "Giulietta";
 my_car_ptr->year = 2010;
 
@@ -128,7 +126,7 @@ my_car_ptr->start_engine(); // Invoking a method.
 
 # Members
 
-- Member variables, also known as *attributes* or instance variables, store data within a class. In the `Car` class, `make`, `model`, and `year` are member variables that hold information about the car. These variables encapsulate the car's characteristics within the class.
+- Member variables, also known as *attributes* or instance variables, store data within a class. In the `Car` class, `manufacter`, `model`, and `year` are member variables that hold information about the car. These variables encapsulate the car's characteristics within the class.
 
 - Member functions, or *methods*, define the behavior of a class. The `start_engine` method in the Car class initiates the car's engine. Methods encapsulate the actions or operations that can be performed on the object's data.
 
@@ -161,7 +159,50 @@ const double area2 = circle2.calculate_area();
 const double pi_value = Circle::PI; // Accessing a static member.
 ```
 
-In this example, `PI` is a static constant shared among all Circle objects, while `radius` is an instance variable.
+---
+
+# `const` members (1/2)
+
+When used in the context of classes, const can be applied to member variables, member functions, and even to the class itself.
+
+```cpp
+class MyClass {
+public:
+    MyClass(int x) : value(x) {}  // Constructor initializes the const member
+
+    void print_value() const {
+        value *= 2; // Illegal!
+        std::cout << "Const version: " << value << std::endl;
+    }
+
+    const int value;
+};
+```
+
+:warning: If you have a `const` member function but need to modify a member variable, you can declare that variable as `mutable`.
+
+---
+
+# `const` members (2/2)
+
+```cpp
+class MyClass {
+public:
+    void print() {
+        std::cout << "Non-const version" << std::endl;
+    }
+
+    void print() const {
+        std::cout << "Const version" << std::endl;
+    }
+};
+
+MyClass obj1;       // Create a non-const object
+const MyClass obj2; // Create a const object
+
+obj1.print(); // Calls the non-const version.
+obj2.print(); // Calls the const version.
+```
 
 ---
 
@@ -176,7 +217,7 @@ class MyClass {
 public:
     int x;
 
-    void print_x() {
+    void print_x() const {
         std::cout << "Value of x: " << this->x << std::endl; // Using this pointer with the arrow operator.
     }
 };
@@ -195,31 +236,6 @@ Constructors are special member functions that initialize objects when they are 
 
 ---
 
-# Initializer list
-
-An initializer list is used within a constructor to initialize member variables before entering the constructor body. It is a recommended practice, especially for initializing member objects or constants, as it can improve performance.
-
-```cpp
-class Rectangle {
-public:
-    Rectangle(double length, double width) : length(length), width(width) {
-        // Constructor body (if needed).
-    }
-
-    double calculate_area() {
-        return length * width;
-    }
-
-    double length;
-    double width;
-};
-
-Rectangle rectangle(5.0, 3.0); // Creating an object and initializing it using an initializer list.
-const double area = rectangle.calculate_area();
-```
-
----
-
 # Default constructor
 
 ```cpp
@@ -230,12 +246,17 @@ public:
         // Initialization code (if needed).
     }
     
-    // Or:
-    MyClass() = default;
+    // Or, equivalently:
+    // MyClass() = default;
     
     std::string name;
     unsigned int length;
 };
+
+MyClass obj;    // Direct initialization.
+MyClass obj2{}; // Uniform initialization (preferred).
+
+MyClass obj3();  // Illegal: the compiler thinks we are declaring a function.
 ```
 
 ---
@@ -250,7 +271,7 @@ public:
         this->age = age;
     }
 
-    void display_info() {
+    void display_info() const {
         std::cout << "Name: " << name << ", Age: " << age << std::endl;
     }
 
@@ -260,6 +281,34 @@ public:
 
 Student student1("Alice", 20); // Creating an object and initializing it using a constructor.
 student1.display_info();
+
+Student student2{"Bob", 23}; // Uniform initialization.
+student2.display_info();
+```
+
+---
+
+# Initializer list
+
+An initializer list is used within a constructor to initialize member variables before entering the constructor body. It is a recommended practice, especially for initializing member objects or constants, as it can improve performance.
+
+```cpp
+class Rectangle {
+public:
+    Rectangle(double length, double width) : length(length), width(width) {
+        // Constructor body (if needed).
+    }
+
+    double calculate_area() const {
+        return length * width;
+    }
+
+    double length;
+    double width;
+};
+
+Rectangle rectangle{5.0, 3.0}; // Creating an object and initializing it using an initializer list.
+const double area = rectangle.calculate_area();
 ```
 
 ---
@@ -283,7 +332,7 @@ public:
         return *this;
     }
 
-    void display_info() {
+    void display_info() const {
         std::cout << "Title: " << title << ", Author: " << author << std::endl;
     }
     
@@ -291,9 +340,9 @@ public:
     std::string author;
 };
 
-Book book1("The Catcher in the Rye", "J.D. Salinger");
+Book book1{"The catcher in the rye", "J.D. Salinger"};
 Book book2 = book1; // Copying using the copy constructor.
-Book book3("To Kill a Mockingbird", "Harper Lee");
+Book book3{"Marcovaldo", "I. Calvino"};
 book3 = book1; // Copying using the copy assignment operator.
 ```
 
@@ -311,7 +360,7 @@ book3 = book1; // Copying using the copy assignment operator.
 1. **Object creation**: When you create an object of a class using its constructor, the constructor is called.
    ```cpp
    MyClass obj; // Calls the default constructor.
-   Student student("Alice", 20); // Calls the parameterized constructor.
+   Student student{"Alice", 20}; // Calls the parameterized constructor.
     ```
 
 2. **Copy initialization**: When you initialize one object with another, the copy constructor is called.
@@ -330,14 +379,14 @@ book3 = book1; // Copying using the copy assignment operator.
    }
 
     Student create_student() {
-        Student s("Bob", 22);
+        Student s{"Bob", 22};
         return s; // Calls the copy constructor when s is returned.
     }
     ```
 
 4. **Dynamic object creation**: When you create objects dynamically using new, the constructor is called.
    ```cpp
-   MyClass* ptr = new MyClass(); // Calls the default constructor.
+   MyClass* ptr = new MyClass{}; // Calls the default constructor.
    ```
 
 ---
@@ -368,104 +417,8 @@ public:
 };
 
 {
-    FileHandler file("data.txt"); // Automatically destroyed when going out of scope.
+    FileHandler file{"data.txt"}; // Automatically destroyed when going out of scope.
 } // When going out of scope, destructor is called, and the file is closed.
-```
-
----
-
-<!--
-_class: titlepage
--->
-
-# Operator overloading
-
----
-
-# Operator overloading (1/2)
-Operator overloading is a feature in C++ that allows you to define custom behaviors for operators when used with objects of your own class. In essence, it enables you to extend the functionality of operators beyond their predefined meanings, making objects of your class work with operators in a way that makes sense for your class's context.
-
-## Why use operator overloading?
-
-Operator overloading can improve code readability and maintainability by allowing you to write more natural and expressive code. It lets you use operators like `+`, `-`, `*`, `/`, and others to perform operations specific to your class, just as you would with built-in data types.
-
----
-
-# Operator overloading (2/2)
-
-```cpp
-class Complex {
-public:
-    double real;
-    double imag;
-
-    Complex operator+(const Complex& other) {
-        Complex result;
-        result.real = this->real + other.real;
-        result.imag = this->imag + other.imag;
-        return result;
-    }
-};
-
-Complex a{2.0, 3.0};
-Complex b{1.0, 2.0};
-Complex c = a + b; // Using the overloaded '+' operator.
-```
-
----
-
-# Commonly overloaded operators
-
-While you can overload many C++ operators, here are some of the most commonly overloaded operators:
-
-- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, etc.
-- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`, `<=>` (since C++20), etc.
-- Assignment operators: `=`, `+=`, `-=`, etc.
-- Increment/decrement operators: `++`, `--`.
-- Stream insertion/extraction operators: `<<`, `>>` (used for input and output).
-- Function call operator: `()` (used to create objects that act like functions).
-- Subscript operator: `[]` (used to access elements of an array-like class).
-- Member access operator: `->` (used to access members of an object through a pointer).
-
----
-
-# Overloading as a member vs. non-member function
-
-You can overload operators as member functions or non-member functions.
-
-- When overloaded as a **member function**, the left operand is an object of the class, and the right operand is passed as a parameter.
-- When overloaded as a **non-member function**, both operands are passed as parameters. This is often preferred when the left operand is not an object of the class you're overloading the operator for. Sometimes, you may need to access private members of a class when overloading an operator. In such cases, you can declare the overloaded operator function as a friend of the class. This allows the operator function to access the private members of the class.
-
----
-
-# Operator overloading: best practices
-
-1. Operators that cannot be overloaded: Some operators, like `::`, `.*`, and `? :`, cannot be overloaded.
-2. Don't change the basic meaning of an operator: Overloading should make sense in the context of your class. For example, overloading `+` for string concatenation is intuitive, but overloading it for subtraction is not.
-3. Be mindful of operator precedence and associativity: Overloaded operators should follow the same precedence and associativity rules as their built-in counterparts (such as in expressions like `2 * 3 + 1`).
-4. Avoid excessive overloading: Overloading too many operators can make your code less readable and harder to maintain. Focus on overloading the operators that provide significant benefits.
-
----
-
-# `friend` functions
-
-```cpp
-class MyClass {
-public:
-    MyClass(int v) : value(v) {}
-
-    // Declaring the '<<' operator as a friend function.
-    friend std::ostream& operator<<(std::ostream& os, const MyClass& obj);
-
-private:
-    int value;
-};
-
-// Overloading the '<<' operator as a non-member function (outside the class).
-std::ostream& operator<<(std::ostream& os, const MyClass& obj) {
-    os << obj.value;
-    return os;
-}
 ```
 
 ---
@@ -480,7 +433,7 @@ _class: titlepage
 
 # The `inline` directive
 
-In C++, the `inline` keyword can be applied to functions (functions that are not members of any class) to suggest that the function should be inlined by the compiler. This means that the compiler replaces function calls with the actual function code at the call site, potentially leading to better performance, especially for small, frequently used functions.
+In C++, the `inline` keyword can be applied to free functions (functions that are not members of any class) to suggest that the function should be inlined by the compiler. This means that the compiler replaces function calls with the actual function code at the call site, potentially leading to better performance, especially for small, frequently used functions.
 
 ```cpp
 #include <iostream>
@@ -490,7 +443,7 @@ inline int add(int a, int b) {
     return a + b;
 }
 
-int result = add(5, 7); // Calls the inline function.
+const int result = add(5, 7); // Calls the inline function.
 std::cout << "Result: " << result << std::endl;
 ```
 
@@ -589,7 +542,6 @@ int MyClass::add(int a, int b) {
 # Out of class definition (2/2)
 
 ## Pros
-
 - Separation of interface from implementation for cleaner code organization.
 - Changes to the function implementation do not require recompilation of all translation units that include the header.
 
@@ -606,6 +558,105 @@ int MyClass::add(int a, int b) {
 3. Consider code readability and maintainability when making a choice.
 
 In practice, a combination of both in-class and out-of-class definitions is often used, with the goal of keeping the code organized, maintainable, and efficient.
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Operator overloading
+
+---
+
+# Operator overloading (1/2)
+Operator overloading is a feature in C++ that allows you to define custom behaviors for operators when used with objects of your own class. In essence, it enables you to extend the functionality of operators beyond their predefined meanings, making objects of your class work with operators in a way that makes sense for your class's context.
+
+## Why use operator overloading?
+
+Operator overloading can improve code readability and maintainability by allowing you to write more natural and expressive code. It lets you use operators like `+`, `-`, `*`, `/`, and others to perform operations specific to your class, just as you would with built-in data types.
+
+---
+
+# Operator overloading (2/2)
+
+```cpp
+class Complex {
+public:
+    double real;
+    double imag;
+
+    Complex operator+(const Complex& other) {
+        Complex result;
+        result.real = this->real + other.real;
+        result.imag = this->imag + other.imag;
+        return result;
+    }
+};
+
+Complex a{2.0, 3.0};
+Complex b{1.0, 2.0};
+Complex c = a + b; // Using the overloaded '+' operator.
+```
+
+---
+
+# Commonly overloaded operators
+
+While you can overload many C++ operators, here are some of the most commonly overloaded operators:
+
+- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, etc.
+- Comparison operators: `==`, `!=`, `<`, `>`, `<=`, `>=`, `<=>` (since C++20), etc.
+- Assignment operators: `=`, `+=`, `-=`, etc.
+- Increment/decrement operators: `++`, `--`.
+- Stream insertion/extraction operators: `<<`, `>>` (used for input and output).
+- Function call operator: `()` (used to create objects that act like functions).
+- Subscript operator: `[]` (used to access elements of an array-like class).
+- Member access operator: `->` (used to access members of an object through a pointer).
+
+---
+
+# Overloading as a member vs. non-member function
+
+You can overload operators as member functions or non-member functions.
+
+- When overloaded as a **member function**, the left operand is an object of the class, and the right operand is passed as a parameter.
+- When overloaded as a **non-member function**, both operands are passed as parameters. This is often preferred when the left operand is not an object of the class you're overloading the operator for. Sometimes, you may need to access private members of a class when overloading an operator. In such cases, you can declare the overloaded operator function as a friend of the class. This allows the operator function to access the private members of the class.
+
+---
+
+# `friend` functions
+
+```cpp
+class MyClass {
+public:
+    MyClass(int v) : value(v) {}
+
+    // Declaring the '<<' operator as a friend function.
+    friend std::ostream& operator<<(std::ostream& os, const MyClass& obj);
+
+private:
+    int value;
+};
+
+// Overloading the '<<' operator as a non-member function (outside the class).
+std::ostream& operator<<(std::ostream& os, const MyClass& obj) {
+    os << obj.value;
+    return os;
+}
+
+MyClass obj;
+std::cout << obj << std::endl;
+```
+
+---
+
+# Operator overloading: best practices
+
+1. **Operators that cannot be overloaded**: Some operators, like `::`, `.*`, and `? :`, cannot be overloaded.
+2. **Don't change the basic meaning of an operator**: Overloading should make sense in the context of your class. For example, overloading `+` for string concatenation is intuitive, but overloading it for subtraction is not.
+3. **Be mindful of operator precedence and associativity**: Overloaded operators should follow the same precedence and associativity rules as their built-in counterparts (such as in expressions like `2 * 3 + 1`).
+4. **Avoid excessive overloading**: Overloading too many operators can make your code less readable and harder to maintain. Focus on overloading the operators that provide significant benefits.
 
 ---
 
@@ -736,7 +787,7 @@ private:
 
 # `friend` classes (1/2)
 
-A friend class is a class that is granted access to the private members of another class. This access allows the friend class to operate on the private members of the class it is friends with. friend classes are useful in scenarios where certain classes need special access for specific operations.
+A `friend` class is a class that is granted access to the private members of another class. This access allows the `friend` class to operate on the private members of the class it is friends with.
 
 ```cpp
 class Circle {
@@ -770,7 +821,7 @@ private:
     double height;
 };
 
-Circle circle(5.0);
+Circle circle{5.0};
 Cylinder cylinder;
 const double volume = cylinder.get_volume(circle); // Cylinder accesses Circle's private member 'radius'.
 ```
@@ -804,6 +855,8 @@ Classes can have various relationships, including:
 ---
 
 # Association (1/3)
+
+**Association** is a relationship between two or more classes that defines how they are related to each other. It represents a general form of relationship between classes.
 
 ```cpp
 class Student; // Forward declaration.
@@ -854,13 +907,13 @@ private:
 
 ```cpp
 // Creating Course objects.
-Course math("Mathematics");
-Course physics("Physics");
-Course chemistry("Chemistry");
+Course math{"Mathematics"};
+Course physics{"Physics"};
+Course chemistry{"Chemistry"};
 
 // Creating Student objects.
-Student alice("Alice");
-Student bob("Bob");
+Student alice{"Alice"};
+Student bob{"Bob"};
 
 // Associating students with courses.
 alice.enroll_course(&math);
@@ -910,6 +963,30 @@ private:
 };
 ```
 
+---
+
+# Inheritance
+
+```cpp
+// Base class.
+class Shape {
+public:
+    void draw() {
+        std::cout << "Drawing a shape." << std::endl;
+    }
+};
+
+// Derived class.
+class Circle : public Shape {
+public:
+    void draw() {
+        std::cout << "Drawing a circle." << std::endl;
+    }
+};
+
+Circle circle; // Creating an object of the derived class.
+circle.draw(); // Calls the draw() method of the derived class.
+```
 ---
 
 <!--

@@ -38,7 +38,7 @@ This work is licensed under a
 | Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/01/01-intro_unix.md)] [[Slides](exercises/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.pdf)] |
 | Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. [[Notes](lectures/02/02-c++_intro.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.pdf)] |
 | Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](exercises/02/02-c++_intro.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.pdf)] |
-| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. |
+| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. [[Notes](lectures/03/03-c++_classes.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. |
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |

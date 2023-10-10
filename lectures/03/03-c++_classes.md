@@ -56,9 +56,24 @@ _class: titlepage
 
 Object-Oriented Programming (OOP) is a programming paradigm that emphasizes the use of objects to represent real-world entities and concepts. It is based on several key principles:
 
-- **Encapsulation**: Encapsulation bundles data (attributes) and the functions (methods) that operate on the data into a single unit called an object. This promotes data hiding and reduces the complexity of the code.
+- **Encapsulation**: Encapsulation bundles data (attributes) and the functions (methods) that operate on the data into a single unit called an *object*. This promotes data hiding and reduces the complexity of the code.
 - **Inheritance**: Inheritance allows you to create new classes (derived or child classes) based on existing classes (base or parent classes). It enables code reuse and the creation of class hierarchies.
 - **Polymorphism**: Polymorphism allows objects of different classes to be treated as objects of a common base class. It promotes code flexibility and the ability to work with objects at a higher level of abstraction.
+
+---
+
+# RAII idiom (Resource Acquisition Is Initialization)
+
+## Holding a resource is a class invariant, tightly bound to the object's lifetime
+
+## RAII idiom:
+1. Encapsulate a resource within a class (constructor).
+2. Utilize the resource through a local instance of the class.
+3. Automatically release the resource when the object goes out of scope (destructor).
+
+## Implications
+1. C++ does not rely on a garbage collector.
+2. Resource management becomes the programmer's responsibility.
 
 ---
 
@@ -103,6 +118,7 @@ public:
 # Creating objects (2/2)
 
 ```cpp
+// Access by direct instance.
 Car my_car; // Creating an object of class Car.
 
 my_car.manufacturer = "Toyota";
@@ -111,7 +127,7 @@ my_car.year = 2023;
 
 my_car.start_engine(); // Invoking a method.
 
-// Access by pointers.
+// Access by pointer.
 // This works also for dynamically allocated objects.
 Car* my_car_ptr;
 
@@ -147,23 +163,25 @@ public:
     double calculate_area() {
         return PI * radius * radius;
     }
+    
+    static void print_shape_name() {
+        std::cout << "This is a circle." << std::endl;
+    }
 };
 
-Circle circle1, circle2;
-circle1.radius = 5.0;
-circle2.radius = 3.0;
+Circle circle;
+circle.radius = 5.0;
 
-const double area1 = circle1.calculate_area(); // Accessing a non-static member.
-const double area2 = circle2.calculate_area();
-
+const double area = circle.calculate_area(); // Accessing a non-static member.
 const double pi_value = Circle::PI; // Accessing a static member.
+Circle::print_shape_name();
 ```
 
 ---
 
 # `const` members (1/2)
 
-When used in the context of classes, const can be applied to member variables, member functions, and even to the class itself.
+When used in the context of classes, `const` can be applied to member variables, member functions, and even to the class itself.
 
 ```cpp
 class MyClass {
@@ -171,7 +189,7 @@ public:
     MyClass(int x) : value(x) {}  // Constructor initializes the const member
 
     void print_value() const {
-        value *= 2; // Illegal!
+        // value *= 2; // Illegal!
         std::cout << "Const version: " << value << std::endl;
     }
 
@@ -246,7 +264,7 @@ public:
         // Initialization code (if needed).
     }
     
-    // Or, equivalently:
+    // Or:
     // MyClass() = default;
     
     std::string name;
@@ -256,7 +274,7 @@ public:
 MyClass obj;    // Direct initialization.
 MyClass obj2{}; // Uniform initialization (preferred).
 
-MyClass obj3();  // Illegal: the compiler thinks we are declaring a function.
+MyClass obj3();  // Illegal: the compiler believes we are declaring a function.
 ```
 
 ---
@@ -276,7 +294,7 @@ public:
     }
 
     std::string name;
-    unsined int age;
+    unsigned int age;
 };
 
 Student student1("Alice", 20); // Creating an object and initializing it using a constructor.
@@ -320,10 +338,10 @@ class Book {
 public:
     Book(std::string title, std::string author) : title(title), author(author) {}
 
-    // Copy constructor
+    // Copy constructor.
     Book(const Book& other) : title(other.title), author(other.author) {}
 
-    // Copy assignment operator
+    // Copy assignment operator.
     Book& operator=(const Book& other) {
         if (this != &other) {
             title = other.title;
@@ -359,7 +377,8 @@ book3 = book1; // Copying using the copy assignment operator.
 
 1. **Object creation**: When you create an object of a class using its constructor, the constructor is called.
    ```cpp
-   MyClass obj; // Calls the default constructor.
+   MyClass obj1;   // Calls the default constructor.
+   MyClass obj2{}; // Calls the default constructor.
    Student student{"Alice", 20}; // Calls the parameterized constructor.
     ```
 
@@ -378,11 +397,11 @@ book3 = book1; // Copying using the copy assignment operator.
        // Calls the copy constructor when s is passed.
    }
 
-    Student create_student() {
-        Student s{"Bob", 22};
-        return s; // Calls the copy constructor when s is returned.
-    }
-    ```
+   Student create_student() {
+       Student s{"Bob", 22};
+       return s; // Calls the copy constructor when s is returned.
+   }
+   ```
 
 4. **Dynamic object creation**: When you create objects dynamically using new, the constructor is called.
    ```cpp
@@ -436,8 +455,6 @@ _class: titlepage
 In C++, the `inline` keyword can be applied to free functions (functions that are not members of any class) to suggest that the function should be inlined by the compiler. This means that the compiler replaces function calls with the actual function code at the call site, potentially leading to better performance, especially for small, frequently used functions.
 
 ```cpp
-#include <iostream>
-
 // Inline function declaration for a free function.
 inline int add(int a, int b) {
     return a + b;
@@ -476,6 +493,7 @@ In C++, member functions of a class can be defined either in-class (inline) or o
 Member functions are defined within the class declaration itself, typically in the header file. This is common for short, simple functions that are typically one-liners or very concise.
 
 ```cpp
+// my_class.hpp
 class MyClass {
 public:
     int add(int a, int b) // inline keyword is implicit here.
@@ -512,7 +530,7 @@ MyClass::add(int a, int b) // inline keyword is implicit here.
 - Compact and concise code.
 - Compiler may choose to inline the function for performance.
 
-## Cons:
+## Cons
 - May lead to code bloat if used extensively with large functions.
 - Changes to the function may necessitate recompilation of all translation units that include the header.
 
@@ -524,12 +542,14 @@ Member functions are declared in the class declaration (in the header file) and 
 
 ```cpp
 // my_class.hpp
+
 class MyClass {
 public:
     int add(int a, int b);
 };
 
 // my_class.cpp
+
 #include "MyClass.h"
 
 int MyClass::add(int a, int b) {
@@ -963,30 +983,6 @@ private:
 };
 ```
 
----
-
-# Inheritance
-
-```cpp
-// Base class.
-class Shape {
-public:
-    void draw() {
-        std::cout << "Drawing a shape." << std::endl;
-    }
-};
-
-// Derived class.
-class Circle : public Shape {
-public:
-    void draw() {
-        std::cout << "Drawing a circle." << std::endl;
-    }
-};
-
-Circle circle; // Creating an object of the derived class.
-circle.draw(); // Calls the draw() method of the derived class.
-```
 ---
 
 <!--

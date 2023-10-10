@@ -54,6 +54,20 @@ jobs:
         env:
           MARP_USER: root:root
 
+      - name: Build homeworks HTML
+        uses: docker://marpteam/marp-cli:latest
+        with:
+          args: --bespoke.progress --theme style/custom.css -I homeworks/ -o homeworks/
+        env:
+          MARP_USER: root:root
+
+      - name: Build homeworks PDF
+        uses: docker://marpteam/marp-cli:latest
+        with:
+          args: --bespoke.progress --theme style/custom.css -I homeworks/ -o homeworks/ --pdf --pdf-outlines
+        env:
+          MARP_USER: root:root
+
       - name: Setup pages
         uses: actions/configure-pages@v3
 

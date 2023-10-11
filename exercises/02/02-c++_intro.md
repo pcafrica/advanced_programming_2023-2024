@@ -42,7 +42,7 @@ Create a C++ program that dynamically allocates memory for an array of integers.
 
 # Exercise 3: complete the missing statistics calculator
 
-You are provided with a partially implemented C++ program for calculating and displaying statistics for a set of numbers. Your task is to fill in the missing parts to make the program functional.
+The `hints/ex3/` folder provides a partially implemented C++ program for calculating and displaying statistics for a set of numbers. Your task is to fill in the missing parts to make the program functional.
 
 - Use the provided function prototypes in `statistics.hpp` to guide your implementation in `statistics.cpp`.
 - You may need to sort the input numbers to calculate the median. You can use standard C++ functions like `std::sort` for this purpose.

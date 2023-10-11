@@ -1,30 +1,20 @@
 #include "data_processor.hpp"
 #include <cmath>
-#include <limits>
 
 unsigned int DataProcessor::n_instances = 0;
 
 DataProcessor::DataProcessor(const double *input_data,
                              const unsigned int &input_size)
-    : size(input_size), data(new double[size]),
-      minimum(std::numeric_limits<double>::max()),
-      maximum(std::numeric_limits<double>::min()) {
+    : size(input_size), data(new double[size]) {
   ++n_instances;
 
   for (unsigned int i = 0; i < size; ++i) {
     data[i] = input_data[i];
-
-    if (data[i] < minimum) {
-      minimum = data[i]; // Update the minimum if a smaller value is found.
-    } else if (data[i] > maximum) {
-      maximum = data[i]; // Update the maximum if a larger value is found.
-    }
   }
 }
 
 DataProcessor::DataProcessor(const DataProcessor &other)
-    : size(other.size), data(new double[size]), minimum(other.minimum),
-      maximum(other.maximum) {
+    : size(other.size), data(new double[size]) {
   ++n_instances;
 
   for (unsigned int i = 0; i < size; ++i) {
@@ -41,9 +31,6 @@ DataProcessor &DataProcessor::operator=(const DataProcessor &other) {
     for (unsigned int i = 0; i < size; ++i) {
       data[i] = other[i];
     }
-
-    minimum = other.minimum;
-    maximum = other.maximum;
   }
   return *this;
 }
@@ -53,20 +40,35 @@ DataProcessor DataProcessor::operator+(const DataProcessor &other) const {
 
   DataProcessor result(data, size); // Copy the current object.
 
-  result.minimum = std::numeric_limits<double>::max();
-  result.maximum = std::numeric_limits<double>::min();
-
   for (unsigned int i = 0; i < size; ++i) {
     result[i] += other[i];
-
-    if (result[i] < result.minimum) {
-      result.minimum = result[i];
-    } else if (result[i] > result.maximum) {
-      result.maximum = result[i];
-    }
   }
 
   return result;
+}
+
+double DataProcessor::min() const {
+  double min = std::numeric_limits<double>::max();
+
+  for (unsigned int i = 0; i < size; ++i) {
+    if (data[i] < min) {
+      min = data[i]; // Update the minimum if a smaller value is found.
+    }
+  }
+
+  return min;
+}
+
+double DataProcessor::max() const {
+  double max = std::numeric_limits<double>::min();
+
+  for (unsigned int i = 0; i < size; ++i) {
+    if (data[i] > max) {
+      max = data[i]; // Update the minimum if a smaller value is found.
+    }
+  }
+
+  return max;
 }
 
 double DataProcessor::compute_mean() const {

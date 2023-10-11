@@ -2,6 +2,7 @@
 #define DATA_PROCESSOR_HPP__
 
 #include <cassert>
+#include <limits>
 #include <ostream>
 
 class DataProcessor {
@@ -35,9 +36,9 @@ public:
 
   unsigned int n_elements() const { return size; }
 
-  double get_minimum() const { return minimum; }
+  double min() const;
 
-  double get_maximum() const { return maximum; }
+  double max() const;
 
   double compute_mean() const;
 
@@ -52,9 +53,6 @@ private:
 
   unsigned int size;
   double *data;
-
-  double minimum;
-  double maximum;
 };
 
 double compute_correlation(const DataProcessor &dp1, const DataProcessor &dp2);

@@ -19,8 +19,8 @@ int main() {
   std::cout << "Number of elements in dp2: " << dp2.n_elements() << std::endl;
   std::cout << "Number of elements in dp3: " << dp3.n_elements() << std::endl;
 
-  std::cout << "Minimum value of dp1: " << dp1.get_minimum() << std::endl;
-  std::cout << "Maximum value of dp1: " << dp1.get_maximum() << std::endl;
+  std::cout << "Minimum value of dp1: " << dp1.min() << std::endl;
+  std::cout << "Maximum value of dp1: " << dp1.max() << std::endl;
   std::cout << "Mean of dp1: " << dp1.compute_mean() << std::endl;
   std::cout << "Standard deviation of dp1: " << dp1.compute_std_dev()
             << std::endl;
@@ -30,8 +30,8 @@ int main() {
   {
     DataProcessor dp5 = dp1 + dp4;
     std::cout << "dp5: " << dp5 << std::endl;
-    std::cout << "Minimum value of dp5: " << dp5.get_minimum() << std::endl;
-    std::cout << "Maximum value of dp5: " << dp5.get_maximum() << std::endl;
+    std::cout << "Minimum value of dp5: " << dp5.min() << std::endl;
+    std::cout << "Maximum value of dp5: " << dp5.max() << std::endl;
     std::cout << "dp5[3]: " << dp5[3] << std::endl;
     dp5[3] = 0.0;
     std::cout << "dp5[3]: " << dp5[3] << std::endl;

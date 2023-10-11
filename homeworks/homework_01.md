@@ -131,7 +131,6 @@ You are required to implement an *abstract* base class `SparseMatrix` that provi
 4. **Bonus**: templatize your classes on the type of number stored by the matrix (e.g., `int` or `double`).
 
 The `main.cpp` file should include tests to validate the correctness of your program. Here are some test ideas:
-- If $v= \vec{1}$, then $\left(M\vec{v}\right)_i=\sum_{j=1}^{n_{cols}} M_{ij} v_j = \sum_{j=1}^{n_{cols}} M_{ij}$, i.e. the sum of $i$-th row.
+- If $v= \vec{1}$, then $\left(M\vec{v}\right)_i=\sum_{j=1}^{n_\mathrm{cols}} M_{ij} v_j = \sum_{j=1}^{n_\mathrm{cols}} M_{ij}$, i.e. the sum of $i$-th row.
 - If $\vec{v} = \vec{e}_i$ (the $i$-th vector of the canonical basis), then $M \vec{e}_i$ returns the $i$-th column of $M$.
-- Implement additional tests of your choice!
-
+- Implement additional tests of your choice.

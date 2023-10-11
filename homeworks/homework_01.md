@@ -35,13 +35,15 @@ There are several efficient ways to store a sparse matrix. In this homework, you
 
 Consider the following matrix as an example:
 
-$A =
+$$
+A =
 \begin{bmatrix}
 0 & 0 & 3.1 & 0 & 4\\
 0 & 0 & 5 & 0 & 7.4\\
 0 & 0 & 0 & 0 & 0\\
 0 & 2 & 0 & 6 & 0
-\end{bmatrix}$.
+\end{bmatrix}.
+$$
 
 ---
 
@@ -131,6 +133,6 @@ You are required to implement an *abstract* base class `SparseMatrix` that provi
 4. **Bonus**: templatize your classes on the type of number stored by the matrix (e.g., `int` or `double`).
 
 The `main.cpp` file should include tests to validate the correctness of your program. Here are some test ideas:
-- If $v= \vec{1}$, then $\left(M\vec{v}\right)_i=\sum_{j=1}^{n_\mathrm{cols}} M_{ij} v_j = \sum_{j=1}^{n_\mathrm{cols}} M_{ij}$, i.e. the sum of $i$-th row.
+- If $v= \vec{1}$, then $\left(M\vec{v}\right)_ {i}=\sum_{j=1}^{n_\mathrm{cols}} M_{ij} v_j = \sum_{j=1}^{n_\mathrm{cols}} M_{ij}$, i.e. the sum of $i$-th row.
 - If $\vec{v} = \vec{e}_i$ (the $i$-th vector of the canonical basis), then $M \vec{e}_i$ returns the $i$-th column of $M$.
 - Implement additional tests of your choice.

@@ -31,6 +31,12 @@ This work is licensed under a
 
 ---
 
+# Homeworks
+
+- Homework 01 [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom][]]
+
+---
+
 # Timetable
 | Date            | Time          | Room | Topic                                                                                                        |
 | --------------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------ |

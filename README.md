@@ -33,7 +33,9 @@ This work is licensed under a
 
 # Homeworks
 
-- Homework 01 [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom][]]
+Homework solutions must be uploaded on Google Classroom.
+
+- Homework 01: deadline **31 Oct 2023, 23:59** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom][https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details]]
 
 ---
 

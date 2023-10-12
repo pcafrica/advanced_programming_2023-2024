@@ -1,8 +1,9 @@
 #ifndef DATA_PROCESSOR_HPP__
 #define DATA_PROCESSOR_HPP__
 
+#include <algorithm>
 #include <cassert>
-#include <limits>
+#include <numeric>
 #include <ostream>
 
 class DataProcessor {
@@ -37,11 +38,14 @@ public:
 
   unsigned int n_elements() const { return size; }
 
-  double min() const;
+  double min() const { return *std::min_element(data, data + size); };
 
-  double max() const;
+  double max() const { return *std::max_element(data, data + size); };
 
-  double compute_mean() const;
+  double compute_mean() const {
+    const double sum = std::accumulate(data, data + size, 0.0);
+    return sum / size;
+  }
 
   double compute_std_dev() const;
 

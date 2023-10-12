@@ -47,38 +47,6 @@ DataProcessor DataProcessor::operator+(const DataProcessor &other) const {
   return result;
 }
 
-double DataProcessor::min() const {
-  double min = std::numeric_limits<double>::max();
-
-  for (unsigned int i = 0; i < size; ++i) {
-    if (data[i] < min) {
-      min = data[i]; // Update the minimum if a smaller value is found.
-    }
-  }
-
-  return min;
-}
-
-double DataProcessor::max() const {
-  double max = std::numeric_limits<double>::min();
-
-  for (unsigned int i = 0; i < size; ++i) {
-    if (data[i] > max) {
-      max = data[i]; // Update the minimum if a smaller value is found.
-    }
-  }
-
-  return max;
-}
-
-double DataProcessor::compute_mean() const {
-  double sum = 0.0;
-  for (unsigned int i = 0; i < size; ++i) {
-    sum += data[i];
-  }
-  return sum / size;
-}
-
 double DataProcessor::compute_std_dev() const {
   const double mean = compute_mean();
 

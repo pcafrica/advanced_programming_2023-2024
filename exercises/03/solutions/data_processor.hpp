@@ -24,14 +24,17 @@ public:
     data = nullptr;
   }
 
+  // Sum operator.
   DataProcessor operator+(const DataProcessor &other) const;
 
+  // Write access operator.
   double &operator[](const unsigned int &index) {
     assert(index >= 0 && index < size);
     return data[index];
   }
 
-  double operator[](const unsigned int &index) const {
+  // Read access operator.
+  const double &operator[](const unsigned int &index) const {
     assert(index >= 0 && index < size);
     return data[index];
   }

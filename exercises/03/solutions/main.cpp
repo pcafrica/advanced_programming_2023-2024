@@ -5,9 +5,9 @@ int main() {
   const double input1[] = {2.43, -0.86, 7.19, 4.57, 1.68, 9.32, 5.75};
   const double input2[] = {0.73, -0.45, 0.12, 0.88, -0.67, 0.34, -0.92};
 
-  DataProcessor dp1(input1, 7); // Testing constructor.
+  const DataProcessor dp1(input1, 7); // Testing constructor.
 
-  DataProcessor dp2 = dp1; // Testing copy constructor.
+  const DataProcessor dp2 = dp1; // Testing copy constructor.
 
   DataProcessor dp3(input2, 7);
   dp3 = dp1; // Testing copy assignment operator.
@@ -25,7 +25,7 @@ int main() {
   std::cout << "Standard deviation of dp1: " << dp1.compute_std_dev()
             << std::endl;
 
-  DataProcessor dp4(input2, 7);
+  const DataProcessor dp4(input2, 7);
   std::cout << "dp4: " << dp4 << std::endl;
   {
     DataProcessor dp5 = dp1 + dp4;

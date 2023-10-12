@@ -101,14 +101,13 @@ Provide clear instructions on how to compile and run your code or, preferably, a
 
 You are required to implement an *abstract* base class `SparseMatrix` that provides a public interface to perform the following operations:
 
-1. Get the number of rows.
-2. Get the number of columns.
-3. Get the number of nonzeros.
-4. Read an entry of the matrix (e.g., `const double x = A(2, 3);`). If indices are out of bound, then throw an error.
-5. Write an entry of the matrix (e.g., `A(2, 3) = 5.7;`). If indices are out of bound, then throw an error. If indices are compatible with the matrix size but the entry has not been allocated yet, either print an error or (**bonus**) allocate it.
-6. Given a vector $\vec{x}$ of compatible size, compute the matrix-vector product $\vec{y} = A\vec{x}$.
-7. Print the matrix to the standard output, in a convenient, readable format.
-8. Implement other utilities you think are useful (if any).
+1. Get the number of rows and the number of columns.
+2. Get the number of nonzeros.
+3. Read an entry of the matrix (e.g., `const double x = A(2, 3);`). If indices are out of bound, then throw an error.
+4. Write an entry of the matrix (e.g., `A(2, 3) = 5.7;`). If indices are out of bound, then throw an error. If indices are compatible with the matrix size but the entry has not been allocated yet, either print an error or (**bonus**) allocate it.
+5. Given a vector $\vec{x}$ of compatible size, compute the matrix-vector product $\vec{y} = A\vec{x}$.
+6. Print the matrix to the standard output, in a convenient, readable format.
+7. Implement other utilities you think are useful (if any).
 
 ---
 

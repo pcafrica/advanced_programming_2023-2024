@@ -20,6 +20,7 @@ public:
   ~DataProcessor() {
     --n_instances;
     delete[] data;
+    data = nullptr;
   }
 
   DataProcessor operator+(const DataProcessor &other) const;

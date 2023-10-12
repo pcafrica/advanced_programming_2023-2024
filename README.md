@@ -1,6 +1,6 @@
 # Advanced Programming: course material
 
-[![](https://github.com/pcafrica/advanced_programming_2023-2024/actions/workflows/md-to-pages.yml/badge.svg)](https://github.com/pcafrica/advanced_programming_2023-2024/actions/workflows/md-to-pages.yml)
+[![md-to-pages](https://github.com/pcafrica/advanced_programming_2023-2024/actions/workflows/md-to-pages.yml/badge.svg)](https://github.com/pcafrica/advanced_programming_2023-2024/actions/workflows/md-to-pages.yml)
 
 This repository contains material for the *Advanced Programming* course. Academic Year 2023-2024.
 <br>
@@ -36,7 +36,7 @@ This work is licensed under a
 
 # Homeworks
 
-⚠️ **Homework 01 is now available!** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
+⚠️ **Homework 01 is now online!** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
 
 ⚠️ **Deadline: 31 Oct 2023, 23:59**
 

@@ -358,9 +358,9 @@ public:
     std::string author;
 };
 
-Book book1{"The catcher in the rye", "J.D. Salinger"};
+Book book1{"The catcher in the rye", "J.D. Salinger"}; // Parametrized constructor.
 Book book2 = book1; // Copying using the copy constructor.
-Book book3{"Marcovaldo", "I. Calvino"};
+Book book3{"Marcovaldo", "I. Calvino"}; // Parametrized constructor.
 book3 = book1; // Copying using the copy assignment operator.
 ```
 

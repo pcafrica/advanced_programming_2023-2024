@@ -36,23 +36,23 @@ This work is licensed under a
 
 # Homeworks
 
-⚠️ **Homework 01 is now online!** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
+:warning: **Homework 01 is now online!** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
 
-⚠️ **Deadline: 31 Oct 2023, 23:59**
+:warning: **Deadline: 31 Oct 2023, 23:59**
 
-⚠️ **Homework solutions must be submitted on Google Classroom.**
+:warning: **Homework solutions must be submitted on Google Classroom.**
 
 ---
 
 # Timetable
 | Date            | Time          | Room | Topic                                                                                                        |
 | --------------- | ------------- | ---- | ------------------------------------------------------------------------------------------------------------ |
-| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Introduction to the course. The UNIX shell. The build process. [[Notes](lectures/01/01-intro_unix.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.pdf)] |
-| Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/01/01-intro_unix.md)] [[Slides](exercises/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.pdf)] |
-| Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. [[Notes](lectures/02/02-c++_intro.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.pdf)] |
-| Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](exercises/02/02-c++_intro.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.pdf)] |
-| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. [[Notes](lectures/03/03-c++_classes.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
-| Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Notes](exercises/03/03-c++_classes.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.pdf)] |
+| Tue&nbsp;26&nbsp;Sep&nbsp;2023&nbsp;&nbsp; | 14:00&nbsp;-&nbsp;16:00&nbsp;&nbsp; | 005&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Introduction to the course. The UNIX shell. The build process. [[Markdown](lectures/01/01-intro_unix.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/01/01-intro_unix.pdf)] |
+| Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/01/01-intro_unix.md)] [[HTML](exercises/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.pdf)] |
+| Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. [[Markdown](lectures/02/02-c++_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.pdf)] |
+| Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/02/02-c++_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.pdf)] |
+| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. [[Markdown](lectures/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
+| Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.pdf)] |
 | Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. |
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 24 Oct 2023 | 14:00 - 16:00 | 005 |  |

@@ -1,5 +1,5 @@
-name: marp-to-pages
-concurrency: marp-to-pages
+name: md-to-pages
+concurrency: md-to-pages
 
 on:
   push:

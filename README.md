@@ -1,4 +1,7 @@
 # Advanced Programming: course material
+
+![](https://github.com/pcafrica/advanced_programming_2023-2024/actions/workflows/md-to-pages.yml/badge.svg)
+
 This repository contains material for the *Advanced Programming* course. Academic Year 2023-2024.
 <br>
 

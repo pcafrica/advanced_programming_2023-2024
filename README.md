@@ -51,26 +51,26 @@ This work is licensed under a
 | Thu 28 Sep 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/01/01-intro_unix.md)] [[HTML](exercises/01/01-intro_unix.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/01/01-intro_unix.pdf)] |
 | Tue 03 Oct 2023 | 14:00 - 16:00 | 137-138 | Introduction to C++. Built-in data types. Variables, pointers and references. Control structures. Functions. [[Markdown](lectures/02/02-c++_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/02/02-c++_intro.pdf)] |
 | Thu 05 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/02/02-c++_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/02/02-c++_intro.pdf)] |
-| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. [[Markdown](lectures/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
+| Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. Operators. [[Markdown](lectures/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.pdf)] |
-| Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. |
+| Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. [[Markdown](lectures/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.pdf)] |
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Tue 24 Oct 2023 | 14:00 - 16:00 | 005 |  |
+| Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Lambda functions, functors. Templates and generic programming. |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 |  |
+| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | TBA |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
 | Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 09 Nov 2023 | 14:00 - 16:00 | 005 |  |
+| Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 |  |
+| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 |  |
+| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
-| Thu 30 Nov 2023 | 14:00 - 16:00 | 136-137 |  |
+| Thu 30 Nov 2023 | 14:00 - 16:00 | 136-137 | TBA |
 | Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 |  |
+| Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 |  |
+| Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | TBA |

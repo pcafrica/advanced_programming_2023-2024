@@ -8,7 +8,7 @@ _class: titlepage
 # Lecture 03
 <br>
 
-## Object oriented programming. Classes and access control in C++.
+## Object oriented programming. Classes and access control in C++. Operators.
 <br>
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024
@@ -26,7 +26,6 @@ _class: titlepage
 3. Notes on code organization
 4. Encapsulation and access control
 5. Operator overloading
-6. Class collaborations
 
 ---
 
@@ -862,143 +861,6 @@ std::cout << obj << std::endl;
 2. **Don't change the basic meaning of an operator**: Overloading should make sense in the context of your class. For example, overloading `+` for string concatenation is intuitive, but overloading it for subtraction is not.
 3. **Be mindful of operator precedence and associativity**: Overloaded operators should follow the same precedence and associativity rules as their built-in counterparts (such as in expressions like `2 * 3 + 1`).
 4. **Avoid excessive overloading**: Overloading too many operators can make your code less readable and harder to maintain. Focus on overloading the operators that provide significant benefits.
-
----
-
-<!--
-_class: titlepage
--->
-
-# Class collaborations
-
---- 
-
-# Relationships between classes (1/2)
-
-Classes can have various relationships, including:
-
-1. **Association**: A loose relationship where classes are related, but one does not necessarily contain the other. For example, a `Student` class may be associated with a `Course` or a `Teacher` class.
-
-2. **Aggregation**: A *"has-a"* relationship where one class contains another as a part, but the contained object can exist independently. For example, a `University` class may aggregate `Department` classes.
-
----
-
-# Relationships between classes (2/2)
-
-3. **Composition**: A stronger *"whole-part"* relationship where one class contains another as a part, and the part cannot exist independently. For example, an `Apartment` class composes a `Room` class.
-
-4. **Inheritance**: Inheritance represents an *"is-a"* relationship, where one class (the derived or subclass) inherits properties and behaviors from another class (the base or superclass). This is a fundamental form of collaboration in object-oriented programming.
-
----
-
-# Association (1/3)
-
-**Association** is a relationship between two or more classes that defines how they are related to each other. It represents a general form of relationship between classes.
-
-```cpp
-class Student; // Forward declaration.
-
-class Course {
-public:
-    Course(const std::string& name) : course_name(name) {}
-
-    const std::string& get_course_name() const {
-        return course_name;
-    }
-
-private:
-    std::string course_name;
-};
-```
-
----
-
-# Association (2/3)
-
-```cpp
-class Student {
-public:
-    Student(const std::string& name) : student_name(name) {}
-
-    void enroll_course(Course* course) {
-        // Append new element to the vector.
-        enrolled_courses.push_back(course);
-    }
-
-    void list_enrolled_courses() const {
-        std::cout << student_name << " is enrolled in the following courses:" << std::endl;
-        for (const auto& course : enrolled_courses) {
-            std::cout << "- " << course->get_course_name() << std::endl;
-        }
-    }
-
-private:
-    std::string student_name;
-    std::vector<Course*> enrolled_courses;
-};
-```
-
----
-
-# Association (3/3)
-
-```cpp
-// Creating Course objects.
-Course math{"Mathematics"};
-Course physics{"Physics"};
-Course chemistry{"Chemistry"};
-
-// Creating Student objects.
-Student alice{"Alice"};
-Student bob{"Bob"};
-
-// Associating students with courses.
-alice.enroll_course(&math);
-alice.enroll_course(&physics);
-bob.enroll_course(&chemistry);
-
-// Listing enrolled courses for each student.
-alice.list_enrolled_courses();
-bob.list_enrolled_courses();
-```
-
----
-
-# Aggregation
-
-**Aggregation** represents a relationship where one class (the whole) contains another class (the part), but the part can exist independently. It is represented by a "has-a" relationship.
-
-```cpp
-class Department {
-    // Department implementation...
-};
-
-class University {
-private:
-    std::vector<Department> departments; // Aggregation: University has Departments.
-    // Other member variables...
-};
-```
-
----
-
-# Composition
-
-**Composition** is a stronger relationship where one class (the whole) contains another class (the part), and the part cannot exist independently. It is represented by a *"whole-part"* relationship.
-
-```cpp
-class Room {
-    // Room implementation...
-};
-
-class Apartment {
-private:
-    Room living; // Composition: Apartment are composed by Room objects.
-    Room kitchen;
-    Room bedroom;
-    // Other member variables...
-};
-```
 
 ---
 

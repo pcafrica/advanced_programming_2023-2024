@@ -42,13 +42,15 @@ Classes can have various relationships, including:
 
 1. **Association**: A loose relationship where classes are related, but one does not necessarily contain the other. For example, a `Student` class may be associated with a `Course` or a `Teacher` class.
 
-2. **Aggregation**: A *"has-a"* relationship where one class contains another as a part, but the contained object can exist independently. For example, a `University` class may aggregate `Department` classes.
+2. **Dependency**: Dependency represents a situation where one class depends on another class. If class `A` uses or is dependent on class `B` (e.g., by invoking methods or using objects of class `B`), there is a dependency relationship between them. For example, a `Car` class might depend on a, if you use a `FuelTank` class to store fuel.
+
+3. **Aggregation**: A *"has-a"* relationship where one class contains another as a part, but the contained object can exist independently. For example, a `University` class may aggregate `Department` classes.
 
 ---
 
 # Relationships between classes (2/2)
 
-3. **Composition**: A stronger *"whole-part"* relationship where one class contains another as a part, and the part cannot exist independently. For example, an `Apartment` class composes a `Room` class.
+3. **Composition**: A stronger *"part-of"* relationship where one class contains another as a part, and the part cannot exist independently. For example, an `Apartment` class composes a `Room` class.
 
 4. **Inheritance**: Inheritance represents an *"is-a"* relationship, where one class (the derived or subclass) inherits properties and behaviors from another class (the base or superclass). This is a fundamental form of collaboration in object-oriented programming.
 
@@ -127,6 +129,22 @@ bob.list_enrolled_courses();
 
 ---
 
+# Dependency
+
+**Dependency**: We say that class `A` depends on class `B` if `A` uses `B`. This is a very general term that implies **the declaration of class `B` being visible when you declare class `A`**. This visibility may be necessary because a method of class `A` takes an object of type `B` as a parameter:
+
+```cpp
+class B; // Forward declaration.
+
+class A {
+public:
+    void fun(const B& b);
+    // ...
+}
+```
+
+---
+
 # Aggregation
 
 **Aggregation** represents a relationship where one class (the whole) contains another class (the part), but the part can exist independently. It is represented by a "has-a" relationship.
@@ -138,7 +156,7 @@ class Department {
 
 class University {
 private:
-    std::vector<Department> departments; // Aggregation: University has Departments.
+    std::vector<Department*> departments; // Aggregation: University has Departments.
     // Other member variables...
 };
 ```
@@ -147,7 +165,7 @@ private:
 
 # Composition
 
-**Composition** is a stronger relationship where one class (the whole) contains another class (the part), and the part cannot exist independently. It is represented by a *"whole-part"* relationship.
+**Composition** is a stronger relationship where one class (the whole) contains another class (the part), and the part cannot exist independently. It is represented by a *"part-of"* relationship.
 
 ```cpp
 class Room {
@@ -162,7 +180,32 @@ private:
     // Other member variables...
 };
 ```
-   
+
+:warning: For improved resource management, composition can be implemented using pointers or references. See below for an example.
+
+---
+
+# Views (proxies)
+
+**View** (or **proxy**) is another type of aggregation that enables access to the members of the aggregating object using a different, often more specialized, interface. For example, you can access a general matrix as a diagonal matrix using a view:
+
+```cpp
+class Matrix {
+public:
+    double & operator()(int i, int j);
+};
+
+class DiagonalView {
+public:
+    DiagonalView(Matrix &mat) : mat(mat) {}
+    double & operator()(int i, int j) {
+        return (i == j) ? mat(i, i) : 0.0;
+    }
+private:
+    Matrix &mat;
+}
+```
+
 ---
 
 <!--
@@ -187,28 +230,18 @@ You may have a base class `Shape` and derived classes like `Circle`, `Rectangle`
 # Inheritance in C++
 
 ```cpp
-// Base class.
-class Shape {
+class Shape { // Base class.
 public:
-    void f() {
-        std::cout << "f (base class)." << std::endl;
-    }
+    void f() { std::cout << "f (base class)." << std::endl; }
 
-    void draw() {
-        std::cout << "Drawing a shape." << std::endl;
-    }
+    void draw() { std::cout << "Drawing a shape." << std::endl; }
 };
 
-// Derived class.
-class Circle : public Shape {
+class Circle : public Shape { // Derived class.
 public:
-    void g() {
-        std::cout << "g (derived class)." << std::endl;
-    }
+    void g() { std::cout << "g (derived class)." << std::endl; }
 
-    void draw() {
-        std::cout << "Drawing a circle." << std::endl;
-    }
+    void draw() { std::cout << "Drawing a circle." << std::endl; }
 };
 
 Circle circle; // Creating an object of the derived class.
@@ -251,26 +284,26 @@ private:
 # Inheritance and access control (2/3)
 
 ```cpp
-class DerivedPublic : public Base { // 'public' is the default, if omitted.
+class DerivedPublic : public Base {
     // public_data remains public.
-    // private_data is inaccessible.
     // protected_data remains protected.
+    // private_data is inaccessible.
 };
 ```
 
 ```cpp
 class DerivedProtected : protected Base {
     // public_data becomes protected.
-    // private_data is inaccessible.
     // protected_data remains protected.
+    // private_data is inaccessible.
 };
 ```
 
 ```cpp
-class DerivedPrivate : private Base {
+class DerivedPrivate : private Base { // 'private' is the default, if omitted.
     // public_data becomes private.
-    // private_data is inaccessible.
     // protected_data becomes private.
+    // private_data is inaccessible.
 };
 ```
 
@@ -344,7 +377,6 @@ private:
     int my_i = 10;
 };
 ```
-
 ---
 
 # Destruction of a derived class
@@ -524,6 +556,46 @@ It is not necessary to have a virtual destructor in the derived class if:
     
 ---
 
+# Protected and private polymorphism
+
+Protected and private polymorphism uses the other types of inheritance: `protected` and `private`. Private inheritance is the default for classes (hence the need for the `public` keyword to indicate public inheritance), while for `structs`, the default is public.
+
+- `class D: protected B`: Public and protected members of `B` become protected in `D`. Only methods and friends of `D` and classes derived from `D` can convert a `D*` into a `B*` (applies to references as well).
+
+- `class D: private B`: Public and protected members of `B` become private in `D`. Only methods and friends of `D` can convert a `D*` into a `B*` (applies to references as well).
+
+---
+
+# Selective inheritance
+
+In some cases, you may want only a part of the public interface of the base class to be exposed to the general public. You can achieve this through selective inheritance. Here's an example:
+
+```cpp
+class Base {
+public:
+    double fun(int i);
+    // ...
+};
+
+class Derived : private Base {
+public:
+    using Base::fun; // fun() is made available.
+    // ...
+};
+```
+
+---
+
+# Why protected and private inheritance?
+
+The use of protected and private inheritance is quite special. Typically, you use protected polymorphism when you want to use polymorphism but limit its availability to methods of the derived classes. The object is not polymorphic for the *general public* but only within the class hierarchy.
+
+The use of private polymorphism is less common.
+
+Remember that protected and private inheritance does not implement an *"is-a"* relationship.
+
+---
+
 <!--
 _class: titlepage
 -->
@@ -601,27 +673,49 @@ The `override` keyword is not mandatory but strongly recommended, as it can trig
 
 ---
 
-# Examples of `final` and `override` specifiers
-
-Here are some examples:
+# Examples of `final`
 
 ```cpp
-struct A {
+class A {
+public:
     virtual void foo() final;
     virtual double foo2(double);
     // ...
 };
 
-struct B final : A {
+class B final : A {
+public:
     void foo(); // Error: foo cannot be overridden as it's final in A.
     // ...
 };
 
-struct C : B // Error: B is final
+class C : B // Error: B is final.
 {
     // ...
 };
 ```
+
+---
+
+# Examples of `override`
+
+```cpp
+class A {
+    virtual void foo();
+    void bar();
+    // ...
+};
+
+class B : A {
+    void foo() const override; // Error: Has a different signature from A::foo.
+
+    void foo() override; // OK: Base class contains a virtual function with the same signature.
+
+    void bar() override; // Error: B::bar doesn't override because A::bar is not virtual.
+}
+```
+
+:warning: Although not mandatory, the `override` specification when overriding virtual member functions makes your code safer. It is **strongly recommended** to use it.
 
 ---
 
@@ -645,15 +739,50 @@ double fun(const Polygon &p) {
 
 ---
 
-# Design principles and guidelines
+# Some advice
+
+- The general design of code typically follows a top-down approach. You start from the final objective and identify the tasks required to achieve that objective.
+- However, the actual programming process follows a bottom-up approach. Each basic task of your code or a set of closely related tasks should be encapsulated in a class, and you should **test these components separately**.
+- After verifying the individual components, you can then compose them into a class or set of classes that implement your final objective. Whenever possible, aim to create components that can be reused and avoid code duplication.
 
 ---
 
-# Advanced inheritance topics
+# Aggregation vs. composition with polymorphic objects
+
+What happens if you want to aggregate your class with a polymorphic object? Should `Prism` be responsible for `poly_ptr`'s lifetime?
+
+```cpp
+class Prism {
+public:
+    // 1) Take a pointer to an already existing object.
+    Prism(Polygon *p) : poly_ptr{p} {} // const vs. non-const?
+    
+    // 2) Alternatively, MyClass handles both creation and destruction.
+    void init_as_square(const std::array<Point, 4> &vertices) {
+        poly_ptr = new Square{vertices};
+    }
+    ~Prism() { delete poly_ptr; }
+
+private:
+    Polygon *poly_ptr;
+}
+```
+
+:arrow_right: See (future) lecture on smart pointers.
 
 ---
 
-# Class views (*proxies*)
+# Pointer or reference?
+
+Some guidelines about aggregation/composition with pointers vs. references.
+
+## Reference
+- Use a (const) reference when the aggregated object doesn't change, as is often the case in a "View."
+- If you use a reference, the aggregated object must be passed through the constructor, making your class non-default-constructible.
+
+## Pointer
+- Use (const) pointers if the aggregated object may change at runtime.
+- If you use a pointer, **always initialize the pointer to `nullptr`** and create a method to test whether it has been assigned to an object. Initializing pointers to `nullptr` is a good practice.
 
 ---
 

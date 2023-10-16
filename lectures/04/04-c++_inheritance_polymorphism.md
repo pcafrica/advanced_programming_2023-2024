@@ -34,7 +34,7 @@ _class: titlepage
 
 # Class collaborations
 
---- 
+---
 
 # Relationships between classes (1/2)
 
@@ -214,7 +214,7 @@ _class: titlepage
 
 # Inheritance
 
---- 
+---
 
 # Inheritance
 
@@ -227,7 +227,7 @@ You may have a base class `Shape` and derived classes like `Circle`, `Rectangle`
 
 ---
 
-# Inheritance in C++
+# Inheritance in C++ (1/2)
 
 ```cpp
 class Shape { // Base class.
@@ -252,7 +252,7 @@ circle.draw(); // Calls the draw() method of the derived class.
 
 ---
 
-# Inheritance in C++
+# Inheritance in C++ (2/2)
 
 In C++, inheritance is implemented using the `class` or `struct` keyword followed by a colon and the access specifier (`public`, `protected`, or `private`) followed by the base class name. For example:
 
@@ -314,7 +314,7 @@ class DerivedPrivate : private Base { // 'private' is the default, if omitted.
 - **Public** inheritance maintains the *"is-a"* relationship and allows the derived class to access and modify the public members of the base class.
 - **Protected** inheritance restricts access to the base class's members in the derived class, making them protected.
 - **Private** inheritance encapsulates the base class's members within the derived class, making them private and not accessible outside the derived class.
-        
+
 ---
 
 # Construction of a derived class
@@ -526,6 +526,32 @@ f(s); // Illegal! A Square is not convertible into a Polygon.
 
 ---
 
+# A *factory* of polygons
+
+```cpp
+#include <iostream>
+
+unsigned int n_sides;
+
+std::cout << "Number of sides: "
+std::cin > n_sides;
+
+Polygon *p;
+if (n_sides == 3)
+    p = new Triangle{...};
+else if (n_sides == 4)
+    p = new Square{...};
+else {
+    // ...
+}
+
+std::cout << "Area: " << p->area() << std::endl;
+
+delete s;
+```
+
+---
+
 # Virtual destructors
 
 When applying polymorphism, the destructor of the base class should be defined as `virtual`. This is **compulsory** when the derived class introduces new member variables.
@@ -553,7 +579,7 @@ It is not necessary to have a virtual destructor in the derived class if:
 1. You are using inheritance but not polymorphism. This is the case when inheritance is only used to add additional functionalities, and you are not planning to address derived objects through pointers or references to the base. In this case, you have no virtual member functions (and no virtual destructors).
 
 2. You have a hierarchy of classes where all data members are handled by the base class. The scope of the derived class is only to change the behavior of the public interface, with no need for new data members.
-    
+
 ---
 
 # Protected and private polymorphism
@@ -605,7 +631,6 @@ _class: titlepage
 ---
 
 # Abstract classes
-
 
 In some cases, the base class represents merely an abstract concept, and it does not make sense to create concrete objects of that type. In other words, the base class is meant to define the common public interface of the hierarchy but not to implement it fully.
 
@@ -719,6 +744,30 @@ class B : A {
 
 ---
 
+# RTTI and `typeid`
+
+Run-Time Type Information (RTTI) in C++ allows you to determine the actual type of an object at runtime. RTTI is typically implemented using the `typeid` operator or dynamic casting.
+
+```cpp
+#include <typeinfo>
+
+class Base {
+public:
+    virtual void print() { std::cout << "Base class." << std::endl; }
+};
+
+class Derived : public Base {
+public:
+    void print() override { std::cout << "Derived class." << std::endl; }
+};
+
+Base base; Derived derived;
+std::cout << "Type of base: " << typeid(base).name() << std::endl;
+std::cout << "Type of derived: " << typeid(derived).name() << std::endl;
+```
+
+---
+
 # Type checking with `dynamic_cast`
 
 `dynamic_cast<D*>(B*)` tries to convert a `B*` to a `D*` (***downcasting***). If the condition fails, it returns the null pointer; otherwise, it returns the pointer to the derived class. This can be used to determine to which derived class a pointer to a base class refers.
@@ -733,17 +782,9 @@ double fun(const Polygon &p) {
         ptr->get_side(); // This is not a member of the abstract Polygon class.
     } else {
         // It is not a square.
-    } 
+    }
 }
 ```
-
----
-
-# Some advice
-
-- The general design of code typically follows a top-down approach. You start from the final objective and identify the tasks required to achieve that objective.
-- However, the actual programming process follows a bottom-up approach. Each basic task of your code or a set of closely related tasks should be encapsulated in a class, and you should **test these components separately**.
-- After verifying the individual components, you can then compose them into a class or set of classes that implement your final objective. Whenever possible, aim to create components that can be reused and avoid code duplication.
 
 ---
 
@@ -756,7 +797,7 @@ class Prism {
 public:
     // 1) Take a pointer to an already existing object.
     Prism(Polygon *p) : poly_ptr{p} {} // const vs. non-const?
-    
+
     // 2) Alternatively, MyClass handles both creation and destruction.
     void init_as_square(const std::array<Point, 4> &vertices) {
         poly_ptr = new Square{vertices};
@@ -783,6 +824,16 @@ Some guidelines about aggregation/composition with pointers vs. references.
 ## Pointer
 - Use (const) pointers if the aggregated object may change at runtime.
 - If you use a pointer, **always initialize the pointer to `nullptr`** and create a method to test whether it has been assigned to an object. Initializing pointers to `nullptr` is a good practice.
+
+---
+
+# Some advice
+
+- The general design of code typically follows a top-down approach. You start from the final objective and identify the tasks required to achieve that objective.
+
+- However, the actual programming process follows a bottom-up approach. Each basic task of your code or a set of closely related tasks should be encapsulated in a class, and you should **test these components separately**.
+
+- After verifying the individual components, you can then compose them into a class or set of classes that implement your final objective. Whenever possible, aim to create components that can be reused and avoid code duplication.
 
 ---
 

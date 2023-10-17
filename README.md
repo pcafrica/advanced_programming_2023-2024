@@ -66,7 +66,7 @@ This work is licensed under a
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
-| Thu 30 Nov 2023 | 14:00 - 16:00 | 136-137 | TBA |
+| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | TBA |
 | Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |

@@ -409,7 +409,7 @@ class D : public B, public C {
 public:
     void fun() {
         // If both B and C define f(), you can manually resolve the ambiguity.
-        const double x = B::foo();
+        const double x = B::f();
         // ...
     }
 };
@@ -535,7 +535,7 @@ f(s); // Illegal! A Square is not convertible into a Polygon.
 unsigned int n_sides;
 
 std::cout << "Number of sides: ";
-std::cin > n_sides;
+std::cin >> n_sides;
 
 Polygon *p;
 if (n_sides == 3)
@@ -705,13 +705,13 @@ The `override` keyword is not mandatory but strongly recommended, as it can trig
 class A {
 public:
     virtual void foo() final;
-    virtual double foo2(double);
+    virtual double bar(double);
     // ...
 };
 
 class B final : A {
 public:
-    void foo(); // Error: foo cannot be overridden as it's final in A.
+    void foo(); // Error: foo() cannot be overridden as it's final in A.
     // ...
 };
 

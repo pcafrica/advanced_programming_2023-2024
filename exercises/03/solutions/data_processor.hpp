@@ -27,13 +27,13 @@ public:
   // Sum operator.
   DataProcessor operator+(const DataProcessor &other) const;
 
-  // Write access operator.
+  // Non-const access operator.
   double &operator[](const unsigned int &index) {
     assert(index >= 0 && index < size);
     return data[index];
   }
 
-  // Read access operator.
+  // Const access operator.
   const double &operator[](const unsigned int &index) const {
     assert(index >= 0 && index < size);
     return data[index];

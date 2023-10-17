@@ -147,7 +147,7 @@ public:
 
 # Aggregation
 
-**Aggregation** represents a relationship where one class (the whole) contains another class (the part), but the part can exist independently. It is represented by a "has-a" relationship.
+**Aggregation** represents a relationship where one class (the whole) contains another class (the part), but the part can exist independently. It is represented by a *"has-a"* relationship.
 
 ```cpp
 class Department {
@@ -356,7 +356,7 @@ private:
 };
 ```
 
-In this example, when you create an instance like `D d(12.0)`, it calls the `B::B(double)` constructor, setting `d.x` to `12.0`, and `d.my_i` takes the default value of `10`.
+In this example, an instance like `D d(4, 12.0)` sets `d.x` to `12.0` and `d.my_i` to `4`.
 
 ---
 
@@ -372,11 +372,14 @@ public:
 };
 
 class D : public B {
-    using B::B; // Inherits B constructors.
+    using B::B; // Inherits B constructor.
 private:
     int my_i = 10;
 };
 ```
+
+In this example, when you create an instance like `D d(12.0)`, it calls the `B::B(double)` constructor, setting `d.x` to `12.0`, and `d.my_i` takes the default value of `10`.
+
 ---
 
 # Destruction of a derived class
@@ -529,11 +532,9 @@ f(s); // Illegal! A Square is not convertible into a Polygon.
 # A *factory* of polygons
 
 ```cpp
-#include <iostream>
-
 unsigned int n_sides;
 
-std::cout << "Number of sides: "
+std::cout << "Number of sides: ";
 std::cin > n_sides;
 
 Polygon *p;

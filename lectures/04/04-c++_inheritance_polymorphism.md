@@ -593,6 +593,16 @@ Protected and private polymorphism uses the other types of inheritance: `protect
 
 ---
 
+# Why protected and private inheritance?
+
+The use of protected and private inheritance is quite special. Typically, you use protected polymorphism when you want to use polymorphism but limit its availability to methods of the derived classes. The object is not polymorphic for the *general public* but only within the class hierarchy.
+
+The use of private polymorphism is less common.
+
+Remember that protected and private inheritance does not implement an *"is-a"* relationship.
+
+---
+
 # Selective inheritance
 
 In some cases, you may want only a part of the public interface of the base class to be exposed to the general public. You can achieve this through selective inheritance. Here's an example:
@@ -610,16 +620,6 @@ public:
     // ...
 };
 ```
-
----
-
-# Why protected and private inheritance?
-
-The use of protected and private inheritance is quite special. Typically, you use protected polymorphism when you want to use polymorphism but limit its availability to methods of the derived classes. The object is not polymorphic for the *general public* but only within the class hierarchy.
-
-The use of private polymorphism is less common.
-
-Remember that protected and private inheritance does not implement an *"is-a"* relationship.
 
 ---
 
@@ -807,6 +807,7 @@ public:
 
 private:
     Polygon *poly_ptr;
+    double height;
 }
 ```
 

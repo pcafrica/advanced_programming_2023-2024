@@ -49,8 +49,11 @@ _class: titlepage
 # Exercise 4: operator overloading and `friend` functions
 1. Overload the output stream operator `<<` as a `friend` function to allow printing the list of values in the stored data, separated by a comma.
 2. Overload the `[]` operator to allow indexing and accessing individual data elements. This operator will be used for both read and write access.
+   **:warning: The folder `examples` contains two examples showing how to safely implement read and write access operators.**
 3. Overload the `+` operator in the `DataProcessor` class to allow adding two `DataProcessor` objects. The result should be a new `DataProcessor` object containing the element-wise sum of the data arrays. The operator should also print an error if the two operands do not have the same size.
 4. Add tests to validate these new functionalities.
+
+
 
 ---
 

@@ -32,6 +32,9 @@ int main() {
     std::cout << "dp5: " << dp5 << std::endl;
     std::cout << "Minimum value of dp5: " << dp5.min() << std::endl;
     std::cout << "Maximum value of dp5: " << dp5.max() << std::endl;
+
+    // Constant view, so that const version of operator[] is called as a
+    // read access operator.
     const DataProcessor &dp5_const = dp5;
     std::cout << "dp5[3]: " << dp5_const[3] << std::endl;
     dp5[3] = 0.0;

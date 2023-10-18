@@ -53,8 +53,6 @@ _class: titlepage
 3. Overload the `+` operator in the `DataProcessor` class to allow adding two `DataProcessor` objects. The result should be a new `DataProcessor` object containing the element-wise sum of the data arrays. The operator should also print an error if the two operands do not have the same size.
 4. Add tests to validate these new functionalities.
 
-
-
 ---
 
 # Exercise 5: `const`, `static`

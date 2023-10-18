@@ -19,7 +19,7 @@ _class: titlepage
 
 ---
 
-# Exercise 1: a class for data processing
+# Exercise 1 (1/5)
 1. Create a class named `DataProcessor` with private data members for a data array and its size. The data array should be represented as a `double *data`.
 2. Implement a constructor that takes an array of floating-point numbers and its size as input and initializes the class data members.
 3. Implement a copy constructor, a copy assignment operator and the destructor.
@@ -28,7 +28,7 @@ _class: titlepage
 
 ---
 
-# Exercise 2: computing statistics
+# Exercise 1 (2/5)
 1. Add methods to compute minimum and maximum values.
 2. Add a method to compute the mean (average) of the data.
 3. Add a method to compute the standard deviation of the data.
@@ -36,7 +36,7 @@ _class: titlepage
 
 ---
 
-# Exercise 3: code organization
+# Exercise 1 (3/5)
 1. Organize the `DataProcessor` class by separating declarations and definition into separate header (`data_processor.hpp`) and source (`data_processor.cpp`) files.
 2. Create a main program file that includes the header and demonstrates the use of the `DataProcessor` class for data analysis.
 3. Compile the program using the following command:
@@ -46,7 +46,7 @@ _class: titlepage
 
 ---
 
-# Exercise 4: operator overloading and `friend` functions
+# Exercise 1 (4/5)
 1. Overload the output stream operator `<<` as a `friend` function to allow printing the list of values in the stored data, separated by a comma.
 2. Overload the `[]` operator to allow indexing and accessing individual data elements. This operator will be used for both read and write access.
    **:warning: The folder `examples` contains two examples showing how to safely implement read and write access operators.**
@@ -55,7 +55,7 @@ _class: titlepage
 
 ---
 
-# Exercise 5: `const`, `static`
+# Exercise 1 (5/5)
 1. Ensure the const-correctness of all member variables and methods by adding proper `const` qualifiers.
 2. Add a `static` member function `get_n_instances()` that returns how many instances of `DataProcessor` objects are currently active.
 3. Implement a free function

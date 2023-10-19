@@ -31,7 +31,7 @@ Test the program to compute the value and the derivative of the polynomial $f(x)
 
 1. Define an abstract base class `ADExpression` with two pure virtual functions:
    - `double evaluate()`: This function returns the value of the variable.
-   - `double evaluate_derivative()`: This function returns the derivative of the variable.
+   - `double derivative()`: This function returns the derivative of the variable.
 2. Implement a concrete class `Scalar` that inherits from `ADExpression`. This class represents a scalar variable and its derivative.
 3. Implement the following operation classes that also inherit from `ADExpression`:
    - `Sum`: Represents the addition of two `ADExpression` objects.

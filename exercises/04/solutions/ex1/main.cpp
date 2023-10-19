@@ -3,6 +3,8 @@
 
 class ADExpression {
 public:
+  virtual ~ADExpression() = default;
+
   virtual double evaluate() const = 0;
   virtual double derivative() const = 0;
 };

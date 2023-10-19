@@ -29,16 +29,16 @@ Test the program to compute the value and the derivative of the polynomial $f(x)
 
 # Exercise 1
 
-1. Define an abstract base class `ADdouble` with two pure virtual functions:
+1. Define an abstract base class `ADExpression` with two pure virtual functions:
    - `double evaluate()`: This function returns the value of the variable.
    - `double evaluate_derivative()`: This function returns the derivative of the variable.
-2. Implement a concrete class `Scalar` that inherits from `ADdouble`. This class represents a scalar variable and its derivative.
-3. Implement the following operation classes that also inherit from `ADdouble`:
-   - `Sum`: Represents the addition of two `ADdouble` objects.
-   - `Difference`: Represents the subtraction of two `ADdouble` objects.
-   - `Product`: Represents the multiplication of two `ADdouble` objects.
-   - `Division`: Represents the division of two `ADdouble` objects.
-   - `Power`: Represents raising an `ADdouble` object to a constant exponent.
+2. Implement a concrete class `Scalar` that inherits from `ADExpression`. This class represents a scalar variable and its derivative.
+3. Implement the following operation classes that also inherit from `ADExpression`:
+   - `Sum`: Represents the addition of two `ADExpression` objects.
+   - `Difference`: Represents the subtraction of two `ADExpression` objects.
+   - `Product`: Represents the multiplication of two `ADExpression` objects.
+   - `Division`: Represents the division of two `ADExpression` objects.
+   - `Power`: Represents raising an `ADExpression` object to a constant exponent.
 4. In the `main` function, demonstrate the usage of these classes.
 
 ---

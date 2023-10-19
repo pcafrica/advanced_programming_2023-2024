@@ -704,14 +704,14 @@ The `override` keyword is not mandatory but strongly recommended, as it can trig
 ```cpp
 class A {
 public:
-    virtual void foo() final;
-    virtual double bar(double);
+    virtual void f() final;
+    virtual double g(double);
     // ...
 };
 
 class B final : A {
 public:
-    void foo(); // Error: foo() cannot be overridden as it's final in A.
+    void f(); // Error: f() cannot be overridden as it's final in A.
     // ...
 };
 
@@ -727,17 +727,17 @@ class C : B // Error: B is final.
 
 ```cpp
 class A {
-    virtual void foo();
-    void bar();
+    virtual void f();
+    void g();
     // ...
 };
 
 class B : A {
-    void foo() const override; // Error: Has a different signature from A::foo.
+    void f() const override; // Error: Has a different signature from A::foo.
 
-    void foo() override; // OK: Base class contains a virtual function with the same signature.
+    void f() override; // OK: Base class contains a virtual function with the same signature.
 
-    void bar() override; // Error: B::bar doesn't override because A::bar is not virtual.
+    void g() override; // Error: B::g doesn't override because A::g is not virtual.
 }
 ```
 

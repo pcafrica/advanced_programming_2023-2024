@@ -36,7 +36,7 @@ This work is licensed under a
 
 # Homeworks
 
-:warning: **Homework 01 is now online!** [[Notes](homeworks/homework_01.md)] [[Slides](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
+:warning: **Homework 01 is now online!** [[Markdown](homeworks/homework_01.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
 
 :warning: **Deadline: 31 Oct 2023, 23:59**
 
@@ -54,7 +54,7 @@ This work is licensed under a
 | Tue 10 Oct 2023 | 14:00 - 16:00 | 005 | Object oriented programming. Classes and access control in C++. Operators. [[Markdown](lectures/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/03/03-c++_classes.pdf)] |
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.pdf)] |
 | Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. [[Markdown](lectures/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.pdf)] |
-| Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
+| Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.pdf)] |
 | Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Lambda functions, functors. Templates and generic programming. |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | TBA |

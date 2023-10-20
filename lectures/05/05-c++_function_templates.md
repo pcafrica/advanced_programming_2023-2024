@@ -27,6 +27,10 @@ _class: titlepage
    - Lambda functions
    - Function wrappers (`std::function`)
 2. Generic programming and templates
+   - Generic programming
+   - Function templates
+   - Class templates
+   - Advanced template techniques and concepts
 
 ---
 
@@ -138,19 +142,11 @@ The function that gives the best match of the argument types is chosen. Beware o
 
 A callable object refers to an object that can be called as if it were a function, i.e., using the function call operator `operator()`. Callable objects include:
 
+- **Functions** (free functions or member functions).
 - **Function pointers**.
+- **Member function pointers**: These allow you to call member functions of a class.
 - **Functors (function objects)**: Instances of classes that overload `operator()`.
 - **Lambda functions**: Introduced in C++11, they are useful for short, local functions.
-- **Member function pointers**: These allow you to call member functions of a class.
-  ```cpp
-  class MyClass {
-  public:
-    int add(int x, int y) { return x + y; }
-  };
-  int (MyClass::*add_member_func)(int, int) = &MyClass::add;
-  MyClass obj;
-  int result = (obj.*add_member_func)(3, 4);
-  ```
 
 ---
 
@@ -172,11 +168,11 @@ using f_ptr = double (*)(double);
 // Or: typedef double (*f_ptr)(double);
 double integrate(double a, double b, const f_ptr fun, unsigned n);
 
-// Passing function as a pointer.
-double I = integrate(0, 3.1415, integrand, 150);
-// Assigning a function pointer.
-f_ptr p_int = std::sin;
-I = integrate(0, 3.1415, P_int, 150);
+double I = integrate(0, 3.1415, integrand); // Passing function as a pointer.
+
+f_ptr my_sin = std::sin; // Assigning a function pointer.
+
+I = integrate(0, 3.1415, my_sin);
 ```
 
 The name of the function is interpreted as a pointer to that function. However, you may precede it by `&`: `f_ptr f = &integrand`.
@@ -210,6 +206,30 @@ int main() {
 
 ---
 
+# Member function pointers
+
+```cpp
+std::vector<Shape*> shapes;
+shapes.push_back(new Circle(3.0));
+shapes.push_back(new Rectangle(2.0, 4.0));
+shapes.push_back(new Circle(2.5));
+
+// Define a member function pointer for the area function.
+double (Shape::*area_fun)() const = &Shape::area;
+
+for (const auto shape : shapes) {
+    const double area = (shape->*area_fun)();
+    std::cout << "Area: " << area << std::endl;
+}
+
+// Cleanup allocated objects.
+for (auto shape : shapes) {
+    delete shape;
+}
+```
+
+---
+
 <!--
 _class: titlepage
 -->
@@ -225,14 +245,11 @@ A **function object** or **functor** is a class object which overloads the **cal
 ```cpp
 class Cube {
 public:
-  double m = 1.0;
-  double operator()(double const &x) const { return m * x * x * x; }
+  double operator()(double const &x) const { return x * x * x; }
 };
 
-Cube cube{3.}; // A function object, cube.m = 3.
+Cube cube{}; // A function object.
 auto y = cube(3.4); // Calls Cube::operator()(3.4).
-cube.m = 9; // Modify cube.m.
-auto l = cube(3.4); // Again with a different m.
 auto z = Cube{}(8.0); // I create the functor on the fly.
 ```
 
@@ -377,7 +394,53 @@ _class: titlepage
 And now the **catch all function wrapper**. The class `std::function<>` declared in `<functional>` provides polymorphic wrappers that generalize the notion of a function pointer. It allows you to use any **callable object** as **first-class objects**.
 
 ```cpp
+int add(int a, int b) {
+    return a + b;
+}
+
+std::function<int(int, int)> func = add;
+
+const int result = func(2, 3);
+```
+
+Function wrappers are **very useful** when you want to have a common interface to callable objects.
+
+**Function wrappers introduce a little overhead**, since the callable object is stored internally as a pointer, but they are extremely flexible, and often the overhead is negligible.
+
+---
+
+# Function wrappers and polymorphism
+
+```cpp
+class Shape {
+public:
+    virtual double area() const = 0;
+};
+
+class Circle : public Shape {
+public:
+    Circle(double radius) : radius(radius) {}
+    double area() const override { return 3.14159265359 * radius * radius; }
+private:
+    double radius;
+};
+
+auto compute_area = [](const Shape& s) { return s.area(); };
+// 'auto' here resolves to std::function<double(const Shape&)>.
+
+Circle circle(5.0);
+std::cout << "Circle area: " << compute_area(circle) << std::endl;
+```
+
+---
+
+# A vector of functions
+
+`std::function` can wrap any kind of **callable** object.
+
+```cpp
 int func(int, int); // A function.
+
 class F2 { // A functor.
 public:
     int operator()(int, int) const;
@@ -388,18 +451,26 @@ std::vector<std::function<int(int, int)>> tasks;
 tasks.push_back(func); // Wraps a function.
 tasks.push_back(F2{}); // Wraps a functor.
 tasks.push_back([](int x, int y){ return x * y; }); // Wraps a lambda.
-for (auto i : tasks) std::cout << i(3, 4) << endl;
+
+for (auto i : tasks)
+    std::cout << i(3, 4) << endl;
 ```
 
 It prints the result of `func(3, 4)`, `F2{}(3, 4)`, and `12` ($3 \times 4$).
 
 ---
 
-# Function wrappers
+# `std::bind` and function adapters
 
-Function wrappers are **very useful** when you want to have a common interface to callable objects.
+```cpp
+int add(int a, int b) {
+    return a + b;
+}
 
-**Function wrappers introduce a little overhead**, since the callable object is stored internally as a pointer, but they are extremely flexible, and often the overhead is negligible.
+// Create a new function based on 'add' where argument 1 is set equal to 5.
+std::function<int(int)> add5 = std::bind(add, 5, std::placeholders::_1);
+const int result = add5(3);
+```
 
 ---
 
@@ -411,7 +482,474 @@ _class: titlepage
 
 ---
 
-# SFINAE
+<!--
+_class: titlepage
+-->
+
+# Generic programming
+
+---
+
+# What is generic programming?
+
+- Generic programming is a programming paradigm that aims to write code in a way that's independent of data types.
+- It focuses on creating reusable and versatile code by using templates or type abstractions.
+- The goal is to develop algorithms and data structures that work with various data types.
+
+---
+
+# Why use generic programming?
+
+- **Reusability:** Write code once, use it with multiple data types.
+- **Type Safety:** Ensures that type-related errors are caught at compile-time.
+- **Performance:** Optimized code for specific data types without code duplication.
+- **Expressiveness:** Code that's concise and easier to read and maintain.
+
+---
+
+# Examples of generic programming
+
+- **STL (Standard Template Library):** Offers a collection of generic data structures and algorithms.
+- **Function templates:** Write functions that work with various data types.
+- **Class templates:** Create versatile, type-safe data structures.
+
+---
+
+# Use cases of generic programming
+
+1. **Containers:** Generic data structures like vectors, stacks, and queues.
+2. **Algorithms:** Generic sorting, searching, and transformation algorithms.
+3. **Math operations:** Functions for arithmetic operations that work with multiple numeric types.
+4. **Custom data structures:** Building generic trees, graphs, or linked lists.
+
+---
+
+# Benefits of generic programming
+
+- **Code reusability:** Reduced need to write similar code for different data types.
+- **Type safety:** Compile-time checks to ensure type correctness.
+- **Efficiency:** Optimized code for specific data types.
+- **Readability:** Cleaner and more expressive code.
+
+---
+
+# Challenges of generic programming
+
+- **Complexity:** Generic code may be more complex due to abstraction.
+- **Compile-time overhead:** Template instantiation can lead to longer compile times.
+- **Debugging:** Template error messages can be challenging to decipher.
+
+---
+
+# Generic programming in practice
+
+- C++ is a language known for its strong support of generic programming.
+- The Standard Template Library (STL) is a prime example of generic programming in action.
+- Use of function templates and class templates in various C++ libraries and frameworks.
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Function templates
+
+---
+
+# What are function templates?
+
+- Function templates are a feature in C++ that allows you to define generic functions.
+- They enable you to write a function once and use it with different data types.
+- Function templates are defined using the `template` keyword, followed by type parameters enclosed in angle brackets.
+
+## Example
+
+```cpp
+template <typename T>
+T add(T a, T b) {
+    return a + b;
+}
+```
+
+---
+
+# Advantages of function templates
+
+- Code reusability: Write a single function that works with multiple data types.
+- Type safety: Compiler ensures type consistency.
+- Reduces code duplication.
+
+---
+
+# Creating and using function templates
+
+1. Function template declaration
+
+```cpp
+template <typename T>
+T add(T a, T b);
+```
+
+2. Function template instantiation
+
+```cpp
+int result = add(5, 3);      // T is deduced as int
+double result2 = add(2.5, 3.7); // T is deduced as double
+```
+
+---
+
+# Examples of function templates
+
+## Generic functions
+
+```cpp
+template <typename T>
+T max(T a, T b) {
+    return a > b ? a : b;
+}
+```
+
+## Template specialization
+
+```cpp
+template <>
+char max(char a, char b) {
+    return std::toupper(a) > std::toupper(b) ? a : b;
+}
+```
+
+---
+
+# Best practices and common use cases
+
+- Use descriptive type parameter names.
+- Avoid unnecessary template code duplication.
+- Template functions for mathematical operations.
+
+---
+
+# Example: Vector sum using function template
+
+```cpp
+template <typename T>
+T vectorSum(const std::vector<T>& vec) {
+    T sum = T();  // Initialize sum based on type
+    for (const T& elem : vec) {
+        sum += elem;
+    }
+    return sum;
+}
+```
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Class templates
+
+---
+
+# Introduction to class templates
+
+- Class templates allow you to define generic classes.
+- Syntax: `template <typename T> class ClassName { /* class members */ }`
+- Type parameterization enables the class to work with different data types.
+
+---
+
+# Advantages of class templates
+
+- Encapsulation of data and behavior for a specific data type.
+- Code reusability: Define a class structure once and use it with various types.
+- Type safety: Prevents mixing incompatible types.
+
+---
+
+# Creating and using class templates
+
+1. Class template declaration
+
+```cpp
+template <typename T>
+class Stack {
+public:
+    // Class members using type T
+};
+```
+
+2. Class template instantiation
+
+```cpp
+Stack<int> intStack;        // T is int
+Stack<double> doubleStack;  // T is double
+```
+
+---
+
+# Examples of class templates
+
+## Generic data structures (containers)
+
+```cpp
+template <typename T>
+class Vector {
+    // Implementation of a dynamic array for type T
+};
+```
+
+## Template specialization for classes
+
+```cpp
+template <>
+class Vector<std::string> {
+    // Specialized behavior for strings
+};
+```
+
+---
+
+# Best practices and common use cases
+
+- Define meaningful class names and method names.
+- Use class templates for generic data structures.
+- Leverage template specialization for customized behavior.
+
+---
+
+# Example: Templated stack class
+
+```cpp
+template <typename T>
+class Stack {
+private:
+    std::vector<T> elements;
+
+public:
+    void push(const T& value) {
+        elements.push_back(value);
+    }
+
+    T pop() {
+        if (elements.empty()) {
+            throw std::runtime_error("Stack is empty");
+        }
+        T top = elements.back();
+        elements.pop_back();
+        return top;
+    }
+}
+```
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# Advanced template techniques and concepts
+
+---
+
+# Template metaprogramming
+
+- Template metaprogramming is a way to perform computations at compile time.
+- It involves using template features to generate code during compilation.
+- Common use cases: constant expressions, type traits, and generic algorithms.
+
+## Example: Compile-time Fibonacci
+
+```cpp
+template <int N>
+struct Fibonacci {
+    static const int value = Fibonacci<N - 1>::value + Fibonacci<N - 2>::value;
+};
+
+template <>
+struct Fibonacci<0> {
+    static const int value = 0;
+};
+
+template <>
+struct Fibonacci<1> {
+    static const int value = 1;
+}
+```
+
+---
+
+# Variadic templates
+
+- Variadic templates allow functions and classes to accept a variable number of arguments.
+- The `...` syntax is used to define variadic templates.
+- Useful for handling functions with multiple arguments of varying types.
+
+## Example: Recursive sum function
+
+```cpp
+template <typename T>
+T sum(T value) {
+    return value;
+}
+
+template <typename T, typename... Args>
+T sum(T first, Args... rest) {
+    return first + sum(rest...); // Recursively sum the arguments
+}
+```
+
+---
+
+# Template specialization and partial specialization
+
+- Template specialization allows you to define different behavior for specific template arguments.
+- Partial specialization refines specialized behavior for specific subsets of template arguments.
+
+```cpp
+template <typename T>
+void process(T value) { /* Generic implementation */ }
+
+template <>
+void process<int>(int value) { /* Specialized behavior for int */ }
+```
+
+---
+
+# SFINAE (Substitution failure is not an error)
+
+- SFINAE is a C++ rule that allows you to enable or disable function templates based on the validity of their substitutions.
+- Used for type traits and selective function overloading.
+
+## Example: Type traits with SFINAE
+
+```cpp
+template <typename T>
+struct has_member_foo {
+    template <typename U>
+    static std::true_type test(decltype(U::foo)*);
+
+    template <typename U>
+    static std::false_type test(...);
+
+    static constexpr bool value = decltype(test<T>(0))::value;
+};
+
+struct MyType {
+    void foo() {}
+}
+
+int main() {
+    std::cout << std::boolalpha;
+    std::cout << has_member_foo<MyType>::value << std::endl;  // true
+    std::cout << has_member_foo<int>::value << std::endl;      // false
+}
+```
+
+---
+
+# CRTP (Curiously recurring template pattern)
+
+- CRTP is a design pattern where a derived class inherits from a base class template with itself as the template argument.
+- Used to achieve static polymorphism and code reuse.
+
+## Example: CRTP for static polymorphism
+
+```cpp
+template <typename Derived>
+class Shape {
+public:
+    void draw() {
+        static_cast<Derived*>(this)->drawImpl();
+    }
+}
+
+class Circle : public Shape<Circle> {
+public:
+    void drawImpl() {
+        // Draw a circle
+    }
+}
+
+class Square : public Shape<Square> {
+public:
+    void drawImpl() {
+        // Draw a square
+    }
+}
+```
+
+---
+
+# Traits classes and policy-based design
+
+- Traits classes are used to encapsulate properties and behaviors of types.
+- Policy-based design involves creating classes or functions with interchangeable policies to customize behavior.
+
+## Example: Traits for type information
+
+```cpp
+template <typename T>
+struct TypeTraits {
+    static constexpr bool is_integral = std::is_integral<T>::value;
+    static constexpr bool is_floating_point = std::is_floating_point<T>::value;
+    static constexpr bool is_pointer = std::is_pointer<T>::value;
+}
+
+template <typename T>
+void processType(T value) {
+    if (TypeTraits<T>::is_integral) {
+        // Process integral types
+    } else if (TypeTraits<T>::is_floating_point) {
+        // Process floating-point types
+    } else {
+        // Default behavior
+    }
+}
+```
+
+---
+
+# Template template parameters
+
+- Template template parameters allow you to define templates as template arguments.
+- Used for defining higher-order templates that accept template classes.
+
+## Example: Template template parameter for containers
+
+```cpp
+template <template <typename> class Container>
+void processContainer(Container<int>& c) {
+    // Process the container of integers
+}
+
+int main() {
+    std::vector<int> vec = {1, 2, 3};
+    processContainer(vec);  // Calls processContainer for a vector of integers
+}
+```
+
+---
+
+# Type deduction and the `auto` keyword
+
+- Type deduction allows the compiler to determine the data type of variables and return values automatically.
+- The `auto` keyword simplifies code and improves readability.
+
+```cpp
+auto result = add(5, 3); // Compiler deduces result's type as int
+```
+
+---
+
+# TODO
+
+- integral constants
+- template alias
+- the use of `this` in templates
+- code organization / explicit instantiation
 
 ---
 

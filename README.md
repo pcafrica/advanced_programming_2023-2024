@@ -55,9 +55,9 @@ This work is licensed under a
 | Thu 12 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/03/03-c++_classes.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/03/03-c++_classes.pdf)] |
 | Tue 17 Oct 2023 | 14:00 - 16:00 | 005 | Inheritance and polymorphism. [[Markdown](lectures/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/04/04-c++_inheritance_polymorphism.pdf)] |
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.pdf)] |
-| Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Lambda functions, functors. Templates and generic programming. |
+| Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Functions. Templates and generic programming. [[Markdown](lectures/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/05/05-c++_functions_templates.pdf)] |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | TBA |
+| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | The Standard Template Library. New features of C++14/17/20. |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
 | Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | TBA |

@@ -957,4 +957,4 @@ auto result = add(5, 3); // Compiler deduces result's type as int
 _class: titlepage
 -->
 
-# :arrow_right: Templates and generic programming<br>Standard Template Library
+# :arrow_right: The Standard Template Library. New features of C++14/17/20.

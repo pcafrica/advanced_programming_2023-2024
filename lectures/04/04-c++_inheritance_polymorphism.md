@@ -843,4 +843,4 @@ Some guidelines about aggregation/composition with pointers vs. references.
 _class: titlepage
 -->
 
-# :arrow_right: Lambda functions, functors.<br>Templates and generic programming
+# :arrow_right: Functions.<br>Templates and generic programming

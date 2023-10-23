@@ -1130,6 +1130,22 @@ In this example, the `-lmy_lib` flag is used to link against the library `libmy_
 
 ---
 
+# Preprocessor, compiler, linker: a simplified procedure
+
+For small projects with few dependencies, the following command performs the preprocessing, compilation and linking phase:
+
+```bash
+g++ module1.cpp module2.cpp main.cpp -I/path/to/include/dir -o my_program
+```
+
+## :warning: Warning: different compilers lead to different behavior
+
+Please keep in mind that different compilers can yield different behaviors and trigger distinct warnings or errors or print them in a less/more human-readable format.
+
+For a demonstration, see this example on [GodBolt](https://godbolt.org/z/1M83E4sYE) comparing the output of GCC and Clang on the same code.
+
+---
+
 # Loader
 
 - The loader loads the executable program into memory for execution.
@@ -1147,7 +1163,7 @@ export LD_LIBRARY_PATH+=:/path/to/my/lib
 ./my_program
 ```
 
----
+--- 
 
 <!--
 _class: titlepage

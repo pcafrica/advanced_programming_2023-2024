@@ -139,9 +139,9 @@ a = cross_prod(c, d); // This sets ndim to 2.
 int fun(int i);
 double fun(const double &z);
 // double fun(double y); // Error: ambiguous!
-....
-auto x = fun(1);       // Calls fun(int).
-auto y = fun(1.0);     // Calls fun(const double &).
+
+auto x = fun(1);   // Calls fun(int).
+auto y = fun(1.0); // Calls fun(const double &).
 ```
 
 The function that gives the best match of the argument types is chosen. Beware of possible ambiguities and implicit conversions!
@@ -157,6 +157,7 @@ A callable object refers to an object that can be called as if it were a functio
 - **Member function pointers**: These allow you to call member functions of a class.
 - **Functors (function objects)**: Instances of classes that overload `operator()`.
 - **Lambda functions**: Introduced in C++11, they are useful for short, local functions.
+- **Function wrappers**: `std::function` generalizes the concept of a function pointer.
 
 ---
 
@@ -176,7 +177,7 @@ double integrand(double x);
 // Pointer to a function taking a double as an input and returning a double.
 using f_ptr = double (*)(double);
 // Or: typedef double (*f_ptr)(double);
-double integrate(double a, double b, const f_ptr fun, unsigned n);
+double integrate(double a, double b, const f_ptr fun);
 
 double I = integrate(0, 3.1415, integrand); // Passing function as a pointer.
 
@@ -196,16 +197,16 @@ We will see in a while a safer and more general alternative to function pointers
 You can use function pointers to select and call functions at runtime based on user input or other conditions.
 
 ```cpp
-int Add(int a, int b) { return a + b; }
-int Subtract(int a, int b) { return a - b; }
+int add(int a, int b) { return a + b; }
+int subtract(int a, int b) { return a - b; }
 
 int main() {
     int (*operation)(int, int); // 'operation' is a function pointer.
 
     if (user_input == "add") {
-        operation = Add;
+        operation = add;
     } else {
-        operation = Subtract;
+        operation = subtract;
     }
 
     const int result = operation(10, 5);  // Calls either Add or Subtract based on user input.
@@ -248,14 +249,14 @@ _class: titlepage
 
 ---
 
-# Functors (Function Object)
+# Functors (function objects)
 
 A **function object** or **functor** is a class object which overloads the **call operator** (`operator()`). It has semantics very similar to that of a function:
 
 ```cpp
 class Cube {
 public:
-  double operator()(double const &x) const { return x * x * x; }
+  double operator()(const double &x) const { return x * x * x; }
 };
 
 Cube cube{}; // A function object.
@@ -269,19 +270,19 @@ If the call operator returns a `bool`, the function object is a **predicate**. I
 
 # Why functors?
 
-**A characteristic of a functor is that it may have a state**, so it can store additional information to be used to calculate the result.
+**A characteristic of a functor is that it may have a state**, so it can interact with other objects and store additional information to be used to calculate the result.
 
 ```cpp
 class Calculator {
 public:
     int result = 0;
-};
 
-class Add {
-public:
-    Calculator& calc;
-    Add(Calculator& c) : calc(c) {}
-    void operator()(int x, int y) { calc.result = x + y; }
+    class Add {
+    public:
+        Calculator& calc;
+        Add(Calculator& c) : calc(c) {}
+        void operator()(int x, int y) { calc.result = x + y; }
+    };
 };
 
 Calculator calc;
@@ -296,18 +297,18 @@ add(5, 3); // Result is stored in calc.result;
 Under the header `<functional>`, you find a lot of predefined functors.
 
 ```cpp
-std::vector<int> i = {1, 2, 3, 4, 5};
+std::vector<int> in = {1, 2, 3, 4, 5};
 
-std::vector<int> j;
+std::vector<int> out;
 
-std::transform(i.begin(), i.end(),    // Source.
-               std::back_inserter(j), // Destination.
+std::transform(in.begin(), in.end(),    // Source.
+               std::back_inserter(out), // Destination.
                std::negate<int>());
 
-const double prod = std::accumulate(i.begin(), i.end(), 1.0, std::multiplies<int>());
+const double prod = std::accumulate(in.begin(), in.end(), 1.0, std::multiplies<int>());
 ```
 
-Now `j = {-1, -2, -3, -4, -5}.`.
+Now `out = {-1, -2, -3, -4, -5}.`.
 
 `std::negate<type>` is a **unary functor** provided by the standard library.
 
@@ -320,12 +321,12 @@ Now `j = {-1, -2, -3, -4, -5}.`.
 | Functor           | Description                      |
 |-------------------|----------------------------------|
 | `plus<T>`, `minus<T>` | Addition/Subtraction (Binary) |
-| `multiplies<T>`, `divides<T>` | Multiplication/Division (Binary)          |
+| `multiplies<T>`, `divides<T>` | Multiplication/Division (Binary) |
 | `modulus<T>`      | Modulus (Unary)                  |
 | `negate<T>`       | Negative (Unary)                 |
-| `equal_to<T>`, `not_equal_to<T>` | (Non-)Equality Comparison (Binary)     |
+| `equal_to<T>`, `not_equal_to<T>` | (Non-)Equality Comparison (Binary) |
 | `greater`, `less`, `greater_equal`, `less_equal` | Comparison (Binary) |
-| `logical_and<T>`, `logical_or<T>`, `logical_not<T>` | Logical AND/OR/NOT (Binary)             |
+| `logical_and<T>`, `logical_or<T>`, `logical_not<T>` | Logical AND/OR/NOT (Binary) |
 
 For a full list, have a look at [this web page](https://cplusplus.com/reference/functional/).
 
@@ -357,13 +358,14 @@ Note that I did not need to specify the return type in this case, the compiler d
 
 The capture specification allows you to use variables in the enclosing scope inside the lambda, either by value (a local copy is made) or by reference.
 
-- `[]`: Captures nothing
-- `[&]`: Captures all variables by reference
-- `[=]`: Captures all variables by making a copy
-- `[=, &x]`: Captures any referenced variable by making a copy, but capture variable `x` by reference
-- `[y]`: Captures only `bar` by making a copy
-- `[this]`: Captures the `this` pointer of the enclosing class object
-- `[*this]`: Captures a copy of the enclosing class object
+- `[]`: Captures nothing.
+- `[&]`: Captures all variables by reference.
+- `[=]`: Captures all variables by making a copy.
+- `[y]`: Captures only `y` by making a copy.
+- `[&y]`: Captures only `y` by reference.
+- `[=, &x]`: Captures any referenced variable by making a copy, but capture variable `x` by reference.
+- `[this]`: Captures the `this` pointer of the enclosing class object.
+- `[*this]`: Captures a copy of the enclosing class object.
 
 ---
 
@@ -621,14 +623,14 @@ You can give defaults to the rightmost parameters.
 
 ```cpp
 template <typename T, typename U = double>
-Tmultiply_and_add(T a, U b, T c) {
+multiply_and_add(T a, U b, T c) {
     return a * b + c;
 }
 
 // Uses default type double for the second parameter.
 const int result1 = multiply_and_add(5, 2.5, 3);
 
-// Specifies double for both 'T' and 'U'.
+// Uses double for both 'T' and 'U'.
 const double result2 = multiply_and_add(2.5, 3.7, 1.2);
 
 // Uses float for the first parameter, int for the second.
@@ -665,7 +667,9 @@ For instance, this function can concatenate a vector of strings.
 ```cpp
 template <typename T>
 T vector_sum(const std::vector<T>& vec) {
-    // Initialize sum using T's default constructor (e.g. 0 for numbers, empty for strings).
+    // Initialize sum using T's default constructor
+    // (e.g., 0 for numbers, empty for strings.
+
     T sum{};
 
     for (const T& elem : vec) {
@@ -722,14 +726,18 @@ _class: titlepage
 # Introduction to class templates
 
 - Class templates allow you to define generic classes.
-- Syntax: `template <typename T> class ClassName { /* class members */ }`
+- Syntax:
+  ```cpp
+  template <typename T>
+  class ClassName { /* ... */ };
+  ```
 - Type parameterization enables the class to work with different data types.
 
 # Advantages of class templates
 
-- Encapsulation of data and behavior for a specific data type.
-- Code reusability: Define a class structure once and use it with various types.
-- Type safety: Prevents mixing incompatible types.
+- **Encapsulation** of data and behavior for a specific data type.
+- **Code reusability**: Define a class structure once and use it with various types.
+- **Type safety**: Prevents mixing incompatible types.
 
 ---
 
@@ -744,7 +752,7 @@ public:
     // ...
 private:
     T value;
-    T *next;
+    List *next;
 };
 ```
 
@@ -753,6 +761,7 @@ private:
 ```cpp
 List<int> list_int;       // T is int.
 List<double> list_double; // T is double.
+// ...
 ```
 
 ---
@@ -803,6 +812,8 @@ Array<char, 1> arr2; // Uses the partially specialized template for arrays of si
 
 # Template alias
 
+Template aliases are a versatile feature that simplifies code by allowing you to create more concise and expressive names for complex template types.
+
 ```cpp
 template <typename T, int N>
 class Array {
@@ -828,7 +839,7 @@ public:
     void push(const T& value) { elements.push_back(value); }
 
     T pop() {
-        if (elements.empty()) { 
+        if (elements.empty()) {
             std::cerr << "Stack is empty" << std::endl;
             std::exit(1);
         }
@@ -867,14 +878,6 @@ _class: titlepage
 
 ---
 
-# The problem
-
-- Template definitions need to be available at the point of instantiation. When a template is used with specific type arguments, the compiler needs to see the template definition to generate the code for that particular instantiation. Placing the template definition in a source file would make it unavailable for instantiation in other source files.
-
-- If you place template definitions in source files and use the template in multiple source files, you may encounter linker errors due to multiple definitions of the same template. Placing the template definition in a header file ensures that the definition is available for all source files that include it, and the linker can consolidate the definitions as needed.
-
----
-
 # Template instantiation and linkage
 
 - The compiler produces the code corresponding to function templates and class template members that are instantiated in each translation unit.
@@ -887,11 +890,21 @@ _class: titlepage
 
 ---
 
-# File organization with templates
+# The problem
 
-- A possible file organization is to leave everything in a **header file**. However, if the functions/methods are long, it may be worthwhile, for the sake of clarity, to separate definitions from declarations. You can put declarations at the beginning of the file and only short definitions. Then, at the end of the file, add the long definitions for readability.
+- **Template definitions need to be available at the point of instantiation**. When a template is used with specific type arguments, the compiler needs to see the template definition to generate the code for that particular instantiation. Placing the template definition in a source file would make it unavailable for instantiation in other source files.
 
-- Another possibility is to separate declarations (`module.hpp`) and definitions (`module.tpl.hpp`) when templates are long and complex. Then add `#include "module.tpl.hpp"` at the end of `module.hpp`.
+- If you place template definitions in source files and use the template in multiple source files, you may encounter linker errors due to multiple definitions of the same template. **Placing the template definitions in a header file** ensures that the definition is available for all source files that include it, and the linker can consolidate the definitions as needed.
+
+---
+
+# Possible file organizations with templates
+
+1. Leave everything in a **header file**. However, if the functions/methods are long, it may be worthwhile, for the sake of clarity, to separate definitions from declarations. You can put declarations at the beginning of the file and only short definitions. Then, at the end of the file, add the long definitions for readability.
+
+2. **Separate** declarations (`module.hpp`) and definitions (`module.tpl.hpp`) when templates are long and complex. Then add `#include "module.tpl.hpp"` at the end of `module.hpp`.
+
+3. **Explicitly instantiation** for a specific list of types. Only in this case, definitions can go to a source file. But if you instantiate a template for other types not explicitly instantiated, the compiler will not have access to the definition, leading to linker errors.
 
 ---
 
@@ -900,12 +913,12 @@ _class: titlepage
 We can tell the compiler to produce the code corresponding to a template function or class using **explicit instantiation**. If a source file contains, for instance:
 
 ```cpp
-template double func(double const &);
+template double func(const double &);
 template class MyClass<double>;
 template class MyClass<int>;
 ```
 
-then the corresponding object file will contain the code corresponding to the template function `double func<T>(T const &)` with `T=double` and that of **all methods** of the template class `MyClass<T>` with `T=double` and `T=int`.
+then the corresponding object file will contain the code corresponding to the template function `double func<T>(const T &)` with `T=double` and that of **all methods** of the template class `MyClass<T>` with `T=double` and `T=int`.
 
 This can be useful to save compile time when debugging template classes (since the code for all class methods is generated).
 
@@ -946,7 +959,7 @@ void my_fun() { ... }
 template <typename T> class Base {
 public:
     void my_fun(); // Not a good idea!
-}; 
+};
 
 template <typename T>
 class Derived : Base<T> {
@@ -956,7 +969,7 @@ public:
 ```
 
 In this case, the free function `my_fun()` is used.
- 
+
 ---
 
 # The use of `this` in templates (2/2)
@@ -1084,7 +1097,7 @@ T sum(T value) {
 
 template <typename T, typename... Args>
 T sum(T first, Args... rest) {
-    // Consume first argument, then recurse over remaining arguments.
+    // Consume the first argument, then recurse over remaining arguments.
     return first + sum(rest...);
 }
 ```

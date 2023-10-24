@@ -3,16 +3,16 @@
 
 @import 'default';
 
+.columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
 h1 {
     color: #4949e7;
     padding-bottom: 5px;
     border-bottom: solid;
-}
-
-section.noborder h1 {
-    color: #4949e7;
-    padding-bottom: 5px;
-    border-bottom: none;
 }
 
 h2, h3, h4, h5, h6 {
@@ -46,6 +46,12 @@ section.titlepage {
 
 section::after {
   content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
+}
+
+section.noborder h1 {
+    color: #4949e7;
+    padding-bottom: 5px;
+    border-bottom: none;
 }
 
 section.warning {

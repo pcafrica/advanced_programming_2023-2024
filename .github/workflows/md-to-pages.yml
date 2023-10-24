@@ -29,42 +29,42 @@ jobs:
       - name: Build lectures HTML
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I lectures/ -o lectures/
+          args: --bespoke.progress --theme style/custom.css --html -I lectures/ -o lectures/
         env:
           MARP_USER: root:root
 
       - name: Build lectures PDF
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I lectures/ -o lectures/ --pdf --pdf-outlines
+          args: --bespoke.progress --theme style/custom.css --html -I lectures/ -o lectures/ --pdf --pdf-outlines
         env:
           MARP_USER: root:root
 
       - name: Build exercise sessions HTML
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I exercises/ -o exercises/
+          args: --bespoke.progress --theme style/custom.css --html -I exercises/ -o exercises/
         env:
           MARP_USER: root:root
 
       - name: Build exercise sessions PDF
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I exercises/ -o exercises/ --pdf --pdf-outlines
+          args: --bespoke.progress --theme style/custom.css --html -I exercises/ -o exercises/ --pdf --pdf-outlines
         env:
           MARP_USER: root:root
 
       - name: Build homeworks HTML
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I homeworks/ -o homeworks/
+          args: --bespoke.progress --theme style/custom.css --html -I homeworks/ -o homeworks/
         env:
           MARP_USER: root:root
 
       - name: Build homeworks PDF
         uses: docker://marpteam/marp-cli:latest
         with:
-          args: --bespoke.progress --theme style/custom.css -I homeworks/ -o homeworks/ --pdf --pdf-outlines
+          args: --bespoke.progress --theme style/custom.css --html -I homeworks/ -o homeworks/ --pdf --pdf-outlines
         env:
           MARP_USER: root:root
 

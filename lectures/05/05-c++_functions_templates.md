@@ -21,17 +21,26 @@ _class: titlepage
 
 # Outline
 
-1. Advanced topics on functions
+<div class="columns">
+<div>
+
+#### 1. Advanced topics on functions
    - Function pointers
    - Functors (function objects)
    - Lambda functions
    - Function wrappers (`std::function`)
-2. Generic programming and templates
+</div>
+<div>
+
+#### 2. Generic programming and templates
    - Generic programming
    - Function templates
    - Class templates
    - Notes on code organization
    - Advanced template techniques and concepts
+
+</div>
+</div>
 
 ---
 
@@ -696,7 +705,9 @@ constexpr int result1 = Multiply<5>();    // Calculates 5 * 3 at compile-time.
 constexpr int result2 = Multiply<2, 7>(); // Calculates 2 * 7 at compile-time.
 ```
 
-Only for integral types can be used (e.g., integers, enumerations, pointers, ...)
+Only integral types can be used (e.g., integers, enumerations, pointers, ...).
+
+`constexpr` can be applied to variables, functions, and constructors, to ensure that they are evaluated at **compile time**.
 
 ---
 
@@ -1142,4 +1153,4 @@ void process_type(T value) {
 _class: titlepage
 -->
 
-# :arrow_right: The Standard Template Library. New features of C++14/17/20.
+# :arrow_right: The Standard Template Library.<br>New features of C++14/17/20.

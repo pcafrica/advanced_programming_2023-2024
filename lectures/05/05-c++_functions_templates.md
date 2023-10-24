@@ -74,7 +74,7 @@ The first two forms are essentially equivalent, so choose the one that suits you
 
 A function is **identified** by:
 
-- Its **name**, `fun` in the previous examples. More precisely, its **fully qualified name**, which includes the namespace, for instance `std::transform`.
+- Its **name**, `function_name` in the previous examples. More precisely, its **fully qualified name**, which includes the namespace, for instance `std::transform`.
 - The number and type of its **parameters**.
 - The presence of the `const` qualifier (for methods).
 - The type of the enclosing class (for methods).

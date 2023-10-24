@@ -196,13 +196,11 @@ Any recent Linux distribution, such as Ubuntu $\geq$ 22.04, or Debian $\geq$ 11,
 ---
 
 <!--
-_class: noborder
+_class: titlepage
 -->
 
 # Time for a poll!
-<br><br><br><br>
-
-# http://etc.ch/TVQS
+## http://etc.ch/TVQS
 
 ![bg right:50% w:500](http://etc.ch/TVQS?qr)
 
@@ -844,12 +842,10 @@ from inside the cloned folder.
 ---
 
 <!--
-_class: warning
+_class: titlepage
 -->
 
-# :warning: Warning
-
-## Please get your laptop ready by Thursday!
+# <alert>:warning: Warning:</alert><br>Please get your laptop ready by Thursday!
 
 ---
 

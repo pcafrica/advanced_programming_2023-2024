@@ -19,10 +19,6 @@ _class: titlepage
 
 ---
 
-<!--
-_class: green
--->
-
 # Why C++?
 
 C++ is:
@@ -33,7 +29,7 @@ C++ is:
 - A **strongly typed**$^1$ language: safer code, less ambiguous semantic, more efficient memory handling.
 - Supporting functional, object-oriented, and generic programming.
 - Backward compatible (unlike Python... :disappointed:). Old code compiles (almost) seamlessly.
-- :evergreen_tree: It is [**green**](https://medium.com/codex/what-are-the-greenest-programming-languages-e738774b1957)!
+- :evergreen_tree: It is <a href="https://medium.com/codex/what-are-the-greenest-programming-languages-e738774b1957" style="background-color: #69e781;">green</a>!
 
 $^1$ Not everybody agrees on the definition of *strongly typed*.
 

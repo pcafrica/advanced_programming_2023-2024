@@ -20,16 +20,21 @@ h2, h3, h4, h5, h6 {
     padding-bottom: 0px;
 }
 
+h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong {
+    color: #4949e7;
+}
+
 a {
     background-color: #4949e7;
     color: white;
     margin-left: 5px;
     margin-right: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+    padding: 2px 5px 2px 5px;
+}
+
+alert {
+    color: #f60248;
+    font-weight: bold;
 }
 
 section {
@@ -46,32 +51,4 @@ section.titlepage {
 
 section::after {
   content: attr(data-marpit-pagination) ' / ' attr(data-marpit-pagination-total);
-}
-
-section.noborder h1 {
-    color: #4949e7;
-    padding-bottom: 5px;
-    border-bottom: none;
-}
-
-section.warning {
-    justify-content: center;
-    padding: 75px;
-    font-size: 30px;
-}
-
-section.warning h1 {
-    color: #f60248;
-    padding-bottom: 5px;
-    border-bottom: solid;
-}
-
-section.green a {
-    background: none;
-    color: #69e781;
-    padding-left: 0px;
-    padding-right: 0px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
 }

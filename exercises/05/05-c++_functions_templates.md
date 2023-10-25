@@ -44,20 +44,34 @@ Starting from the `hints/ex2.cpp` source file, develop a library management syst
 
 ---
 
-# Exercise 3: function wrappers
+# Exercise 3: function wrappers, templates (1/2)
 
-Implement the Newton-Raphson method to approximate the root of a function.
+The `hints/ex3/` folder provides a partial C++ implementation of the Newton method to approximate the root(s) of a function $f$, i.e., to solve the problem $f(x) = 0$.
 
+#### Newton's method in a nutshell
+
+Starting with an initial guess for the root(s) of the function, denoted as $x^{(0)}$, repeatedly refine the estimate using the formula
+$$x^{(k+1)} = x^{(k)} - \frac{f(x^{(k)})}{f'(x^{(k)})},$$
+where $f'(x)$ is the derivative of $f(x)$.
+
+The iterations continue until the difference between two consecutive estimates, $\|x^{(k+1)} - x^{(k)}\|$ is smaller than a predefined tolerance. If the condition is not met within a maximum number of iterations, the algorithm failed to reach converge and the solver returns `NaN`.
 
 ---
 
-# Exercise 4: templates
+# Exercise 3: function wrappers, templates (2/2)
 
+1. Fill in the missing parts to make the program work with real-valued scalar functions.
 
+2. Use the program to solve $f(x) = x^2 - 1 = 0$, starting from $x^{(0)} = 0.5$.
+
+3. Templatize the solver to be able to deal with more general functions, such as complex-valued functions.
+   Use the program to solve $f(x) = x^2 + 1 = 0$, starting from $x^{(0)} = 0.5 + 0.5i$.
+
+4. How would organize the project files? Is it better to keep everything in header files, or splitting declarations and definitions in header and source files by providing explicit instantiations? Try both alternatives.
 
 ---
 
-# Exercise 5: template metaprogramming
+# Exercise 4: template metaprogramming
 
 Use template metaprogramming to calculate the factorial of an integer at compile time.
 
@@ -68,11 +82,3 @@ Use template metaprogramming to calculate the factorial of an integer at compile
 3. Use `static_assert` to ensure that values are computed at compile time rather than runtime.
 
 4. Print the results of the factorials.
-
----
-
-templates
-variadic templates
-explicit instantiation
-
----

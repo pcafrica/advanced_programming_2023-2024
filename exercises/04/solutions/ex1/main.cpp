@@ -10,16 +10,16 @@ public:
 };
 
 class Scalar : public ADExpression {
-private:
-  double val;
-  double der;
-
 public:
-  Scalar(double val, double der = 0.0) : val(val), der(der) {}
+  Scalar(const double &val, const double &der = 0.0) : val(val), der(der) {}
 
   double evaluate() const override { return val; }
 
   double derivative() const override { return der; }
+
+private:
+  const double val;
+  const double der;
 };
 
 class Sum : public ADExpression {
@@ -113,18 +113,30 @@ public:
 
 private:
   const ADExpression &base;
-  int exponent;
+  const int exponent;
 };
 
 int main() {
-  // Input values.
-  Scalar x(2.0, 1.0); // Set x = 2.0 and its derivative is 1.0 (df/dx)
+  // Set x = 2.0 and its derivative (dx/dx) is 1.0.
+  const Scalar x(2.0, 1.0);
 
   // Define a polynomial: f(x) = 2x^3 - 3x^2 + 4x - 5.
-  auto f = Difference(Sum(Difference(Product(Scalar(2), Power(x, 3)),
-                                     Product(Scalar(3), Power(x, 2))),
-                          Product(Scalar(4), x)),
-                      Scalar(5.0));
+  const auto two = Scalar(2);
+  const auto three = Scalar(3);
+  const auto four = Scalar(4);
+  const auto five = Scalar(5.0);
+
+  const auto x2 = Power(x, 2);
+  const auto x3 = Power(x, 3);
+
+  const auto _4x = Product(four, x);
+  const auto _2x3 = Product(two, x3);
+  const auto _3x2 = Product(three, x2);
+
+  const auto f1 = Difference(_2x3, _3x2);
+  const auto f2 = Sum(f1, _4x);
+
+  const auto f = Difference(f2, five);
 
   // Compute the value and derivative of the polynomial at x.
   const double result = f.evaluate();
@@ -135,7 +147,8 @@ int main() {
   std::cout << "f'(" << x.evaluate() << ") = " << derivative << std::endl;
 
   // Define the function 1 / x^2.
-  auto g = Division(Scalar(1.0), Power(x, 2));
+  const auto one = Scalar(1.0);
+  const auto g = Division(one, x2);
   std::cout << "g(" << x.evaluate() << ") = " << g.derivative() << std::endl;
 
   return 0;

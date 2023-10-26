@@ -8,7 +8,7 @@ _class: titlepage
 # Exercise session 05
 <br>
 
-## Inheritance and polymorphism in C++.
+## Functions. Templates and generic programming in C++.
 <br>
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024
@@ -38,7 +38,7 @@ Starting from the `hints/ex2.cpp` source file, develop a library management syst
    - In descending order based on year, using a **lambda function** as a comparator.
    - In ascending order based on the author name, using a **functor** as a comparator.
 
-2. Using `std::copy_if`, fill the `filtered_books` variable by extracting from `books` only the books written by a specific author. Implement the search functionali using lambdas.
+2. Using `std::copy_if`, fill the `filtered_books` variable by extracting from `books` only the books written by a specific author. Implement the search functional using lambdas.
 
 3. Display the results after each step to check for correctness.
 

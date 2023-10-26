@@ -1,6 +1,7 @@
 #include "newton.hpp"
 #include <functional>
 #include <iostream>
+#include <limits>
 
 int main() {
   // Function with real root: f(x) = x^2 - 1 = 0.
@@ -10,7 +11,7 @@ int main() {
 
     // Create a NewtonSolver instance and find the root.
     const double x0 = 0.5;
-    NewtonSolver<double> solver(f, df, x0);
+    NewtonSolver solver(f, df, x0);
 
     const double root = solver.solve();
 

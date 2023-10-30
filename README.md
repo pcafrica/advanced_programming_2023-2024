@@ -57,19 +57,19 @@ This work is licensed under a
 | Thu 19 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/04/04-c++_inheritance_polymorphism.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/04/04-c++_inheritance_polymorphism.pdf)] |
 | Tue 24 Oct 2023 | 14:00 - 16:00 | 005 | Functions. Templates and generic programming. [[Markdown](lectures/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/05/05-c++_functions_templates.pdf)] |
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/05/05-c++_functions_templates.pdf)] |
-| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | The Standard Template Library. Evolution since C++11. [[Markdown](lectures/06/06-c++_stl.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.pdf)] |
+| Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | The Standard Template Library (1/2). [[Markdown](lectures/06/06-c++_stl.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.pdf)] |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
-| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
-| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
-| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
-| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
+| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | The Standard Template Library (2/2).  [[Markdown](lectures/07/07-c++_stl2_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.pdf)] |
+| Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
+| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
+| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |
+| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
+| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |
+| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | TBA |
 | Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | TBA |
-| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
+| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
+| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |

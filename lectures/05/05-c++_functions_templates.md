@@ -1166,4 +1166,4 @@ void process_type(T value) {
 _class: titlepage
 -->
 
-# :arrow_right: The Standard Template Library.<br>New features of C++14/17/20.
+# :arrow_right: The Standard Template Library.

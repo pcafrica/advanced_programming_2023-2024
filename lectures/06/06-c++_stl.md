@@ -122,12 +122,13 @@ Containers can be categorized based on how data is stored and handled internally
 # Example: `std::vector`
 
 ```cpp
-std::vector<int> v {2,4,5}; // 2, 4, 5.
-v.push_back(6);             // 2, 4, 5, 6.
-v.pop_back();               // 2, 4, 5.
-v[1] = 3;                   // 3, 4, 5.
-std::cout << v[2];          // 5
-for (int x : v)   std::cout << x << ' ';  // 2 3 5
+std::vector<int> v{2,4,5}; // 2, 4, 5.
+v.push_back(6);            // 2, 4, 5, 6.
+v.pop_back();              // 2, 4, 5.
+v[1] = 3;                  // 3, 4, 5.
+std::cout << v[2];         // 5
+for (int x : v)
+    std::cout << x << ' '; // Prints: 2 3 5
 std::cout << std::endl;
 
 v.reserve(8);
@@ -141,14 +142,14 @@ std::cout << v.size() << std::endl;
 # Example: `std::array`
 
 ```cpp
-std::array<int, 6> a {4,8,15,16,23,42};
+std::array<int, 6> a{4,8,15,16,23,42};
 std::cout << a.size() << std::endl;    // 6
 std::cout << a[0] << std::endl;        // 4
 std::cout << a[3] << std::endl;        // 16
 std::cout << a.front() << std::endl;   // 4
 std::cout << a.back() << std::endl;    // 42
 
-std::array<int, 3> b {7,8,9};
+std::array<int, 3> b{7,8,9};
 // a = b;  // Compiler error: types don't match!
 ```
 
@@ -203,7 +204,7 @@ std::array<int, 3> b {7,8,9};
 # Example: `std::map`
 
 ```cpp
-std::map<std::string, int> age_map; // Creating a std::map with string keys (names) and integer values (ages).
+std::map<std::string, int> age; // Creating a std::map with string keys (names) and integer values (ages).
 
 // Inserting key-value pairs into the map. Elements are automatically sorted by key.
 age["Alice"] = 25;
@@ -241,7 +242,7 @@ numbers.insert(10);
 numbers.insert(30);
 numbers.insert(20);
 numbers.insert(10); // Duplicate, won't be added.
-numbers.insert(20);
+numbers.insert(20); // Duplicate, won't be added.
 
 // Checking if an element is in the set.
 const int search_value = 20;
@@ -273,7 +274,7 @@ std::byte result = flags & mask; // Bitwise AND operation
 
 ---
 
-# Special containers: `pair`
+# Special containers: `std::pair`
 
 **`std::pair`** represents a pair of values. It's commonly used to combine two values into a single entity.
 
@@ -295,7 +296,7 @@ std::cout << "Maximum value: " << result.second << std::endl;
 
 ---
 
-# Special containers: `tuple`
+# Special containers: `std::tuple`
 
 **`std::tuple`** is a generalization of `std::pair` representing a heterogeneous collection of values. It can hold elements of different types.
 
@@ -440,7 +441,7 @@ All main containers have iterators that belong to the **Forward** category. `std
 # Methods and types in containers (1/2)
 
 - Default, copy, and move constructors
-- `Container c(beg, end)`: Constructor from the range [beg, end)
+- `Container c(beg, end)`: Constructor from the range $[\mathrm{beg}, \mathrm{end})$
 - `size()`: Number of stored elements
 - `empty()`: `true` if empty
 - `max_size()`: Max number of elements that can be stored
@@ -460,7 +461,7 @@ All main containers have iterators that belong to the **Forward** category. `std
 - `cbegin(), cend(), crbegin(), crend()`: Same as above, but iterating over `const` elements
 - `insert(pos, elem)`: Inserts a copy of elem (return value may differ)
 - `emplace(pos, args...)`: Inserts an element by constructing it in place
-- `erase(beg, end)`: Removes all elements in the range [beg, end)
+- `erase(beg, end)`: Removes all elements in the range $[\mathrm{beg}, \mathrm{end})$
 - `clear()`: Removes all elements (makes the container empty)
 
 ---
@@ -511,7 +512,7 @@ The distance between iterators is equal to the number of elements in the range d
 
     auto first = my_set.lower_bound(20); // Iterator to the first element >= 20.
     auto second = my_set.lower_bound(40); // Iterator to the first element >= 40.
-    const int distance = *second - *first; // Calculate the distance.
+    const int distance = std::distance(first, second); // Calculate the distance.
 }
 {
     const std::vector<int> my_vector = {1, 2, 3, 4, 5};
@@ -543,44 +544,6 @@ for (std::size_t i = 0; i < a.size(); ++i)
 
 ---
 
-# Inserters
-
-Inserters are special iterators used to insert values into a container. Three main types:
-
-- `std::back_inserter(Container& x)`: Inserts at the back (only for sequential containers).
-- `std::front_inserter(Container& x)`: Inserts in the front (only for sequential containers).
-- `std::inserter(Container& x, It position)`: Inserts after the indicated position.
-
-## Example
-
-```cpp
-std::copy(a.begin(), a.end(), std::front_inserter(c));
-```
-
-The computational cost depends on the type of container!
-
----
-
-# Example: `std::inserter`
-
-Several algorithms require writing the output to a non-const range indicated by the iterator to its beginning. Without inserters, it would be impossible to use them on a non-sequential container or on a sequential container of insufficient size.
-
-```cpp
-std::vector<double> a;
-std::set<double> b;
-
-std::copy(a.begin(), a.end(), b.begin()); // ERROR: b is not large enough.
-```
-
-You need an inserter:
-```cpp
-std::copy(a.begin(), a.end(), std::inserter(b, b.begin())); // Ok.
-```
-
-For an associative container, the second argument of `inserter` is taken only as a suggestion.
-
----
-
 <!--
 _class: titlepage
 -->
@@ -589,9 +552,9 @@ _class: titlepage
 
 ---
 
-# Sequences
+# Ranges (sequences)
 
-The term **sequence** (or range) refers to a pair of iterators that define an interval of elements that are "logically adjacent" within a container.
+The term **range** (or *sequence*) refers to a pair of iterators that define an interval of elements that are "logically adjacent" within a container.
 
 We provide a working definition. Two iterators `b` and `e` define a valid range $[b, e)$ if the instruction:
 
@@ -659,6 +622,44 @@ copies `[first, last)` into the range that starts at `result`.
 
 ---
 
+# Inserters
+
+Inserters are special iterators used to insert values into a container. Three main types:
+
+- `std::back_inserter(Container& x)`: Inserts at the back (only for sequential containers).
+- `std::front_inserter(Container& x)`: Inserts in the front (only for sequential containers).
+- `std::inserter(Container& x, It position)`: Inserts after the indicated position.
+
+## Example
+
+```cpp
+std::copy(a.begin(), a.end(), std::front_inserter(c));
+```
+
+The computational cost depends on the type of container!
+
+---
+
+# Example: `std::inserter`
+
+Several algorithms require writing the output to a non-const range indicated by the iterator to its beginning. Without inserters, it would be impossible to use them on a non-sequential container or on a sequential container of insufficient size.
+
+```cpp
+std::vector<double> a;
+std::set<double> b;
+
+std::copy(a.begin(), a.end(), b.begin()); // ERROR: b is not large enough.
+```
+
+You need an inserter:
+```cpp
+std::copy(a.begin(), a.end(), std::inserter(b, b.begin())); // Ok.
+```
+
+For an associative container, the second argument of `inserter` is taken only as a suggestion.
+
+---
+
 # Types of algorithms
 
 ## Sorting
@@ -668,10 +669,10 @@ copies `[first, last)` into the range that starts at `result`.
   ```cpp
   std::vector<double> a;
 
-  // Decreasing order: a[i+1] <= a[i]
+  // Descending order: a[i+1] <= a[i].
   std::sort(a.begin(), a.end(), std::greater<double>());
   
-  // Increasing order: a[i+1] >= a[i]
+  // Ascending order: a[i+1] >= a[i].
   std::sort(a.begin(), a.end());
   ```
 
@@ -706,6 +707,9 @@ copies `[first, last)` into the range that starts at `result`.
   ```cpp
   template <class T>
   const T& max(const T& a, const T& b);
+
+  template <class T>
+  const T& min(const T& a, const T& b);
 
   template <class T, class Compare>
   const T& max(const T& a, const T& b, Compare comp);
@@ -746,7 +750,7 @@ copies `[first, last)` into the range that starts at `result`.
 
 # `std::transform`
 
-- Another very flexible algorithm is `transform`, present in two forms:
+- Another very flexible algorithm is `std::transform`, present in two forms:
   ```cpp
   OutIt transform(InIt first1, InIt last1, OutIt result, UnaryOperator op);
   OutIt transform(InIt1 first1, InIt1 last1, InIt2 first2, OutIt result, BinaryOperator binary_op);

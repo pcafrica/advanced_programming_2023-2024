@@ -28,7 +28,7 @@ _class: titlepage
    - Special containers
 2. Iterators
 3. Algorithms
-4. Evolution since C++11
+4. Evolution of the STL
 
 ---
 
@@ -110,12 +110,12 @@ _class: titlepage
 
 Containers can be categorized based on how data is stored and handled internally. The categories include:
 
-- **Sequence containers**: `vector<T>`, `array<T,N>`, `deque<T>`, `list<T>`, `forward_list<T>`.
+- **Sequence containers**: `std::vector<T>`, `std::array<T,N>`, `std::deque<T>`, `std::list<T>`, `std::forward_list<T>`.
   - Ordered collections of elements with their position independent of the element value.
-  - In `vector` and `array`, elements are guaranteed to be contiguous in memory and can be accessed directly using the `[]` operator.
+  - In `std::vector` and `std::array`, elements are guaranteed to be contiguous in memory and can be accessed directly using the `[]` operator.
 
 - **Adaptors**: These are built on top of other containers and provide special operations:
-  - `stack<T>`, `queue<T>`, and `priority_queue<T>`.
+  - `std::stack<T>`, `std::queue<T>`, and `std::priority_queue<T>`.
 
 ---
 
@@ -174,8 +174,8 @@ std::array<int, 3> b {7,8,9};
 # Associative containers (2/3)
 
 - **Ordered associative containers**:
-  - `set<K>` (no repetition) and `multiset<K>` (repetition allowed): They store single values, and the value is the key.
-  - `map<K,V>` (no repetition of keys) and `multimap<K,V>` (repetition of keys allowed): They store pairs of (key, value) and act as **dictionaries**.
+  - `std::set<K>` (no repetition) and `std::multiset<K>` (repetition allowed): They store single values, and the value is the key.
+  - `std::map<K,V>` (no repetition of keys) and `std::multimap<K,V>` (repetition of keys allowed): They store pairs of (key, value) and act as **dictionaries**.
   
 - An ordering relation must be defined for the key `K`. It can be done using a specific callable object, a specialization of the functor `std::less<K>`, or by defining `operator<()`.
 - Keys can be accessed read-only; modifications of keys require special operations.
@@ -185,8 +185,8 @@ std::array<int, 3> b {7,8,9};
 # Associative containers (3/3)
 
 - **Unordered associative containers**:
-  - `unordered_set<K>` and `unordered_multiset<K>`.
-  - `unordered_map<K,V>` and `unordered_multimap<K,V>`.
+  - `std::unordered_set<K>` and `std::unordered_multiset<K>`.
+  - `std::unordered_map<K,V>` and `std::unordered_multimap<K,V>`.
 
 - Their general behavior is similar to that of the ordered counterparts.
 - A hashing function, mapping keys to positive integers in a range [0, max), should be provided along with a proper equivalence relation among keys.
@@ -260,7 +260,7 @@ std::cout << std::endl;
     
 ---
 
-# Special containers: `byte`
+# Special containers: `std::byte`
 
 **`std::byte`** is a relatively low-level data type introduced in C++17, and its primary use is to represent individual bytes in memory, often used for bitwise operations and when dealing with raw memory. `std::byte` can be used for encoding and decoding data:
 
@@ -316,7 +316,7 @@ const std::string occupation = std::get<2>(person);
 
 ---
 
-# Special containers: `variant`
+# Special containers: `std::variant`
 
 **`std::variant`** represents a type-safe union of types, allowing you to hold one value from a set of specified types.
 
@@ -340,7 +340,7 @@ if (var.holds_alternative<std::string>()) {
 
 ---
 
-# Special containers: `optional`
+# Special containers: `std::optional`
 
 **`std::optional`** is a special wrapper introduced in C++17 for a type that behaves partially similarly to a pointer but is convertible to `bool`, with `false` indicating that the value is missing or unset. It also contains other methods to interrogate its content.
 
@@ -362,7 +362,7 @@ const double value_or_default = data[20].value_or(1.5);
 
 ---
 
-# Special containers: `any`
+# Special containers: `std::any`
 
 **`std::any`** is a class introduced in C++17 that provides a dynamic, type-safe container for holding values of any type. It allows you to store and retrieve objects of different types in a type-safe manner.
 
@@ -445,9 +445,9 @@ All main containers have iterators that belong to the **Forward** category. `std
 - `empty()`: `true` if empty
 - `max_size()`: Max number of elements that can be stored
 - Comparison operators
-- `c1 = c2`: Copy assignment, c1 may be a container of a different type from c2
-- `swap(c2)`: Swaps data (c2 may be a container of different type)
-- `swap(c1, c2)`: As above (as a free function)
+- `c1 = c2`: Copy assignment, `c1` may be a container of a different type from `c2`
+- `c1.swap(c2)`: Swaps data (`c2` may be a container of different type)
+- `std::swap(c1, c2)`: As above (as a free function)
 
 ---
 
@@ -455,13 +455,12 @@ All main containers have iterators that belong to the **Forward** category. `std
 
 - `begin()`: Iterator to the first element
 - `end()`: Iterator to the position after the last element
-- `cbegin()`: Constant iterator to the first element
-- `cend()`: Constant iterator to the position after the last element
 - `rbegin()`: Reverse iterator for reverse iteration (initial position)
 - `rend()`: Reverse iterator (position after the last element)
+- `cbegin(), cend(), crbegin(), crend()`: Same as above, but iterating over `const` elements
 - `insert(pos, elem)`: Inserts a copy of elem (return value may differ)
 - `emplace(pos, args...)`: Inserts an element by constructing it in place
-- `erase(beg, end)`: "Removes" all elements in the range [beg, end)
+- `erase(beg, end)`: Removes all elements in the range [beg, end)
 - `clear()`: Removes all elements (makes the container empty)
 
 ---
@@ -518,7 +517,7 @@ The distance between iterators is equal to the number of elements in the range d
     const std::vector<int> my_vector = {1, 2, 3, 4, 5};
 
     auto first = my_vector.begin();
-    auto second = std::next(first, 3); // Advance 'first' by 3 positions
+    auto second = std::find(my_vector.begin(), my_vector.end(), 4); // Return iterator to element 4.
     const int distance = std::distance(first, second); // Calculate the distance.
 }
 ```
@@ -597,8 +596,9 @@ The term **sequence** (or range) refers to a pair of iterators that define an in
 We provide a working definition. Two iterators `b` and `e` define a valid range $[b, e)$ if the instruction:
 
 ```cpp
-for (iterator p = b; p != e; ++p)
+for (iterator p = b; p != e; ++p) {
     *p;
+}
 ```
 
 is valid, and `*p` returns the value of an element of the container.
@@ -635,7 +635,7 @@ They Do not modify the value of the range. They work also on constant ranges.
 
 ## Example
 ```cpp
-It std::find(ForwardIt first, ForwardIt last, T const & value)
+It std::find(ForwardIt first, ForwardIt last, const T & value)
 ```
 Finds the first occurrence of `value` in the range `[first, last)`.
 
@@ -684,7 +684,7 @@ copies `[first, last)` into the range that starts at `result`.
   bool std::binary_search(It first, It last, const T& value);
   ```
   returns true if the `value` is present.
-- Set union, intersection, and difference (they do not need to be a `set<T>`, it is sufficient that the range is ordered):
+- Set union, intersection, and difference (they do not need to be a `std::set<T>`, it is sufficient that the range is ordered):
   ```cpp
   std::set<int> a;
   std::set<int> b;
@@ -770,28 +770,28 @@ $b$ now contains $a + l$.
 
 # A list of other interesting algorithms (1/2)
 
-- `for_each`: Apply a function to a range.
-- `find_if`: Find the first element satisfying a predicate.
-- `count`: Count appearances of a value in a range.
-- `count_if`: Return the number of elements in a range satisfying a predicate.
-- `replace`: Replace a value.
-- `replace_if`: Replace values in a range satisfying a predicate.
-- `replace_copy`: Copy a range while replacing values.
-- `replace_copy_if`: Copy a range, replacing values satisfying a predicate.
-- `fill`: Fill a range with a value.
-- `fill_n`: Fill `n` elements with a value.
-- `generate`: Generate values according to a given unary function.
+- `std::for_each`: Apply a function to a range.
+- `std::find_if`: Find the first element satisfying a predicate.
+- `std::count`: Count appearances of a value in a range.
+- `std::count_if`: Return the number of elements in a range satisfying a predicate.
+- `std::replace`: Replace a value.
+- `std::replace_if`: Replace values in a range satisfying a predicate.
+- `std::replace_copy`: Copy a range while replacing values.
+- `std::replace_copy_if`: Copy a range, replacing values satisfying a predicate.
+- `std::fill`: Fill a range with a value.
+- `std::fill_n`: Fill `n` elements with a value.
+- `std::generate`: Generate values according to a given unary function.
 
 ---
 
 # A list of other interesting algorithms (2/2)
 
-- `remove_if`: Remove elements satisfying a predicate.
-- `remove_copy`: Remove values and copy them to another range.
-- `remove_copy_if`: Remove elements satisfying a predicate and copy.
-- `unique`: Remove consecutive duplicates.
-- `random_shuffle`: Rearrange elements in a range randomly.
-- `partition`: Partition a range into two.
+- `std::remove_if`: Remove elements satisfying a predicate.
+- `std::remove_copy`: Remove values and copy them to another range.
+- `std::remove_copy_if`: Remove elements satisfying a predicate and copy.
+- `std::unique`: Remove consecutive duplicates.
+- `std::random_shuffle`: Rearrange elements in a range randomly.
+- `std::partition`: Partition a range into two.
 - Operations on sorted ranges, such as union, intersection, etc.
 
 Full list [here](https://en.cppreference.com/w/cpp/algorithm) and [here](https://en.cppreference.com/w/cpp/numeric) for numerical functions and algorithms.
@@ -829,7 +829,7 @@ auto result2 = std::sort(std::execution::seq, std::begin(v), std::end(v));
 _class: titlepage
 -->
 
-# Best practices
+# Evolution of the STL
 
 ---
 
@@ -848,72 +848,64 @@ The C++ Standard Template Library (STL) has seen several enhancements and improv
 
 # C++11
 
-1. Move semantics
-2. Variadic templates
-3. Rvalue references
-4. Lambda expressions
-5. nullptr
-6. Range-based for loops
-7. Smart pointers
-8. Type traits
+1. [Move semantics](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#move-semantics)
+2. [Variadic templates](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#variadic-templates)
+3. [Rvalue references](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#rvalue-references)
+4. [Lambda expressions](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#lambda-expressions)
+5. [`auto`](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#auto)
+5. [`nullptr`](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#nullptr)
+6. [Range-based for loops](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#range-based-for-loops)
+7. [Smart pointers](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#smart-pointers)
+8. [Type traits](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP11.md#type-traits)
 9. ...
 
 ---
 
 # C++14
 
-1. Binary literals
-2. Generic lambdas
-3. Return type deduction
-4. Variable templates
-5. User-defined literals for standard library types
+1. [Binary literals](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#binary-literals)
+2. [Generic lambdas](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#generic-lambda-expressions)
+3. [Return type deduction](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#return-type-deduction)
+4. [`decltype(auto)`](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#decltypeauto)
+5. [Variable templates](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#variable-templates)
+6. [User-defined literals for standard library types](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP14.md#user-defined-literals-for-standard-library-types)
 
 ---
 
 # C++17
 
-1. Template argument deduction for class templates
-2. Fold expressions
-3. Lambda capture `this` by value
-4. Structured bindings
-5. `constexpr if`
-6. UTF-8 character literals
-7. New library features like `std::variant`, `std::optional`, and `std::any`.
+1. [Template argument deduction for class templates](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#template-argument-deduction-for-class-templates)
+2. [Fold expressions](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#folding-expressions)
+3. [Lambda capture `this` by value](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#lambda-capture-this-by-value)
+4. [Structured bindings](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#lambda-capture-this-by-value)
+5. [`constexpr if`](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#constexpr-if)
+6. [UTF-8 character literals](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#utf-8-character-literals)
+7. [New library features like `std::variant`, `std::optional`, and `std::any`](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP17.md#c17-library-features)
 
 --- 
 
 # C++20
 
-1. Coroutines
-2. Concepts
-3. Ranges
-4. Modules
-5. Designated initializers
-6. Template syntax for lambdas
-7. `[[likely]]` and `[[unlikely]]` attributes
-8. Constexpr virtual functions
-9. New library features, including `std::span` and math constants
+1. [Coroutines](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#coroutines)
+2. [Concepts](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#concepts)
+3. [Ranges](https://en.cppreference.com/w/cpp/ranges)
+4. [Modules](https://en.cppreference.com/w/cpp/language/modules)
+5. [Designated initializers](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#designated-initializers)
+6. [Template syntax for lambdas](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#template-syntax-for-lambdas)
+7. [`constexpr` virtual functions](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#constexpr-virtual-functions)
+8. [New library features, including `std::span` and math constants](https://github.com/AnthonyCalandra/modern-cpp-features/blob/master/CPP20.md#c20-library-features)
 
 ---
 
-# C++23 (still subject of variations):
+# C++23 (still subject to variation)
 
 1. **Concepts in STL**: Further adoption of concepts in STL algorithms and containers.
 2. **Improved parallelism**: Expanding parallel algorithms and enhancing support for parallel execution.
 3. **Reflection**: Potential support for reflection, making it easier to inspect and manipulate types at runtime.
-4. **Networking library**: The Networking TS might become part of the standard, adding networking capabilities.
-5. **Enhanced Ranges**: Expanding and refining the ranges library with new utilities.
+4. **Networking library**: The Networking library might become part of the standard, adding networking capabilities.
+5. **Enhanced ranges**: Expanding and refining the ranges library with new utilities.
 
----
-
-# Conclusion
-
-The STL is a fundamental part of the C++ standard library, offering a rich set of data structures, algorithms, and utilities that make C++ a powerful and expressive language. To fully harness the power of the STL:
-
-1. **Algorithm usage**: Algorithms are the backbone of the STL. Utilize them to simplify and optimize common operations, enhancing code readability and maintainability.
-2. **Container selection**: Choose the appropriate container type (e.g., `std::vector`, `std::map`, `std::queue`) based on your specific needs. This decision greatly impacts your code's efficiency.
-3. **Smart pointers**: Smart pointers like `std::shared_ptr` and `std::unique_ptr` are crucial for effective memory management, preventing memory leaks and resource leaks.
-4. **Newer features**: Stay up-to-date with the latest C++ standards (e.g., C++17, C++20) and incorporate new features like ranges, concepts, and structured bindings to write cleaner and more efficient code.
+#### [Source](https://en.cppreference.com/w/cpp/23)
 
 ---
 

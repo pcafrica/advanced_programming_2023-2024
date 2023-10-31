@@ -23,13 +23,20 @@ h2, h3, h4, h5, h6 {
 h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong {
     color: #4949e7;
 }
-
+                                                       
 a {
     background-color: #4949e7;
     color: white;
     margin-left: 5px;
     margin-right: 5px;
     padding: 2px 5px 2px 5px;
+}
+
+a code {
+    background-color: #4949e7;
+    color: white;
+    font-size: 85%;
+    padding: 0px;
 }
 
 alert {

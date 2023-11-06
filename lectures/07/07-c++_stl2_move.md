@@ -306,6 +306,64 @@ _class: titlepage
 
 ---
 
+# The problem
+
+# C++11: avoiding unnecessary copies in large objects
+
+- **Problem**: Dynamic objects in C++11, such as matrices, can be large in size.
+  
+- **Issue**: Unnecessary copies of these objects should be avoided.
+  
+- **Challenge**: Copies can happen in various situations.
+
+---
+
+# # Swap may be costly
+
+Let's consider this function that swaps the arguments:
+
+```cpp
+void swap(Matrix& a, Matrix& b) {
+    Matrix tmp{a}; // make a copy of a
+    a = b; // copy-assign b to a
+    b = tmp; // copy assign tmp to b
+}
+```
+
+If `a` and `b` are of big size, this function is very inefficient.
+
+- Memory inefficient: we have to store tmp.
+- Computationally inefficient: copy operations imply copying all matrix elements.
+    
+In this code, an unintended copy of the matrix occurs during the swap operation.
+We need to find a way to prevent these unnecessary copies.
+    
+---
+
+# The optimal swap (before C++11)
+
+---
+
+# lvalue vs. rvalue
+
+---
+
+# rvalue references
+
+---
+
+# Move constructor
+
+---
+
+# Move assignment operator
+
+---
+
+# Perfect forwarding
+
+---
+
 <!--
 _class: titlepage
 -->

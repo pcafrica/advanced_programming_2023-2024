@@ -306,19 +306,17 @@ _class: titlepage
 
 ---
 
-# The problem
-
-# C++11: avoiding unnecessary copies in large objects
+# The problem: avoiding unnecessary copies in large objects
 
 - **Problem**: Dynamic objects in C++11, such as matrices, can be large in size.
   
-- **Issue**: Unnecessary copies of these objects should be avoided.
+- **Issue**: Ungnecessary copies of these objects should be avoided.
   
 - **Challenge**: Copies can happen in various situations.
 
 ---
 
-# # Swap may be costly
+# Swap may be costly
 
 Let's consider this function that swaps the arguments:
 
@@ -342,9 +340,217 @@ We need to find a way to prevent these unnecessary copies.
 
 # The optimal swap (before C++11)
 
+A dynamic matrix typically contains (directly or indirectly) a pointer to the dynamically allocated data. Let's assume it is a pointer to double: `double * data`.
+
+Thus, we would like to have an algorithm of this sort, operating with the pointers:
+
+- Copy `a.data` into `tmp`.
+- Copy `b.data` onto `a.data`.
+- Copy `tmp` onto `b.data`.
+
+Also here we have a temporary, but it is just a pointer!
+
 ---
 
-# lvalue vs. rvalue
+# The optimal swap (since C++11)
+
+Let's assume that `Matrix` stores dynamic data for its elements as a `double * data` (maybe it is better to use a standard vector, but it is not relevant here). Before the introduction of move semantics, I could have solved the problem by writing a special method or a **friend** function. For instance:
+
+```cpp
+void swap_with_move(Matrix& a, Matrix& b){
+    // Swap number of rows and columns...
+    double* tmp = a.data; // Save the pointer.
+    a.data = b.data;      // Copy the pointer.
+    b.data = tmp;         // Copy the saved pointer.
+}
+```
+
+This way I just swap the pointers, saving memory and operations, but **only for this specific situation**. It is not generalizable: I cannot write a function template `swap_with_move<T>` because I need to know how data is stored in `T`, for each case.
+
+---
+
+# Questions to be addressed
+
+To implement move semantics, three questions have to be addressed:
+
+1. How can we identify objects that can be safely *moved* instead of copied, so that the compiler may perform the move automatically, whenever possible?
+2. How can I actually implement the move in a uniform and general way?
+3. How can I specify that I want to *move*, instead of copying?
+
+Let's give the answer one question at a time. For the first one, we need to introduce value categories.
+
+---
+
+# Categories of values
+
+In C++, a value is characterized by its *type* and its *category*, which expresses how the value can be used.
+
+In C++, we have 4 categories for values: *glvalue*, *prvalue*, *xvalue*, and *lvalue*. Moreover, they can be const or non-const.
+
+To simplify matters (without losing important information), we will only use 2 categories: *lvalue* (which also includes glvalue) and *rvalue* (which includes prvalue and xvalue).
+
+---
+
+# lvalues and rvalues in C++ (1/2)
+
+The original definition of lvalues and rvalues from the earliest days of C is as follows: an lvalue is an expression that may appear on the left and on the right-hand side of an assignment, whereas an rvalue is an expression that *can only appear on the right hand side of an assignment*.
+
+```cpp
+double fun(); // A function returning a double.
+3.14 = a; // Wrong: a literal expression is an rvalue!
+fun() = 5; // Wrong: returning an object generates an rvalue!
+```
+
+---
+
+# lvalues and rvalues in C++ (2/2)
+
+User-defined types, `const`, and operator overloading make the definition of rvalues/lvalues rather complicated in C++. We avoid the formal definition contained in the standard (very technical). We give a simple definition, correct in most cases:
+
+*An lvalue is an expression that refers to a memory location and allows us to take its address via the `&` operator. An rvalue is an expression that is not an lvalue.*
+
+For this reason, lvalue is nowadays interpreted as *locator-value* and no more left-value. It is still true that *a (non-const) rvalue can only be at the right-hand side of an assignment*.
+
+---
+
+# Examples of lvalues
+
+The value held in a variable (i.e., a value with a name) is *always* an lvalue. Even if it is const or a `constexpr`, since we can take its address.
+
+```cpp
+double a;
+int const b = 10;
+double * pa = &a; // Address of a.
+int const * pb = &b; // Address of b.
+```
+
+If a function returns an *lvalue* reference (`&`), the returned value is an lvalue.
+
+```cpp
+double & f(double & x) { x *= 3; return x; }
+...
+double y = 8.0;
+double * px = &(f(y)); // Address of y.
+```
+
+---
+
+# Examples of rvalues
+
+The value returned by a function is an rvalue.
+
+```cpp
+double fun(double x) { .... }
+```
+
+Here, `&fun` is a pointer to the function, *not* to the returned value. I cannot take the address of the returned value; it's a temporary object.
+
+Non-string literals are rvalues.
+
+```cpp
+double * pd = &(10.5); // Error (taking the address of a temporary doesn't make sense).
+```
+
+Compilers are free not to store them in memory, so no address may be taken (and it does not make sense to take it).
+
+Strings, however, are lvalues.
+
+---
+
+# How can we identify objects that can be safely *moved* instead of copied?
+
+*Non-const rvalues are eligible for "automatic moving".* Indeed, if we cannot take the address, it means that they exist only to be stored somewhere.
+
+So we have the answer to the first question: *rvalues are movable*. In particular, values returned by a function are movable.
+
+---
+
+# How can I actually implement the move in a uniform and general way?
+
+To answer the second question, let's look at how *references* bind according to the category of the bound values.
+
+We consider ordinary references first, from now on called *lvalue references*. A non-const lvalue reference *cannot bind to rvalues*, while both lvalues and rvalues can be bound to const lvalue references:
+
+```cpp
+double & pi = 3.14; // Wrong: A literal expression is an rvalue.
+double const & pi = 3.14; // Ok!
+
+int foo(); // Return an rvalue.
+int & foo(int & a); // Return a reference, thus an lvalue.
+int gooii(const int & a); // Returns an rvalue.
+...
+
+auto p = foo(); // Ok: p is an int.
+int & c = foo(p); // Ok: the function returns an lvalue here!
+int & d = foo(3); // NO! 3 is an rvalue and cannot be bound to an (lvalue) reference.
+auto & x = goo(foo()); // NO! as above.
+const int & a = micky(foo()); // Ok, an rvalue binds to a const lvalue reference.
+```
+
+---
+
+# Reference binding in overloaded functions
+
+The interplay between reference types and binding is clear (and important) when looking at *function overloading*.
+
+```cpp
+void foo(int & a);
+void foo(const int & a);
+void goo(const int & a);
+void zoo(int & a);
+...
+
+foo(5); // calls foo(const int &)
+int g;
+foo(g); // calls foo(int &)
+goo(g); // goo(const int &);
+const int b = 10;
+foo(b); // calls foo(const int &)
+goo(b); // goo(const int &);
+zoo(b); // ERROR!!
+```
+
+The compiler chooses *the best match*. An lvalue (`g`) is a better binding for a non-const lvalue reference, while a literal (`5`) or a const lvalue (`b`) can only match a const lvalue reference. Const lvalue reference may bind to both rvalues and lvalues.
+
+---
+
+# Conclusion on lvalue reference binding
+
+- A non-const lvalue reference can bind only, and preferably, to non-const lvalues.
+- A const lvalue reference binds both to lvalues and rvalues, const and non-const alike.
+
+Here, "preferably" means that it will be chosen in case there is a choice.
+
+*This is before C++11*. In fact, it is still true if we just use lvalue references.
+
+The consequence is that with just lvalue references, we cannot distinguish lvalues from rvalues.
+
+---
+
+# Lvalue vs. Rvalue References
+
+## Overloading rules
+
+If you implement `void foo(Matrix&)` but neither `void foo(Matrix&&)` nor `void foo(const Matrix&)`, the behavior is the usual one: `foo` can be called on lvalues but not on rvalues.
+
+If you implement `void foo(const Matrix&);` but not `void foo(Matrix&&);`, then again, the behavior is the old one: `foo` can be called on lvalues and rvalues, but it is not possible to distinguish between them. This is possible only by implementing `void foo(Matrix&&);` as well.
+
+Finally, if you implement `void foo(Matrix&&);` but neither one of `void foo(Matrix&);` and `void foo(const Matrix&);`, then `foo` can be called only on rvalues, and trying to call it on an lvalue will trigger a compile error.
+
+## Reference binding rules in a picture
+
+![Reference binding rules](Figure/bindingsRule)
+
+# How is move semantic implemented?
+
+We are now able to answer the second question. The key is **the move constructor and the move assignment operators**.
+
+This is the standard signature of move operations for a class named `Matrix`:
+
+```cpp
+Matrix(Matrix&&); // Move constructor
+Matrix & operator=(Matrix&&); // Move assignment
+```
 
 ---
 

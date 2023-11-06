@@ -8,7 +8,7 @@ _class: titlepage
 # Lecture 07
 <br>
 
-## Move semantics, smart pointers, STL utilities.
+## Smart pointers, move semantics, STL utilities.
 <br>
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024
@@ -21,8 +21,8 @@ _class: titlepage
 
 # Outline
 
-1. Move semantics
-2. Smart pointers
+1. Smart pointers
+2. Move semantics
 3. Exceptions
 4. Utilities from the STL:
    - I/O streams
@@ -296,6 +296,14 @@ for (std::reference_wrapper<int> ref : ref_vector) {
     ref.get() += 5;
 }
 ```
+---
+
+<!--
+_class: titlepage
+-->
+
+# Move semantics
+
 ---
 
 <!--
@@ -905,14 +913,6 @@ if (std::filesystem::exists(big_file_path)) {
   }
 }
 ```
-
----
-
-<!--
-_class: titlepage
--->
-
-# Move semantics
 
 ---
 

@@ -929,4 +929,4 @@ But always remember: the most important aspect of your code is whether it accomp
 _class: titlepage
 -->
 
-# :arrow_right: Move semantics, smart pointers, utilities from the STL.
+# :arrow_right: Smart pointers, move semantics, utilities from the STL.

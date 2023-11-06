@@ -59,7 +59,7 @@ This work is licensed under a
 | Thu 26 Oct 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/05/05-c++_functions_templates.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/05/05-c++_functions_templates.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/05/05-c++_functions_templates.pdf)] |
 | Tue 31 Oct 2023 | 14:00 - 16:00 | 128 | The Standard Template Library. [[Markdown](lectures/06/06-c++_stl.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/06/06-c++_stl.pdf)] |
 |~Thu 02 Nov 2023~| ---           | --- | --- |
-| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Smart pointers, utilities, move semantics. [[Markdown](lectures/07/07-c++_stl2_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.pdf)] |
+| Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Move semantics, smart pointers, STL utilities. [[Markdown](lectures/07/07-c++_stl2_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.pdf)] |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
 | Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |

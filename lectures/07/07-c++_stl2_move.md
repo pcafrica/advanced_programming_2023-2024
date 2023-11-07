@@ -24,7 +24,7 @@ _class: titlepage
 1. Smart pointers
 2. Move semantics
 3. Exceptions
-4. Utilities from the STL:
+4. STL utilities:
    - I/O streams
    - Random numbers
    - Time measuring
@@ -137,7 +137,6 @@ std::unique_ptr<Polygon> create_polygon(std::string t) {
     }
 }
 ```
-
 
 ---
 
@@ -306,59 +305,36 @@ _class: titlepage
 
 ---
 
-# The problem: avoiding unnecessary copies in large objects
-
-- **Problem**: Dynamic objects in C++11, such as matrices, can be large in size.
-  
-- **Issue**: Ungnecessary copies of these objects should be avoided.
-  
-- **Challenge**: Copies can happen in various situations.
-
----
-
-# Swap may be costly
+# The problem: swap may be costly
 
 Let's consider this function that swaps the arguments:
 
 ```cpp
 void swap(Matrix& a, Matrix& b) {
-    Matrix tmp{a}; // make a copy of a
-    a = b; // copy-assign b to a
-    b = tmp; // copy assign tmp to b
+    Matrix tmp{a}; // Make a copy of a.
+    a = b;         // Copy-assign b to a.
+    b = tmp;       // Copy assign tmp to b.
 }
 ```
 
 If `a` and `b` are of big size, this function is very inefficient.
 
-- Memory inefficient: we have to store tmp.
-- Computationally inefficient: copy operations imply copying all matrix elements.
+- **Memory inefficient**: we have to store `tmp`.
+- **Computationally inefficient**: copy operations imply copying all matrix elements.
     
 In this code, an unintended copy of the matrix occurs during the swap operation.
 We need to find a way to prevent these unnecessary copies.
     
 ---
 
-# The optimal swap (before C++11)
+# A better swap (before C++11)
 
-A dynamic matrix typically contains (directly or indirectly) a pointer to the dynamically allocated data. Let's assume it is a pointer to double: `double * data`.
-
-Thus, we would like to have an algorithm of this sort, operating with the pointers:
-
-- Copy `a.data` into `tmp`.
-- Copy `b.data` onto `a.data`.
-- Copy `tmp` onto `b.data`.
-
-Also here we have a temporary, but it is just a pointer!
-
----
-
-# The optimal swap (since C++11)
-
-Let's assume that `Matrix` stores dynamic data for its elements as a `double * data` (maybe it is better to use a standard vector, but it is not relevant here). Before the introduction of move semantics, I could have solved the problem by writing a special method or a **friend** function. For instance:
+Let's assume that `Matrix` stores dynamic data for its elements as a `double* data` (maybe it is better to use a standard vector, but it is not relevant here). Before the introduction of move semantics, I could have solved the problem by writing a special method or a **friend** function. For instance:
 
 ```cpp
-void swap_with_move(Matrix& a, Matrix& b){
-    // Swap number of rows and columns...
+void swap_with_move(Matrix& a, Matrix& b) {
+    // Swap number of rows and columns.
+
     double* tmp = a.data; // Save the pointer.
     a.data = b.data;      // Copy the pointer.
     b.data = tmp;         // Copy the saved pointer.
@@ -391,23 +367,31 @@ To simplify matters (without losing important information), we will only use 2 c
 
 ---
 
-# lvalues and rvalues in C++ (1/2)
+# lvalues and rvalues in C
 
-The original definition of lvalues and rvalues from the earliest days of C is as follows: an lvalue is an expression that may appear on the left and on the right-hand side of an assignment, whereas an rvalue is an expression that *can only appear on the right hand side of an assignment*.
+The original definition of lvalues and rvalues from the earliest days of C is as follows:
 
+> An **lvalue** is an expression that may appear on the left and on the right-hand side of an assignment.
+
+> An **rvalue** is an expression that *can only appear on the right hand side of an assignment*.
+
+## Example
 ```cpp
 double fun(); // A function returning a double.
+
 3.14 = a; // Wrong: a literal expression is an rvalue!
 fun() = 5; // Wrong: returning an object generates an rvalue!
 ```
 
 ---
 
-# lvalues and rvalues in C++ (2/2)
+# lvalues and rvalues in C++
 
 User-defined types, `const`, and operator overloading make the definition of rvalues/lvalues rather complicated in C++. We avoid the formal definition contained in the standard (very technical). We give a simple definition, correct in most cases:
 
-*An lvalue is an expression that refers to a memory location and allows us to take its address via the `&` operator. An rvalue is an expression that is not an lvalue.*
+> An **lvalue** is an expression that refers to a memory location and allows us to take its address via the `&` operator.
+
+> An **rvalue** is an expression that is not an lvalue.
 
 For this reason, lvalue is nowadays interpreted as *locator-value* and no more left-value. It is still true that *a (non-const) rvalue can only be at the right-hand side of an assignment*.
 
@@ -415,22 +399,23 @@ For this reason, lvalue is nowadays interpreted as *locator-value* and no more l
 
 # Examples of lvalues
 
-The value held in a variable (i.e., a value with a name) is *always* an lvalue. Even if it is const or a `constexpr`, since we can take its address.
+The value held in a variable (i.e., a value with a name) is *always* an lvalue. Even if it is `const` or a `constexpr`, since we can take its address.
 
 ```cpp
 double a;
 int const b = 10;
-double * pa = &a; // Address of a.
-int const * pb = &b; // Address of b.
+double* pa = &a; // Address of a.
+int const* pb = &b; // Address of b.
 ```
 
 If a function returns an *lvalue* reference (`&`), the returned value is an lvalue.
 
 ```cpp
-double & f(double & x) { x *= 3; return x; }
-...
+double& f(double & x) { x *= 3; return x; }
+
 double y = 8.0;
-double * px = &(f(y)); // Address of y.
+f(y) = 3.0;
+double* px = &(f(y)); // Address of y.
 ```
 
 ---
@@ -448,7 +433,7 @@ Here, `&fun` is a pointer to the function, *not* to the returned value. I cannot
 Non-string literals are rvalues.
 
 ```cpp
-double * pd = &(10.5); // Error (taking the address of a temporary doesn't make sense).
+double* pd = &(10.5); // Error (taking the address of a temporary doesn't make sense).
 ```
 
 Compilers are free not to store them in memory, so no address may be taken (and it does not make sense to take it).
@@ -469,48 +454,49 @@ So we have the answer to the first question: *rvalues are movable*. In particula
 
 To answer the second question, let's look at how *references* bind according to the category of the bound values.
 
-We consider ordinary references first, from now on called *lvalue references*. A non-const lvalue reference *cannot bind to rvalues*, while both lvalues and rvalues can be bound to const lvalue references:
+We consider ordinary references first, from now on called *lvalue references*. A non-const lvalue reference *cannot bind to rvalues*, while both lvalues and rvalues can be bound to const lvalue references.
+
+---
+
+# Reference binding
 
 ```cpp
 double & pi = 3.14; // Wrong: A literal expression is an rvalue.
-double const & pi = 3.14; // Ok!
+double const & another_pi = 3.14; // Ok!
 
 int foo(); // Return an rvalue.
 int & foo(int & a); // Return a reference, thus an lvalue.
-int gooii(const int & a); // Returns an rvalue.
-...
+int goo(const int & a); // Returns an rvalue.
 
 auto p = foo(); // Ok: p is an int.
 int & c = foo(p); // Ok: the function returns an lvalue here!
 int & d = foo(3); // NO! 3 is an rvalue and cannot be bound to an (lvalue) reference.
 auto & x = goo(foo()); // NO! as above.
-const int & a = micky(foo()); // Ok, an rvalue binds to a const lvalue reference.
+const int & a = goo(foo()); // Ok, an rvalue binds to a const lvalue reference.
 ```
 
 ---
 
 # Reference binding in overloaded functions
 
-The interplay between reference types and binding is clear (and important) when looking at *function overloading*.
+The interplay between reference types and binding is clear (and important) when looking at function overloading.
 
 ```cpp
 void foo(int & a);
 void foo(const int & a);
 void goo(const int & a);
 void zoo(int & a);
-...
 
-foo(5); // calls foo(const int &)
 int g;
-foo(g); // calls foo(int &)
-goo(g); // goo(const int &);
 const int b = 10;
-foo(b); // calls foo(const int &)
-goo(b); // goo(const int &);
-zoo(b); // ERROR!!
-```
 
-The compiler chooses *the best match*. An lvalue (`g`) is a better binding for a non-const lvalue reference, while a literal (`5`) or a const lvalue (`b`) can only match a const lvalue reference. Const lvalue reference may bind to both rvalues and lvalues.
+foo(5); // Calls foo(const int &)
+foo(g); // Calls foo(int &)
+goo(g); // Calls goo(const int &);
+foo(b); // Calls foo(const int &)
+goo(b); // Calls goo(const int &);
+zoo(b); // Error: a const lvalue can bind only to a const lvalue reference.
+```
 
 ---
 
@@ -527,46 +513,219 @@ The consequence is that with just lvalue references, we cannot distinguish lvalu
 
 ---
 
-# Lvalue vs. Rvalue References
+# Relation with moving
 
-## Overloading rules
+Let's examine the following code
 
-If you implement `void foo(Matrix&)` but neither `void foo(Matrix&&)` nor `void foo(const Matrix&)`, the behavior is the usual one: `foo` can be called on lvalues but not on rvalues.
+```cpp
+Matrix foo(); // A function returning a large object.
 
-If you implement `void foo(const Matrix&);` but not `void foo(Matrix&&);`, then again, the behavior is the old one: `foo` can be called on lvalues and rvalues, but it is not possible to distinguish between them. This is possible only by implementing `void foo(Matrix&&);` as well.
+Matrix a;
+a = foo();
+```
 
-Finally, if you implement `void foo(Matrix&&);` but neither one of `void foo(Matrix&);` and `void foo(const Matrix&);`, then `foo` can be called only on rvalues, and trying to call it on an lvalue will trigger a compile error.
+The return value of `foo` could be moved into `a` safely! (Indeed, the Return Value Optimization already does that for constructors).
 
-## Reference binding rules in a picture
+It would be beneficial to have an "adornment" that acts like a reference, while ensuring that **it binds exclusively to rvalues and preferably to rvalues**. This way, we can overload the assignment operator as follows:
 
-![Reference binding rules](Figure/bindingsRule)
+```cpp
+Matrix & operator=(const Matrix & a); // Ordinary copy.
+Matrix & operator=(Matrix "new adorn" a); // Move!
+```
 
-# How is move semantic implemented?
+---
+
+# rvalue reference
+
+Indeed, C++11 has introduced a new kind of adornment, called **rvalue reference**, indicated by `&&`.
+
+It **exclusively and preferably binds to rvalues**. Preferably means that, if given the choice, an rvalue binds to an rvalue reference.
+
+An important thing to remember is that **rvalue references love rvalues and only rvalues**. And are rather jealous: they will not share them with anybody else.
+
+---
+
+# Categories of values
+
+We resume some rules:
+
+- If a function returns a value, that value is considered an **rvalue**.
+- If a function returns an lvalue reference (const or non-const), that value is considered an lvalue.
+- If a function returns an rvalue reference, that value is an rvalue.
+- A (named) variable is **always an lvalue**.
+
+This is fundamental for move semantics.
+
+---
+
+# How is move semantics implemented?
 
 We are now able to answer the second question. The key is **the move constructor and the move assignment operators**.
 
 This is the standard signature of move operations for a class named `Matrix`:
 
 ```cpp
-Matrix(Matrix&&); // Move constructor
-Matrix & operator=(Matrix&&); // Move assignment
+Matrix(Matrix&&); // Move constructor.
+Matrix & operator=(Matrix&&); // Move assignment operator.
+```
+
+Remember that unless you have defined some other constructors or the copy assignment, the compiler provides a synthetic move constructor and move assignment operator automatically, which apply the corresponding moving operation on the non-static data members of the class.
+
+---
+
+# Move semantics for `Matrix` (1/2)
+
+Let's go back to `Matrix`. Assume that `Matrix` stores the data as a pointer to `double`. A possible copy-constructor and copy-assignment take the form:
+
+```cpp
+Matrix(const Matrix & rhs) : nr(rhs.nr), nc(rhs.nc), data(new double[nr * nc]) {
+    // Make a deep copy.
+    for (i = 0; i < rhs.nr * rhs.nc; ++i)
+        data[i] = rhs.data[i];
+}
+
+Matrix & operator=(const Matrix & rhs) {
+    // Release current resource.
+    delete[] this->data;
+    // Get a new data buffer.
+    data = new double[rhs.nr * rhs.nc];
+    // Make a deep copy.
+    for the i = 0; i < rhs.nr * rhs.nc; ++i)
+        data[i] = rhs.data[i];
+}
 ```
 
 ---
 
-# rvalue references
+# Move semantics for `Matrix` (2/2)
+
+The corresponding move operator could be:
+
+```cpp
+Matrix(Matrix&& rhs) : nr(rhs.nr), nc(rhs.nc), data(rhs.data) {
+    // Fix rhs so it is a valid empty matrix.
+    rhs.data = nullptr;
+    rhs.nc = rhs.nr = 0;
+}
+
+Matrix & operator=(Matrix&& rhs) {
+    delete[] this->data; // Release the resource.
+    data = rhs.data; // Shallow copy.
+    // Fix rhs so it is a valid empty matrix.
+    rhs.data = nullptr;
+    rhs.nc = rhs.nr = 0;
+}
+```
+
+I just grab the resource and leave an empty matrix! **It is important to ensure that the moved object can be deleted correctly!**
 
 ---
 
-# Move constructor
+# The consequence
+
+```cpp
+Matrix foo();
+...
+Matrix a;
+a = foo(); // A move assignment is called.
+```
+
+We can say that a class implements move semantics when the move operators are defined, even if they are automatically by the compiler.
 
 ---
 
-# Move assignment operator
+# Move semantics and perfect forwarding
+
+Now, let's address the third question: **How can I explicitly instruct the compiler to perform a move instead of a copy operation when move semantics are implemented (possibly with the synthesized move operators)?** This question can be divided into two parts:
+
+**Move**: How to explicitly tell the compiler to replace a copying operation with a move if move semantics are implemented (perhaps with the synthesized move operators).
+
+**Perfect forwarding**: How to write function templates that accept arbitrary arguments and forward them to other functions in a way that the target functions receive the values with the same category they were passed to the forwarding function. *This topic will not be covered during this course but you can find a good explanation [here](https://levelup.gitconnected.com/perfect-forwarding-647e1caaf879).*
 
 ---
 
-# Perfect forwarding
+# Forcing a move: `std::move`
+
+Well, first of all, `std::move` doesn't move anything. They have chosen a wrong name; they should have called it `std::movable` instead. But we have to live with it.
+
+`std::move(expr)` unconditionally casts `expr` to an rvalue. So it makes it available to be moved.
+
+You use it to indicate to the compiler that you want something to be moved, even if it is an lvalue. It is actually moved if move semantics has been implemented for that type. If not, it will be copied.
+
+---
+
+# A new (generic) version of `swap`
+
+Now we are able to write our `swap`, and in a generic way!
+
+```cpp
+template<class T> 
+void swap(T& a, T& b) { 
+  T tmp{std::move(a)}; // Move construct.
+  a = std::move(b);    // Move assign.
+  b = std::move(tmp);  // Move assign.
+} 
+```
+
+Or, even simpler:
+
+```
+std::swap(a, b);
+```
+
+**Important Note**: If your class stores its dynamic and potentially large data in standard containers, you just need the synthetic move operators (which means that you have move semantics for free!). Another good reason to use standard containers.
+
+If type `T` implements move semantic, the swap is made using the move operators, and, if implemented correctly, with less memory requirement. If not, we have the usual copy.
+
+**Note**: Use `std::swap`, which does exactly that. 
+
+---
+
+# Once more: variables are *always* lvalues
+
+**Named variables are always lvalues**! Even if they are declared as rvalue references. In fact, you can take their address!
+
+In particular, **function parameters (of any function, including constructors) are lvalues**, even if their type is an rvalue reference.
+
+Inside the scope of this function:
+
+```cpp
+void f(Matrix&& m) {
+  // ...
+}
+```
+
+`m` is an **lvalue**.
+
+---
+
+# The solution
+
+You have to force the move:
+
+```cpp
+class Foo {
+public:
+  Foo(Matrix&& m) : my_m{std::move(m)} {}
+  // ...
+private:
+  Matrix my_m;
+}
+```
+
+Now, `my_m{std::move(m)}` calls the **move constructor**, and `m` is moved into `my_m`.
+
+---
+
+# What does move semantics have to do with the STL?
+
+**All standard containers support move semantic**, and **all standard algorithms** are written so that if the contained type implements move semantics, the creation of unnecessary temporaries can be avoided. All containers also have a `swap()` method that performs swaps intelligently.
+
+`std::unique_ptr` supports move (but not copy).
+
+For instance, `std::sort()` (which does a lot of swaps) is much more efficient on dynamically sized objects if move semantics are implemented.
+
+Move semantics also make a few (but not all) template metaprogramming techniques now used in some libraries, like [Eigen](https://eigen.tuxfamily.org/), to avoid unnecessary large size temporaries.
 
 ---
 
@@ -743,13 +902,9 @@ public:
     }
 };
 
-    double get_balance() const {
-        return balance;
-    }
+    double get_balance() const { return balance; }
 
-    double get_withdrawal_amount() const {
-        return withdrawal_amount;
-    }
+    double get_withdrawal_amount() const { return withdrawal_amount; }
 
 private:
     double balance;
@@ -826,7 +981,7 @@ In practical contexts where exception handling is necessary, the `noexcept` decl
 _class: titlepage
 -->
 
-# Utilities from the STL
+# STL utilities
 
 ---
 
@@ -834,7 +989,7 @@ _class: titlepage
 _class: titlepage
 -->
 
-# Utilities from the STL: I/O streams
+# STL utilities: I/O streams
 
 ---
 
@@ -954,7 +1109,7 @@ Width 10 with right alignment: **3.14e+00
 _class: titlepage
 -->
 
-# Utilities from the STL: random numbers
+# STL utilities: random numbers
 
 ---
 
@@ -1092,7 +1247,7 @@ This code generates a different realization of the sample every time you run it.
 _class: titlepage
 -->
 
-# Utilities from the STL: Time measuring
+# STL utilities: Time measuring
 
 ---
 
@@ -1155,7 +1310,7 @@ std::cout << "Average time taken by function: "
 _class: titlepage
 -->
 
-# Utilities from the STL: Filesystem
+# STL utilities: Filesystem
 
 ---
 
@@ -1195,4 +1350,4 @@ The STL is a fundamental part of the C++ standard library, offering a rich set o
 _class: titlepage
 -->
 
-# :arrow_right: ???
+# :arrow_right: Generating libraries and using third party libraries.

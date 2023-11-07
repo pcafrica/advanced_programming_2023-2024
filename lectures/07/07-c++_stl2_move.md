@@ -211,12 +211,12 @@ private:
 ```cpp
 std::shared_ptr<Data> shared_data = std::make_shared<Data>(...);
 
-Preprocessor preprocessor(shared_data);
+Preprocessor preprocessor(shared_data, ...);
 preprocessor.preprocess();
 
 // shared_data will still be used by other resources, hence it cannot be destroyed here.
 
-NumericalSolver solver(shared_data);
+NumericalSolver solver(shared_data, ...);
 solver.solve();
 ```
 
@@ -312,7 +312,7 @@ Let's consider this function that swaps the arguments:
 ```cpp
 void swap(Matrix& a, Matrix& b) {
     Matrix tmp{a}; // Make a copy of a.
-    a = b;         // Copy-assign b to a.
+    a = b;         // Copy assign b to a.
     b = tmp;       // Copy assign tmp to b.
 }
 ```
@@ -425,7 +425,7 @@ double* px = &(f(y)); // Address of y.
 The value returned by a function is an rvalue.
 
 ```cpp
-double fun(double x) { .... }
+double fun(double x) { ... }
 ```
 
 Here, `&fun` is a pointer to the function, *not* to the returned value. I cannot take the address of the returned value; it's a temporary object.
@@ -507,7 +507,7 @@ zoo(b); // Error: a const lvalue can bind only to a const lvalue reference.
 
 Here, "preferably" means that it will be chosen in case there is a choice.
 
-*This is before C++11*. In fact, it is still true if we just use lvalue references.
+This is **before** C++11. In fact, it is still true if we just use lvalue references.
 
 The consequence is that with just lvalue references, we cannot distinguish lvalues from rvalues.
 
@@ -541,7 +541,7 @@ Indeed, C++11 has introduced a new kind of adornment, called **rvalue reference*
 
 It **exclusively and preferably binds to rvalues**. Preferably means that, if given the choice, an rvalue binds to an rvalue reference.
 
-An important thing to remember is that **rvalue references love rvalues and only rvalues**. And are rather jealous: they will not share them with anybody else.
+An important thing to remember is that **rvalue references bind rvalues and only rvalues**.
 
 ---
 
@@ -605,7 +605,7 @@ The corresponding move operator could be:
 Matrix(Matrix&& rhs) : nr(rhs.nr), nc(rhs.nc), data(rhs.data) {
     // Fix rhs so it is a valid empty matrix.
     rhs.data = nullptr;
-    rhs.nc = rhs.nr = 0;
+    rhs.nr = rhs.nc = 0;
 }
 
 Matrix & operator=(Matrix&& rhs) {
@@ -613,7 +613,7 @@ Matrix & operator=(Matrix&& rhs) {
     data = rhs.data; // Shallow copy.
     // Fix rhs so it is a valid empty matrix.
     rhs.data = nullptr;
-    rhs.nc = rhs.nr = 0;
+    rhs.nr = rhs.nc = 0;
 }
 ```
 
@@ -625,7 +625,7 @@ I just grab the resource and leave an empty matrix! **It is important to ensure 
 
 ```cpp
 Matrix foo();
-...
+// ...
 Matrix a;
 a = foo(); // A move assignment is called.
 ```
@@ -640,7 +640,7 @@ Now, let's address the third question: **How can I explicitly instruct the compi
 
 **Move**: How to explicitly tell the compiler to replace a copying operation with a move if move semantics are implemented (perhaps with the synthesized move operators).
 
-**Perfect forwarding**: How to write function templates that accept arbitrary arguments and forward them to other functions in a way that the target functions receive the values with the same category they were passed to the forwarding function. *This topic will not be covered during this course but you can find a good explanation [here](https://levelup.gitconnected.com/perfect-forwarding-647e1caaf879).*
+**Perfect forwarding**: How to write function templates that accept arbitrary arguments and forward them to other functions in a way that the target functions receive the values with the same category they were passed to the forwarding function. *This topic will not be covered in this course but you can find a good explanation [here](https://levelup.gitconnected.com/perfect-forwarding-647e1caaf879).*
 
 ---
 
@@ -661,23 +661,17 @@ Now we are able to write our `swap`, and in a generic way!
 ```cpp
 template<class T> 
 void swap(T& a, T& b) { 
-  T tmp{std::move(a)}; // Move construct.
-  a = std::move(b);    // Move assign.
-  b = std::move(tmp);  // Move assign.
+  T tmp{std::move(a)}; // Move constructor.
+  a = std::move(b);    // Move assignment operator.
+  b = std::move(tmp);  // Move assignment operator.
 } 
-```
-
-Or, even simpler:
-
-```
+// Or, even simpler:
 std::swap(a, b);
 ```
 
-**Important Note**: If your class stores its dynamic and potentially large data in standard containers, you just need the synthetic move operators (which means that you have move semantics for free!). Another good reason to use standard containers.
+:warning: If your class stores its dynamic and potentially large data in standard containers, you just need the synthetic move operators (which means that you have move semantics for free!). Another good reason to use standard containers.
 
-If type `T` implements move semantic, the swap is made using the move operators, and, if implemented correctly, with less memory requirement. If not, we have the usual copy.
-
-**Note**: Use `std::swap`, which does exactly that. 
+:warning: If type `T` implements move semantic, the swap is made using the move operators, and, if implemented correctly, with less memory requirement. If not, we have the usual copy.
 
 ---
 
@@ -768,7 +762,7 @@ Matrix cholesky(const Matrix& m);
 double calculate(double operand1, double operand2) {
     assert(operand2 != 0 && "Operand2 cannot be zero.");
 
-    const double result = //...
+    const double result = // ...
 
     assert(result >= 0 && "Negative result!");
 
@@ -817,16 +811,6 @@ It's essential to note that an **incorrect behavior** (e.g., failure to meet a p
 Historically, in scientific computing, exceptions were often not handled at all or led to program termination with an error message. However, the rise of graphical interfaces and more complex software systems has made exception handling more critical. An algorithm's failure should not lead to the termination of the entire program.
 
 There is a growing need to perform *recovery* operations when exceptions occur.
-
----
-
-# Floating point exceptions
-
-It's important to note that **floating point exceptions** (FPE) are a special type of exception. In IEEE-compliant architectures, invalid arithmetic operations on floating-point numbers do not result in program failure. Instead, they produce special numerical values like `inf` (infinity) or `nan` (not-a-number), and the operations continue.
-
-This unique behavior distinguishes floating point exceptions from traditional exceptions.
-
-There are ways, not covered in this course, to properly handle FPEs.
 
 ---
 
@@ -951,16 +935,13 @@ Bank_account account(1000.0);
 try {
     account.withdraw(1500.0);
     // Or: account.withdraw(-500.0);
-}
-catch (const InsufficientFundsException& e) {
+} catch (const InsufficientFundsException& e) {
     std::cerr << "Exception caught: " << e.what() << std::endl;
     std::cerr << "Balance: " << e.get_balance()
               << ", Withdrawal amount: " << e.get_withdrawal_amount() << std::endl;
-}
-catch (const std::range_error& e) {
+} catch (const std::range_error& e) {
     std::cerr << "Exception caught: " << e.what() << std::endl;
-}
-catch (...) {
+} catch (...) {
     std::cerr << "Unknown exception caught." << std::endl;
 }
 ```
@@ -974,6 +955,16 @@ In situations where an algorithm's failure is one of its expected outcomes (e.g.
 Exception handling is increasingly important in code that must be integrated into a broader workflow or graphical interface. However, it's worth noting that the `try-catch` mechanism introduces some inefficiencies since it checks for exceptions every time a function is called. High-performance code often minimizes the use of exception handling.
 
 In practical contexts where exception handling is necessary, the `noexcept` declaration can help optimize efficiency by indicating functions and methods that do not throw exceptions.
+
+---
+
+# Floating point exceptions
+
+It's important to note that **floating point exceptions** (FPE) are a special type of exception. In IEEE-compliant architectures, invalid arithmetic operations on floating-point numbers do not result in program failure. Instead, they produce special numerical values like `inf` (infinity) or `nan` (not-a-number), and the operations continue.
+
+This unique behavior distinguishes floating point exceptions from traditional exceptions.
+
+There are ways, not covered in this course, to properly handle FPEs.
 
 ---
 
@@ -1293,7 +1284,6 @@ const int num_iterations = 1000;
 auto start = std::chrono::high_resolution_clock::now();
 for (int i = 0; i < num_iterations; ++i) {
     my_function();
-
 }
 auto end = std::chrono::high_resolution_clock::now();
 
@@ -1322,7 +1312,7 @@ Since C++17, a full set of utilities to manipulate files, directories, etc. in a
 const auto big_file_path{"big/file/to/copy"};
 
 if (std::filesystem::exists(big_file_path)) {
-  const auto big_file_size {std::filesystem::file_size(big_file_path)};
+  const auto big_file_size{std::filesystem::file_size(big_file_path)};
 
   std::filesystem::path tmp_path{"/tmp"};
   
@@ -1335,14 +1325,15 @@ if (std::filesystem::exists(big_file_path)) {
 
 ---
 
-# Conclusion
+# A final recommendation
 
-The STL is a fundamental part of the C++ standard library, offering a rich set of data structures, algorithms, and utilities that make C++ a powerful and expressive language. To fully harness the power of the STL:
+C++ is continuously evolving, and to maintain backward compatibility, new features are added while very few, if any, are eliminated. However, if you adopt a specific programming style, you'll find yourself using only a subset of what C++ has to offer.
 
-1. **Algorithm usage**: Algorithms are the backbone of the STL. Utilize them to simplify and optimize common operations, enhancing code readability and maintainability.
-2. **Container selection**: Choose the appropriate container type (e.g., `std::vector`, `std::map`, `std::queue`) based on your specific needs. This decision greatly impacts your code's efficiency.
-3. **Smart pointers**: Smart pointers like `std::shared_ptr` and `std::unique_ptr` are crucial for effective memory management, preventing memory leaks and resource leaks.
-4. **Newer features**: Stay up-to-date with the latest C++ standards (e.g., C++20, C++23) and incorporate new features like ranges, concepts, and structured bindings to write cleaner and more efficient code.
+The more outdated and cumbersome features that make programming more complex and less elegant will gradually be used less and less.
+
+It's advisable to start incorporating the new features that genuinely assist you in writing cleaner, simpler code. Most of the features illustrated here move in that direction.
+
+But always remember: the most important aspect of your code is whether it accomplishes the right task. An elegant code that yields incorrect results is of no use.
 
 ---
 
@@ -1350,4 +1341,4 @@ The STL is a fundamental part of the C++ standard library, offering a rich set o
 _class: titlepage
 -->
 
-# :arrow_right: Generating libraries and using third party libraries.
+# :arrow_right: Static and shared libraries.

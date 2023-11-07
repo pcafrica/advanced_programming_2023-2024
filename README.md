@@ -61,7 +61,7 @@ This work is licensed under a
 |~Thu 02 Nov 2023~| ---           | --- | --- |
 | Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Move semantics, smart pointers, STL utilities. [[Markdown](lectures/07/07-c++_stl2_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.pdf)] |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
-| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
+| Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Static and shared libraries |
 | Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |

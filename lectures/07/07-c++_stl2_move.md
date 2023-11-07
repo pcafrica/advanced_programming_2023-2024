@@ -24,7 +24,7 @@ _class: titlepage
 1. Smart pointers
 2. Move semantics
 3. Exceptions
-4. STL utilities:
+4. STL utilities
    - I/O streams
    - Random numbers
    - Time measuring
@@ -59,7 +59,7 @@ std::array<double, 10> p;
 
 The variable `p` takes care of creating 10 doubles and destroying them.
 
-#### In C++, smart pointers are an important to implement RAII.
+#### In C++, smart pointers are important tools to implement RAII.
 
 ---
 
@@ -272,7 +272,7 @@ std::weak_ptr<int> weak1 = ptr; // Get pointer to data without taking ownership.
 ptr = std::make_shared(5); // Delete managed object, acquires new pointer.
 std::weak_ptr<int> weak2 = sptr; // Get pointer to new data without taking ownership.
 
-auto tmp = weak1.lock() // tmp is nullptr, as weak1 is expired!
+auto tmp1 = weak1.lock()  // tmp1 is nullptr, as weak1 is expired!
 auto tmp2 = weak2.lock()) // tmp2 is a shared_ptr to new data (5).
 std::cout << "weak2 value is " << *tmp2 << std::endl;
 ```
@@ -721,7 +721,7 @@ Now, `my_m{std::move(m)}` calls the **move constructor**, and `m` is moved into 
 
 **All standard containers support move semantic**, and **all standard algorithms** are written so that if the contained type implements move semantics, the creation of unnecessary temporaries can be avoided. All containers also have a `swap()` method that performs swaps intelligently.
 
-`std::unique_ptr` supports move (but not copy).
+Smart pointers supports move (but `std::unique_ptr` disallows copy).
 
 For instance, `std::sort()` (which does a lot of swaps) is much more efficient on dynamically sized objects if move semantics are implemented.
 

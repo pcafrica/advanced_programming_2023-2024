@@ -9,7 +9,7 @@
 int main() {
   // Define file paths.
   const std::string input_file_path = "../input.txt";
-  const std::string output_file_path = "output.txt";
+  const std::string output_file_path = "ex5_output.txt";
 
   // Open input file.
   std::ifstream input_file(input_file_path);

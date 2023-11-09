@@ -52,7 +52,7 @@ private:
   unsigned int size;
 };
 
-void measure_copy(unsigned int size) {
+void measure_copy(const unsigned int &size) {
   Vector source(size);
   Vector destination(size);
 

@@ -56,7 +56,7 @@ Each employee is assigned a unique access code, which can be activated using the
 
 # Exercise 2: `std::set` (2/2)
 
-Your task is to implement the `Access` class as described above. Write a test program that accomplishes the following:
+Your task is to implement the `Access` class as described above. Write a test program that accomplishes the following tasks:
 
 1. Create an instance of the `Access` object.
 2. Activate the access codes 1234, 9999, and 9876.
@@ -124,7 +124,7 @@ The program should generate a new file (named `output.txt`) containing the word-
 
 # Exercise 6: Move semantics for efficient data transfers
 
-Define a class Vector that represents a one-dimensional vector of double values, stored as a raw pointer `double * data`.
+Define a class Vector that represents a one-dimensional vector of double values, stored as a raw pointer `double *data`.
 
 1. Implement a **move constructor** for the `Vector` class that transfers ownership of the underlying data from the source vector to the destination vector. The move constructor should ensure that the source vector's data is no longer accessible after the transfer.
 2. Define a **copy** and a **move assignment operator** for the `Vector` class that allows for the efficient transfer of ownership of the underlying data from one Vector object to another. Similar to the move constructor, the move assignment operator should ensure that the source vector's data is no longer accessible after the transfer.

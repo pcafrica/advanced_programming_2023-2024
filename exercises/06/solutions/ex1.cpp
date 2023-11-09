@@ -3,9 +3,13 @@
 #include <random>
 
 int main() {
-  // Initialize random number generator.
-  std::random_device rd;
-  std::default_random_engine gen(rd());
+  // Initialize random number generator engine.
+  std::default_random_engine gen(42);
+  // Or, with a random seed:
+  // std::random_device rd;
+  // std::default_random_engine gen(rd());
+
+  // Initialize probability distribution.
   std::uniform_real_distribution<double> distribution(0, 1);
 
   // Number of random points to generate.

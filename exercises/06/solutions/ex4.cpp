@@ -1,93 +1,56 @@
-#include <chrono>
-#include <cmath>
+#include <algorithm>
 #include <iostream>
+#include <random>
+#include <unordered_set>
+#include <vector>
 
-class Vector {
-public:
-  // Constructor.
-  Vector(const unsigned int &size = 0) : data(new double[size]), size(size) {}
-
-  // Move constructor.
-  Vector(Vector &&other) noexcept {
-    data = other.data;
-    size = other.size;
-    other.data = nullptr;
-    other.size = 0;
+template <typename Container>
+void print(const std::string &string, const Container &cont) {
+  std::cout << string << ":" << std::endl;
+  for (const auto &v : cont) {
+    std::cout << v << " ";
   }
-
-  // Copy assignment operator.
-  Vector &operator=(const Vector &other) noexcept {
-    if (this != &other) {
-      delete[] data;
-
-      size = other.size;
-      data = new double[size];
-
-      for (unsigned int i = 0; i < other.size; ++i) {
-        data[i] = other.data[i];
-      }
-    }
-
-    return *this;
-  }
-
-  // Move assignment operator.
-  Vector &operator=(Vector &&other) noexcept {
-    if (this != &other) {
-      delete[] data;
-      data = other.data;
-      size = other.size;
-      other.data = nullptr;
-      other.size = 0;
-    }
-
-    return *this;
-  }
-
-  // Destructor.
-  ~Vector() { delete[] data; }
-
-private:
-  double *data;
-  unsigned int size;
-};
-
-void measure_copy(unsigned int size) {
-  Vector source(size);
-  Vector destination(size);
-
-  auto start = std::chrono::high_resolution_clock::now();
-  destination = source;
-  auto end = std::chrono::high_resolution_clock::now();
-
-  std::cout << "Time taken to copy vector of size " << size << ": "
-            << std::chrono::duration_cast<std::chrono::milliseconds>(end -
-                                                                     start)
-                   .count()
-            << " milliseconds." << std::endl;
-}
-
-void measure_move(const unsigned int &size) {
-  Vector source(size);
-  Vector destination(size);
-
-  auto start = std::chrono::high_resolution_clock::now();
-  destination = std::move(source);
-  auto end = std::chrono::high_resolution_clock::now();
-
-  std::cout << "Time taken to move vector of size " << size << ": "
-            << std::chrono::duration_cast<std::chrono::microseconds>(end -
-                                                                     start)
-                   .count()
-            << " microseconds." << std::endl;
+  std::cout << std::endl << std::endl;
 }
 
 int main() {
-  for (unsigned int i = 20; i < 31; ++i) {
-    measure_copy(std::pow(2, i));
-    measure_move(std::pow(2, i));
-    std::cout << std::endl;
+  // Initialize random number generator.
+  std::default_random_engine gen(42);
+  std::uniform_int_distribution<unsigned int> distribution(0, 9);
+
+  // Generate vector of 100 random integers between 0 and 9.
+  std::vector<unsigned int> random_numbers(100);
+  for (unsigned int &num : random_numbers) {
+    num = distribution(gen);
   }
+  print("Original vector", random_numbers);
+
+  // Sort the vector.
+  std::vector<unsigned int> sorted_numbers(random_numbers);
+  std::sort(sorted_numbers.begin(), sorted_numbers.end());
+  print("Sorted numbers", sorted_numbers);
+
+  // Remove duplicates while sorting.
+  std::vector<unsigned int> sorted_unique_numbers(random_numbers);
+  std::sort(sorted_unique_numbers.begin(), sorted_unique_numbers.end());
+  auto unique_end =
+      std::unique(sorted_unique_numbers.begin(), sorted_unique_numbers.end());
+  sorted_unique_numbers.erase(unique_end, sorted_unique_numbers.end());
+  print("Sorted unique numbers", sorted_unique_numbers);
+
+  // Remove duplicates without sorting.
+  std::vector<unsigned int> unsorted_unique_numbers;
+  std::unordered_set<unsigned int> unique_numbers(random_numbers.begin(),
+                                                  random_numbers.end());
+
+  for (const unsigned int &element : random_numbers) {
+    if (unique_numbers.find(element) != unique_numbers.end()) {
+      unique_numbers.erase(element);
+      unsorted_unique_numbers.push_back(element);
+    }
+  }
+
+  print("Unsorted unique numbers", unsorted_unique_numbers);
 
   return 0;
 }

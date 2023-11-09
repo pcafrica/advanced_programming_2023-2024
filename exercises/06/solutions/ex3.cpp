@@ -1,78 +1,73 @@
-#include <algorithm>
-#include <fstream>
 #include <iostream>
 #include <map>
-#include <sstream>
-#include <string>
-#include <vector>
 
-int main() {
-  // Define file paths.
-  const std::string input_file_path = "../input.txt";
-  const std::string output_file_path = "output.txt";
-
-  // Open input file.
-  std::ifstream input_file(input_file_path);
-  if (!input_file.is_open()) {
-    std::cerr << "Error opening input file: " << input_file_path << std::endl;
-    return 1;
+class Access {
+public:
+  void activate(unsigned int code, unsigned int level) {
+    access_codes[code] = level;
   }
 
-  // Create a map to store word-frequency pairs.
-  std::map<std::string, int> word_frequency_map;
+  void deactivate(unsigned int code) { access_codes.erase(code); }
 
-  // Read input text file.
-  std::string line;
-  while (getline(input_file, line)) {
-    // Split the line into words.
-    std::istringstream iss(line);
-    std::string word;
+  bool is_active(unsigned int code, unsigned int level) const {
+    auto it = access_codes.find(code);
+    if (it != access_codes.end()) {
+      return it->second >= level;
+    }
+    return false;
+  }
 
-    while (iss >> word) {
-      // Convert word to lowercase for case-insensitive analysis
-      // and remove punctuation.
-      std::transform(word.begin(), word.end(), word.begin(),
-                     [](char ch) -> char {
-                       if (ispunct(ch))
-                         return '\0';
-                       return tolower(ch);
-                     });
+private:
+  std::map<unsigned int, unsigned int> access_codes;
+};
 
-      // Increment word frequency. operator[] automatically allocates a new
-      // entry if it was not present yet.
-      word_frequency_map[word]++;
+int main() {
+  Access access_system;
+
+  // Activate access codes with access levels.
+  access_system.activate(1234, 1);
+  access_system.activate(9999, 5);
+  access_system.activate(9876, 9);
+
+  unsigned int entered_code;
+  unsigned int required_level = 5;
+  bool door_opened = false;
+
+  while (!door_opened) {
+    std::cout << "Enter your access code for level " << required_level << ": ";
+    std::cin >> entered_code;
+
+    if (access_system.is_active(entered_code, required_level)) {
+      std::cout << "Door opened successfully!" << std::endl;
+      access_system.activate(9999, 8);
+      access_system.activate(1111, 7);
+      door_opened = true;
+      access_system.deactivate(entered_code);
+    } else {
+      std::cout << "Access code is not valid for the current level "
+                << required_level
+                << ". Please try "
+                   "again."
+                << std::endl;
     }
   }
 
-  // Close input file.
-  input_file.close();
+  required_level = 7;
+  door_opened = false;
 
-  // Sort the output by frequency, in descending order.
-  // If two words have the same frequency, then sort them alphabetically.
+  while (!door_opened) {
+    std::cout << "Enter your access code for level " << required_level << ": ";
+    std::cin >> entered_code;
 
-  // Being an associative container, a std::map cannot be sorted.
-  // So let's convert it to a std::vector, and sort it instead.
-  std::vector<std::pair<std::string, int>> word_frequency_vector(
-      word_frequency_map.begin(), word_frequency_map.end());
-  std::sort(word_frequency_vector.begin(), word_frequency_vector.end(),
-            [](const auto &a, const auto &b) {
-              return (a.second > b.second || a.first < b.first);
-            });
-
-  // Open output file.
-  std::ofstream output_file(output_file_path);
-  if (!output_file.is_open()) {
-    std::cerr << "Error opening output file: " << output_file_path << std::endl;
-    return 1;
+    if (access_system.is_active(entered_code, 7)) {
+      std::cout << "Door opened successfully!" << std::endl;
+      door_opened = true;
+    } else {
+      std::cout << "Access code is not valid for the current level. Please try "
+                   "again."
+                << std::endl;
+    }
   }
-
-  // Write word-frequency pairs to output file.
-  for (const auto &[word, frequency] : word_frequency_vector) {
-    output_file << word << ": " << frequency << std::endl;
-  }
-
-  // Close output file.
-  output_file.close();
 
   return 0;
 }

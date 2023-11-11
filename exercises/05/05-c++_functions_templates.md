@@ -71,6 +71,18 @@ The iterations continue until the difference between two consecutive estimates, 
 
 ---
 
+# A note on the use of template arguments as policies
+
+**:warning: In C++, template arguments can be used as *policies*.**
+
+This allows you to customize the behavior of a class or function without changing its core implementation. As templates provide a way to write generic code that can work with different data types, policies provide a way to write generic code that can behave according to different algorithms or strategies.
+
+When you use a template argument as a policy, you are essentially saying, "Here is a piece of code, and I want to let users decide certain aspects of its behavior." This can include things like how elements are compared, how data is stored, which specific algorithm to apply, or how certain operations are performed.
+
+See the example included in the `examples` folder.
+
+---
+
 # Exercise 4: template metaprogramming
 
 Use template metaprogramming to calculate the factorial of an integer at compile time.

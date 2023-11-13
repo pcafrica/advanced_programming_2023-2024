@@ -38,7 +38,7 @@ This work is licensed under a
 
 :warning: **Homework 02 is now online!**
 
-:warning: **Deadline: 31 Oct 2023, 23:59**
+:warning: **Deadline: 03 Dec 2023, 23:59**
 
 :warning: **Homework solutions must be submitted on Google Classroom.**
 

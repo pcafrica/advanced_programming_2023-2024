@@ -44,7 +44,7 @@ This work is licensed under a
 
 - Homework 01 [[Markdown](homeworks/homework_01.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
 
-- Homework 02 [[Markdown](homeworks/homework_02.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
+- Homework 02 [[Markdown](homeworks/homework_02.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjM5OTQwMjE4NjIy/details)]
 
 ---
 

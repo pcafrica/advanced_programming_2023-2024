@@ -22,7 +22,7 @@ _class: titlepage
 # Objective
 
 Develop a toolbox in C++ covering various data science and scientific computing areas.
-Implement **module A** and **at least one among B, C, D**.
+Implement **module A)** and **one module among B), C), D)**, of your choice.
 
 ## Components
 
@@ -138,11 +138,11 @@ where $\mathbf{y}\in \mathbb{R}^N, \mathbf{f} : \mathbb{R} \times \mathbb{R}^N \
 
 # Evaluation grid
 
-1. Modules A), B), C), D) (up to **8 points** each):
+1. Module A) + Module B), C), or D) (up to **8 points** each):
    - Successful compilation (2 points), implementation correctness (4 points), results correctness (2 points).
 2. Effective utilization of modern C++ features (up to **5 points**):
    - STL (2 points), smart pointers (1 points), exceptions (1 point), const correctness (1 point).
-3. Documentation, build instructions and discussion of results (up to **2 points**)
+3. Documentation, build instructions, and discussion of results (up to **2 points**)
 4. Code organization (up to **5 points**):
    - clear separation between function declarations and definitions (1 point), consistent use of namespaces and styling (1 point), organized file structure with meaningful names (1 point), compilability as standalone shared libraries (2 points).
 5. Integration of third-party libraries (up to **2 points** each)

@@ -409,7 +409,9 @@ _class: titlepage
 
 ---
 
-![bg fit](images/01_build_process.svg)
+# The build process
+
+![w:1000px](images/01_build_process.svg)
 
 ---
 

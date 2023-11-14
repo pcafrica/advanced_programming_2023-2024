@@ -1,18 +1,559 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"><svg xmlns="http://www.w3.org/2000/svg" width="979" height="755" xmlns:xlink="http://www.w3.org/1999/xlink"><source><![CDATA[title: The build process
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1123.8667"
+   height="644.40002"
+   version="1.1"
+   id="svg196"
+   sodipodi:docname="08_build_process.svg"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview198"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.0039947"
+     inkscape:cx="571.71617"
+     inkscape:cy="328.18898"
+     inkscape:window-width="1920"
+     inkscape:window-height="939"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg196" />
+  <source><![CDATA[Title: The build process
 
 User->Preprocessor: Source file 1
-Preprocessor->Compiler: Preprocess
-Compiler->Compiler: Compile
+Preprocessor->Compiler: Preprocess source file 1
 Compiler->Linker: Generate object file 1
 User->Preprocessor: Source file 2
-Preprocessor->Compiler: Preprocess
-Compiler->Compiler: Compile
+Preprocessor->Compiler: Preprocess source file 2
 Compiler->Linker: Generate object file 2
+User->Preprocessor: ...
+Preprocessor->Compiler: Preprocess
+Compiler->Linker: Generate object file
+
 User->Linker: Library 1
 User->Linker: Library 2
-User->Linker: Library 3
 User->Linker: ...
-Linker->Executable: Link object files
-Linker->Executable: Link libraries
-Loader->Executable: Load and execute
-]]></source><desc>The build process</desc><defs><marker viewBox="0 0 5 5" markerWidth="5" markerHeight="5" orient="auto" refX="5" refY="2.5" id="markerArrowBlock"><path d="M 0 0 L 5 2.5 L 0 5 z"></path></marker><marker viewBox="0 0 9.6 16" markerWidth="4" markerHeight="16" orient="auto" refX="9.6" refY="8" id="markerArrowOpen"><path d="M 9.6,8 1.92,16 0,13.7 5.76,8 0,2.286 1.92,0 9.6,8 z"></path></marker></defs><g class="title"><rect x="10" y="10" width="173.76666259765625" height="29.200000762939453" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="15" y="30.199999809265137" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="15">The build process</tspan></text></g><g class="actor"><rect x="10" y="49.20000076293945" width="58.53333282470703" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="20" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="20">User</tspan></text></g><g class="actor"><rect x="10" y="696.4000129699707" width="58.53333282470703" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="20" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="20">User</tspan></text></g><line x1="39.266666412353516" x2="39.266666412353516" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="actor"><rect x="116.69999694824219" y="49.20000076293945" width="135.5999984741211" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="126.69999694824219" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="126.69999694824219">Preprocessor</tspan></text></g><g class="actor"><rect x="116.69999694824219" y="696.4000129699707" width="135.5999984741211" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="126.69999694824219" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="126.69999694824219">Preprocessor</tspan></text></g><line x1="184.49999618530273" x2="184.49999618530273" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="actor"><rect x="272.2999954223633" y="49.20000076293945" width="97.06666564941406" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="282.2999954223633" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="282.2999954223633">Compiler</tspan></text></g><g class="actor"><rect x="272.2999954223633" y="696.4000129699707" width="97.06666564941406" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="282.2999954223633" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="282.2999954223633">Compiler</tspan></text></g><line x1="320.8333282470703" x2="320.8333282470703" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="actor"><rect x="513.866662979126" y="49.20000076293945" width="77.79999923706055" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="523.866662979126" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="523.866662979126">Linker</tspan></text></g><g class="actor"><rect x="513.866662979126" y="696.4000129699707" width="77.79999923706055" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="523.866662979126" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="523.866662979126">Linker</tspan></text></g><line x1="552.7666625976562" x2="552.7666625976562" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="actor"><rect x="678.3666572570801" y="49.20000076293945" width="116.33333587646484" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="688.3666572570801" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="688.3666572570801">Executable</tspan></text></g><g class="actor"><rect x="678.3666572570801" y="696.4000129699707" width="116.33333587646484" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="688.3666572570801" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="688.3666572570801">Executable</tspan></text></g><line x1="736.5333251953125" x2="736.5333251953125" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="actor"><rect x="871.7666568756104" y="49.20000076293945" width="77.79999923706055" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="881.7666568756104" y="74.40000057220459" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="881.7666568756104">Loader</tspan></text></g><g class="actor"><rect x="871.7666568756104" y="696.4000129699707" width="77.79999923706055" height="39.20000076293945" style="stroke-width: 2px;" stroke="#000000" fill="#ffffff"></rect><text x="881.7666568756104" y="721.6000127792358" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="881.7666568756104">Loader</tspan></text></g><line x1="910.6666564941406" x2="910.6666564941406" y1="88.4000015258789" y2="696.4000129699707" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><g class="signal"><text x="49.266666412353516" y="119.00000095367432" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="49.266666412353516">Source file 1</tspan></text><line x1="39.266666412353516" x2="184.49999618530273" y1="127.60000228881836" y2="127.60000228881836" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="204.4999942779541" y="158.20000171661377" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="204.4999942779541">Preprocess</tspan></text><line x1="184.49999618530273" x2="320.8333282470703" y1="166.8000030517578" y2="166.8000030517578" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="345.8333282470703" y="201.40000343322754" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="345.8333282470703">Compile</tspan></text><line x1="320.8333282470703" x2="340.8333282470703" y1="186.8000030517578" y2="186.8000030517578" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><line x1="340.8333282470703" x2="340.8333282470703" y1="186.8000030517578" y2="211.00000381469727" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><line x1="340.8333282470703" x2="320.8333282470703" y1="211.00000381469727" y2="211.00000381469727" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="330.8333282470703" y="236.60000324249268" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="330.8333282470703">Generate object file 1</tspan></text><line x1="320.8333282470703" x2="552.7666625976562" y1="245.20000457763672" y2="245.20000457763672" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="49.266666412353516" y="275.80000400543213" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="49.266666412353516">Source file 2</tspan></text><line x1="39.266666412353516" x2="184.49999618530273" y1="284.4000053405762" y2="284.4000053405762" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="204.4999942779541" y="315.0000047683716" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="204.4999942779541">Preprocess</tspan></text><line x1="184.49999618530273" x2="320.8333282470703" y1="323.6000061035156" y2="323.6000061035156" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="345.8333282470703" y="358.20000648498535" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="345.8333282470703">Compile</tspan></text><line x1="320.8333282470703" x2="340.8333282470703" y1="343.6000061035156" y2="343.6000061035156" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><line x1="340.8333282470703" x2="340.8333282470703" y1="343.6000061035156" y2="367.8000068664551" style="stroke-width: 2px;" stroke="#000000" fill="none"></line><line x1="340.8333282470703" x2="320.8333282470703" y1="367.8000068664551" y2="367.8000068664551" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="330.8333282470703" y="393.4000062942505" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="330.8333282470703">Generate object file 2</tspan></text><line x1="320.8333282470703" x2="552.7666625976562" y1="402.00000762939453" y2="402.00000762939453" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="252.6666660308838" y="432.60000705718994" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="252.6666660308838">Library 1</tspan></text><line x1="39.266666412353516" x2="552.7666625976562" y1="441.200008392334" y2="441.200008392334" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="252.6666660308838" y="471.8000078201294" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="252.6666660308838">Library 2</tspan></text><line x1="39.266666412353516" x2="552.7666625976562" y1="480.40000915527344" y2="480.40000915527344" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="252.6666660308838" y="511.00000858306885" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="252.6666660308838">Library 3</tspan></text><line x1="39.266666412353516" x2="552.7666625976562" y1="519.6000099182129" y2="519.6000099182129" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="281.56666469573975" y="550.2000093460083" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="281.56666469573975">...</tspan></text><line x1="39.266666412353516" x2="552.7666625976562" y1="558.8000106811523" y2="558.8000106811523" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="562.7666625976562" y="589.4000101089478" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="562.7666625976562">Link object files</tspan></text><line x1="552.7666625976562" x2="736.5333251953125" y1="598.0000114440918" y2="598.0000114440918" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="577.2166595458984" y="628.6000108718872" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="577.2166595458984">Link libraries</tspan></text><line x1="552.7666625976562" x2="736.5333251953125" y1="637.2000122070312" y2="637.2000122070312" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g><g class="signal"><text x="746.5333251953125" y="667.8000116348267" style="font-size: 16px; font-family: Andale Mono, monospace;"><tspan x="746.5333251953125">Load and execute</tspan></text><line x1="910.6666564941406" x2="736.5333251953125" y1="676.4000129699707" y2="676.4000129699707" style="stroke-width: 2px; marker-end: url(&quot;#markerArrowBlock&quot;);" stroke="#000000" fill="none"></line></g></svg>
+
+Linker->Executable: Link object files\nand libraries
+Loader->Executable: Load (shared) libraries\nExecute
+]]></source>
+  <desc
+     id="desc2">The build process</desc>
+  <defs
+     id="defs10">
+    <marker
+       viewBox="0 0 5 5"
+       markerWidth="5"
+       markerHeight="5"
+       orient="auto"
+       refX="5"
+       refY="2.5"
+       id="markerArrowBlock">
+      <path
+         d="M 0,0 5,2.5 0,5 Z"
+         id="path4" />
+    </marker>
+    <marker
+       viewBox="0 0 9.6 16"
+       markerWidth="4"
+       markerHeight="16"
+       orient="auto"
+       refX="9.6000004"
+       refY="8"
+       id="markerArrowOpen">
+      <path
+         d="M 9.6,8 1.92,16 0,13.7 5.76,8 0,2.286 1.92,0 Z"
+         id="path7" />
+    </marker>
+  </defs>
+  <g
+     class="actor"
+     id="g26"
+     transform="translate(-9,-48)">
+    <rect
+       x="10"
+       y="49"
+       width="58.533333"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect20" />
+    <text
+       x="20"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text24"><tspan
+         x="20"
+         id="tspan22">User</tspan></text>
+  </g>
+  <line
+     x1="30.266666"
+     x2="30.266666"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line28" />
+  <g
+     class="actor"
+     id="g36"
+     transform="translate(-9,-48)">
+    <rect
+       x="116.7"
+       y="49"
+       width="135.60001"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect30" />
+    <text
+       x="126.7"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text34"><tspan
+         x="126.7"
+         id="tspan32">Preprocessor</tspan></text>
+  </g>
+  <line
+     x1="175.5"
+     x2="175.5"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line38" />
+  <g
+     class="actor"
+     id="g46"
+     transform="translate(-9,-48)">
+    <rect
+       x="387.16666"
+       y="49"
+       width="97.066666"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect40" />
+    <text
+       x="397.16666"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text44"><tspan
+         x="397.16666"
+         id="tspan42">Compiler</tspan></text>
+  </g>
+  <line
+     x1="426.69998"
+     x2="426.69998"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line48" />
+  <g
+     class="actor"
+     id="g56"
+     transform="translate(-9,-48)">
+    <rect
+       x="628.73334"
+       y="49"
+       width="77.800003"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect50" />
+    <text
+       x="638.73334"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text54"><tspan
+         x="638.73334"
+         id="tspan52">Linker</tspan></text>
+  </g>
+  <line
+     x1="658.6333"
+     x2="658.6333"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line58" />
+  <g
+     class="actor"
+     id="g66"
+     transform="translate(-9,-48)">
+    <rect
+       x="793.23334"
+       y="49"
+       width="116.33334"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect60" />
+    <text
+       x="803.23334"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text64"><tspan
+         x="803.23334"
+         id="tspan62">Executable</tspan></text>
+  </g>
+  <line
+     x1="842.39996"
+     x2="842.39996"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line68" />
+  <g
+     class="actor"
+     id="g76"
+     transform="translate(-9,-48)">
+    <rect
+       x="1054.0667"
+       y="49"
+       width="77.800003"
+       height="39"
+       style="stroke-width:2px"
+       stroke="#000000"
+       fill="#ffffff"
+       id="rect70" />
+    <text
+       x="1064.0667"
+       y="74"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text74"><tspan
+         x="1064.0667"
+         id="tspan72">Loader</tspan></text>
+  </g>
+  <line
+     x1="1083.9667"
+     x2="1083.9667"
+     y1="40"
+     y2="644.40002"
+     style="stroke-width:2px"
+     stroke="#000000"
+     fill="none"
+     id="line78" />
+  <g
+     class="signal"
+     id="g86"
+     transform="translate(-9,-48)">
+    <text
+       x="49.266666"
+       y="118.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text82"><tspan
+         x="49.266666"
+         id="tspan80">Source file 1</tspan></text>
+    <line
+       x1="39.266666"
+       x2="184.5"
+       y1="127"
+       y2="127"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line84" />
+  </g>
+  <g
+     class="signal"
+     id="g94"
+     transform="translate(-9,-48)">
+    <text
+       x="194.5"
+       y="157.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text90"><tspan
+         x="194.5"
+         id="tspan88">Preprocess source file 1</tspan></text>
+    <line
+       x1="184.5"
+       x2="435.69998"
+       y1="166"
+       y2="166"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line92" />
+  </g>
+  <g
+     class="signal"
+     id="g102"
+     transform="translate(-9,-48)">
+    <text
+       x="445.69998"
+       y="196.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text98"><tspan
+         x="445.69998"
+         id="tspan96">Generate object file 1</tspan></text>
+    <line
+       x1="435.69998"
+       x2="667.6333"
+       y1="205"
+       y2="205"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line100" />
+  </g>
+  <g
+     class="signal"
+     id="g110"
+     transform="translate(-9,-48)">
+    <text
+       x="49.266666"
+       y="235.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text106"><tspan
+         x="49.266666"
+         id="tspan104">Source file 2</tspan></text>
+    <line
+       x1="39.266666"
+       x2="184.5"
+       y1="244"
+       y2="244"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line108" />
+  </g>
+  <g
+     class="signal"
+     id="g118"
+     transform="translate(-9,-48)">
+    <text
+       x="194.5"
+       y="274.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text114"><tspan
+         x="194.5"
+         id="tspan112">Preprocess source file 2</tspan></text>
+    <line
+       x1="184.5"
+       x2="435.69998"
+       y1="283"
+       y2="283"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line116" />
+  </g>
+  <g
+     class="signal"
+     id="g126"
+     transform="translate(-9,-48)">
+    <text
+       x="445.69998"
+       y="313.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text122"><tspan
+         x="445.69998"
+         id="tspan120">Generate object file 2</tspan></text>
+    <line
+       x1="435.69998"
+       x2="667.6333"
+       y1="322"
+       y2="322"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line124" />
+  </g>
+  <g
+     class="signal"
+     id="g134"
+     transform="translate(-9,-48)">
+    <text
+       x="97.433334"
+       y="352.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text130"><tspan
+         x="97.433334"
+         id="tspan128">...</tspan></text>
+    <line
+       x1="39.266666"
+       x2="184.5"
+       y1="361"
+       y2="361"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line132" />
+  </g>
+  <g
+     class="signal"
+     id="g142"
+     transform="translate(-9,-48)">
+    <text
+       x="261.93332"
+       y="391.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text138"><tspan
+         x="261.93332"
+         id="tspan136">Preprocess</tspan></text>
+    <line
+       x1="184.5"
+       x2="435.69998"
+       y1="400"
+       y2="400"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line140" />
+  </g>
+  <g
+     class="signal"
+     id="g150"
+     transform="translate(-9,-48)">
+    <text
+       x="455.33331"
+       y="430.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text146"><tspan
+         x="455.33331"
+         id="tspan144">Generate object file</tspan></text>
+    <line
+       x1="435.69998"
+       x2="667.6333"
+       y1="439"
+       y2="439"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line148" />
+  </g>
+  <g
+     class="signal"
+     id="g158"
+     transform="translate(-9,-48)">
+    <text
+       x="310.10001"
+       y="469.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text154"><tspan
+         x="310.10001"
+         id="tspan152">Library 1</tspan></text>
+    <line
+       x1="39.266666"
+       x2="667.6333"
+       y1="478"
+       y2="478"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line156" />
+  </g>
+  <g
+     class="signal"
+     id="g166"
+     transform="translate(-9,-48)">
+    <text
+       x="310.10001"
+       y="508.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text162"><tspan
+         x="310.10001"
+         id="tspan160">Library 2</tspan></text>
+    <line
+       x1="39.266666"
+       x2="667.6333"
+       y1="517"
+       y2="517"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line164" />
+  </g>
+  <g
+     class="signal"
+     id="g174"
+     transform="translate(-9,-48)">
+    <text
+       x="339"
+       y="547.5"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text170"><tspan
+         x="339"
+         id="tspan168">...</tspan></text>
+    <line
+       x1="39.266666"
+       x2="667.6333"
+       y1="556"
+       y2="556"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line172" />
+  </g>
+  <g
+     class="signal"
+     id="g184"
+     transform="translate(-9,-48)">
+    <text
+       x="677.6333"
+       y="576.90002"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text180"><tspan
+         x="677.6333"
+         id="tspan176">Link object files</tspan><tspan
+         dy="1.2em"
+         x="677.6333"
+         id="tspan178">and libraries</tspan></text>
+    <line
+       x1="667.6333"
+       x2="851.39996"
+       y1="614.20001"
+       y2="614.20001"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line182" />
+  </g>
+  <g
+     class="signal"
+     id="g194"
+     transform="translate(-9,-48)">
+    <text
+       x="861.39996"
+       y="635.09998"
+       style="font-size:16px;font-family:'Andale Mono', monospace"
+       id="text190"><tspan
+         x="861.39996"
+         id="tspan186">Load (shared) libraries</tspan><tspan
+         dy="1.2em"
+         x="861.39996"
+         id="tspan188">Execute</tspan></text>
+    <line
+       x1="1092.9667"
+       x2="851.39996"
+       y1="672.40002"
+       y2="672.40002"
+       style="stroke-width:2px;marker-end:url(#markerArrowBlock)"
+       stroke="#000000"
+       fill="none"
+       id="line192" />
+  </g>
+</svg>

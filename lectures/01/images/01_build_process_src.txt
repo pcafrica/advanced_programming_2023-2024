@@ -1,0 +1,16 @@
+User->Preprocessor: Source file 1
+Preprocessor->Compiler: Preprocess source file 1
+Compiler->Linker: Generate object file 1
+User->Preprocessor: Source file 2
+Preprocessor->Compiler: Preprocess source file 2
+Compiler->Linker: Generate object file 2
+User->Preprocessor: ...
+Preprocessor->Compiler: Preprocess
+Compiler->Linker: Generate object file
+
+User->Linker: Library 1
+User->Linker: Library 2
+User->Linker: ...
+
+Linker->Executable: Link object files\nand libraries
+Loader->Executable: Load (shared) libraries\nExecute

@@ -51,15 +51,15 @@ _class: titlepage
 _class: titlepage
 -->
 
-# What is a library
+# What is a library?
 
 ---
 
 # What is a library?
 
-A library is a collection of pre-written code or routines that can be reused by computer programs. These libraries typically contain functions, classes, and procedures that perform common tasks, allowing developers to save time and effort by leveraging existing code rather than writing everything from scratch.
+A library is a collection of pre-written code or routines that can be reused by computer programs. These libraries typically contain functions, variables, classes, and procedures that perform common tasks, allowing developers to save time and effort by leveraging existing code rather than writing everything from scratch.
 
-Libraries can be specific to a programming language or more general-purpose, applicable across different languages. Examples include the Standard Template Library (STL) in C++, the Java Standard Library, and the Python Standard Library. Additionally, there are third-party libraries created by developers and organizations to extend the capabilities of programming languages or frameworks.
+Libraries can be specific to a programming language or more general-purpose, applicable across different languages. Examples include the Standard Template Library (STL) in C++, the Java Class Library, and the Python Standard Library. Additionally, there are third-party libraries created by developers and organizations to extend the capabilities of programming languages or frameworks.
 
 ---
 
@@ -102,8 +102,18 @@ will install the `python3` executable and the shared libraries it requires to be
 ```bash
 sudo apt install libpython3-dev
 ```
-will download header files, libraries and tools required for building applications **based on** the source code of Python3 (called `CPython`, written in C).
+will download header files, libraries and tools required for building applications **based on** the source code of Python3 (called [`CPython`](https://github.com/python/cpython), written in C).
 
+---
+
+# Curated lists of awesome C++ and Python frameworks, libraries, resources, and shiny things.
+<br><br>
+
+- ## [Popular GitHub repositories using C++](https://github.com/search?q=stars%3A%3E500+language%3AC%2B%2B+&type=repositories) $\left(\geq 4500\right)$!
+- ## [awesome-cpp](https://github.com/fffaraz/awesome-cpp)
+- ## [awesome-python](https://github.com/vinta/awesome-python)
+- ## [awesome-scientific-python](https://github.com/rossant/awesome-scientific-python)
+- ## [awesome-scientific-computing](https://github.com/nschloe/awesome-scientific-computing)
 
 ---
 
@@ -115,7 +125,9 @@ _class: titlepage
 
 ---
 
-![bg fit](images/08_build_process.svg)
+# The build process
+
+![w:1000px](../01/images/01_build_process.svg)
 
 ---
 
@@ -619,7 +631,7 @@ These features form the foundation for implementing plugins (and are also employ
 
 Dynamic loading is a fundamental aspect of a plugin architecture, allowing an application to load parts of its implementation dynamically based on user requests.
 
-**:warning: This is a very advanced topic. For more information, have a look at [this interesting post](https://theo-penavaire.medium.com/loading-of-a-c-class-from-a-shared-library-modern-c-722d6a830a2b).**
+**:warning: This is a very advanced topic. For more information, have a look at [this interesting post](https://blog.theopnv.com/posts/cpp-dynamic-loading/) (source code [here](https://github.com/theo-pnv/Dynamic-Loading).**
 
 ---
 

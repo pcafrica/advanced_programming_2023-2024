@@ -349,7 +349,7 @@ And these are both wrong:
 
 ```bash
 g++ myprogram.o -lmylibrary1 -lmylibrary2 -o myprogram
-g++ -lmylibrary2 -lmylibrary1 main.o -o myprogram
+g++ -lmylibrary2 -lmylibrary1 myprogram.o -o myprogram
 ```
 
 Undefined symbols in `main.o` are not searched in the given libraries.
@@ -491,7 +491,7 @@ _class: titlepage
 
 # Where does the loader search for shared libraries?
 
-The loader has a different search strategy with respect to the linker. It looksin `/lib`, `/usr/lib`, and in all the directories contained in `/etc/ld.conf` or in files with the extension `conf` contained in the `/etc/ld.conf.d/` directory.
+The loader has a different search strategy with respect to the linker. It looks in `/lib`, `/usr/lib`, and in all the directories contained in `/etc/ld.conf` or in files with the extension `conf` contained in the `/etc/ld.conf.d/` directory.
 
 If you want to permanently add a directory in the search path of the loader, you need to add it to `/etc/ld.conf` or add a conf file in the `/etc/ld.conf.d/` directory with the name of the directory and then launch `ldconfig`. This command rebuilds the database of the shared libraries and should be called every time one adds a new library (for example, `apt` does it for you, and moreover, `ldconfig` is launched at every boot of the computer).
 

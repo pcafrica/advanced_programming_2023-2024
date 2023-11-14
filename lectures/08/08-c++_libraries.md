@@ -173,7 +173,7 @@ From now on, however, we will deal with libraries that contain machine code, not
 
 ---
 
-# Another guided example
+# A guided example
 
 ## `main.cpp` (developed by me)
 ```cpp
@@ -226,33 +226,34 @@ collect2: error: ld returned 1 exit status
 
 # Case 1: I have access to the implementation of `myfun()`
 
-## Step 1: compile the object file implementing `myfun()`
+### Step 1: compile the object file implementing `myfun()`
 ```bash
-g++ mylib.cpp -c
+g++ -c mylib.cpp
 ```
 
-## Step 2: link my application against that object file
+### Step 2: link my application against that object file
 
 ```bash
 g++ main.o mylib/mylib.o -o main
 ```
-Now
+Now both `main` and `myfun` are resolved:
 ```
 $ nm -C main
-...
 00000000000011a9 T main
 00000000000011bd T myfun()
 ...
 ```
-both `main` and `myfun` are resolved!
 
 ---
 
 # Case 2: the reality
 
 Real-case scenarios are typically much more complex because:
-1. Developers of `mylib` may not be so nice: they want to **hide the actual implementation**: they are ok with providing users with `mylib.hpp` and the corresponding *machine code* (which is not human-readable), but not `mylib.cpp`.
+1. **Compilation takes time**!
 2. One may need to use symbols defined in **multiple object files**, and compiling all of them and/or carrying out the whole list of object file names can be tedious.
+3. If a change is made in `mylib` or it is updated, one has to *recompile* `mylib` and *relink* all their applications using `mylib`.
+4. Developers of `mylib` may not be so nice: they want to **hide the actual implementation**. They are ok with providing users with `mylib.hpp` and the corresponding *machine code* (which is not human-readable), but not `mylib.cpp`.
+5. **Dealing with multiple dependencies** makes the complexity increase.
 
 This is why, typically, developers of a library provide users with *header files* and a *library* file.
 
@@ -298,31 +299,6 @@ Besides `T` and `U`, the command may use other letters. The most important ones 
 
 ---
 
-# Pros and cons of static libraries
-
-## Pros
-- The resulting executable is self-contained, i.e., it contains all the instructions required for its execution.
-
-## Cons
-- If an external library receives an update (such as improvements or bugfixes), the user has to relink its code against the new version.
-- We cannot load symbols dynamically, on the base of decisions taken at run-time (it's an advanced stuff, we will deal with it later).
-- The executable might become large.
-
----
-
-# Pros and cons of shared libraries
-
-## Pros
-1. Updating a library has an immediate effect on all codes linking against it. No recompilation or relinking is needed.
-2. Executable is smaller since the code in the library is not duplicated.
-3. We can load libraries and symbols runtime (*plugins*).
-
-## Cons
-1. Executables depend on the library. If you delete the library, all codes using it won't run anymore.
-2. Different library versions need careful management to ensure correct linking.
-
----
-
 <!--
 _class: titlepage
 -->
@@ -339,7 +315,7 @@ At the linking stage of the compilation processes, the symbols (which identify o
 
 ---
 
-# How to *build* a static library?
+# How to build a static library?
 
 In practice, libraries result themselves from preprocessing and compiling their corresponding source codes. In our example:
 ```bash
@@ -377,6 +353,18 @@ g++ -lmylibrary2 -lmylibrary1 main.o -o myprogram
 ```
 
 Undefined symbols in `main.o` are not searched in the given libraries.
+
+---
+
+# Pros and cons of static libraries
+
+## Pros
+- The resulting executable is self-contained, i.e., it contains all the instructions required for its execution.
+
+## Cons
+- If an external library receives an update (such as improvements or bugfixes), the user has to relink its code against the new version.
+- We cannot load symbols dynamically, on the base of decisions taken at run-time (it's an advanced stuff, we will deal with it later).
+- The executable might become large.
 
 ---
 
@@ -573,7 +561,8 @@ g++ main.o -L/path/to/mylib -lmylib -o main
 
 However, running the executable may result in an error:
 ```
-./main error while loading shared libraries: libmylib.so.1: cannot open shared object file: No such file or directory
+./main error while loading shared libraries:
+    libmylib.so.1: cannot open shared object file: No such file or directory
 ```
 
 To fix this, direct the loader as explained in the previous section, for instance by modifying `LD_LIBRARY_PATH` or changing the `rpath`:
@@ -596,9 +585,9 @@ ln -s libmylib.so.1.1 libmylib.so.1
 ln -s libmylib.so.1 libmylib.so
 ```
 
-Now, running the executable uses the updated library without recompilation.
+Now, running the executable uses the updated library without recompilation or relinking.
 
-# Note
+## Note
 
 For smaller projects without versioning, you can use the same name for link name, `soname`, and real name (e.g., `libmylib.so`). In this case, the `-Wl,soname` option can be omitted and the symbolic links are not needed.
 
@@ -629,11 +618,24 @@ Shared libraries offer two intriguing features:
 1. Dynamic loading of the library.
 2. Dynamic loading of symbols from the library.
 
-These features form the foundation for implementing plugins (and are also employed in Python modules).
+These features form the foundation for implementing *plugins* (and are also employed in Python modules).
 
 Dynamic loading is a fundamental aspect of a plugin architecture, allowing an application to load parts of its implementation dynamically based on user requests.
 
-**:warning: This is a very advanced topic. For more information, have a look at [this interesting post](https://blog.theopnv.com/posts/cpp-dynamic-loading/) (source code [here](https://github.com/theo-pnv/Dynamic-Loading).**
+**:warning: This is a very advanced topic. For more information, have a look at [this interesting post](https://blog.theopnv.com/posts/cpp-dynamic-loading/) (source code [here](https://github.com/theo-pnv/Dynamic-Loading)).**
+
+---
+
+# Pros and cons of shared libraries
+
+## Pros
+1. Updating a library has an immediate effect on all codes linking against it. No recompilation or relinking is needed.
+2. Executable is smaller since the code in the library is not duplicated.
+3. We can load libraries and symbols runtime (*plugins*).
+
+## Cons
+1. Executables depend on the library. If you delete the library, all codes using it won't run anymore.
+2. Both the linking phase and **the loading phase** need careful management, especially when dealing with different library versions installed.
 
 ---
 
@@ -642,6 +644,22 @@ _class: titlepage
 -->
 
 # How to compile (and use) third-party libraries?
+
+---
+
+# A (very) general guide
+
+1. **Obtain the library**.
+2. **Read the documentation**.
+3. **Compile the library**.
+4. **Install the library**, i.e., store header files and the generated (static or shared) library files into a convenient folder.
+5. **Integrate it in your project**, i.e., include the folder containing header files and add proper link flags. In the case of shared libraries, don't forget to redirect the loader.
+
+Looks easy, doesn't it? :sunglasses:
+
+Actually, the crux lies in **step 3**:
+- The library may have dependencies on other libraries. :smiling_imp:
+- Fortunately, some libraries use automatic build systems, simplifying the compilation process ... but forcing us to learn how to use these tools! :sweat_smile:
 
 ---
 

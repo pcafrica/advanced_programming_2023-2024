@@ -66,16 +66,17 @@ This work is licensed under a
 | Tue 07 Nov 2023 | 14:00 - 16:00 | 005 | Move semantics, smart pointers, STL utilities. [[Markdown](lectures/07/07-c++_stl2_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/07/07-c++_stl2_move.pdf)] |
 | Thu 09 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](exercises/06/06-c++_stl_move.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/06/06-c++_stl_move.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/06/06-c++_stl_move.pdf)] |
 | Tue 14 Nov 2023 | 14:00 - 16:00 | 005 | Libraries: principles, generation, and use. [[Markdown](lectures/08/08-c++_libraries.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/08/08-c++_libraries.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/08/08-c++_libraries.pdf)]|
-| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |
-| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | TBA |
-| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session |
-| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | TBA |
-| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | TBA |
-| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | TBA |
-| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | TBA |
-| Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | TBA |
+| Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. Introduction to GNU Make. |
+| Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to CMake. Debugging, profiling and testing. |
+| Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. |
+| Tue 28 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
+| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
+| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
+| Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
+| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Modules and packages. Introduction to NumPy and SciPy for scientific computing. Plotting. |
+| Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
+| Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to pandas for data analysis. Integrating C++ and Python codes. |
+| Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
+| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | Best practices for writing reliable code: error handling, unit testing, and
+software documentation. Licensing. |
+| Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. |

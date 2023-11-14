@@ -133,7 +133,7 @@ _class: titlepage
 
 # Header-only libraries
 
-A library formed only by class templates and function templates contains only header files. One example is `Eigen`, but many others are available.
+A library formed only by class templates and function templates contains only header files. One example is [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page), but many others are available.
 
 Using a header-only library is very simple: you have to store the header files in a directory later searched by the preprocessor.
 
@@ -159,7 +159,9 @@ tar xzvf eigen-3.4.0.tar.gz -C ${HOME}/Desktop
 g++ -I${HOME}/Desktop/eigen-3.4.0 eigen.cpp -o main_eigen && ./main_eigen
 ```
 
-As simple as that. From now on, however, we will deal with libraries that contain machine code, not header-only libraries.
+As simple as that.
+
+From now on, however, we will deal with libraries that contain machine code, not header-only libraries.
 
 ---
 

@@ -27,8 +27,11 @@ Implement **module A)** and **one module among B), C), D)**, of your choice.
 ## Components
 
 A) **Statistics module** **:warning: <alert>(mandatory)</alert>**
+
 B) **Interpolation module**
+
 C) **Numerical integration module**
+
 D) **ODE module**
 
 Requirements and descriptions for each module are provided in the sections below.

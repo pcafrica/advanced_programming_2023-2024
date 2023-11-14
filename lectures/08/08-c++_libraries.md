@@ -35,7 +35,7 @@ _class: titlepage
 </div>
 <div>
 
-3. Shared libraries
+4. Shared libraries
    - The linking phase
    - The loading phase
    - How to build

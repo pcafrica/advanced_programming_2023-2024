@@ -280,6 +280,26 @@ g++ main.o -L/path/to/mylib -lmylib -o main
 
 ---
 
+# :warning: Order matters
+
+When linking, the order matters. Libraries should be listed in reverse order of dependency. Libraries that depend on symbols from other libraries should come first in the list.
+
+So, for example, if `myprogram` depends on `mylibrary1` which on turn depends on `mylibrary2`, then `mylibrary2` should come first:
+```bash
+g++ myprogram.o -lmylibrary2 -lmylibrary1 -o myprogram
+```
+
+And these are both wrong:
+
+```bash
+g++ myprogram.o -lmylibrary1 -lmylibrary2 -o myprogram
+g++ -lmylibrary2 -lmylibrary1 myprogram.o -o myprogram
+```
+
+Undefined symbols in `main.o` are not searched in the given libraries.
+
+---
+
 # Inspecting the content of a library
 
 The command `nm` works not only with object files and executables, but also with libraries:
@@ -333,26 +353,6 @@ ar rs libxx.a d.o // You can add one more.
 Option `r` adds/replaces an object in the library. Option `s` adds an index to the archive, making it a searchable library.
 
 The command `ar -t libxx.a` lists all object files contained in the archive.
-
----
-
-# Order matters!
-
-When linking with static libraries, the order matters. Libraries should be listed in reverse order of dependency. Libraries that depend on symbols from other libraries should come first in the list.
-
-So, for example, if `myprogram` depends on `mylibrary1` which on turn depends on `mylibrary2`, then `mylibrary2` should come first:
-```bash
-g++ myprogram.o -lmylibrary2 -lmylibrary1 -o myprogram
-```
-
-And these are both wrong:
-
-```bash
-g++ myprogram.o -lmylibrary1 -lmylibrary2 -o myprogram
-g++ -lmylibrary2 -lmylibrary1 myprogram.o -o myprogram
-```
-
-Undefined symbols in `main.o` are not searched in the given libraries.
 
 ---
 

@@ -62,7 +62,7 @@ This process involves creating object files and linking them to generate the exe
 
 - **Prerequisites** are files or conditions that a target depends on. If any of the prerequisites have been modified more recently than the target, or if the target does not exist, the associated recipe is executed.
 
-- A **recipe** is a set of shell commands that are executed to build or update the target. Recipes follow the prerequisites and are indented with a **tab character**. Each line in the recipe typically represents a separate command.
+- A **recipe** is a set of shell commands that are executed to build or update the target. Recipes follow the prerequisites and are indented with a <alert>**\<TAB\> character**</alert>. Each line in the recipe typically represents a separate command.
 
 ---
 
@@ -253,30 +253,32 @@ clean:
 
 ---
 
-What's good about makefile
+# Summary (1/2)
 
-    The make program checks whether target exists and if the prerequisite files of the target are up to date; if so, it avoids generating the target again
-    A lot of libraries can be installed with few commands using make as tool. A common pattern to install an open source library could be the following:
+`make` efficiently determines the need to regenerate a target by checking its existence and the up-to-dateness of prerequisite files. This feature enables it to avoid unnecessary target regeneration.
 
+Make simplifies the installation of numerous libraries through a concise set of commands. A typical sequence for installing an open-source library involves using the following commands:
+
+```bash
 make 
 make install
+```
 
-Generally the make command build the library and the make install copy the headers of the library into /usr/include (or /usr/local/include), the dynamic libraries .so or static libraries .a into usr/lib (or /usr/local/lib) and the binaries into usr/bin (or /usr/local/bin). In that way after the installation of the library you can use it for example in your source code.
+Typically, the `make` command builds the library, while `make install` copies the library's headers, the libraries and the binaries to a user-specified folder, which defaults to the `/usr` or `/usr/local` directory. This streamlined process facilitates the integration of the installed library into your source code.
 
-Sometimes you can also see make -jN which run N jobs (commands) in parallel at the same time speeding up the build process.
-What's not good about makefile
+---
 
-    Makefiles are O.S. dependent so you need to adapt them to different systems. Take a look to CMake as a possible solution to solve this problem.
-    Each command of each recipe must start with a tab space and that could be a real no-sense source of errors.
+# Summary (2/2)
+ 
+In some circumstances, the build process can be optimized by employing the `make -jN` command, where `N` represents the number of parallel jobs or commands executed concurrently.
 
+Despite its advantages, Makefiles are platform-dependent, necessitating adaptation to different operating systems. To address this issue, we will explore [CMake](https://cmake.org/) as a potential solution, providing a platform-independent alternative for managing and generating build systems.
 
-# References
+## References
 
-Dive deeper into Makefiles with these resources:
-
-- [A simple makefile tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/): Essential tutorial on make and Makefile.
-- [GNU make](https://www.gnu.org/software/make/manual/make.html): Official documentation for make and Makefile.
+- [A simple makefile tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/): Essential tutorial on `make` and Makefile.
 - [Makefile tutorial](https://github.com/vampy/Makefile): A GitHub repository with numerous makefile examples.
+- [GNU make](https://www.gnu.org/software/make/manual/make.html): Official documentation for `make` and Makefile.
 
 ---
 
@@ -292,12 +294,45 @@ Dive deeper into Makefiles with these resources:
 
 ---
 
-# Exercise 2:
+# Exercise 2: shared libraries
+
+The `hints/ex2/` directory contains a library that implements a gradient descent algorithm for linear regression, accompanied by a source file `ex2.cpp` utilizing this library.
+
+Unfortunately, the gradient descent code within the library contains a bug.
+
+Your tasks are:
+
+1. Compile the library and test file, using the provided Makefiles.
+2. Inspect the code to locate the bug within the gradient descent algorithm.
+3. Once the bug is identified, fix it within the code. Then, compile an updated version of the library, incorporating the bug fix.
+4. Execute the test case to verify that the bug fix successfully addresses the issue. Please note that, since we are dealing with a shared library, this verification should be conducted **without** the need for recompilation or relinking of the test file.
 
 ---
 
-# Exercise 3: dynamic loading
+# Exercise 3: order matters
 
+The `hints/ex3/` directory contains a source file `ex3.cpp` that uses a library `graphics_lib`, which depends on another library `math_lib`.
 
+1. Generate a static library `libmath.a`.
+2. Generate a static library `libgraphics.a`.
+3. Compile `ex3.cpp` into an object file `ex3.o`.
+4. Link `main.o` against `libmath.a` and `libgraphics.a` to produce the final executable.
 
-`-ldl`
+What is the correct order for passing `ex3.o`, `libmath.a`, and `libgraphics.a` to the linker to successfully resolve all the symbols?
+
+Would the same considerations apply if dynamic linking (shared libraries) were used instead of static linking?
+
+---
+
+# Exercise 4: dynamic loading
+
+This exercise showcases dynamic loading, the building block for implementing a *plugin* system.
+
+The `hints/ex4/` contains a module `functions` containing the definition of three mathematical functions. The source file `functions.cpp` gets compiled into a shared library `libfunctions.so`, using *C linkage* to prevent [*name mangling*](https://en.wikipedia.org/wiki/Name_mangling#C++).
+
+Notably, when compiling the source file `ex4.cpp` into an executable, there is no need to link against `libfunctions.so`.
+
+1. Fill in the missing parts in `ex4.cpp` to dynamically load the library.
+   2. Prompt the user for the function name to evaluate at a given point, selecting from the ones available in the library.
+3. Perform the evaluation and print the result.
+4. Release the library.

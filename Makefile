@@ -3,7 +3,7 @@ FILES_HTML:=$(patsubst %.md,%.html, $(FILES_MD))
 FILES_BACKUP:=$(addsuffix .backup, $(FILES_MD))
 FILES_TMP:=$(shell find . -type f -name "*~")
 
-SUBDIRS:=lectures labs
+SUBDIRS:=exercises homeworks lectures
 
 all: $(SUBDIRS)
 

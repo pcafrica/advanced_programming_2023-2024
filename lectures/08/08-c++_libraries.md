@@ -8,7 +8,7 @@ _class: titlepage
 # Lecture 08
 <br>
 
-## Libraries: principles, generation and use.
+## Libraries: principles, building and use.
 <br>
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024
@@ -539,7 +539,7 @@ _class: titlepage
 
 2. **Create the library:**
    ```bash
-   g++ -shared -Wl,-soname,libmylib.so.1 -o libmylib.so.1.0 smalllib.o
+   g++ -shared mylib.o -Wl,-soname,libmylib.so.1 -o libmylib.so.1.0
    ```
    *Note:* The library's real name is `libmylib.so.1.0`.
 

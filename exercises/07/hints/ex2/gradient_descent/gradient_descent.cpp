@@ -4,6 +4,9 @@
 
 void GradientDescent::fit(const std::vector<double> &x,
                           const std::vector<double> &y) {
+  weight = 0;
+  bias = 0;
+
   unsigned int i = 0;
 
   for (; i < max_iterations; ++i) {

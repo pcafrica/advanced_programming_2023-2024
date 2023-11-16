@@ -10,7 +10,7 @@ int main() {
   std::vector<double> y = {2, 4, 6, 8, 10};
 
   // Create a GradientDescent object.
-  GradientDescent model(0.1, 1e-12, 5000);
+  GradientDescent model(0.1, 1e-12, 1000);
 
   try {
     // Fit the model to the data.

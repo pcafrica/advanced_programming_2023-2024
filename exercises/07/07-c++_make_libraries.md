@@ -115,10 +115,10 @@ main: main.o math.o
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 clean:
-	rm *.o main
+	rm -f *.o main
 ```
 
-- `%.o:` A generic rule for creating files with `.o` extension.
+- `%.o`: A generic rule for creating files with `.o` extension.
 - `$@`, `$<`, `$^`: Automatic variables representing the target, the first prerequisite, and all prerequisites, respectively.
 
 ---
@@ -136,11 +136,11 @@ main: main.o math.o
 	$(CXX) $(CXXFLAGS) $^ -o $<
 
 clean:
-	rm *.o main
+	rm -f *.o main
 ```
 
-- **.PHONY:** Marks targets that don't represent files.
-- **all:** Default target.
+- `.PHONY`: Marks targets that don't represent files.
+- `all`: Default target.
 
 ---
 
@@ -165,7 +165,7 @@ main: $(OBJ)
 	$(CXX) -c $(CXXFLAGS) $< -o $@
 
 clean:
-	rm *.o main
+	rm -f *.o main
 ```
 
 ---
@@ -289,7 +289,7 @@ Despite its advantages, Makefiles are platform-dependent, necessitating adaptati
   wget https://github.com/beltoforion/muparserx/archive/refs/tags/v4.0.12.tar.gz
   ```
 - The source files of `muParserX` are located inside the `muparserx-4.0.12/parser/` folder.
-- In that folder, write a `Makefile` to compile `muParserX` into a shared library.
+- In that folder, write a Makefile to compile `muParserX` into a shared library.
 - Write a Makefile that compiles and links the program in `hints/ex1.cpp` with `muParserX`.
 
 ---
@@ -333,6 +333,6 @@ The `hints/ex4/` contains a module `functions` containing the definition of thre
 Notably, when compiling the source file `ex4.cpp` into an executable, there is no need to link against `libfunctions.so`.
 
 1. Fill in the missing parts in `ex4.cpp` to dynamically load the library.
-   2. Prompt the user for the function name to evaluate at a given point, selecting from the ones available in the library.
+2. Prompt the user for the function name to evaluate at a given point, selecting from the ones available in the library.
 3. Perform the evaluation and print the result.
 4. Release the library.

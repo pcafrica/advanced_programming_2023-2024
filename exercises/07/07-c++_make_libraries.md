@@ -35,7 +35,7 @@ Ensure the `make` program is installed by checking `make -version`. If not insta
 
 ---
 
-# Getting Started
+# Getting started
 
 Let's start with a simple C++ program consisting of three files: 
 - `math.hpp`

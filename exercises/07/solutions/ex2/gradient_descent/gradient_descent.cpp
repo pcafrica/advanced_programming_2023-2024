@@ -17,8 +17,8 @@ void GradientDescent::fit(const std::vector<double> &x,
       const double error = prediction - y[j];
       loss += error * error;
 
-      weight += learning_rate * error * x[j];
-      bias += learning_rate * error;
+      weight -= learning_rate * error * x[j];
+      bias -= learning_rate * error;
     }
 
     loss /= x.size();

@@ -296,7 +296,7 @@ Despite its advantages, Makefiles are platform-dependent, necessitating adaptati
 
 # Exercise 2: shared libraries
 
-The `hints/ex2/` directory contains a library that implements a gradient descent algorithm for linear regression, accompanied by a source file `ex2.cpp` utilizing this library.
+The `hints/ex2/` directory contains a library that implements a [gradient descent algorithm for linear regression](https://www.geeksforgeeks.org/gradient-descent-in-linear-regression/), accompanied by a source file `ex2.cpp` utilizing this library.
 
 Unfortunately, the gradient descent code within the library contains a bug.
 

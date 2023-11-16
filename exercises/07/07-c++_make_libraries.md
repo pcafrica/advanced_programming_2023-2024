@@ -31,7 +31,7 @@ _class: titlepage
 
 ### Prerequisites
 
-Ensure the `make` program is installed by checking `make -version`. If not installed, use package managers such as `apt` on Unix or [`Homebrew`](https://formulae.brew.sh/formula/make) on macOS. Additionally, have a C++ compiler like `g++` or `clang++` ready for compilation.
+Ensure the `make` program is installed by checking `make --version`. If not installed, use package managers such as `apt` on Unix or [`Homebrew`](https://formulae.brew.sh/formula/make) on macOS. Additionally, have a C++ compiler like `g++` or `clang++` ready for compilation.
 
 ---
 

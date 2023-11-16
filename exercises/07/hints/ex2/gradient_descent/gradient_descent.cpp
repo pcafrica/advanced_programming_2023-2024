@@ -33,4 +33,6 @@ void GradientDescent::fit(const std::vector<double> &x,
   }
 }
 
-double GradientDescent::predict(const double &x) { return weight * x + bias; }
+double GradientDescent::predict(const double &x) const {
+  return weight * x + bias;
+}

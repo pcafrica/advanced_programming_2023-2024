@@ -11,7 +11,7 @@ public:
         max_iterations(max_iterations) {}
 
   void fit(const std::vector<double> &x, const std::vector<double> &y);
-  double predict(const double &x);
+  double predict(const double &x) const;
 
 private:
   double learning_rate;

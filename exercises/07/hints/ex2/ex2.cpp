@@ -6,8 +6,8 @@
 
 int main() {
   // Create some data points.
-  std::vector<double> x = {1, 2, 3, 4, 5};
-  std::vector<double> y = {2, 4, 6, 8, 10};
+  const std::vector<double> x = {1, 2, 3, 4, 5};
+  const std::vector<double> y = {2, 4, 6, 8, 10};
 
   // Create a GradientDescent object.
   GradientDescent model(0.1, 1e-12, 1000);

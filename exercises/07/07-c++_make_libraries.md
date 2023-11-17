@@ -270,7 +270,7 @@ Typically, the `make` command builds the library, while `make install` copies th
 
 # Summary (2/2)
  
-In some circumstances, the build process can be optimized by employing the `make -jN` command, where `N` represents the number of parallel jobs or commands executed concurrently.
+In some circumstances, the build process can be optimized by employing the `make -j<N>` command, where `N` represents the number of parallel jobs or commands executed concurrently.
 
 Despite its advantages, Makefiles are platform-dependent, necessitating adaptation to different operating systems. To address this issue, we will explore [CMake](https://cmake.org/) as a potential solution, providing a platform-independent alternative for managing and generating build systems.
 

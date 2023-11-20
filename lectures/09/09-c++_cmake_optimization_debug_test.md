@@ -285,8 +285,8 @@ endif()
 
 The following operators can be used.
 
-Unary: `NOT`, `TARGET`, `EXISTS` (file), `DEFINED`, etc.\
-Binary: `STREQUAL`, `AND`, `OR`, `MATCHES` (regular expression), \dots
+Unary: `NOT`, `TARGET`, `EXISTS` (file), `DEFINED`, etc.
+Binary: `STREQUAL`, `AND`, `OR`, `MATCHES` (regular expression), ...
 
 Parentheses can be used to group.
 
@@ -489,8 +489,8 @@ add_subdirectory(tests)
 - [Official documentation](https://cmake.org/cmake/help/latest/)
 - [Modern CMake](https://cliutils.gitlab.io/modern-cmake/)
 - [It's time to do CMake right](https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/)
-- [Effective Modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
-- [More Modern CMake](https://www.youtube.com/watch?v=y7ndUhdQuU8&feature=youtu.be)
+- [Effective modern CMake](https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1)
+- [More modern CMake](https://www.youtube.com/watch?v=y7ndUhdQuU8&feature=youtu.be)
 
 ---
 
@@ -529,15 +529,15 @@ The compiler enhances performance by optimizing CPU register usage, expression r
 It is beneficial to unroll small loops. For example, transform:
 
 ```cpp
-for (i=0; i<n; ++i)
-  for(k=0; k<3; ++k)
+for (int i = 0; i < n; ++i)
+  for(int k = 0; k < 3; ++k)
     a[k] += b[k] * c[i];
 ```
 
 to:
 
 ```cpp
-for (i=0; i<n; ++i){
+for (int i = 0; i < n; ++i) {
   a[0] += b[0] * c[i];
   a[1] += b[1] * c[i];
   a[2] += b[2] * c[i];
@@ -553,7 +553,7 @@ Compiler may unroll loops with `-funroll-loops`, but better performance isn't gu
 Prefetch constant values inside the loop for further optimization:
 
 ```cpp
-for (i=0; i<n; ++i){
+for (int i = 0; i < n; ++i) {
   auto x = c[i];
   a[0] += b[0] * x;
   a[1] += b[1] * x;
@@ -568,8 +568,8 @@ for (i=0; i<n; ++i){
 `if` statements, especially in nested loops, can be costly. Consider these improvements:
 
 ```cpp
-for(int i=0; i<10000; ++i){
-  for (int j=1; j<10; ++j){
+for(int i = 0; i < 10000; ++i) {
+  for (int j = 1; j < 10; ++j) {
     if(c[i] > 0)
       a[i][j] = 0;
     else
@@ -577,12 +577,12 @@ for(int i=0; i<10000; ++i){
   }
 }
 // Better:
-for(int i=0; i<10000; ++i)
+for(int i = 0; i < 10000; ++i)
   if(c[i] > 0)
-    for(int j=0; j<10; ++j){
+    for(int j = 0; j < 10; ++j) {
       a[i][j] = 0;
   else
-    for(int j=0; j<10; ++j){
+    for(int j = 0; j < 10; ++j) {
       a[i][j] = 1;
 }
 ```
@@ -621,7 +621,7 @@ double test2(double *data, const size_t count) {
 
 The answer is not straightforward: it depends on the computer's architecture.
 
-On my laptop (8th Gen Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz), <alert>`test2` is approximately 5 times faster than `test1`<alert> with `count = 1e9`!
+On my laptop (8th Gen Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz), <alert>`test2` is approximately 5 times faster than `test1`</alert> with `count = 1e9`!
 
 Why? The Streaming SIMD Extensions (SSE2) instruction set of the CPU allows for parallelization at the microcode level. It's a super-scalar architecture with multiple instruction pipelines to execute several instructions concurrently during a clock cycle. The code of `test2` better exploits this capability.
 
@@ -659,18 +659,6 @@ _class: titlepage
 
 ---
 
-# Debuggers
-
-**Debuggers** are software tools that enable developers to inspect, analyze, and troubleshoot code during the development process. They provide a set of features for identifying and fixing errors in programs.
-
-## **Key features**
-- **Breakpoints:** Pauses program execution at specified points to inspect variables and code.
-- **Variable inspection:** Allows developers to examine the values of variables during runtime.
-- **Step-through execution:** Enables line-by-line execution for precise debugging.
-- **Call stack analysis:** Displays the sequence of function calls leading to the current point in code.
-
----
-
 # Static analysis
 
 Static analysis tools analyze source code by inspecting it for potential issues, vulnerabilities, or adherence to coding standards. Common ones include:
@@ -697,6 +685,18 @@ Some of the checks they perform:
 - [Compiler Explorer](https://godbolt.org/) to check how code translates into assembly language.
 
 - [C++ Insights](https://cppinsights.io/) allows viewing source code through a compiler's eyes.
+
+---
+
+# Debuggers
+
+**Debuggers** are software tools that enable developers to inspect, analyze, and troubleshoot code during the development process. They provide a set of features for identifying and fixing errors in programs.
+
+## **Key features**
+- **Breakpoints:** Pauses program execution at specified points to inspect variables and code.
+- **Variable inspection:** Allows developers to examine the values of variables during runtime.
+- **Step-through execution:** Enables line-by-line execution for precise debugging.
+- **Call stack analysis:** Displays the sequence of function calls leading to the current point in code.
 
 ---
 
@@ -794,7 +794,7 @@ When executing the code, it generates a file called `gmon.out`, which is then ut
 gprof --demangle executable > file.txt
 ```
 
-The `file.txt` will contain valuable information about the program execution.
+Then `file.txt` will contain valuable information about the program execution.
 
 ---
 
@@ -802,7 +802,7 @@ The `file.txt` will contain valuable information about the program execution.
 
 `gprof` offers a range of options. The main ones are:
 
-- `--annotated-source[=symspec]`: Prints annotated source code. If `symspec` is specified, print output only for matching symbols. *NOT WORKING ON LATEST KERNELS*
+- `--annotated-source[=symspec]`: Prints annotated source code. If `symspec` is specified, print output only for matching symbols.
 - `-I dirs`: List of directories to search for source files.
 - `--graph[=symspec]`: Prints the call graph analysis.
 - `--demangle`: Demangles mangled names (essential for C++ programs).
@@ -836,45 +836,9 @@ It opens a graphical interface.
 There are alternative profilers, some useful in a parallel environment:
 
 - [perf](https://perf.wiki.kernel.org/index.php/Main_Page): Lightweight CPU profiling.
+- [`gperftools`](https://github.com/gperftools/gperftools): Formerly Google Performance Tools.
 - [The TAU performance system](http://www.cs.uoregon.edu/Research/tau/home.php): Profiling and tracing toolkit for parallel programs.
 - [Scalasca](http://icl.cs.utk.edu/scalasca): Performance analysis for parallel applications on distributed memory systems.
-
----
-
-# Coverage with gcov
-
-`GCC` supports program coverage with `gcov`. Compile with `-g -fprofile-arcs -ftest-coverage` and no optimization. For shared objects with `dlopen`, add the option `-Wl,--dynamic-list-data`.
-
-Run the code, producing `gcda` and `gcno` files. Use `gcov` utility:
-
-```bash
-gcov [options] source_file_to_examine [or executable]
-```
-
-Text files with code and execution counts for each line are created.
-
-#### Main Options of gcov
-
-`gcov` offers various options:
-
-- `--demangled-names`: Demangle names, useful for C++.
-- `--function-summaries`: Output summaries for each function.
-- `--branch-probabilities`: Write branch frequencies to the output file.
-
----
-
-# `lcov` and `genhtml`: nice graphical tools for `gcov`
-
-The `gcov` output is verbose. With `lcov` and `genhtml`, you get a graphical view:
-
-Compile with `gcov` rules, then:
-
-```bash
-lcov --capture --directory project_dir --output-file cov.info
-genhtml cov.info --output-directory html
-```
-
-`project_dir` is the directory with `gcda` and `gcno` files. In the `html` directory, open `index.html` in your browser.
 
 ---
 
@@ -917,9 +881,11 @@ _class: titlepage
 
 ---
 
-# Unit Testing in C++
+# Unit testing in C++
 
-In C++, unit testing often uses frameworks like Google Test or Catch2. Here's a simple example:
+In C++, unit testing often uses frameworks like [Google Test](https://google.github.io/googletest/), [Catch2](https://github.com/catchorg/Catch2), or [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) from the CMake ecosystem.
+
+Here's a simple example using `gtest`:
 
 ```cpp
 #include "mylibrary.h"
@@ -969,6 +935,53 @@ TDD encourages modular and testable code, ensuring all parts of the codebase are
   - [Travis CI](https://www.travis-ci.com/)
   - [GitHub Actions](https://github.com/features/actions)
   - [GitLab CI](https://docs.gitlab.com/ee/ci/)
+
+---
+
+# Coverage
+
+Code coverage is a metric used in software testing to measure the extent to which source code is executed during the testing process. It provides insights into which parts of the codebase have been exercised by the test suite and which parts remain untested.
+
+## **Key concepts**
+- **Lines of code**: Code coverage is often expressed as a percentage of lines of code that have been executed by tests. The goal is to have as close to 100% coverage as possible.
+- **Branches** and **paths**: In addition to lines, code coverage can also consider branches and execution paths within the code. This provides a more detailed analysis of the code's behavior.
+
+---
+
+# Coverage with gcov
+
+`GCC` supports program coverage with `gcov`. Compile with `-g -fprofile-arcs -ftest-coverage` and no optimization. For shared objects with `dlopen`, add the option `-Wl,--dynamic-list-data`.
+
+Run the code, producing `gcda` and `gcno` files. Use `gcov` utility:
+
+```bash
+gcov [options] source_file_to_examine [or executable]
+```
+
+Text files with code and execution counts for each line are created.
+
+#### Main Options of gcov
+
+`gcov` offers various options:
+
+- `--demangled-names`: Demangle names, useful for C++.
+- `--function-summaries`: Output summaries for each function.
+- `--branch-probabilities`: Write branch frequencies to the output file.
+
+---
+
+# `lcov` and `genhtml`: nice graphical tools for `gcov`
+
+The `gcov` output is verbose. With `lcov` and `genhtml`, you get a graphical view:
+
+Compile with `gcov` rules, then:
+
+```bash
+lcov --capture --directory project_dir --output-file cov.info
+genhtml cov.info --output-directory html
+```
+
+`project_dir` is the directory with `gcda` and `gcno` files. In the `html` directory, open `index.html` in your browser.
 
 ---
 

@@ -274,7 +274,7 @@ In some circumstances, the build process can be optimized by employing the `make
 
 Despite its advantages, Makefiles are platform-dependent, necessitating adaptation to different operating systems. To address this issue, we will explore [CMake](https://cmake.org/) as a potential solution, providing a platform-independent alternative for managing and generating build systems.
 
-## References
+## Further readings
 
 - [A simple makefile tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/): Essential tutorial on `make` and Makefile.
 - [Makefile tutorial](https://github.com/vampy/Makefile): A GitHub repository with numerous makefile examples.

@@ -70,7 +70,7 @@ They are used to:
 - [**Meson**](https://mesonbuild.com/), [**Bazel**](https://bazel.build/), [**SCons**](https://scons.org/), ...
 
 #### Package managers:
-- [**Conan**](https://conan.io/), [**vcpkg**](https://vcpkg.io/)
+- [**Conan**](https://conan.io/), [**vcpkg**](https://vcpkg.io/), ...
 
 ---
 
@@ -132,34 +132,30 @@ project(MyProject VERSION 1.0
 
 Please use a CMake version more recent than your compiler (at least ≥ 3.0).
 
-Command names are **case-insensitive**.
+Command names are **case insensitive**.
 
 ---
 
 # CMake 101
 
-## Configure
-
-```bash
-cmake -S /path/to/src/ -B build [options...]
-# Or:
-# mkdir build && cd build
-# cmake /path/to/src/ [options...]
-```
-
-## Compile
-
-```bash
-cd /path/to/build/
-make -j<N>
-```
-
-## List variable values
-
-```bash
-cd /path/to/build
-cmake /path/to/src/ -L
-```
+- **Configure**
+  ```bash
+  cd /path/to/src/
+  mkdir build && cd build
+  cmake .. [options...]
+  # Or:
+  # cmake -S /path/to/src/ -B /path/to/build/ [options...]
+  ```
+- **Compile**
+  ```bash
+   cd /path/to/build/
+   make -j<N>
+   ```
+- **List variable values**
+  ```bash
+  cd /path/to/build/
+  cmake /path/to/src/ -L
+  ```
 
 ---
 
@@ -191,7 +187,7 @@ target_link_libraries(my_lib PUBLIC another_lib)
 add_executable(my_exec my_main.cpp my_header.h)
 target_link_libraries(my_exec my_lib)
 target_compile_features(my_exec cxx_std_20)
-# Last command is equivalent to
+# Last command is equivalent to:
 # set_target_properties(my_exec PROPERTIES CXX_STANDARD 20)
 ```
 
@@ -237,29 +233,7 @@ cmake /path/to/src/ \
 
 ----
 
-# Useful variables
-
-- **CMAKE_SOURCE_DIR**: top-level source directory
-- **CMAKE_BINARY_DIR**: top-level build directory
-
-If the project is organized in sub-folders:
-
-- **CMAKE_CURRENT_SOURCE_DIR**: current source directory being processed
-- **CMAKE_CURRENT_BINARY_DIR**: current build directory
-
-```cmake
-# Options are "Release", "Debug",
-# "RelWithDebInfo", "MinSizeRel"
-set(CMAKE_BUILD_TYPE Release)
-
-set(CMAKE_CXX_COMPILER "/path/to/c++/compiler")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
-```
-
----
-
-# Environment variables
+# Interacting with the outside world: environment variables
 
 ```cmake
 # Read.
@@ -276,10 +250,10 @@ set(ENV{variable_name} value)
 # Control flow
 
 ```cmake
-if("${variable}")
-    # True if variable is not false-like
+if("${variable}") # Or if("condition").
+    # 
 else()
-    # Note that undefined variables would be `""` thus false
+    # Undefined variables would be treated as empty strings, thus false.
 endif()
 ```
 
@@ -300,7 +274,7 @@ Useful for switching among different implementations or versions of any third-pa
 #ifdef USE_ARRAY
     std::array<double, 100> my_array;
 #else
-    std::vector<double> my_array;
+    std::vector<double> my_array(100);
 #endif
 ```
 
@@ -372,12 +346,34 @@ make VERBOSE=1
 
 ---
 
+# Useful variables
+
+- **CMAKE_SOURCE_DIR**: top-level source directory
+- **CMAKE_BINARY_DIR**: top-level build directory
+
+If the project is organized in sub-folders:
+
+- **CMAKE_CURRENT_SOURCE_DIR**: current source directory being processed
+- **CMAKE_CURRENT_BINARY_DIR**: current build directory
+
+```cmake
+# Options are "Release", "Debug",
+# "RelWithDebInfo", "MinSizeRel"
+set(CMAKE_BUILD_TYPE Release)
+
+set(CMAKE_CXX_COMPILER "/path/to/c++")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY lib)
+```
+
+---
+
 # Looking for third-party libraries
 
 CMake looks for **module files** `FindPackage.cmake` in the directories specified in `CMAKE_PREFIX_PATH`.
 
 ```cmake
-set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH} /path/to/module/")
+set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH} /path/to/modules/")
 
 # Specify "REQUIRED" if the library is mandatory.
 find_package(Boost 1.50 COMPONENTS filesystem graph)
@@ -386,7 +382,7 @@ find_package(Boost 1.50 COMPONENTS filesystem graph)
 If the library is not located in a system folder, often a hint can be provided:
 
 ```bash
-cmake /path/to/src/ -DBOOST_ROOT=/path/to/boost
+cmake /path/to/src/ -DBOOST_ROOT=/path/to/boost/installation/
 ```
 
 ---
@@ -448,6 +444,7 @@ add_test(NAME MyTest COMMAND my_test_executable)
 cmake_minimum_required(VERSION 3.12)
 project(ExampleProject VERSION 1.0 LANGUAGES CXX)
 
+find_package(...)
 find_package(...)
 
 add_subdirectory(src)
@@ -519,7 +516,7 @@ _class: titlepage
 The compiler enhances performance by optimizing CPU register usage, expression refactoring, and pre-computing constants.
 
 - Disable optimization during debugging.
-- Pass the `-O{n}` (`{n=0,1,2,s, or 3}`) flag to the compiler to control optimization level, with `-Os` for space optimization and `-O3` for maximum optimization. [Here](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) a detailed list of optimizations enabled with each flag.
+- Pass the `-O{n}` (`n={0,1,2,s,3}`) flag to the compiler to control optimization level, with `-Os` for space optimization and `-O3` for maximum optimization. [Here](https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html) a detailed list of optimizations enabled with each flag.
 - Defining the `-DNDEBUG` preprocessor variable, standard assertion are ignored, resulting in faster code.
 
 ---
@@ -529,9 +526,11 @@ The compiler enhances performance by optimizing CPU register usage, expression r
 It is beneficial to unroll small loops. For example, transform:
 
 ```cpp
-for (int i = 0; i < n; ++i)
-  for(int k = 0; k < 3; ++k)
+for (int i = 0; i < n; ++i) {
+  for(int k = 0; k < 3; ++k) {
     a[k] += b[k] * c[i];
+  }
+}
 ```
 
 to:
@@ -592,23 +591,23 @@ for(int i = 0; i < 10000; ++i)
 # Sum of a vector: two strategies compared
 
 ```cpp
-double test1(double *data, const size_t count) {
-    double sum(0);
-    for (size_t j = 0; j < count; ++j)
+double sum1(double *data, const size_t &size) {
+    double sum{0};
+    for (size_t j = 0; j < size; ++j)
         sum += data[j];
     return sum;
 }
 
-double test2(double *data, const size_t count) {
-    double sum(0), sum1(0), sum2(0), sum3(0);
+double sum2(double *data, const size_t &size) {
+    double sum{0}, sum1{0}, sum2{0}, sum3{0};
     size_t j;
-    for (j = 0; j < (count - 3); j += 4) {
+    for (j = 0; j < (size - 3); j += 4) {
         sum += data[j + 0];
         sum1 += data[j + 1];
         sum2 += data[j + 2];
         sum3 += data[j + 3];
     }
-    for (; j < count; ++j)
+    for (; j < size; ++j)
         sum += data[j];
     sum += sum1 + sum2 + sum3;
     return sum;
@@ -617,15 +616,17 @@ double test2(double *data, const size_t count) {
 
 ---
 
-# Compiled without optimization, which is faster? `test1` or `test2`?
+# Which one is faster, `sum1` or `sum2`?
+
+The number of floating point operations is the same in both cases!
 
 The answer is not straightforward: it depends on the computer's architecture.
 
-On my laptop (8th Gen Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz), <alert>`test2` is approximately 5 times faster than `test1`</alert> with `count = 1e9`!
+On my laptop (8th Gen Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz), <alert>`sum2` is approximately 10 times faster than `sum1`</alert> with `size = 1e9`! (see `examples/unrolling/unrolling.cpp`).
 
 Why? The Streaming SIMD Extensions (SSE2) instruction set of the CPU allows for parallelization at the microcode level. It's a super-scalar architecture with multiple instruction pipelines to execute several instructions concurrently during a clock cycle. The code of `test2` better exploits this capability.
 
-**Lessons learned:** Counting operations doesn't necessarily reflect performance. Compiler optimizers can transform `test1` into `test2` automatically. Sometimes, giving it a hand is beneficial.
+**Take-home message:** Counting operations doesn't necessarily reflect performance. Compiler optimizers can transform `sum1` into `sum2` automatically. Sometimes, giving it a hand is beneficial.
 
 ---
 
@@ -634,20 +635,20 @@ Why? The Streaming SIMD Extensions (SSE2) instruction set of the CPU allows for 
 Efficiency often depends on how variables are accessed in memory. Access variables contiguously for cache pre-fetching effectiveness. For example, if `mat` is a dynamic matrix organized **row-wise**:
 
 ```cpp
-for (i = 0; i < n_rows; ++i)
-  for (j = 0; j < n_cols; ++j)
+// Not cache-friendly, inefficient.
+for (j = 0; j < n_cols; ++j) {
+  for (i = 0; i < n_rows; ++i) {
     a += mat(i, j);
-```
+  }
+}
 
-is cache-friendly. While
-
-```cpp
-for (j = 0; j < n_cols; ++j)
-  for (i = 0; i < n_rows; ++i)
+// Cache-friendly, thus more efficient.
+for (i = 0; i < n_rows; ++i) {
+  for (j = 0; j < n_cols; ++j) {
     a += mat(i, j);
+  }
+}
 ```
-
-is not, and thus less efficient.
 
 ---
 
@@ -656,6 +657,36 @@ _class: titlepage
 -->
 
 # Debugging
+
+---
+
+# Static analysis vs. debugging (1/2)
+
+## Static analysis
+
+- **Nature:** Examines code without executing it.
+- **Purpose:** Identifies potential issues and coding standards violations.
+- **Tools:** Code linters, security scanners, and complexity analyzers.
+- **Integration:** Often part of development workflows or continuous integration.
+
+## Debugging
+
+- **Nature:** Inspects and troubleshoots code during runtime.
+- **Purpose:** Locates and resolves bugs, runtime errors, and unexpected behavior.
+- **Tools:** Debuggers with features like breakpoints and variable inspection.
+- **Integration:** Interactive process during development or post-runtime.
+
+--- 
+
+# Static analysis vs. debugging (2/2)
+
+## Key differences
+
+- **Timing:** Static analysis is pre-runtime; debugging is during or post-runtime.
+- **Focus:** Static analysis emphasizes code quality; debugging resolves runtime issues.
+- **Use cases:** Static analysis is proactive; debugging is reactive.
+- **Automation:** Static analysis tools can be automated; debugging is more interactive.
+- **Complementarity:** Both are complementary, with static analysis preventing issues and debugging addressing runtime problems.
 
 ---
 
@@ -678,7 +709,7 @@ Some of the checks they perform:
     
 ---
 
-# C++ interpreters and explorers
+# Other useful tools
 
 - [Cling](https://root.cern/cling/) is an interactive C++ interpreter, built on LLVM and Clang. It's part of the ROOT project at CERN and can be integrated into a Jupyter workspace ([see here](https://github.com/jupyter-xeus/xeus-cling/)). While experimental, an interpreter aids in code prototyping.
 
@@ -727,7 +758,7 @@ Debugging levels and special optimization options linked to debugging:
 
 ---
 
-# Main commands of the debugger
+# Main commands of `gdb`/`lldb`
 
 - `run`: Run the program.
 - `break`: Set a breakpoint at a line/function.
@@ -836,8 +867,8 @@ It opens a graphical interface.
 There are alternative profilers, some useful in a parallel environment:
 
 - [perf](https://perf.wiki.kernel.org/index.php/Main_Page): Lightweight CPU profiling.
-- [`gperftools`](https://github.com/gperftools/gperftools): Formerly Google Performance Tools.
-- [The TAU performance system](http://www.cs.uoregon.edu/Research/tau/home.php): Profiling and tracing toolkit for parallel programs.
+- [gperftools](https://github.com/gperftools/gperftools): Formerly Google Performance Tools.
+- [TAU (Tuning and Analysis Utilities)](http://www.cs.uoregon.edu/Research/tau/home.php): Profiling and tracing toolkit for parallel programs.
 - [Scalasca](http://icl.cs.utk.edu/scalasca): Performance analysis for parallel applications on distributed memory systems.
 
 ---
@@ -857,7 +888,7 @@ _class: titlepage
 
 - **Verification:** Conducted during development, tests **individual components** separately. Specific tests demonstrate correct functionality, covering the code and checking for memory leaks.
 
-- **Validation:** Performed on the **final code**. Assesses if the code produces the intended outcome—convergence, reasonable results, and expected computational complexity.
+- **Validation:** Performed on the **final code**. Assesses if the code produces the intended outcome - convergence, reasonable results, and expected computational complexity.
 
 ---
 
@@ -883,7 +914,7 @@ _class: titlepage
 
 # Unit testing in C++
 
-In C++, unit testing often uses frameworks like [Google Test](https://google.github.io/googletest/), [Catch2](https://github.com/catchorg/Catch2), or [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) from the CMake ecosystem.
+In C++, unit testing often uses frameworks like [Google Test](https://google.github.io/googletest/), [Catch2](https://github.com/catchorg/Catch2), or [CTest](https://cmake.org/cmake/help/latest/manual/ctest.1.html) itself (from the CMake ecosystem).
 
 Here's a simple example using `gtest`:
 
@@ -960,7 +991,7 @@ gcov [options] source_file_to_examine [or executable]
 
 Text files with code and execution counts for each line are created.
 
-#### Main Options of gcov
+#### Main options of gcov
 
 `gcov` offers various options:
 

@@ -22,6 +22,22 @@ This work is licensed under a
 
 ---
 
+# :calendar: Exam dates
+
+**:warning: 17 Jan 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
+
+**:warning: 13 Feb 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
+
+
+Optional oral exams will follow in subsequent days.
+
+
+:information_source: Students from UniTS: please register on Esse3.<br>
+
+:information_source: Students from SISSA: please register by sending me an email.
+
+---
+
 # Documents
 - [Syllabus](syllabus.pdf).
 - [Homework assignment rules](homework_rules.pdf).

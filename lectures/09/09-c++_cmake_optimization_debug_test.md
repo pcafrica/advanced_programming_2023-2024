@@ -126,8 +126,8 @@ cmake_minimum_required(VERSION 3.12)
 
 # This is a comment.
 project(MyProject VERSION 1.0
-                  DESCRIPTION "A very nice project"
-                  LANGUAGES CXX)
+  DESCRIPTION "A very nice project"
+  LANGUAGES CXX)
 ```
 
 Please use a CMake version more recent than your compiler (at least ≥ 3.0).
@@ -165,10 +165,10 @@ CMake is all about targets and properties. An executable is a target, a library 
 
 ```cmake
 # Header files are optional.
-add_executable(my_exec my_main.cpp my_header.h)
+add_executable(my_exec my_main.cpp my_header.hpp)
 
 # Options are STATIC, SHARED (dynamic) or MODULE (plugins).
-add_library(my_lib STATIC my_class.cpp my_class.h)
+add_library(my_lib STATIC my_class.cpp my_class.hpp)
 ```
 
 ---
@@ -178,7 +178,7 @@ add_library(my_lib STATIC my_class.cpp my_class.h)
 Targets can be associated with various [properties](https://cmake.org/cmake/help/latest/manual/cmake-properties.7.html):
 
 ```cmake
-add_library(my_lib STATIC my_class.cpp my_class.h)
+add_library(my_lib STATIC my_class.cpp my_class.hpp)
 target_include_directories(my_lib PUBLIC include_dir)
 # "PUBLIC" propagates the property to
 # other targets depending on "my_lib".
@@ -202,7 +202,7 @@ set(LIB_NAME "my_lib")
 set(SRCS "my_class.cpp;my_main.cpp")
 set(INCLUDE_DIRS "include_one;include_two")
 
-add_library(${LIB_NAME} STATIC ${SRCS} my_class.h)
+add_library(${LIB_NAME} STATIC ${SRCS} my_class.hpp)
 target_include_directories(${LIB_NAME} PUBLIC ${INCLUDE_DIRS})
 
 add_executable(my_exec my_main.cpp my_header.h)

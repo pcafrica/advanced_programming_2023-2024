@@ -740,7 +740,11 @@ Two debugging types:
 - **Static debugging:** Analyze core dump if code aborts.
 - **Dynamic debugging:** Execute through a debugger, breaking at points to examine variables.
 
-Two common debuggers are [`gdb`](https://www.sourceware.org/gdb/) and [`lldb`](https://lldb.llvm.org/).
+Two common debuggers are [`gdb`](https://www.sourceware.org/gdb/) and [`lldb`](https://lldb.llvm.org/). See, e.g.:
+- [Debugging with GDB](https://www.gnu.org/software/gdb/)
+- [GDB cheat sheet](https://users.ece.utexas.edu/~adnan/gdb-refcard.pdf)
+- [GDB tutorial](https://gist.github.com/jakelevi1996/6d0add3452eb65bee9210967760a7d30)
+
 
 ---
 
@@ -767,7 +771,7 @@ Debugging levels and special optimization options linked to debugging:
 - `list n`: Show lines around line n.
 - `next`: Go to the next instruction, proceeding through subroutines.
 - `step`: Go to the next instruction, entering called functions.
-- `cont`: Continue executing.
+- `continue`: Continue executing.
 - `backtrace`: Print memory stack after program aborts.
 - `quit`: Exit the debugger.
 - `help`: Displays help information.

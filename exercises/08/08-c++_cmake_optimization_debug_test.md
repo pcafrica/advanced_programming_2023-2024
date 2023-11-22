@@ -29,13 +29,16 @@ _class: titlepage
 
 # Exercise 1: CMake
 
+1. Following `exercises/07/solutions/ex1`, compile `muParserX` using CMake and write a `CMake` script to compile and link the test code `ex1.cpp` against it.
+2. Re-do `exercises/07/solutions/ex3` with the help of CMake.
+
 ---
 
 <!--
 _class: titlepage
 -->
 
-# Optimization
+# Optimization and profiling
 
 ---
 
@@ -101,17 +104,11 @@ The folder `examples/optimization` contains three examples:
 
 The `hints/ex2/` directory contains the implementation of a class for dense matrices organized as **column-major**.
 
-Implement the following operations:
-- `transpose()` $A = A^T$.
-- `operator*`: matrix-matrix multiplication.
-
----
-
-# Exercise 2: Optimization (hints)
-
-- Transpose the first factor in matrix multiplication before performing the product.
-- Compare the execution speed with the previous implementation.
-- Generate a coverage report using `lcov` and a profiling check using `valgrind`.
+- Implement `Matrix::transpose()`, a method to compute $A = A^T$.
+- Implement `operator*`, a function to compute matrix-matrix multiplication.
+- Optimize the matrix-matrix multiplication by transposing the first factor before the computation. Compare the execution speed with the previous implementation.
+- Use `valgrind --tool=callgrind` to generate a profiler report.
+- Generate a coverage report using `lcov` and `genhtml`.
 
 ---
 
@@ -136,34 +133,16 @@ The content of `examples/debug` was inspired by [this repository](https://github
 
 # Exercise 3: Debugging
 
-linked list
+The `hints/ex3/` directory contains an implementation of a double-linked list class. The class stores a pointer to the head, and each node (except for the head and the tail, obviously) contains a pointer to the previous and to the next node.
 
-1. Compilation errors
-2. Runtime errors (including a segmentation fault)
-- a memory leak
-- a possible segmentation fault, not captured by the main
+The implementation contains a lot of errors, namely:
 
----
+1. Compilation and syntax errors.
+2. Runtime errors, including a segmentation fault and a problem in printing the list.
+3. Memory leaks.
+4. Two possible *segmentation fault*s, not captured by the `main`.
 
-# Exercise 3: Debugging (hints)
-
-
-print: current = nullptr
-what happens if you try to erase a node not present in the list?)
-
----
-
-<!--
-_class: titlepage
--->
-
-# Profiling
-
----
-
-# Exercise 4: Profiling
-
-generate coverage report
+With the help of `gdb` and `valgrind`, solve all these issues and make the code working!
 
 ---
 
@@ -175,9 +154,19 @@ _class: titlepage
 
 ---
 
-# Exercise 5: Testing
+# Exercise 4: Testing
 
-use Google Test
+The `hints/ex4/` contains a static function to compute the mean of a `std::vector`.
 
----
+Following the given directory structure and using [Google Test](https://google.github.io/googletest/), fill in the missing parts in `tests/mean.cpp` to check that the function behaves as expected in all the listed cases.
+
+To run the testsuite type
+```bash
+make test
+```
+or
+```bash
+ctest
+```
+from the CMake build folder.
 

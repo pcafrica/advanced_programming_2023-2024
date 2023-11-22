@@ -1,0 +1,36 @@
+CXX      ?= g++
+CXXFLAGS ?= -std=c++17
+CPPFLAGS ?= -O0 -g --coverage -fno-elide-constructors -fno-default-inline -Wall -pedantic -I.
+LDLIBS   ?= 
+LINK.o := $(LINK.cc) # Use C++ linker.
+
+EXEC = ex2
+SRCS = $(wildcard *.cpp)
+OBJS = $(SRCS:.cpp=.o)
+
+.PHONY = all $(EXEC) $(OBJS) coverage memcheck profile clean distclean $(DEPEND)
+
+all: $(DEPEND) $(EXEC)
+
+$(EXEC): $(OBJS)
+
+$(OBJS): %.o: %.cpp matrix.hpp
+
+coverage: all
+	lcov --directory . --zerocounters
+	./$(EXEC)
+	lcov --directory . --capture --exclude "*c++*" --output test_coverage.info
+	genhtml test_coverage.info --output test_coverage
+
+memcheck: all
+	valgrind --tool=memcheck ./$(EXEC)
+
+profile: all
+	valgrind --tool=callgrind ./$(EXEC)
+
+clean:
+	$(RM) -r *.o *.gcda *.gcno test_coverage* callgrind*
+
+distclean: clean
+	$(RM) $(EXEC)
+	$(RM) *~

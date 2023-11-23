@@ -63,7 +63,7 @@ class MyClass
   short int b; // 2 bytes.
   int c;       // 4 bytes.
   char d;      // 1 byte.
-}
+};
 ```
 
 <div class="columns">

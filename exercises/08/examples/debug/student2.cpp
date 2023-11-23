@@ -43,7 +43,7 @@ private:
 };
 
 int main(int argc, char **argv) {
-  /// Create an instance of the student on the heap.
+  // Create an instance of the student on the heap.
   Student *student = new Student("Terry", "Jones", 111234);
 
   std::cout << "Student name: " << student->get_name() << ", "

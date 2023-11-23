@@ -1,4 +1,4 @@
-The content of this folder was inspired by [this repository](https://github.com/cme212/course).
+The content of this folder was inspired by [this repository](https://github.com/cme212/course/tree/master/notes/lecture-01).
 
 # Debugging
 

@@ -62,7 +62,7 @@ class MyClass
   char a;      // 1 byte.
   short int b; // 2 bytes.
   int c;       // 4 bytes.
-  char d;      // 1 bytes.
+  char d;      // 1 byte.
 }
 ```
 
@@ -122,7 +122,7 @@ _class: titlepage
 
 # Examples
 
-The content of `examples/debug` was inspired by [this repository](https://github.com/cme212/course) and shows basic techniques for debugging as well as an introduction to `gdb`.
+The content of `examples/debug` was inspired by [this repository](https://github.com/cme212/course/tree/master/notes/lecture-01) and shows basic techniques for debugging as well as an introduction to `gdb`.
 
 ## Further readings
 - [Defensive programming and debugging](https://gjbex.github.io/Defensive_programming_and_debugging/).

@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 
-// The class Name contains family and given names.
 class Name {
 public:
   Name(const std::string given_name, const std::string family_name)

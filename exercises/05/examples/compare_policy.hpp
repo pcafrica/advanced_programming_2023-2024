@@ -3,16 +3,16 @@
 #include <cctype>
 #include <string>
 
-// Normal comparator (case sensitive).
+// Case sensitive comparator.
 class CaseCompare {
 public:
-  bool operator()(char const &a, char const &b) const { return a == b; }
+  bool operator()(const char &a, const char &b) const { return a == b; }
 };
 
 // Case insensitive comparator.
 class NoCaseCompare {
 public:
-  bool operator()(char const &a, char const &b) const {
+  bool operator()(const char &a, const char &b) const {
     return std::toupper(a) == std::toupper(b);
   }
 };

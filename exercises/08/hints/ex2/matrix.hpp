@@ -34,7 +34,10 @@ private:
   }
 };
 
-/// Matrix-matrix product: C = A * B.
+// Matrix-matrix product: C = A * B.
 Matrix operator*(const Matrix &A, const Matrix &B);
+
+// Matrix-vector product: y = A * x.
+std::vector<double> operator*(const Matrix &A, const std::vector<double> &x);
 
 #endif /* MATRIX_HPP__ */

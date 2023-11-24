@@ -67,7 +67,7 @@ _class: titlepage
 
 ---
 
-# Hello world!
+# Hello, world!
 
 ```cpp
 #include <iostream>

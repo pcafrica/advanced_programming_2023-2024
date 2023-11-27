@@ -22,9 +22,9 @@ This work is licensed under a
 
 ---
 
-# :warning: Room change alert :warning:
-## The lecture on Tue, Nov 28th will now take place in Room 003 at SISSA instead of the Big Meeting Room.
-### Mark your calendars and spread the word!
+# :warning: Lecture cancelled :warning:
+## The lecture on Tue, Nov 28th has been cancelled due to unforeseen logistic issues.
+### The course will proceed according to the scheduling reported below.
 
 ---
 
@@ -91,8 +91,8 @@ Optional oral exams will follow in subsequent days.
 | Thu 16 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to GNU Make. Exercise session. [[Markdown](exercises/07/07-c++_make_libraries.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/07/07-c++_make_libraries.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/07/07-c++_make_libraries.pdf)] |
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to CMake. Optimization, debugging, profiling, testing. [[Markdown](lectures/09/09-c++_cmake_optimization_debug_test.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/09/09-c++_cmake_optimization_debug_test.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/09/09-c++_cmake_optimization_debug_test.pdf)] |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/08/08-c++_cmake_optimization_debug_test.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/08/08-c++_cmake_optimization_debug_test.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/08/08-c++_cmake_optimization_debug_test.pdf)] |
-| Tue 28 Nov 2023 | 14:00 - 16:00 | 003 | Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
-| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) | Exercise session. |
+|~Tue 28 Nov 2023~| ---                 | --- | --- |
+| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) |  Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
 | Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Modules and packages. Introduction to NumPy and SciPy for scientific computing. Plotting. |

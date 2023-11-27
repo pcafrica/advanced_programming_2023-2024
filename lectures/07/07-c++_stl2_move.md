@@ -831,7 +831,7 @@ The `try` block contains the code that might **`throw`** an exception, while the
 ```cpp
 int divide(int dividend, int divisor) {
     if (divisor == 0) {
-        throw std::runtime_error("Division by zero is not allowed");
+        throw std::runtime_error("Division by zero is not allowed.");
     }
     return dividend / divisor;
 }

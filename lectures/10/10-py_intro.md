@@ -335,7 +335,7 @@ year = 2020
 template_new = f"Hello, my name is {name}. I am {age:.2f} years old. I was born {day}/{month:02}/{year}."
 template_new
 ```
->   'Hello, my name is Newborn Baby. I am 0.33 years old. I was born 10/06/2020.'
+> 'Hello, my name is Newborn Baby. I am 0.33 years old. I was born 10/06/2020.'
 
 See format code options [here](https://docs.python.org/3.12/library/string.html#format-specification-mini-language).
 
@@ -481,7 +481,7 @@ Since element are stored unordered, sets can't be indexed:
 ```python
 s[0]
 ```
->    TypeError: 'set' object is not subscriptable
+> TypeError: 'set' object is not subscriptable
 
 ---
 
@@ -525,7 +525,7 @@ int(5.3) # 5
 ```python
 float("hello")
 ```
->    ValueError: could not convert string to float: 'hello'
+> ValueError: could not convert string to float: 'hello'
 
 ---
 
@@ -567,12 +567,12 @@ st = set()
 x = None
 print(x)
 ```
->    None
+> None
 
 ```python
 type(x)
 ```
->    NoneType
+> NoneType
 
 ---
 
@@ -597,7 +597,7 @@ converted_list = list(original_dict.items())
 ```python
 float("hello")
 ```
->    ValueError: could not convert string to float: 'hello'
+> ValueError: could not convert string to float: 'hello'
 
 ---
 
@@ -625,8 +625,8 @@ else:
     print(f"Hello {name}! That's a cool name!")
 print("Nice to meet you!")
 ```
->    That's my name too!
->    Nice to meet you!
+> That's my name too!
+> Nice to meet you!
 
 ---
 
@@ -704,7 +704,7 @@ if x:
 else:
     print("I'm falsey!")
 ```
->    I'm truthy!
+> I'm truthy!
 
 ---
 
@@ -718,7 +718,7 @@ if x:
 else:
     print("I'm falsey!")
 ```
->    I'm falsey!
+> I'm falsey!
 
 ```python
 x = []
@@ -728,7 +728,7 @@ if x:
 else:
     print("I'm falsey!")
 ```
->    I'm falsey!
+> I'm falsey!
 
 ---
 
@@ -742,11 +742,11 @@ for n in [2, 7, -1, 5]:
 print("I'm outside the loop!")
 ```
 
->    The number is 2 and its square is 4
->    The number is 7 and its square is 49
->    The number is -1 and its square is 1
->    The number is 5 and its square is 25
->    I'm outside the loop!
+> The number is 2 and its square is 4
+> The number is 7 and its square is 49
+> The number is -1 and its square is 1
+> The number is 5 and its square is 25
+> I'm outside the loop!
 
 ---
 
@@ -777,12 +777,12 @@ A very common pattern is to use `for` with the `range()`. `range()` gives you a 
 ```python
 range(10)
 ```
->    range(0, 10)
+> range(0, 10)
 
 ```python
 list(range(10))
 ```
->    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 
 ---
@@ -801,11 +801,11 @@ We can also specify a start value and a skip-by value with `range`:
 for i in range(1, 101, 10):
     print(i)
 ```
->    1
->    11
->    21
->    ...
->    91
+> 1
+> 11
+> 21
+> ...
+> 91
 
 ---
 
@@ -818,15 +818,15 @@ for x in [1, 2, 3]:
     for y in ["a", "b", "c"]:
         print((x, y))
 ```
->    (1, 'a')
->    (1, 'b')
->    (1, 'c')
->    (2, 'a')
->    (2, 'b')
->    (2, 'c')
->    (3, 'a')
->    (3, 'b')
->    (3, 'c')
+> (1, 'a')
+> (1, 'b')
+> (1, 'c')
+> (2, 'a')
+> (2, 'b')
+> (2, 'c')
+> (3, 'a')
+> (3, 'b')
+> (3, 'c')
 
 ---
 
@@ -836,9 +836,9 @@ list_2 = ["a", "b", "c"]
 for i in range(3):
     print(list_1[i], list_2[i])
 ```
->    0 a
->    1 b
->    2 c
+> 0 a
+> 1 b
+> 2 c
 
 ---
 
@@ -851,9 +851,9 @@ for i in range(3):
 for i in zip(list_1, list_2):
     print(i)
 ```
->    (0, 'a')
->    (1, 'b')
->    (2, 'c')
+> (0, 'a')
+> (1, 'b')
+> (2, 'c')
 
 We can even "unpack" these tuples directly in the `for` loop:
 
@@ -861,9 +861,9 @@ We can even "unpack" these tuples directly in the `for` loop:
 for i, j in zip(list_1, list_2):
     print(i, j)
 ```
->    0 a
->    1 b
->    2 c
+> 0 a
+> 1 b
+> 2 c
 
 ---
 
@@ -875,17 +875,17 @@ for i, j in zip(list_1, list_2):
 for i in enumerate(list_2):
     print(i)
 ```
->    (0, 'a')
->    (1, 'b')
->    (2, 'c')
+> (0, 'a')
+> (1, 'b')
+> (2, 'c')
 
 ```python
 for n, i in enumerate(list_2):
     print(f"index {n}, value {i}")
 ```
->    index 0, value a
->    index 1, value b
->    index 2, value c
+> index 0, value a
+> index 1, value b
+> index 2, value c
 
 ---
 
@@ -900,15 +900,15 @@ courses = {"Programming": "awesome",
 for course, description in courses.items():
     print(f" {course} is {description}")
 ```
->    Programming is awesome
->    Economics is naptime!
+> Programming is awesome
+> Economics is naptime!
 
 ```python
 for n, (course, description) in enumerate(courses.items()):
     print(f"Item {n}: {course} is {description}")
 ```
->    Item 0: Programming is awesome
->    Item 1: Economics is naptime!
+> Item 0: Programming is awesome
+> Item 1: Economics is naptime!
 
 ---
 
@@ -922,11 +922,11 @@ while n > 0:
     print(n)
     n -= 1
 ```
->    10
->    9
->    8
->    ...
->    1
+> 10
+> 9
+> 8
+> ...
+> 1
 
 ---
 
@@ -939,7 +939,7 @@ n = 123
 i = 0
 while n != 1:
     print(int(n))
-    if n % 2 == 0: # n is even
+    if n % 2 == 0: # n is even.
         n = n / 2
     else: # n is odd
         n = n * 3 + 1
@@ -987,7 +987,7 @@ for word in subliminal:
     first_letters.append(word[0])
 print(first_letters)
 ```
->    ['T', 'i', 'm', 'e', 't', 'o', 'l', 'e', 'a', 'r', 'n', '!']
+> ['T', 'i', 'm', 'e', 't', 'o', 'l', 'e', 'a', 'r', 'n', '!']
 
 List comprehension allows us to do this in one compact line:
 
@@ -995,7 +995,7 @@ List comprehension allows us to do this in one compact line:
 letters = [word[0] for word in subliminal]  # List comprehension
 letters
 ```
->    ['T', 'i', 'm', 'e', 't', 'o', 'l', 'e', 'a', 'r', 'n', '!']
+> ['T', 'i', 'm', 'e', 't', 'o', 'l', 'e', 'a', 'r', 'n', '!']
 
 ---
 
@@ -1006,11 +1006,11 @@ We can make things more complicated by doing multiple iteration or conditional i
 ```python
 [(i, j) for i in range(3) for j in range(4)]
 ```
->    [(0, 0),
->     (0, 1),
->     (0, 2),
->     ...
->     (2, 3)]
+> [(0, 0),
+>  (0, 1),
+>  (0, 2),
+>  ...
+>  (2, 3)]
 
 ```python
 [i for i in range(11) if i % 2 == 0] # [0, 2, 4, 6, 8, 10]
@@ -1051,7 +1051,7 @@ If something goes wrong, we don't want our code to crash - we want it to **fail 
 this_variable_does_not_exist
 print("Another line")  # Code fails before getting to this line.
 ```
->    NameError: name 'this_variable_does_not_exist' is not defined
+> NameError: name 'this_variable_does_not_exist' is not defined
 
 ---
 
@@ -1075,7 +1075,7 @@ Python tries to execute the code in the `try` block. If an error is encountered,
 ```python
 5/0
 ```
->    ZeroDivisionError: division by zero
+> ZeroDivisionError: division by zero
 
 ---
 
@@ -1083,13 +1083,13 @@ Python tries to execute the code in the `try` block. If an error is encountered,
 my_list = [1,2,3]
 my_list[5]  # IndexError
 ```
->    IndexError: list index out of range
+> IndexError: list index out of range
 
 ```python
 my_tuple = (1,2,3)
 my_tuple[0] = 0  # TypeError
 ```
->    TypeError: 'tuple' object does not support item assignment
+> TypeError: 'tuple' object does not support item assignment
 
 ---
 
@@ -1107,7 +1107,7 @@ def add_one(x):
 ```python
 add_one("blah")
 ```
->    TypeError: Sorry, x must be numeric, you entered a <class 'str'>.
+> TypeError: Sorry, x must be numeric, you entered a <class 'str'>.
 
 This is useful when your function is complicated and would fail in a complicated way, with a weird error message. You can make the cause of the error much clearer to the *user* of the function. If you do this, you should ideally describe these exceptions in the function documentation, so a user knows what to expect if they call your function.
 
@@ -1156,12 +1156,54 @@ def cat_string(str1, str2):
 
 cat_string('My name is ', 'Tom')
 ```
->    'My name is Tom'
+> 'My name is Tom'
 
 ```python
 string
 ```
->    NameError: name 'string' is not defined
+> NameError: name 'string' is not defined
+
+---
+
+# Mutable vs. immutable input arguments (1/2)
+
+Strings and tuples are immutable types which means they can't be modified. Lists are mutable and we can assign new values for its various entries. This is the main difference between lists and tuples.
+
+```python
+names_list = ["Indiana", "Fang", "Linsey"]
+names_list[0] = "Cool guy" # Ok.
+
+names_tuple = ("Indiana", "Fang", "Linsey")
+names_tuple[0] = "Not cool guy"
+```
+> TypeError: 'tuple' object does not support item assignment
+
+Same goes for strings. Once defined we cannot modifiy the characters of the string.
+
+```python
+my_name = "Tom"
+my_name[-1] = "q"
+```
+> TypeError: 'str' object does not support item assignment
+
+---
+
+# Mutable vs. immutable input arguments (2/2)
+
+```python
+x = ([1, 2, 3], 5)
+x[1] = 7
+```
+> TypeError: 'tuple' object does not support item assignment
+
+```python
+x[0][1] = 4 # Ok. We are modifying a list here.
+```
+
+## :warning: Warning
+
+- When **mutable** objects are passed to a function, changes made to the object inside the function affect the original object outside the function.
+- When **immutable** objects are passed to a function, the function creates a new object with the modified value, and the original object remains unchanged outside the function.
 
 ---
 
@@ -1180,12 +1222,12 @@ l = [1, 2, 3, 4]
 out = silly_sum(l) # 10
 ```
 
-The above looks like what we wanted? But wait... it changed our `l` object...
+The above looks like what we wanted? But it changed our `l` object.
 
 ```python
 l
 ```
->    [1, 2, 3, 4, 0]
+> [1, 2, 3, 4, 0]
 
 If your function has side effects like this, you must mention it in the documentation.
 
@@ -1197,16 +1239,16 @@ If you do not specify a return value, the function returns `None` when it termin
 
 ```python
 def f(x):
-    x + 1 # No return!
+    x + 1 # No return.
     if x == 999:
         return
 print(f(0))
 ```
->    None
+> None
 
 ---
 
-# Default arguments
+# Default arguments (1 / 2)
 
 Sometimes it is convenient to have *default values* for some arguments in a function. Because they have default values, these arguments are optional, and are hence called "optional arguments". For example:
 
@@ -1218,91 +1260,36 @@ def repeat_string(s, n=2):
 ```python
 repeat_string("abc", 5)
 ```
->    'abcabcabcabcabc'
+> 'abcabcabcabcabc'
 
 ```python
 repeat_string("abc")
 ```
->    'abcabc'
+> 'abcabc'
+
+You can have any number of required arguments and any number of optional arguments.
 
 ---
 
-Ideally, the default value for optional arguments should be carefully chosen. In the function above, the idea of "repeating" something makes me think of having 2 copies, so `n = 2` feels like a reasonable default.
+# Default arguments (2 / 2)
 
-You can have any number of required arguments and any number of optional arguments. All the optional arguments must come after the required arguments. The required arguments are mapped by the order they appear. The optional arguments can be specified out of order when using the function.
+All the optional arguments must come after the required arguments. The required arguments are mapped by the order they appear. The optional arguments can be specified out of order when using the function.
 
 ```python
 def example(a, b, c="DEFAULT", d="DEFAULT"):
     print(a, b, c, d)
-    
-example(1, 2, 3, 4)
+
+example(1, 2, 3, 4) # 1 2 3 4
 ```
->    1 2 3 4
 
----
-
-Using the defaults for `c` and `d`:
-```python
-example(1, 2)
-```
->    1 2 DEFAULT DEFAULT
-Specifying `c` and `d` as **keyword arguments** (i.e. by name):
-
-```python
-example(1, 2, c=3, d=4)
-```
->    1 2 3 4
-
----
-
-Specifying only one of the optional arguments, by keyword:
-```python
-example(1, 2, c=3)
-```
->    1 2 3 DEFAULT
-
-Specifying all the arguments as keyword arguments, even though only `c` and `d` are optional:
-```python
-example(a=1, b=2, c=3, d=4)
-```
->    1 2 3 4
-
----
-
-Specifying `c` by the fact that it comes 3rd (I do not recommend this because I find it is confusing):
-```python
-example(1, 2, 3)
-```
->    1 2 3 DEFAULT
-
-
-Specifying the optional arguments by keyword, but in the wrong order (this can also be confusing, but not so terrible):
-```python
-example(1, 2, d=4, c=3)
-```
->    1 2 3 4
-
-
-Specifying the non-optional arguments by keyword:
-```python
-example(a=1, b=2)
-```
->    1 2 DEFAULT DEFAULT
-
----
-
-Specifying the non-optional arguments by keyword, but in the wrong order (not recommended, I find it confusing):
-```python
-example(b=2, a=1)
-```
->    1 2 DEFAULT DEFAULT
-
-
-Specifying keyword arguments before non-keyword arguments (this throws an error):
-```python
-example(a=2, 1)
-```
->    SyntaxError: positional argument follows keyword argument
+- Using the defaults for `c` and `d`:
+  ```python
+  example(1, 2) # 1 2 DEFAULT DEFAULT
+  ```
+- Specifying `c` and `d` as **keyword arguments** (i.e. by name):
+  ```python
+  example(1, 2, c=3, d=4) # 1 2 3 4
+  ```
 
 ---
 
@@ -1313,26 +1300,6 @@ example(a=2, 1)
 
 ```python
 def repeat_string(s: str, n: int = 2) -> str:
-    """
-    Repeat the string s, n times.
-    
-    Parameters
-    ----------
-    s : str 
-        the input string
-    n : int, optional (default = 2)
-        the number of times
-        
-    Returns
-    -------
-    str
-        the repeated string
-        
-    Examples
-    --------
-    >>> repeat_string("Blah", 3)
-    "BlahBlahBlah"
-    """
     return s * n
 ```
 
@@ -1341,14 +1308,13 @@ Type hinting just helps your users and IDE identify dtypes and identify bugs. It
 ```python
 repeat_string({'key_1': 1, 'key_2': 2})
 ```
->    TypeError: unsupported operand type(s) for *: 'dict' and 'int'
+> TypeError: unsupported operand type(s) for *: 'dict' and 'int'
 
 --- 
 
-# Multiple return values
+# Multiple return values (1/2)
 
 In many programming languages, functions can only return one object. That is technically true in Python too, but there is a "workaround", which is to return a tuple.
-
 
 ```python
 def sum_and_product(x, y):
@@ -1358,21 +1324,18 @@ sum_and_product(5, 6) # (11, 30)
 ```
 
 The parentheses can be omitted (and often are), and a `tuple` is implicitly returned as defined by the use of the comma: 
-
 ```python
 def sum_and_product(x, y):
     return x + y, x * y
-```
 
-
-```python
 sum_and_product(5, 6) # (11, 30)
 ```
 
 ---
 
-It is common to immediately unpack a returned tuple into separate variables, so it really feels like the function is returning multiple values:
+# Multiple return values (2/2)
 
+It is common to immediately unpack a returned tuple into separate variables, so it really feels like the function is returning multiple values:
 
 ```python
 s, p = sum_and_product(5, 6)
@@ -1383,47 +1346,116 @@ As an aside, it is conventional in Python to use `_` for values to be discarded:
 s, _ = sum_and_product(5, 6)
 ```
 
----
-
-# Functions with arbitrary number of arguments
-
-You can also call/define functions that accept an arbitrary number of positional or keyword arguments using `*args` and `**kwargs`.
-
-
-```python
-def add(*args):
-    print(args)
-    return sum(args)
-```
-
-
-```python
-add(1, 2, 3, 4, 5, 6)
-```
->    (1, 2, 3, 4, 5, 6)
->    21
+:warning: **Warning**: `_` becomes an actual variable name!
 
 ---
 
+# Unpacking (1/3)
+
+In Python, the asterisk (`*`) is used for unpacking iterable objects. It allows you to extract the elements from an iterable (e.g., a list, tuple) or the key-value pairs from a dictionary.
+
+Here are a few common use cases for the asterisk for unpacking:
+
+1. **Unpacking in function calls:** When calling a function, you can use the asterisk to unpack the elements of a list, tuple, or any iterable as individual arguments to the function.
+   ```python
+   def add_numbers(a, b, c):
+       return a + b + c
+
+   numbers = [1, 2, 3]
+   result = add_numbers(*numbers)
+   print(result) # 6
+   ```
+
+---
+
+# Unpacking (2/3)
+
+2. **Unpacking in iterables:** You can use the asterisk to unpack elements from one iterable into another.
+   ```python
+   first_list = [1, 2, 3]
+   second_list = [4, 5, 6]
+   combined_list = [*first_list, *second_list]
+   print(combined_list) # [1, 2, 3, 4, 5, 6]
+   ```
+
+3. **Unpacking in tuple assignment:** The asterisk can be used in tuple assignment to capture multiple elements at once.
+   ```python
+   first, *rest = [1, 2, 3, 4, 5]
+   print(first)  # 1
+   print(rest)   # [2, 3, 4, 5]
+   ```
+
+---
+
+# Unpacking (3/3)
+
+4. **Unpacking in dictionary merging:** When merging dictionaries, the double asterisk (`**`) is used to unpack the key-value pairs from one dictionary into another.
+   ```python
+   dict1 = {'a': 1, 'b': 2}
+   dict2 = {'c': 3, 'd': 4}
+   merged_dict = {**dict1, **dict2}
+   print(merged_dict)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+   ```
+5. **Extended unpacking in function definitions:** In function definitions, you can use the asterisk to collect variable positional arguments (`*args`) and variable keyword arguments (`**kwargs`).
+   ```python
+   def example_function(a, b, *args, **kwargs):
+       # a and b are regular arguments
+       # args is a tuple of positional arguments
+       # kwargs is a dictionary of keyword arguments
+       pass
+   ```
+
+---
+
+# Functions with arbitrary number of arguments: `*args`
+
+In Python, `*args` and `**kwargs` are used in function definitions to allow a variable number of arguments.
+
+- `*args` (Arbitrary positional arguments): It allows a function to accept a variable number of positional arguments. The `*args` parameter is used to collect any number of positional arguments into a tuple.
 
 ```python
-def add(**kwargs):
-    print(kwargs)
-    return sum(kwargs.values())
+def print_args(*args):
+    for arg in args:
+        print(arg)
+
+print_args(1, 2, 3, "four")
 ```
 
+---
+
+# Functions with arbitrary number of arguments: `**kwargs`
+
+- `**kwargs` (Arbitrary keyword arguments): It allows a function to accept a variable number of keyword arguments. The `**kwargs` parameter is used to collect any number of keyword arguments into a dictionary.
 
 ```python
-add(a=3, b=4, c=5)
+def print_kwargs(**kwargs):
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
+
+print_kwargs(name="John", age=25, city="New York")
 ```
 
-    {'a': 3, 'b': 4, 'c': 5}
+---
 
+# Combining `*args` and `**kwargs`
 
+You can use both `*args` and `**kwargs` in the same function definition to accept any combination of positional and keyword arguments.
 
+```python
+def print_args_and_kwargs(*args, **kwargs):
+    for arg in args:
+        print(arg)
+    for key, value in kwargs.items():
+        print(f"{key}: {value}")
 
+print_args_and_kwargs(1, 2, 3, name="John", age=25)
+```
+> 1
+> 2
+> 3
+> name: John
+> age: 25
 
-    12
 ---
 
 # Functions as a data type
@@ -1433,54 +1465,21 @@ In Python, functions are actually a data type:
 ```python
 def do_nothing(x):
     return x
+
+type(do_nothing) # function
 ```
-
-
-```python
-type(do_nothing)
-```
-
-
-
-
-    function
-
-
-
-
-```python
-print(do_nothing)
-```
-
-    <function do_nothing at 0x1102450e0>
-
-
 This means you can pass functions as arguments into other functions.
 
 
 ```python
 def square(y):
-    return y**2
+    return y ** 2
 
 def evaluate_function_on_x_plus_1(fun, x):
-    return fun(x+1)
+    return fun(x + 1)
+
+evaluate_function_on_x_plus_1(square, 5) # 36
 ```
-
-
-```python
-evaluate_function_on_x_plus_1(square, 5)
-```
-
-
-
-
-    36
-
-
-
-So what happened above?
-- `fun(x+1)` becomes `square(5+1)`
-- `square(6)` becomes `36`
 
 ---
 
@@ -1490,7 +1489,7 @@ There are two ways to define functions in Python. The way we've been using up un
 
 ```python
 def add_one(x):
-    return x+1
+    return x + 1
 
 add_one(7.2) # 8.2
 ```
@@ -1498,7 +1497,7 @@ add_one(7.2) # 8.2
 Or by using the `lambda` keyword:
 
 ```python
-add_one = lambda x: x+1 
+add_one = lambda x: x + 1
 type(add_one) # function
 ```
 
@@ -1506,7 +1505,7 @@ The two approaches above are identical. The one with `lambda` is called an **ano
 
 ---
 
-# Generators
+# Generators (1/3)
 
 Recall list comprehension:
 
@@ -1515,28 +1514,21 @@ Recall list comprehension:
 [n for n in range(10)]
 ```
 
-
-
-
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
-
 Comprehensions evaluate the entire expression at once, and then returns the full data product. Sometimes, we want to work with just one part of our data at a time, for example, when we can't fit all of our data in memory. For this, we can use *generators*.
 
 
 ```python
 (n for n in range(10))
 ```
+> <generator object <genexpr> at 0x110220650>
 
+Notice that we just created a `generator object`. Generator objects are like a "recipe" for generating values. They don't actually do any computation until they are asked to.
 
+---
 
+# Generators (2/3)
 
-    <generator object <genexpr> at 0x110220650>
-
-
-
-Notice that we just created a `generator object`. Generator objects are like a "recipe" for generating values. They don't actually do any computation until they are asked to. We can get values from a generator in three main ways:
+We can get values from a generator in three main ways:
 - Using `next()`
 - Using `list()`
 - Looping
@@ -1544,84 +1536,24 @@ Notice that we just created a `generator object`. Generator objects are like a "
 
 ```python
 gen = (n for n in range(10))
+next(gen) # 0
+next(gen) # 1
 ```
 
-
-```python
-next(gen)
-```
-
-
-
-
-    0
-
-
-
-
-```python
-next(gen)
-```
-
-
-
-
-    1
-
-
-
-Once the generator is exhausted, it will no longer return values:
-
-
-```python
-gen = (n for n in range(10))
-for i in range(11):
-    print(next(gen))
-```
-
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-
-
-
-    ---------------------------------------------------------------------------
-
-    StopIteration                             Traceback (most recent call last)
-
-    <ipython-input-67-14d35f56c593> in <module>
-          1 gen = (n for n in range(10))
-          2 for i in range(11):
-    ----> 3     print(next(gen))
-    
-
-    StopIteration: 
-
+Once the generator is exhausted, it will raise a `StopIteration` exception. 
 
 We can see all the values of a generator using `list()` but this defeats the purpose of using a generator in the first place:
 
-
 ```python
 gen = (n for n in range(10))
-list(gen)
+list(gen) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
+---
 
-
-
-    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-
+# Generators (3/3)
 
 Finally, we can loop over generator objects too:
-
 
 ```python
 gen = (n for n in range(10))
@@ -1629,278 +1561,19 @@ for i in gen:
     print(i)
 ```
 
-    0
-    1
-    2
-    3
-    4
-    5
-    6
-    7
-    8
-    9
-
-
-Above, we saw how to create a generator object using comprehension syntax but with parentheses. We can also create a generator using functions and the `yield` keyword (instead of the `return` keyword):
+Above, we saw how to create a generator object using comprehension syntax but with parentheses. We can also create a generator using functions and the `yield` keyword:
 
 
 ```python
 def gen():
     for n in range(10):
         yield (n, n ** 2)
-```
 
-
-```python
 g = gen()
-print(next(g))
-print(next(g))
-print(next(g))
+print(next(g)) # (0, 0)
+print(next(g)) # (1, 1)
+print(next(g)) # (2, 4)
 ```
-
-    (0, 0)
-    (1, 1)
-    (2, 4)
-
-
-Below is some real-world motivation of a case where a generator might be useful. Say we want to create a list of dictionaries containing information about houses in Canada.
-
-
-```python
-import random
-import time
-import memory_profiler
-city = ['Vancouver', 'Toronto', 'Ottawa', 'Montreal']
-```
-
-
-```python
-def house_list(n):
-    houses = []
-    for i in range(n):
-        house = {
-            'id': i,
-            'city': random.choice(city),
-            'bedrooms': random.randint(1, 5),
-            'bathrooms': random.randint(1, 3),
-            'price ($1000s)': random.randint(300, 1000)
-        }
-        houses.append(house)
-    return houses
-```
-
-
-```python
-house_list(2)
-```
-
-
-
-
-    [{'id': 0,
-      'city': 'Ottawa',
-      'bedrooms': 5,
-      'bathrooms': 2,
-      'price ($1000s)': 420},
-     {'id': 1,
-      'city': 'Montreal',
-      'bedrooms': 5,
-      'bathrooms': 1,
-      'price ($1000s)': 652}]
-
-
-
-What happens if we want to create a list of 1,000,000 houses? How much time/memory will it take?
-
-
-```python
-start = time.time()
-mem = memory_profiler.memory_usage()
-print(f"Memory usage before: {mem[0]:.0f} mb")
-people = house_list(500000)
-print(f"Memory usage after: {memory_profiler.memory_usage()[0]:.0f} mb")
-print(f"Time taken: {time.time() - start:.2f}s")
-```
-
-    Memory usage before: 86 mb
-    Memory usage after: 251 mb
-    Time taken: 2.24s
-
-
-
-```python
-def house_generator(n):
-    for i in range(n):
-        house = {
-            'id': i,
-            'city': random.choice(city),
-            'bedrooms': random.randint(1, 5),
-            'bathrooms': random.randint(1, 3),
-            'price ($1000s)': random.randint(300, 1000)
-        }
-        yield house
-```
-
-
-```python
-start = time.time()
-print(f"Memory usage before: {mem[0]:.0f} mb")
-people = house_generator(500000)
-print(f"Memory usage after: {memory_profiler.memory_usage()[0]:.0f} mb")
-print(f"Time taken: {time.time() - start:.2f}s")
-```
-
-    Memory usage before: 86 mb
-    Memory usage after: 89 mb
-    Time taken: 0.17s
-
-
-Although, if we used `list()` to extract all of the genertator values, we'd lose our memory savings:
-
-
-```python
-print(f"Memory usage before: {mem[0]:.0f} mb")
-people = list(house_generator(500000))
-print(f"Memory usage after: {memory_profiler.memory_usage()[0]:.0f} mb")
-```
-
-    Memory usage before: 36 mb
-    Memory usage after: 202 mb
-
----
-
-# Mutable vs. immutable types
-
-Strings and tuples are immutable types which means they can't be modified. Lists are mutable and we can assign new values for its various entries. This is the main difference between lists and tuples.
-
-
-```python
-names_list = ["Indiana", "Fang", "Linsey"]
-names_list
-```
-
-
-
-
-    ['Indiana', 'Fang', 'Linsey']
-
-
-
-
-```python
-names_list[0] = "Cool guy"
-names_list
-```
-
-
-
-
-    ['Cool guy', 'Fang', 'Linsey']
-
-
-
-
-```python
-names_tuple = ("Indiana", "Fang", "Linsey")
-names_tuple
-```
-
-
-
-
-    ('Indiana', 'Fang', 'Linsey')
-
-
-
-
-```python
-names_tuple[0] = "Not cool guy"
-```
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-113-bd6a1b77b220> in <module>
-    ----> 1 names_tuple[0] = "Not cool guy"
-    
-
-    TypeError: 'tuple' object does not support item assignment
-
-
-Same goes for strings. Once defined we cannot modifiy the characters of the string.
-
-
-```python
-my_name = "Tom"
-```
-
-
-```python
-my_name[-1] = "q"
-```
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-115-9bfcf81dbcf0> in <module>
-    ----> 1 my_name[-1] = "q"
-    
-
-    TypeError: 'str' object does not support item assignment
-
-
-
-```python
-x = ([1, 2, 3], 5)
-```
-
-
-```python
-x[1] = 7
-```
-
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-117-415ce6bd0126> in <module>
-    ----> 1 x[1] = 7
-    
-
-    TypeError: 'tuple' object does not support item assignment
-
-
-
-```python
-x
-```
-
-
-
-
-    ([1, 2, 3], 5)
-
-
-
-
-```python
-x[0][1] = 4
-```
-
-
-```python
-x
-```
-
-
-
-
-    ([1, 4, 3], 5)
 
 ---
 
@@ -1924,40 +1597,26 @@ def make_palindrome(string):
     return string + string[::-1]
 ```
 
-In Python we can use the `help()` function to view another function's documentation. In IPython/Jupyter, we can use `?` to view the documentation string of any function in our environment.
-
+In Python we can use the `help()` function to view another function's documentation. In Jupyter, we can use `?` to view the documentation string of any function in our environment.
 
 ```python
 make_palindrome?
 ```
 
+---
 
-    [0;31mSignature:[0m [0mmake_palindrome[0m[0;34m([0m[0mstring[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mDocstring:[0m Turns the string into a palindrome by concatenating itself with a reversed version of itself.
-    [0;31mFile:[0m      ~/GitHub/online-courses/python-programming-for-data-science/chapters/<ipython-input-78-3399edf39112>
-    [0;31mType:[0m      function
-
-
-
-But, even easier than that, if your cursor is in the function parentheses, you can use the shortcut `shift + tab` to open the docstring at will.
-
-
-```python
-# make_palindrome('uncomment this line and try pressing shift+tab here.')
-```
-
-### Docstring Structure
+# Docstring structure
 
 General docstring convention in Python is described in [PEP 257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257/). There are many different docstring style conventions used in Python. The exact style you use can be important for helping you to render your documentation, or for helping your IDE parse your documentation. Common styles include:
 
 1. **Single-line**: If it's short, then just a single line describing the function will do (as above).
 2. **reST style**: see [here](https://www.python.org/dev/peps/pep-0287/).
-3. **NumPy style**: see [here](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html). (RECOMMENDED! and MDS-preferred)
+3. **NumPy style**: see [here](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_numpy.html).
 4. **Google style**: see [here](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html#example-google).
 
+---
 
-The NumPy style:
-
+# Docstrings: the NumPy style
 
 ```python
 def function_name(param1, param2, param3):
@@ -1991,6 +1650,9 @@ def function_name(param1, param2, param3):
     """
 ```
 
+---
+
+# Docstring: the NumPy style
 
 ```python
 def make_palindrome(string):
@@ -2015,44 +1677,11 @@ def make_palindrome(string):
     return string + string[::-1]
 ```
 
-
-```python
-make_palindrome?
-```
-
-
-    [0;31mSignature:[0m [0mmake_palindrome[0m[0;34m([0m[0mstring[0m[0;34m)[0m[0;34m[0m[0;34m[0m[0m
-    [0;31mDocstring:[0m
-    Turns the string into a palindrome by concatenating 
-    itself with a reversed version of itself.
-    
-    Parameters
-    ----------
-    string : str
-        The string to turn into a palindrome.
-        
-    Returns
-    -------
-    str
-        string concatenated with a reversed version of string
-        
-    Examples
-    --------
-    >>> make_palindrome('tom')
-    'tommot'
-    [0;31mFile:[0m      ~/GitHub/online-courses/python-programming-for-data-science/chapters/<ipython-input-1-a382cd1ad1e6>
-    [0;31mType:[0m      function
-
-
 ---
 
 # Docstrings with optional arguments
 
-When specifying function arguments, we specify the defaults for optional arguments:
-
-
 ```python
-# scipy style
 def repeat_string(s, n=2):
     """
     Repeat the string s, n times.

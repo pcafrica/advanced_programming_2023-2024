@@ -92,12 +92,12 @@ Optional oral exams will follow in subsequent days.
 | Tue 21 Nov 2023 | 14:00 - 16:00 | 005 | Introduction to CMake. Optimization, debugging, profiling, testing. [[Markdown](lectures/09/09-c++_cmake_optimization_debug_test.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/09/09-c++_cmake_optimization_debug_test.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/09/09-c++_cmake_optimization_debug_test.pdf)] |
 | Thu 23 Nov 2023 | 14:00 - 16:00 | 005 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/08/08-c++_cmake_optimization_debug_test.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/08/08-c++_cmake_optimization_debug_test.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/08/08-c++_cmake_optimization_debug_test.pdf)] |
 |~Tue 28 Nov 2023~| ---                 | --- | --- |
-| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) |  Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Mutable and immutable data types. |
-| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Custom data types and classes. Object-oriented programming, inheritance and polymorphism. |
+| Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) |  Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries, sets. Control structures. Functions. Docstrings. [[Markdown](lectures/10/10-py_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/10/10-py_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/10/10-py_intro.pdf)] |
+| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Modules and packages. Object-oriented programming. Classes, inheritance and polymorphism. |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Modules and packages. Introduction to NumPy and SciPy for scientific computing. Plotting. |
+| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to NumPy and SciPy for scientific computing. Plotting. |
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to pandas for data analysis. Integrating C++ and Python codes. |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | Best practices for writing reliable code: error handling, unit testing, and software documentation. Licensing. |
+| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | TBA |
 | Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. |

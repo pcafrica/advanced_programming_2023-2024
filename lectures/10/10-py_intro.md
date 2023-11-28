@@ -8,7 +8,7 @@ _class: titlepage
 # Lecture 10
 <br>
 
-## Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries and sets. Control structures. Functions. Docstrings.
+## Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries, sets. Control structures. Functions. Docstrings.
 <br>
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024

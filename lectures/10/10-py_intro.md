@@ -13,9 +13,9 @@ _class: titlepage
 
 #### Advanced Programming - SISSA, UniTS, 2023-2024
 
-###### Pasquale Claudio Africa, Marco Feder
+###### Pasquale Claudio Africa
 
-###### 03 Oct 2023
+###### 30 Nov 2023
 
 ---
 

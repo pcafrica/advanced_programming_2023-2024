@@ -253,7 +253,7 @@ We can compare objects using comparison operators, and we'll get back a Boolean 
 
 # Boolean operators
 
-We also have so-called "boolean operators" which also evaluate to either `True` or `False`:
+We also have so-called *boolean operators* which also evaluate to either `True` or `False`:
 
 | Operator  | Description: `True` if |
 | --------- | ---- |
@@ -324,7 +324,7 @@ caps_list = list(all_caps)
 
 # String formatting
 
-Python has ways of creating strings by "filling in the blanks" and formatting them nicely. This is helpful for when you want to print statements that include variables or statements. There are a few ways of doing this but I use and recommend [f-strings](https://docs.python.org/3.6/whatsnew/3.6.html#whatsnew36-pep498) which were introduced in Python 3.6. All you need to do is put the letter "f" out the front of your string and then you can include variables with curly-bracket notation `{}`.
+Python has ways of creating strings by *filling in the blanks* and formatting them nicely. This is helpful for when you want to print statements that include variables or statements. There are a few ways of doing this but I use and recommend [f-strings](https://docs.python.org/3.6/whatsnew/3.6.html#whatsnew36-pep498) which were introduced in Python 3.6. All you need to do is put the letter `f` out the front of your string and then you can include variables with curly-bracket notation `{}`.
 
 ```python
 name = "Newborn Baby"
@@ -436,7 +436,7 @@ my_list[-2] # 4
 
 # Slicing
 
-We can use the colon `:` to access a sub-sequence. This is called "slicing".
+We can use the colon `:` to access a sub-sequence. This is called *slicing*.
 
 ```python
 my_list[1:3] #  [2, 'THREE']
@@ -755,7 +755,7 @@ print("I'm outside the loop!")
 The main points to notice:
 
 - Keyword `for` begins the loop. Colon `:` ends the first line of the loop.
-- Block of code indented is executed for each value in the list (hence the name "for" loops)
+- Block of code indented is executed for each value in the list (hence the name *for* loops)
 - The loop ends after the variable `n` has taken all the values in the list
 - We can iterate over any kind of *iterable*: `range`, `string`, `list`, `tuple`, `set`, `dict`.
 - An iterable is really just any object with a sequence of values that can be looped over. In this case, we are iterating over the values in a list.
@@ -809,7 +809,7 @@ for i in range(1, 101, 10):
 
 ---
 
-# Nested `for` loops
+# Nested `for` loops (1/2)
 
 We can write a loop inside another loop to iterate over multiple dimensions of data:
 
@@ -829,6 +829,10 @@ for x in [1, 2, 3]:
 > (3, 'c')
 
 ---
+
+# Nested `for` loops (2/2)
+
+Or, equivalently:
 
 ```python
 list_1 = [0, 1, 2]
@@ -855,7 +859,7 @@ for i in zip(list_1, list_2):
 > (1, 'b')
 > (2, 'c')
 
-We can even "unpack" these tuples directly in the `for` loop:
+We can even *unpack* these tuples directly in the `for` loop:
 
 ```python
 for i, j in zip(list_1, list_2):
@@ -895,20 +899,20 @@ We can loop through key-value pairs of a dictionary using `.items()`. The genera
 
 ```python
 courses = {"Programming": "awesome",
-           "Economics": "naptime!"}
+           "Statistics": "naptime!"}
 
 for course, description in courses.items():
-    print(f" {course} is {description}")
+    print(f"{course} is {description}")
 ```
 > Programming is awesome
-> Economics is naptime!
+> Statistics is naptime!
 
 ```python
 for n, (course, description) in enumerate(courses.items()):
     print(f"Item {n}: {course} is {description}")
 ```
 > Item 0: Programming is awesome
-> Item 1: Economics is naptime!
+> Item 1: Statistics is naptime!
 
 ---
 
@@ -1020,6 +1024,8 @@ We can make things more complicated by doing multiple iteration or conditional i
 
 ---
 
+# Set and dict comprehensions
+
 Set comprehension:
 ```python
 words = ['hello', 'goodbye', 'the', 'antidisestablishmentarianism']
@@ -1028,10 +1034,11 @@ y = {word[-1] for word in words}  # {'e', 'm', 'o'}
 
 Dictionary comprehension:
 ```python
-word_lengths = {word:len(word) for word in words} # {'hello': 5, 'goodbye': 7, 'the': 3, 'antidisestablishmentarianism': 28}
+word_lengths = {word:len(word) for word in words}
+# {'hello': 5, 'goodbye': 7, 'the': 3, 'antidisestablishmentarianism': 28}
 ```
 
-Tuple comprehension doesn't work as you might expect... We get a "generator" instead.
+Tuple comprehension doesn't work as you might expect... We get a *generator* instead (see below).
 
 ---
 
@@ -1061,8 +1068,8 @@ print("Another line")  # Code fails before getting to this line.
 try:
     this_variable_does_not_exist
 except:
-    pass # do nothing
-    print("You did something bad! But I won't raise an error.") # print something
+    pass # Do nothing.
+    print("You did something bad! But I won't raise an error.")
 print("Another line")
 ```
 
@@ -1070,7 +1077,7 @@ print("Another line")
     Another line
 
 
-Python tries to execute the code in the `try` block. If an error is encountered, we "catch" this in the `except` block (also called `try`/`catch` in other languages). There are many different error types, or **exceptions** - we saw `NameError` above. 
+Python tries to execute the code in the `try` block. If an error is encountered, we *catch* this in the `except` block (also called `try`/`catch` in other languages). There are many different error types, or **exceptions** - we saw `NameError` above. 
 
 ```python
 5/0
@@ -1078,6 +1085,8 @@ Python tries to execute the code in the `try` block. If an error is encountered,
 > ZeroDivisionError: division by zero
 
 ---
+
+# More exception types
 
 ```python
 my_list = [1,2,3]
@@ -1093,6 +1102,8 @@ my_tuple[0] = 0  # TypeError
 
 ---
 
+# Raise exceptions
+
 We can also write code that raises an exception on purpose, using `raise`:
 
 ```python
@@ -1101,17 +1112,12 @@ def add_one(x):
         raise TypeError(f"Sorry, x must be numeric, you entered a {type(x)}.")
         
     return x + 1
-```
 
-
-```python
 add_one("blah")
 ```
 > TypeError: Sorry, x must be numeric, you entered a <class 'str'>.
 
-This is useful when your function is complicated and would fail in a complicated way, with a weird error message. You can make the cause of the error much clearer to the *user* of the function. If you do this, you should ideally describe these exceptions in the function documentation, so a user knows what to expect if they call your function.
-
-Finally, we can even define our own exception types. We do this by inheriting from the `Exception` class - we'll explore classes and inheritance in the next lecture!
+This is useful when your function is complicated and would fail in a complicated way, with a weird error message. You can make the cause of the error much clearer to the *user* of the function. Finally, we can even define our own exception types by inheriting from the `Exception` class - we'll explore classes and inheritance in the next lecture!
 
 ---
 
@@ -1125,7 +1131,7 @@ _class: titlepage
 
 # Functions
 
-A [function](https://docs.python.org/3.12/tutorial/controlflow.html#defining-functions) is a reusable piece of code that can accept input parameters, also known as "arguments". For example, let's define a function called `square` which takes one input parameter `n` and returns the square `n**2`:
+A [function](https://docs.python.org/3.12/tutorial/controlflow.html#defining-functions) is a reusable piece of code that can accept input parameters, also known as *arguments*. For example, let's define a function called `square` which takes one input parameter `n` and returns the square `n**2`:
 
 
 ```python
@@ -1250,7 +1256,7 @@ print(f(0))
 
 # Default arguments (1 / 2)
 
-Sometimes it is convenient to have *default values* for some arguments in a function. Because they have default values, these arguments are optional, and are hence called "optional arguments". For example:
+Sometimes it is convenient to have *default values* for some arguments in a function. Because they have default values, these arguments are optional, and are hence called *optional arguments*. For example:
 
 ```python
 def repeat_string(s, n=2):
@@ -1314,7 +1320,7 @@ repeat_string({'key_1': 1, 'key_2': 2})
 
 # Multiple return values (1/2)
 
-In many programming languages, functions can only return one object. That is technically true in Python too, but there is a "workaround", which is to return a tuple.
+In many programming languages, functions can only return one object. That is technically true in Python too, but there is a *workaround*, which is to return a tuple.
 
 ```python
 def sum_and_product(x, y):
@@ -1522,7 +1528,7 @@ Comprehensions evaluate the entire expression at once, and then returns the full
 ```
 > <generator object <genexpr> at 0x110220650>
 
-Notice that we just created a `generator object`. Generator objects are like a "recipe" for generating values. They don't actually do any computation until they are asked to.
+Notice that we just created a `generator object`. Generator objects are like a *recipe* for generating values. They don't actually do any computation until they are asked to.
 
 ---
 
@@ -1553,7 +1559,7 @@ list(gen) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 # Generators (3/3)
 
-Finally, we can loop over generator objects too:
+Finally, we can iterate over generator objects too:
 
 ```python
 gen = (n for n in range(10))
@@ -1587,7 +1593,7 @@ _class: titlepage
 
 # Docstrings
 
-One problem we never really solved when talking about writing good functions was: "4. It is hard to understand what it does just by looking at it". This brings up the idea of function documentation, called "docstrings". The [docstring](https://www.python.org/dev/peps/pep-0257/) goes right after the `def` line and is wrapped in **triple quotes** `"""`.
+Writing good functions brings up the idea of function documentation, called "docstrings". The [docstring](https://www.python.org/dev/peps/pep-0257/) goes right after the `def` line and is wrapped in **triple quotes** `"""`.
 
 
 ```python
@@ -1605,7 +1611,7 @@ make_palindrome?
 
 ---
 
-# Docstring structure
+# Docstring: structure
 
 General docstring convention in Python is described in [PEP 257 - Docstring Conventions](https://www.python.org/dev/peps/pep-0257/). There are many different docstring style conventions used in Python. The exact style you use can be important for helping you to render your documentation, or for helping your IDE parse your documentation. Common styles include:
 
@@ -1652,7 +1658,7 @@ def function_name(param1, param2, param3):
 
 ---
 
-# Docstring: the NumPy style
+# Docstrings: the NumPy style
 
 ```python
 def make_palindrome(string):

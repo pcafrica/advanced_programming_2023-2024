@@ -22,12 +22,6 @@ This work is licensed under a
 
 ---
 
-# :warning: Lecture cancelled :warning:
-## The lecture on Tue, Nov 28th has been cancelled due to unforeseen logistic issues.
-### The course will proceed according to the scheduling reported below.
-
----
-
 # :calendar: Exam dates
 
 **:warning: 17 Jan 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)

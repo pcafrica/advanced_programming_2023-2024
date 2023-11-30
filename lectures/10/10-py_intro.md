@@ -59,7 +59,7 @@ _class: titlepage
 - **Extensive standard library:** Comes with a comprehensive standard library, reducing the need for writing code from scratch and promoting code reusability.
 - **Large and active community:** Boasts a vibrant community, fostering collaboration, and providing a wealth of third-party libraries and online resources.
 - **Data Science and Machine Learning:** Preferred language for data science and machine learning with powerful libraries like NumPy, SciPy, Pandas, PyTorch, and TensorFlow.
-- **Cross-Platform Compatibility:** Code written in Python can run on different operating systems without modification.
+- **Cross-platform compatibility:** Code written in Python can run on different operating systems without modification.
 - **Industry adoption:** Widely adopted in countless startups and enterprises.
 
 ---
@@ -70,9 +70,9 @@ To work with Python, you need to set up a development environment.
 
 Here are the basic steps:
 
-- **Install Python:** Download and install Python (version $\geq 3$) from the official [Python website](https://www.python.org/).
-- **Integrated Development Environment (IDE):** Choose an IDE such as PyCharm, VSCode, or Jupyter Notebook for a more interactive development experience. You can even work online on services like [Google Colab](https://colab.google/) and [JupyterLab](https://jupyter.org/try).
-- **Package Management:** Utilize tools like `pip` to install and manage third-party packages.
+- **Install Python:** Download and install Python (version $\geq 3$) from the official [Python website](https://www.python.org/). Advanced users may want to have a look at [PyPy](https://www.pypy.org/).
+- **Integrated Development Environment (IDE):** Choose an IDE such as PyCharm, VSCode, or Jupyter Notebook for a more interactive development experience. You can even use online platforms like [Google Colab](https://colab.google/) and [JupyterLab](https://jupyter.org/try).
+- **Package management:** Utilize tools like `pip` to install and manage third-party packages.
 - (Advanced users) **Virtual environments:** Use virtual environments, such as [conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html) to isolate project dependencies and avoid conflicts between different projects.
 
 ---
@@ -122,14 +122,14 @@ _class: titlepage
 
 # Python as a strongly, dynamically typed language
 
-Python typing is **Dynamic** so you can change a string variable to an `int` (in a **Static** language you can't)
+Python typing is **dynamic** so you can change a string variable to an `int` (in a **static** language you can't):
 
 ```python
 x = 'somestring'
 x = 50
 ```
 
-Python typing is **Strong** so you can't merge types:
+Python typing is **strong** so you can't merge types:
 
 ```python
 'foo' + 3 # TypeError: cannot concatenate 'str' and 'int' objects
@@ -184,8 +184,14 @@ There are three distinct numeric types: `integers`, `floating point numbers`, an
 x = 42
 type(x) # int
 print(x) # 42
+
 pi = 3.14159
 type(pi) # float
+
+z = 1 + 3j # complex
+print(abs(z))
+import cmath
+cmath.phase(z)
 ```
 
 ---
@@ -278,6 +284,8 @@ Strings represent sequences of characters and are widely used in Python.
 # String creation.
 message = "Hello, Python!"
 
+message_twice = message * 2 # "Hello, Python!Hello, Python!"
+
 # String operations.
 greeting = "Hello, "
 name = "Alice"
@@ -329,13 +337,13 @@ Python has ways of creating strings by *filling in the blanks* and formatting th
 ```python
 name = "Newborn Baby"
 age = 4 / 12
-day = 10
-month = 6
-year = 2020
+day = 30
+month = 7
+year = 2023
 template_new = f"Hello, my name is {name}. I am {age:.2f} years old. I was born {day}/{month:02}/{year}."
 template_new
 ```
-> 'Hello, my name is Newborn Baby. I am 0.33 years old. I was born 10/06/2020.'
+> 'Hello, my name is Newborn Baby. I am 0.33 years old. I was born 30/07/2023.'
 
 See format code options [here](https://docs.python.org/3.12/library/string.html#format-specification-mini-language).
 
@@ -402,7 +410,7 @@ coordinates = (2, 3)
 x, y = coordinates
 
 # Concatenation.
-combined = coordinates + (4, 5)
+combined = coordinates + (4, 5) # (2, 3, 4, 5)
 
 # Tuple repetition.
 repeated = coordinates * 3
@@ -439,7 +447,7 @@ my_list[-2] # 4
 We can use the colon `:` to access a sub-sequence. This is called *slicing*.
 
 ```python
-my_list[1:3] #  [2, 'THREE']
+my_list[1:3] # [2, 'THREE']
 ```
 
 Note from the above that the **start** of the slice is **inclusive** and the **end** is **exclusive**. So `my_list[1:3]` fetches elements 1 and 2, but not 3.
@@ -512,7 +520,7 @@ del student["grade"]
 
 # Casting
 
-Sometimes we need to explicitly **cast** a value from one type to another. We can do this using functions like `str()`, `int()`, and `float()`. Python tries to do the conversion, or throws an error if it can't.
+Sometimes we need to explicitly **cast** a value from one type to another. Python tries to do the conversion, or throws an error if it can't.
 
 ```python
 x = 5.0 # float
@@ -520,6 +528,12 @@ x = int(5.0) # int
 x = str(5.0) # string '5.0'
 str(5.0) == 5.0 # False
 int(5.3) # 5
+
+original_set = {1, 2, 3, 4, 5}
+converted_tuple = tuple(original_set)
+
+original_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+converted_list = list(original_dict.items())
 ```
 
 ```python
@@ -533,13 +547,12 @@ float("hello")
 
 Sometimes you'll want to create empty objects that will be filled later on.
 
-
 ```python
 lst = list() # Or:
 lst = []
 ```
 
-There's no real difference between the two methods above, `[]` is apparently [marginally faster](https://stackoverflow.com/questions/2972212/creating-an-empty-list-in-python)...
+There's no real difference between the two methods above, `[]` is apparently [marginally faster](https://stackoverflow.com/questions/2972212/creating-an-empty-list-in-python).
 
 
 ```python
@@ -576,31 +589,6 @@ type(x)
 
 ---
 
-# Casting
-
-Sometimes we need to explicitly **cast** a value from one type to another. Python tries to do the conversion, or throws an error if it can't.
-
-```python
-x = 5.0 # float
-x = int(5.0) # int
-x = str(5.0) # string '5.0'
-str(5.0) == 5.0 # False
-int(5.3) # 5
-
-original_set = {1, 2, 3, 4, 5}
-converted_tuple = tuple(original_set)
-
-original_dict = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
-converted_list = list(original_dict.items())
-```
-
-```python
-float("hello")
-```
-> ValueError: could not convert string to float: 'hello'
-
----
-
 <!--
 _class: titlepage
 -->
@@ -609,7 +597,7 @@ _class: titlepage
 
 ---
 
-# Conditionals
+# Conditionals (1/2)
 
 [Conditional statements](https://docs.python.org/3.12/tutorial/controlflow.html) allow us to write programs where only certain blocks of code are executed depending on the state of the program. Let's look at some examples and take note of the keywords, syntax and indentation. 
 
@@ -630,17 +618,17 @@ print("Nice to meet you!")
 
 ---
 
-# Conditionals
+# Conditionals (2/2)
 
 The main points to notice:
-- Use keywords `if`, `elif` and `else`
-- The colon `:` ends each conditional expression
-- Indentation (by 4 empty space) defines code blocks
-- In an `if` statement, the first block whose conditional statement returns `True` is executed and the program exits the `if` block
-- `if` statements don't necessarily need `elif` or `else`
-- `elif` lets us check several conditions
-- `else` lets us evaluate a default block if all other conditions are `False`
-- the end of the entire `if` statement is where the indentation returns to the same level as the first `if` keyword
+- Use keywords `if`, `elif` and `else`.
+- The colon `:` ends each conditional expression.
+- Indentation (by 4 empty space) defines code blocks.
+- In an `if` statement, the first block whose conditional statement returns `True` is executed and the program exits the `if` block.
+- `if` statements don't necessarily need `elif` or `else`.
+- `elif` lets us check several conditions.
+- `else` lets us evaluate a default block if all other conditions are `False`.
+- the end of the entire `if` statement is where the indentation returns to the same level as the first `if` keyword.
 
 ---
 
@@ -663,9 +651,9 @@ else:
 print("Nice to meet you!")
 ```
 
-    Hello Super Tom! That's a cool name.
-    Do you really have superpowers?
-    Nice to meet you!
+> Hello Super Tom! That's a cool name.
+> Do you really have superpowers?
+> Nice to meet you!
 
 ---
 
@@ -679,7 +667,6 @@ words = ["the", "list", "of", "words"]
 x = "long list" if len(words) > 10 else "short list"
 
 # This is equivalent to:
-
 if len(words) > 10:
     x = "long list"
 else:
@@ -732,9 +719,9 @@ else:
 
 ---
 
-# `for` loops
+# `for` loops (1/2)
 
-For loops allow us to execute code a specific number of times.
+`for` loops allow us to execute code a specific number of times.
 
 ```python
 for n in [2, 7, -1, 5]:
@@ -750,13 +737,13 @@ print("I'm outside the loop!")
 
 ---
 
-# `for` loops
+# `for` loops (2/2)
 
 The main points to notice:
 
 - Keyword `for` begins the loop. Colon `:` ends the first line of the loop.
-- Block of code indented is executed for each value in the list (hence the name *for* loops)
-- The loop ends after the variable `n` has taken all the values in the list
+- Block of code indented is executed for each value in the list (hence the name *for* loops).
+- The loop ends after the variable `n` has taken all the values in the list.
 - We can iterate over any kind of *iterable*: `range`, `string`, `list`, `tuple`, `set`, `dict`.
 - An iterable is really just any object with a sequence of values that can be looped over. In this case, we are iterating over the values in a list.
 
@@ -832,7 +819,7 @@ for x in [1, 2, 3]:
 
 # Nested `for` loops (2/2)
 
-Or, equivalently:
+Or, almost equivalently:
 
 ```python
 list_1 = [0, 1, 2]
@@ -898,20 +885,20 @@ for n, i in enumerate(list_2):
 We can loop through key-value pairs of a dictionary using `.items()`. The general syntax is `for key, value in dictionary.items()`.
 
 ```python
-courses = {"Programming": "awesome",
+courses = {"Programming": "awesome!",
            "Statistics": "naptime!"}
 
 for course, description in courses.items():
     print(f"{course} is {description}")
 ```
-> Programming is awesome
+> Programming is awesome!
 > Statistics is naptime!
 
 ```python
 for n, (course, description) in enumerate(courses.items()):
     print(f"Item {n}: {course} is {description}")
 ```
-> Item 0: Programming is awesome
+> Item 0: Programming is awesome!
 > Item 1: Statistics is naptime!
 
 ---
@@ -952,6 +939,9 @@ while n != 1:
         print(f"Ugh, too many iterations!")
         break
 ```
+> 123
+> ...
+> Ugh, too many iterations!
 
 ---
 
@@ -968,6 +958,11 @@ while n > 0:
     print(n)
     n = n - 1
 ```
+> 10
+> 8
+> 6
+> 4
+> 2
 
 ---
 
@@ -996,7 +991,7 @@ print(first_letters)
 List comprehension allows us to do this in one compact line:
 
 ```python
-letters = [word[0] for word in subliminal]  # List comprehension
+letters = [word[0] for word in subliminal]  # List comprehension.
 letters
 ```
 > ['T', 'i', 'm', 'e', 't', 'o', 'l', 'e', 'a', 'r', 'n', '!']
@@ -1010,17 +1005,17 @@ We can make things more complicated by doing multiple iteration or conditional i
 ```python
 [(i, j) for i in range(3) for j in range(4)]
 ```
-> [(0, 0),
->  (0, 1),
->  (0, 2),
->  ...
->  (2, 3)]
+> [(0, 0), (0, 1), (0, 2), ..., (2, 3)]
 
 ```python
-[i for i in range(11) if i % 2 == 0] # [0, 2, 4, 6, 8, 10]
-
-[-i if i % 2 else i for i in range(11)] # [0, -1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
+[i for i in range(11) if i % 2 == 0]
 ```
+> [0, 2, 4, 6, 8, 10]
+
+```python
+[-i if i % 2 else i for i in range(11)]
+```
+> [0, -1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
 ---
 
@@ -1029,7 +1024,7 @@ We can make things more complicated by doing multiple iteration or conditional i
 Set comprehension:
 ```python
 words = ['hello', 'goodbye', 'the', 'antidisestablishmentarianism']
-y = {word[-1] for word in words}  # {'e', 'm', 'o'}
+y = {word[-1] for word in words} # {'e', 'o', 'm'}
 ```
 
 Dictionary comprehension:
@@ -1038,7 +1033,7 @@ word_lengths = {word:len(word) for word in words}
 # {'hello': 5, 'goodbye': 7, 'the': 3, 'antidisestablishmentarianism': 28}
 ```
 
-Tuple comprehension doesn't work as you might expect... We get a *generator* instead (see below).
+Tuple comprehension doesn't work as you might expect: we get a **generator** instead (explained below).
 
 ---
 
@@ -1080,7 +1075,7 @@ print("Another line")
 Python tries to execute the code in the `try` block. If an error is encountered, we *catch* this in the `except` block (also called `try`/`catch` in other languages). There are many different error types, or **exceptions** - we saw `NameError` above. 
 
 ```python
-5/0
+5 / 0
 ```
 > ZeroDivisionError: division by zero
 
@@ -1089,14 +1084,14 @@ Python tries to execute the code in the `try` block. If an error is encountered,
 # More exception types
 
 ```python
-my_list = [1,2,3]
-my_list[5]  # IndexError
+my_list = [1, 2, 3]
+my_list[5]
 ```
 > IndexError: list index out of range
 
 ```python
 my_tuple = (1,2,3)
-my_tuple[0] = 0  # TypeError
+my_tuple[0] = 0
 ```
 > TypeError: 'tuple' object does not support item assignment
 
@@ -1117,7 +1112,9 @@ add_one("blah")
 ```
 > TypeError: Sorry, x must be numeric, you entered a <class 'str'>.
 
-This is useful when your function is complicated and would fail in a complicated way, with a weird error message. You can make the cause of the error much clearer to the *user* of the function. Finally, we can even define our own exception types by inheriting from the `Exception` class - we'll explore classes and inheritance in the next lecture!
+This is useful when your function is complicated and would fail in a complicated way, with a weird error message. You can make the cause of the error much clearer to the *user* of the function.
+
+Finally, we can even define our own exception types by inheriting from the `Exception` class - we'll explore classes and inheritance in the next lecture!
 
 ---
 
@@ -1207,9 +1204,9 @@ x[0][1] = 4 # Ok. We are modifying a list here.
 ```
 
 ## :warning: Warning
-
+In Python, input arguments are passed by **reference**.
 - When **mutable** objects are passed to a function, changes made to the object inside the function affect the original object outside the function.
-- When **immutable** objects are passed to a function, the function creates a new object with the modified value, and the original object remains unchanged outside the function.
+- When **immutable** objects are passed to a function, they cannot be modified inside the function, hence the original object remains unchanged.
 
 ---
 
@@ -1259,7 +1256,7 @@ print(f(0))
 Sometimes it is convenient to have *default values* for some arguments in a function. Because they have default values, these arguments are optional, and are hence called *optional arguments*. For example:
 
 ```python
-def repeat_string(s, n=2):
+def repeat_string(s, n = 2):
     return s * n
 ```
 
@@ -1282,7 +1279,7 @@ You can have any number of required arguments and any number of optional argumen
 All the optional arguments must come after the required arguments. The required arguments are mapped by the order they appear. The optional arguments can be specified out of order when using the function.
 
 ```python
-def example(a, b, c="DEFAULT", d="DEFAULT"):
+def example(a, b, c = "DEFAULT", d = "DEFAULT"):
     print(a, b, c, d)
 
 example(1, 2, 3, 4) # 1 2 3 4
@@ -1309,7 +1306,7 @@ def repeat_string(s: str, n: int = 2) -> str:
     return s * n
 ```
 
-Type hinting just helps your users and IDE identify dtypes and identify bugs. It's just another level of documentation. They do not force users to use that date type, for example, I can still pass an `dict` to `repeat_string` if I want to:
+Type hinting just helps your users and IDE identify dtypes and possible bugs. It's just another level of documentation. They do not force users to use that date type, for example, I can still pass an `dict` to `repeat_string` if I want to:
 
 ```python
 repeat_string({'key_1': 1, 'key_2': 2})
@@ -1387,8 +1384,8 @@ Here are a few common use cases for the asterisk for unpacking:
 3. **Unpacking in tuple assignment:** The asterisk can be used in tuple assignment to capture multiple elements at once.
    ```python
    first, *rest = [1, 2, 3, 4, 5]
-   print(first)  # 1
-   print(rest)   # [2, 3, 4, 5]
+   print(first) # 1
+   print(rest)  # [2, 3, 4, 5]
    ```
 
 ---
@@ -1400,7 +1397,7 @@ Here are a few common use cases for the asterisk for unpacking:
    dict1 = {'a': 1, 'b': 2}
    dict2 = {'c': 3, 'd': 4}
    merged_dict = {**dict1, **dict2}
-   print(merged_dict)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+   print(merged_dict) # {'a': 1, 'b': 2, 'c': 3, 'd': 4}
    ```
 5. **Extended unpacking in function definitions:** In function definitions, you can use the asterisk to collect variable positional arguments (`*args`) and variable keyword arguments (`**kwargs`).
    ```python
@@ -1526,7 +1523,7 @@ Comprehensions evaluate the entire expression at once, and then returns the full
 ```python
 (n for n in range(10))
 ```
-> <generator object <genexpr> at 0x110220650>
+> <generator object <genexpr> at 0x7f06c9b9ba70>
 
 Notice that we just created a `generator object`. Generator objects are like a *recipe* for generating values. They don't actually do any computation until they are asked to.
 
@@ -1538,7 +1535,6 @@ We can get values from a generator in three main ways:
 - Using `next()`
 - Using `list()`
 - Looping
-
 
 ```python
 gen = (n for n in range(10))
@@ -1576,9 +1572,9 @@ def gen():
         yield (n, n ** 2)
 
 g = gen()
-print(next(g)) # (0, 0)
-print(next(g)) # (1, 1)
-print(next(g)) # (2, 4)
+next(g) # (0, 0)
+next(g) # (1, 1)
+next(g) # (2, 4)
 ```
 
 ---
@@ -1658,7 +1654,7 @@ def function_name(param1, param2, param3):
 
 ---
 
-# Docstrings: the NumPy style
+# Docstrings: the NumPy style (example)
 
 ```python
 def make_palindrome(string):
@@ -1688,7 +1684,7 @@ def make_palindrome(string):
 # Docstrings with optional arguments
 
 ```python
-def repeat_string(s, n=2):
+def repeat_string(s, n = 2):
     """
     Repeat the string s, n times.
     
@@ -1718,4 +1714,4 @@ def repeat_string(s, n=2):
 _class: titlepage
 -->
 
-# :arrow_right: Custom data types and classes.<br>Object-oriented programming, inheritance and polymorphism.
+# :arrow_right: Modules and packages.<br>Object-oriented programming.<br>Classes, inheritance and polymorphism.

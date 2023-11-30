@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 def symmetric_difference(set1, set2):
     """
     Compute the symmetric difference between two sets manually.

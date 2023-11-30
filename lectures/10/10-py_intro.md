@@ -233,7 +233,6 @@ But the syntax `//` allows us to do *integer division* (aka *floor division*) an
 
 ```python
 101 / 2 # 50.5
-
 101 // 2 # 50 (floor division: always rounds down).
 ```
 
@@ -387,12 +386,12 @@ numbers = [1, 2, 3, 4, 5]
 len(numbers) # 5
 
 # Adding elements.
-numbers.append([6, 7]) # [1, 2, "THREE", 4, 0.5, [6, 7]]
-numbers.extend([6, 7]) # [1, 2, "THREE", 4, 0.5, 6, 7]
+my_list.append([6, 7]) # [1, 2, "THREE", 4, 0.5, [6, 7]]
+my_list.extend([6, 7]) # [1, 2, "THREE", 4, 0.5, 6, 7]
 
 # Removing elements.
-numbers.remove(3)
-popped_value = numbers.pop()
+numbers.remove(3) # [1, 2, 4, 5]
+popped_value = numbers.pop() # popped_value = 5, numbers = [1, 2, 4]
 ```
 
 You can see the documentation for more [list methods](https://docs.python.org/3.12/tutorial/datastructures.html#more-on-lists).
@@ -413,7 +412,7 @@ x, y = coordinates
 combined = coordinates + (4, 5) # (2, 3, 4, 5)
 
 # Tuple repetition.
-repeated = coordinates * 3
+repeated = coordinates * 3 # (2, 3, 2, 3, 2, 3)
 ```
 
 ---
@@ -421,7 +420,6 @@ repeated = coordinates * 3
 # Indexing
 
 We can access values inside a list, tuple, or string using square bracket syntax. Python uses *zero-based indexing*, which means the first element of the list is in position 0, not position 1.
-
 
 ```python
 my_list = [1, 2, 'THREE', 4, 0.5]
@@ -505,15 +503,12 @@ Dictionaries are key-value pairs, allowing efficient data retrieval.
 # Dictionary creation.
 student = {"name": "Alice", "age": 20, "grade": "A"}
 
-# Accessing values.
-student_name = student["name"]
+student_name = student["name"] # Access value by key.
 
-# Adding and updating values.
-student["city"] = "New York"
-student["age"] = 21
+student["city"] = "New York" # Add new key-value pair.
+student["age"] = 21 # Modify value by key.
 
-# Removing key-value pairs.
-del student["grade"]
+del student["grade"] # Remove key.
 ```
 
 ---
@@ -752,7 +747,7 @@ word = "Python"
 for letter in word:
     print("Gimme a " + letter + "!")
 
-print(f"What's that spell?!! {word}!")
+print(f"What's that spell? {word}!")
 ```
 
 ---
@@ -796,7 +791,7 @@ for i in range(1, 101, 10):
 
 ---
 
-# Nested `for` loops (1/2)
+# Nested `for` loops
 
 We can write a loop inside another loop to iterate over multiple dimensions of data:
 
@@ -817,26 +812,9 @@ for x in [1, 2, 3]:
 
 ---
 
-# Nested `for` loops (2/2)
-
-Or, almost equivalently:
-
-```python
-list_1 = [0, 1, 2]
-list_2 = ["a", "b", "c"]
-for i in range(3):
-    print(list_1[i], list_2[i])
-```
-> 0 a
-> 1 b
-> 2 c
-
----
-
 # `zip`
 
 `zip` returns a zip object which is an iterable of tuples.
-
 
 ```python
 for i in zip(list_1, list_2):
@@ -932,14 +910,13 @@ while n != 1:
     print(int(n))
     if n % 2 == 0: # n is even.
         n = n / 2
-    else: # n is odd
-        n = n * 3 + 1
+    else: # n is odd.
+        n = 3 * n + 1
     i += 1
     if i == 10:
         print(f"Ugh, too many iterations!")
         break
 ```
-> 123
 > ...
 > Ugh, too many iterations!
 
@@ -952,7 +929,7 @@ The `continue` keyword is similar to `break` but won't stop the loop. Instead, i
 ```python
 n = 10
 while n > 0:
-    if n % 2 != 0: # n is odd
+    if n % 2 != 0: # n is odd.
         n = n - 1
         continue
     print(n)
@@ -1051,13 +1028,13 @@ If something goes wrong, we don't want our code to crash - we want it to **fail 
 
 ```python
 this_variable_does_not_exist
-print("Another line")  # Code fails before getting to this line.
+print("Another line") # Code fails before getting to this line.
 ```
 > NameError: name 'this_variable_does_not_exist' is not defined
 
 ---
 
-# `try-catch`
+# `try-except`
 
 ```python
 try:

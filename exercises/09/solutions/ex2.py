@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # 1.
 def website(url):
     return url.split(".")[1]

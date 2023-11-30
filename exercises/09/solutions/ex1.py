@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 # 1.
 print(5 ** 5)
 

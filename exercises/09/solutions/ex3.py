@@ -2,12 +2,22 @@ def symmetric_difference(set1, set2):
     """
     Compute the symmetric difference between two sets manually.
     
-    Parameters:
-    - set1: The first set
-    - set2: The second set
+    Parameters
+    ----------
+    - set1 : set
+             the first set
+    - set2 : set
+             the second set
     
-    Returns:
-    The symmetric difference between set1 and set2
+    Returns
+    -------
+    set
+        the symmetric difference between set1 and set2
+
+    Examples
+    --------
+    >>> symmetric_difference({1, 2, 3, 4}, {3, 4, 5, 6})
+    {1, 2, 5, 6}
     """
     
     # Elements in set1 but not in set2.
@@ -26,5 +36,5 @@ set_a = {1, 2, 3, 4}
 set_b = {3, 4, 5, 6}
 
 result_manual = symmetric_difference(set_a, set_b)
-print("Symmetric Difference (manual):", result_manual)
+print("Symmetric difference (manual):", result_manual)
 print("Symmetric difference (built-in):", set_a.symmetric_difference(set_b))

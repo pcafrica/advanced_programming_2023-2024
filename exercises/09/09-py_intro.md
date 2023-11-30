@@ -24,7 +24,7 @@ _class: titlepage
 1. What is 5 to the power of 5?
 2. What is the remainder from dividing 73 by 6?
 3. How many times does the whole number 3 go into 123? What is the remainder of dividing 123 by 3?
-4. Split the following string into a list by splitting on the # character:
+4. Split the following string into a list by splitting on the `#` character:
    ```python
    s = "apple#banana#cherry#orange"
    ```
@@ -74,11 +74,12 @@ _class: titlepage
 
 # Exercise 2: functions, comprehension
 
-1. Create a function `website()` that grabs the website domain from a url string. For example, if your function is passed `"www.google.com"`, it should return `"google"`.
+1. Create a function `website()` that grabs the website domain from a URL string. For example, if your function is passed `"www.google.com"`, it should return `"google"`.
 
 2. Create a function `divisible(a, b)` that accepts two integers (`a` and `b`) and returns `True` if `a` is divisble by `b` without a remainder. For example, `divisible(10, 3)` should return `False`, while `divisible(6, 3)` should return `True`.
 
-3. Use list comprehension to square every number in the following list of numbers: `l = [1, 2, 3, 4, 5, 6, 7, 8, 9]`.
+3. Use list comprehension to square every number in the following list of numbers:
+   `l = [1, 2, 3, 4, 5, 6, 7, 8, 9]`.
 
 4. For the following list of names, write a list comprehension that creates a list of *only* words that start with a capital letter. **Hint**: `str.isupper()`.
    ```python
@@ -146,10 +147,13 @@ This example is inspired by the related [CodingBat challenge](https://codingbat.
     ```python
     two_channel_eeg_signal1 = [8, 9]
     event1 = 1
+
     two_channel_eeg_signal2 = [3, 3]
     event2 = 2
+    
     two_channel_eeg_signal3 = [2, 3]
     event3 = 2
+    
     nested_list = []
     nested_list.append([two_channel_eeg_signal1, event1])
     nested_list.append([two_channel_eeg_signal2, event2])
@@ -164,7 +168,7 @@ This example is inspired by the related [CodingBat challenge](https://codingbat.
 Let $A$ and $B$ be sets. The set $(A \setminus B) \cup (B \setminus A)$ is called the symmetric difference of the two sets.
 
 1. Write a function that performs this operation.
-2. Use docstrings to document the function and check the documentation invokingthe `help()` function.
+2. Use docstrings to document the function and check the documentation invoking the `help()` function.
 3. Compare your results to the output of the command:
    ```python
    A.symmetric_difference(B)

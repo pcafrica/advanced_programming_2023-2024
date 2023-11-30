@@ -64,10 +64,13 @@ print(lucky_sum(13))
 # 10.
 two_channel_eeg_signal1 = [8, 9]
 event1 = 1
+
 two_channel_eeg_signal2 = [3, 3]
 event2 = 2
+
 two_channel_eeg_signal3 = [2, 3]
 event3 = 2
+
 nested_list = []
 nested_list.append([two_channel_eeg_signal1, event1])
 nested_list.append([two_channel_eeg_signal2, event2])

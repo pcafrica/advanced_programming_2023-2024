@@ -88,7 +88,7 @@ Optional oral exams will follow in subsequent days.
 |~Tue 28 Nov 2023~| ---           | --- | --- |
 | Thu 30 Nov 2023 | 14:00 - 16:00 | Big Meeting Room (7th floor) |  Introduction to Python. Built-in data types. Variables, lists, tuples, dictionaries, sets. Control structures. Functions. Docstrings. [[Markdown](lectures/10/10-py_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/10/10-py_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/10/10-py_intro.pdf)] |
 | | | | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/09/09-py_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/09/09-py_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/09/09-py_intro.pdf)] |
-| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Modules and packages. Object-oriented programming. Classes, inheritance and polymorphism. |
+| Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Object-oriented programming. Classes, inheritance and polymorphism. Modules and packages. [[Markdown](lectures/11/11-py_classes_modules.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/11/11-py_classes_modules.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/11/11-py_classes_modules.pdf)] |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to NumPy and SciPy for scientific computing. Plotting. |
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |

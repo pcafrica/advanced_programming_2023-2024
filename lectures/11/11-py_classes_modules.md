@@ -68,9 +68,9 @@ We refer to `d` as an **instance** of the **type** `dict`.
 
 # The need for custom classes
 
-Custom classes become invaluable when we need to organize and manage complex data structures efficiently. Let's illustrate this with an example involving the Advanced Programming course (AdvProg) members. Initially, we store information in a dictionary:
+Custom classes become invaluable when we need to organize and manage complex data structures efficiently. Let's illustrate this with an example involving the Advanced Programming course (`AdvProg`) members. Initially, we store information in a dictionary:
 ```python
-advprog_1 = {'first': Pasquale Claudio', 'last': 'Africa', 'email': 'pafrica@sissa.it'}
+advprog_1 = {'first': Pasquale', 'last': 'Africa', 'email': 'pafrica@sissa.it'}
 ```
 
 To extract a member's full name, we define a function:
@@ -103,7 +103,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = f"{email.lower()}"
+        self.email = first.lower() + "." + last.lower() + "@advprog.com"
 ```
 
 ---
@@ -127,7 +127,7 @@ The `__init__` method is run as soon as an object of a class is instantiated (i.
 We do not explicitly call the `__init__` method, but it is automatically invoked when creating an instance of a class:
 
 ```python
-advprog_1 = AdvProgMember('Pasquale Claudio', 'Africa', 'pafrica@sissa.it)
+advprog_1 = AdvProgMember('Pasquale', 'Africa', 'pafrica@sissa.it)
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
@@ -144,7 +144,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = f"{email.lower()}"
+        self.email = first.lower() + "." + last.lower() + "@advprog.com"
 
     def full_name(self): # Notice 'self' as an input argument.
         return f"{self.first} {self.last}"
@@ -153,7 +153,7 @@ class AdvProgMember:
 Using the method:
 
 ```python
-advprog_1 = AdvProgMember('Pasquale Claudio', 'Africa')
+advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(advprog_1.full_name())
 ```
 
@@ -165,18 +165,19 @@ Attributes can be instance-specific (`advprog_1.first`) or shared among all inst
 
 ```python
 class AdvProgMember:
+    role = "Advanced Programming member"
     campus = "SISSA"
 
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = f"{email.lower()}"
+        self.email = first.lower() + "." + last.lower() + "@advprog.com"
 ```
 
 Accessing class attributes:
 
 ```python
-advprog_1 = AdvProgMember('Pasquale Claudio', 'Africa')
+advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(f"{advprog_1.first} is at campus {advprog_1.campus}.")
 print(f"{advprog_1.first} is at campus {AdvProgMember.campus}.")
 ```
@@ -200,7 +201,7 @@ class AdvProgMember:
 Using the class method:
 
 ```python
-advprog_1 = AdvProgMember.from_csv('Pasquale Claudio,Africa,pafrica@sissa.it')
+advprog_1 = AdvProgMember.from_csv('Pasquale,Africa,pafrica@sissa.it')
 advprog_1.full_name()
 ```
 
@@ -257,7 +258,7 @@ from_csv = classmethod(from_csv)
 
 ---
 
-# Basics of decorators
+# Defining decorators
 
 Decorators are essentially functions that take another function as input, enhance its capabilities, and return a modified version of the original function. To illustrate, consider the following decorator:
 
@@ -271,12 +272,18 @@ def my_decorator(original_func):
     return wrapper
 ```
 
+---
+
+# Using decorators
+
 As a function was returned to us, we can execute it by adding parentheses:
 
 ```python
 my_decorator(original_func)()
+```
 
-# Or:
+Or we can re-assign the original name `original_func` with the action of the decorator on it:
+```python
 original_func = my_decorator(original_func)
 original_func()
 ```
@@ -323,6 +330,8 @@ def timer(my_function):
     return wrapper
 ```
 
+More details about `import` later...
+
 ---
 
 # Practical example: timer decorator (2/2)
@@ -366,144 +375,211 @@ _class: titlepage
 
 # Inheritance and polymorphism
 
-### Inheritance & Subclasses
+---
 
-Inheritance in Python enables classes to inherit methods and attributes from other classes. Previously, we worked with the `advprog_member` class, but now let's delve into creating more specialized classes like `advprog_student` and `advprog_instructor`.
+# Inheritance and subclasses
+
+Inheritance in Python enables classes to inherit methods and attributes from other classes. Previously, we worked with the `AdvProgMember` class, but now let's delve into creating more specialized classes like `AdvProgStudent` and `AdvProgInstructor`.
 
 ```python
-class advprog_member:
-    # ... (unchanged)
+class AdvProgMember:
+    # ...
 ```
 
-Now, to create an `advprog_student` class inheriting from `advprog_member`:
+Now, to create an `AdvProgStudent` class inheriting from `AdvProgMember`:
 
 ```python
-class advprog_student(advprog_member):
+class AdvProgStudent(AdvProgMember):
     pass
 ```
 
-Creating instances of `advprog_student` and accessing inherited methods:
+---
+
+# Inheritance and subclasses
+
+Creating instances of `AdvProgStudent` and accessing inherited methods:
 
 ```python
-student_1 = advprog_student('Craig', 'Smith')
-student_2 = advprog_student('Megan', 'Scott')
+student_1 = AdvProgStudent('Craig', 'Smith')
+student_2 = AdvProgStudent('Megan', 'Scott')
 print(student_1.full_name())
 print(student_2.full_name())
 ```
 
-Here, `advprog_student` inherits methods like `full_name()` from `advprog_member`.
+Here, `AdvProgStudent` inherits methods like `full_name()` from `AdvProgMember`.
 
-To fine-tune the `advprog_student` class, we adjust attributes:
+To fine-tune the `AdvProgStudent` class, we adjust attributes:
 
 ```python
-class advprog_student(advprog_member):
+class AdvProgStudent(AdvProgMember):
     role = "AdvProg student"
 ```
+
+---
+
+# Inheritance and subclasses
 
 Now, creating a student instance reflects the updated role:
 
 ```python
-student_1 = advprog_student('John', 'Smith')
+student_1 = AdvProgStudent('John', 'Smith')
 print(student_1.role)
-print(student_1.campus)
-print(student_1.full_name())
 ```
 
-Adding an `instance attribute` like `grade` using `super()`:
+Adding an `instance attribute` like `grade` using `super()`, or the base class name:
 
 ```python
-class advprog_student(advprog_member):
+class AdvProgStudent(AdvProgMember):
     role = "AdvProg student"
 
     def __init__(self, first, last, grade):
-        super().__init__(first, last)
+        # super().__init__(first, last) # Or the following:
+        AdvProgMember.__init__(first, last)
         self.grade = grade
 ```
 
-Instances of `advprog_student` now include the `grade` attribute:
+Instances of `AdvProgStudent` now include the `grade` attribute:
 
 ```python
-student_1 = advprog_student('John', 'Smith', 'B+')
-print(student_1.email)
-print(student_1.grade)
+student_1 = AdvProgStudent('John', 'Smith', 'B+')
 ```
 
-Creating another subclass, `advprog_instructor`, with additional methods:
+---
+
+# Inheritance and subclasses
+
+Creating another subclass, `AdvProgInstructor`, with additional methods:
 
 ```python
-class advprog_instructor(advprog_member):
+class AdvProgInstructor(AdvProgMember):
     role = "AdvProg instructor"
 
-    def __init__(self, first, last, courses=None):
+    def __init__(self, first, last, students=None):
         super().__init__(first, last)
-        self.courses = ([] if courses is None else courses)
+        self.students = ([] if students is None else students)
 
-    def add_course(self, course):
-        self.courses.append(course)
+    def add_student(self, student):
+        self.students.append(student)
 
-    def remove_course(self, course):
-        self.courses.remove(course)
+    def remove_course(self, student):
+        self.students.remove(student)
+
 ```
 
-Instances of `advprog_instructor` can manage courses:
+Instances of `AdvProgInstructor` can manage students:
 
 ```python
-instructor_1 = advprog_instructor('Tom', 'Beuzen', ['511', '561', '513'])
-print(instructor_1.full_name())
-print(instructor_1.courses)
-instructor_1.add_course('591')
-instructor_1.remove_course('513')
-print(instructor_1.courses)
+instructor_1 = AdvProgInstructor('Pasquale', 'Africa', [student_1, student_2])
 ```
+
+---
+
+# How inheritance works
+
+To use inheritance, we specify the base class names in a tuple following the class name in the class definition (for example, `class Teacher(SchoolMember)`).
+
+Next, we observe that the `__init__` method of the base class is explicitly called using the  `self`  variable so that we can initialize the base class part of an instance in the subclass. **This is very important to remember**.
+
+Since we are defining a  `__init__`  method in `AdvProgStudent`  and  `AdvProgInstructor`  subclasses, Python does not automatically call the constructor of the base class  `AdvProgMember`, you have to explicitly call it yourself.
+
+In contrast, if we have not defined an  `__init__`  method in a subclass, Python will call the constructor of the base class automatically.
 
 ---
 
 # Getters, setters, deleters
 
-For effective class management, Python provides getters, setters, and deleters. Consider a simplified `advprog_member` class:
+For effective class management, Python provides getters, setters, and deleters. Consider a simplified `AdvProgMember` class:
 
 ```python
-class advprog_member:
-    # ... (unchanged)
+class AdvProgMember:
+    # ...
 ```
 
-Instances of `advprog_member` can be created and accessed:
+Instances of `AdvProgMember` can be created and accessed:
 
 ```python
-advprog_1 = advprog_member('Tom', 'Beuzen')
+advprog_1 = AdvProgMember('Pasqulae', 'Africa')
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
 print(advprog_1.full_name())
 ```
 
-Utilizing a `@property` decorator for the `email` attribute:
+---
+
+# The `@property` decorator (1/2)
+
+Imagine that I mis-spelled the name of this class instance and wanted to correct it. Watch what happens.
 
 ```python
-class advprog_member:
-    # ... (unchanged)
+advprog_1.first = 'Pasquale'
+print(advprog_1.first)
+print(advprog_1.last)
+print(advprog_1.email)
+print(advprog_1.full_name())
+```
+
+Utilizing a `@property` decorator defines `email` like a method, but keeps it as an attribute:
+
+```python
+class AdvProgMember:
+    # ...
 
     @property
     def email(self):
         return self.first.lower() + "." + self.last.lower() + "@advprog.com"
 ```
 
+---
+
+# The `@property` decorator (2/2)
+
 Now, changes to the `first` name reflect in the `email`:
 
 ```python
-advprog_1 = advprog_member('Tom', 'Beuzen')
-advprog_1.first = 'Tomas'
+advprog_1 = AdvProgMember('Pasqulae', 'Africa')
+advprog_1.first = 'Pasquale'
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
 print(advprog_1.full_name())
 ```
 
-Introducing a `full_name` setter to update `first` and `last`:
+We could do the same with the `full_name()` method if we wanted to:
 
 ```python
-class advprog_member:
-    # ... (unchanged)
+class AdvProgMember:
+    # ...
+
+    @property
+    def full_name(self):
+        return f"{self.first} {self.last}"
+```
+
+---
+
+# Setter methods (1/2)
+
+Introducing a `full_name` setter to update `first` and `last`:
+
+But what happens if we instead want to make a change to the full name now?
+
+```python
+advprog_1.full_name = 'Pasquale Africa'
+```
+> AttributeError: can't set attribute
+
+We get an error: class instance doesn't know what to do with the value it was passed. Ideally, we'd like our class instance to use this full name information to update `self.first` and `self.last`. 
+
+---
+
+# Setter methods (2/2)
+
+To handle this action, we need a `setter`, defined using the decorator `@<attribute>.setter`:
+
+```python
+class AdvProgMember:
+    # ...
 
     @full_name.setter
     def full_name(self, name):
@@ -515,19 +591,19 @@ class advprog_member:
 Setting the `full_name` now updates the attributes:
 
 ```python
-advprog_1 = advprog_member('Tom', 'Beuzen')
-advprog_1.full_name = 'Thomas Beuzen'
-print(advprog_1.first)
-print(advprog_1.last)
-print(advprog_1.email)
-print(advprog_1.full_name)
+advprog_1 = AdvProgMember('P', 'A')
+advprog_1.full_name = 'Pasquale Africa'
 ```
 
-Finally, a `full_name` deleter:
+---
+
+# Deleters
+
+We've talked about getting information and setting information, but what about deletting information? This is typically used to do some clean up and is defined with the `@<attribute>.deleter` decorator.
 
 ```python
-class advprog_member:
-    # ... (unchanged)
+class AdvProgMember:
+    # ...
 
     @full_name.deleter
     def full_name(self):
@@ -539,10 +615,8 @@ class advprog_member:
 Deleting the `full_name` attribute results in a cleanup:
 
 ```python
-advprog_1 = advprog_member('Tom', 'Beuzen')
+advprog_1 = AdvProgMember('Pasquale', 'Africa')
 delattr(advprog_1, "full_name")
-print(advprog_1.first)
-print(advprog_1.last)
 ```
 
 ---
@@ -563,6 +637,100 @@ _class: titlepage
 
 ---
 
+# Modules: reusable code in Python
+
+In Python, the ability to reuse code is facilitated by modules. A module is a file with a `.py` extension that contains functions and variables. There are various methods to write modules, including using languages like C to create compiled modules.
+
+---
+
+# Using Standard Library Modules
+
+You can import modules in your program to leverage their functionality. For instance, consider the `sys` module in the Python standard library. Below is an example:
+
+```python
+# Example: module_using_sys.py
+import sys
+
+print("Command line arguments:", sys.argv)
+```
+
+When executed, this program prints the command line arguments provided to it. The `sys.argv` variable holds these arguments as a list. For instance, running `python module_using_sys.py we are arguments` results in `sys.argv[0]` being `'module_using_sys.py'`, `sys.argv[1]` being `'we'`, `sys.argv[2]` being `'are'`, and `sys.argv[3]` being `'arguments'`.
+
+---
+
+# Byte-compiled .pyc Files
+
+To enhance import performance, Python creates byte-compiled files (`.pyc`). These files, platform-independent and located in the same directory as the corresponding `.py` files, speed up subsequent imports by storing preprocessed code.
+
+---
+
+# The `from ... import ...` Statement
+
+You can selectively import variables from a module using the `from ... import ...` statement. However, it's generally advised to use the `import` statement to avoid potential name clashes and enhance readability.
+
+```python
+from math import sqrt
+print("Square root of 16 is", sqrt(16))
+```
+
+A special case is `from math import *`, where all symbols exported by the `math` module are imported.
+
+---
+
+# A module's `__name__`
+
+Every module has a `__name__` attribute that indicates whether the module is being run standalone or imported. If `__name__` is `'__main__'`, the module is being run independently.
+
+```python
+# Example: module_using_name.py
+if __name__ == '__main__':
+    print("This module is being run independently.")
+```
+
+---
+
+# Creating your own modules
+
+Creating modules is straightforward: every Python program is a module!
+Save it with a `.py` extension. For example:
+
+```python
+# Example: mymodule.py
+def say_hi():
+    print("Hello, this is mymodule speaking.")
+    
+__version__ = '1.0'
+```
+
+Now, you can use this module in another program:
+
+```python
+# Example: mymodule_demo.py
+import mymodule
+
+mymodule.say_hi()
+print("Version:", mymodule.__version__)
+```
+
+---
+
+# The `dir` function
+
+The built-in `dir()` function lists names defined in an object. For a module, it includes functions, classes, and variables. It can also be used without arguments to list names in the current module.
+
+```python
+# Example: Using the dir function.
+import sys
+
+# Names in sys module.
+print("Attributes in sys module:", dir(sys))
+
+# Names in the current module.
+print("Attributes in current module:", dir())
+```
+
+---
+
 <!--
 _class: titlepage
 -->
@@ -571,8 +739,168 @@ _class: titlepage
 
 ---
 
+# Packages: organizing modules hierarchically
+
+Packages are folders of modules with a special `__init__.py` file, indicating that the folder contains Python modules. They provide a hierarchical organization for modules.
+
+```
+<some folder in sys.path>/
+└── datascience/
+    ├── __init__.py
+    ├── preprocessing/
+    │   ├── __init__.py
+    │   ├── cleaning.py
+    │   └── scaling.py
+    └── analysis/
+        ├── __init__.py
+        ├── statistics.py
+        └── visualization.py
+```
+
+---
+
+# The `__init__.py` files (1/5)
+
+The `__init__.py` file in a Python package serves multiple purposes. It's executed when the package or module is imported, and it can contain initialization code, set package-level variables, or define what should be accessible when the package is imported using `from package import *`.
+
+Here are some common examples of using `__init__.py` files.
+
+---
+
+# The `__init__.py` files (2/5)
+
+## 1. Initialization code
+
+```python
+# __init__.py in a package.
+
+# Initialization code to be executed when the package is imported.
+print("Initializing my_package...")
+
+# Define package-level variables.
+package_variable = 42
+
+# Import specific modules when the package is imported.
+from . import module1
+from . import module2
+```
+
+In this example, the `__init__.py` file initializes the package, sets a package-level variable (`package_variable`), and imports specific modules from the package.
+
+---
+
+# The `__init__.py` files (3/5)
+
+## 2. Controlling `from package import *`
+
+```python
+# __init__.py in a package.
+
+# Define what should be accessible when a user writes 'from package import *'.
+__all__ = ['module1', 'module2']
+
+# Import modules within the package.
+from . import module1
+from . import module2
+```
+
+By specifying `__all__`, you explicitly control what is imported when using `from package import *`. It's considered good practice to avoid using `*` imports, but if you need to, this can help manage what gets imported.
+
+The `.` symbol means that `module1.py` and `module2.py` are to be located in the same folder as the `__init.py__` file.
+
+---
+
+# The `__init__.py` files (4/5)
+
+## 3. Lazy loading
+
+```python
+# __init__.py in a package.
+
+# Initialization code.
+print("Initializing my_lazy_package...")
+
+# Import modules only when they are explicitly used.
+def lazy_function():
+    from . import lazy_module
+    lazy_module.do_something()
+```
+
+In this example, the module is initialized only when the `lazy_function` is called. This can be useful for performance optimization, especially if some modules are rarely used.
+
+---
+
+# The `__init__.py` files (5/5)
+
+## 4. Setting package-level configuration
+
+```python
+# __init__.py in a package.
+
+# Configuration settings for the package.
+config_setting1 = 'value1'
+config_setting2 = 'value2'
+```
+
+You can use the `__init__.py` file to set package-level configuration settings that can be accessed by modules within the package.
+
+---
+
+# Python modules as 1. scripts vs. 2. pre-compiled libraries
+
+In Python, modules and packages can be implemented either as Python scripts or as pre-compiled dynamic libraries. Let's explore both concepts:
+
+1. **Python modules as scripts:**
+
+   - **Extension:** Modules implemented as scripts usually have a `.py` extension.
+   - **Interpretation:** The Python interpreter reads and executes the script line by line.
+   - **Readability:** Scripts are human-readable and editable using a text editor.
+   - **Flexibility:** This is the most common form of Python modules. You can write and modify the code easily.
+   - **Portability:** Python scripts can be easily shared and run on any system with a compatible Python interpreter.
+
+---
+
+# 2. Python modules as dynamic libraries
+
+   - **Compilation:** Modules can be pre-compiled into shared libraries for performance optimization.
+   - **Execution:** The compiled code is loaded into memory and executed by  Python.
+   - **Protection of intellectual property:** Pre-compiled modules can be used to distribute proprietary code without exposing the source.
+   - **Performance:** Pre-compiled modules may offer better performance as they are already in machine code.
+
+It's essential to note that Python itself is an interpreted language, and even when using pre-compiled modules, the Python interpreter is still involved in executing the code. The use of pre-compiled modules is more about optimizing performance and protecting source code than altering the fundamental nature of Python as an interpreted language.
+
+You can use tools like Cython or PyInstaller to generate pre-compiled modules or standalone executables, respectively, depending on your specific use case and requirements.
+
+---
+
+# The Python Standard Library
+
+[Python’s standard library](https://docs.python.org/3.12/library/index.html) is very extensive, offering a wide range of facilities as indicated by the long table of contents listed on the website. The library contains built-in modules (written in C) that provide access to system functionality such as file I/O that would otherwise be inaccessible to Python programmers, as well as modules written in Python that provide standardized solutions for many problems that occur in everyday programming. Some of these modules are explicitly designed to encourage and enhance the portability of Python programs by abstracting away platform-specifics into platform-neutral APIs.
+
+In addition to the standard library, there is an active collection of hundreds of thousands of components (from individual programs and modules to packages and entire application development frameworks), available from the [Python Package Index](https://pypi.org/).
+
+---
+
+# Summary
+
+Packages are a convenient way to organize modules hierarchically, often seen in the Python standard library.
+
+In summary, modules and packages enhance code reusability in Python. The standard library showcases the power of these concepts, and creating your own modules and packages can significantly improve code organization and maintainability. 
+
+Next, we will delve into common Python packages for scientific computing, namely NumPy, SciPy, matplotlib/seaborn and pandas.
+
+---
+
 <!--
 _class: titlepage
 -->
 
-# :arrow_right: Modules and packages.<br>Object-oriented programming.<br>Classes, inheritance and polymorphism.
+# **Zen of Python**:<br>"Explicit is better than Implicit."<br>Run `import this` in Python to learn more.
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# :arrow_right: Introduction to NumPy and SciPy for scientific computing. <br> Plotting. Introduction to pandas for data analysis. 

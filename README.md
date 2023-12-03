@@ -90,9 +90,10 @@ Optional oral exams will follow in subsequent days.
 | | | | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/09/09-py_intro.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/09/09-py_intro.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/09/09-py_intro.pdf)] |
 | Tue 05 Dec 2023 | 14:00 - 16:00 | 128-129 | Object-oriented programming. Classes, inheritance and polymorphism. Modules and packages. [[Markdown](lectures/11/11-py_classes_modules.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/11/11-py_classes_modules.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/11/11-py_classes_modules.pdf)] |
 | Thu 07 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to NumPy and SciPy for scientific computing. Plotting. |
+| Tue 12 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to NumPy and SciPy for scientific computing.
+Plotting. Introduction to pandas for data analysis. |
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
-| Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | Introduction to pandas for data analysis. Integrating C++ and Python codes. |
+| Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | Integrating C++ and Python codes. |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. |
 | Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | TBA |
 | Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. |

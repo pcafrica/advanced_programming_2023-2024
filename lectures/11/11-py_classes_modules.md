@@ -172,17 +172,13 @@ class AdvProgMember:
         self.first = first
         self.last = last
         self.email = first.lower() + "." + last.lower() + "@advprog.com"
-```
 
-Accessing class attributes:
-
-```python
 advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(f"{advprog_1.first} is at campus {advprog_1.campus}.")
 print(f"{advprog_1.first} is at campus {AdvProgMember.campus}.")
 ```
 
-## :warning: Changing class attributes affects all instances:
+#### :warning: Changing class attributes affects all instances!
 
 ---
 
@@ -196,11 +192,7 @@ class AdvProgMember:
     def from_csv(cls, csv_name):
         first, last = csv_name.split(',')
         return cls(first, last)
-```
 
-Using the class method:
-
-```python
 advprog_1 = AdvProgMember.from_csv('Pasquale,Africa,pafrica@sissa.it')
 advprog_1.full_name()
 ```
@@ -216,14 +208,151 @@ class AdvProgMember:
     @staticmethod
     def is_exam_date(date):
         return True if date in ["Jan 17th", "Feb 13th"] else False
-```
 
-Using the static method:
-
-```python
 print(f"Is Dec 5th an exam date? {AdvProgMember.is_exam_date("Dec 5th")}")
 print(f"Is Feb 13th an exam date? {AdvProgMember.is_exam_date("Feb 13th")}")
 ```
+
+---
+
+# Magic methods (1/3)
+
+In Python, magic methods, also known as dunder (double underscore) methods, are special methods that start and end with double underscores. Magic methods are automatically invoked by the Python interpreter in response to certain events or operations.
+
+#### Example: `__add__`
+```python
+class Point:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+    def __add__(self, other_point):
+        return Point(self.x + other_point.x, self.y + other_point.y)
+
+point1 = Point(1, 2)
+point2 = Point(3, 4)
+result = point1 + point2
+```
+
+---
+
+# Magic methods (2/3)
+
+#### Example: `__eq__` and `__call__`
+```python
+class CustomObject:
+    def __init__(self, value):
+        self.value = value
+
+    def __eq__(self, other):
+        return self.value == other.value
+
+    def __call__(self, *args, **kwargs):
+        return f"Called with args: {args}, kwargs: {kwargs}"
+
+obj1 = CustomObject(42)
+obj2 = CustomObject(42)
+print(obj1 == obj2)  # Output: True
+
+result = obj(1, 2, key="value")
+print(result)  # Output: Called with args: (1, 2), kwargs: {'key': 'value'}
+```
+
+---
+
+# Magic methods (3/3)
+
+#### Example: `__getitem__` and `__setitem__`
+```python
+class MyContainer:
+    def __init__(self, data):
+        self.data = data
+
+    def __getitem__(self, index):
+        return self.data[index]
+
+    def __setitem__(self, index, value):
+        self.data[index] = value
+
+container = MyContainer([1, 2, 3, 4, 5])
+print(container[2])      # Output: 3
+container[2] = 10
+print(container[2])      # Output: 10
+```
+
+---
+
+# Summary of common magic methods (1/5)
+
+#### Object initialization and cleanup
+- `__init__(self[, ...])`: Constructor method, initializes a new instance.
+- `__del__(self)`: Destructor method, called when the object is about to be destroyed.
+
+#### Object representation
+- `__str__(self)`: Used by `str()` and `print()` to get a human-readable string representation.
+- `__repr__(self)`: Used by `repr()` and the interactive interpreter for a developer-friendly representation.
+- `__format__(self, format_spec)`: Customizes the formatting when using the `format()` function.
+
+---
+
+# Summary of common magic methods (2/5)
+
+#### Attribute access
+- `__getattr__(self, name)`: Called when an attribute lookup fails.
+- `__setattr__(self, name, value)`: Called when an attribute is set.
+- `__delattr__(self, name)`: Called when an attribute is deleted.
+
+#### Container and iteration
+- `__len__(self)`: Returns the length of the object; used by `len()`.
+- `__getitem__(self, key)`: Enables indexing and slicing; used by `obj[key]`.
+- `__setitem__(self, key, value)`: Enables index assignment `obj[key] = value`.
+- `__delitem__(self, key)`: Enables deletion of an index; used by `del obj[key]`.
+- `__iter__(self)`: Returns an iterator object; used by `iter()`.
+- `__next__(self)`: Retrieves the next item from the iterator; used by `next()`.
+
+---
+
+# Summary of common magic methods (3/5)
+
+#### Comparison
+- `__eq__(self, other)`: Defines equality; used by `==`.
+- `__ne__(self, other)`: Defines non-equality; used by `!=`.
+- `__lt__(self, other)`: Defines less than; used by `<`.
+- `__le__(self, other)`: Defines less than or equal to; used by `<=`.
+- `__gt__(self, other)`: Defines greater than; used by `>`.
+- `__ge__(self, other)`: Defines greater than or equal to; used by `>=`.
+- `__bool__(self)`: Defines truthiness; used by `bool()`.
+
+---
+
+# Summary of common magic methods (4/5)
+
+#### Mathematical operations
+- `__add__(self, other)`: Defines addition; used by `+`.
+- `__sub__(self, other)`: Defines subtraction; used by `-`.
+- `__mul__(self, other)`: Defines multiplication; used by `*`.
+- `__truediv__(self, other)`: Defines true division; used by `/`.
+- `__floordiv__(self, other)`: Defines floor division; used by `//`.
+- `__mod__(self, other)`: Defines modulo; used by `%`.
+- `__pow__(self, other[, modulo])`: Defines exponentiation; used by `**`.
+
+---
+
+# Summary of common magic methods (5/5)
+
+#### Callable objects
+- `__call__(self[, args[, kwargs]])`: Allows an instance to be called as a function.
+
+#### Context management
+- `__enter__(self)`
+- `__exit__(self, exc_type, exc_value, traceback)`
+  Used for resource acquisition and release in a `with` statement:
+  ```python
+  with open("example.txt", "r") as file:
+      content = file.read()
+      print(content)
+      # File is automatically closed outside the 'with' block.
+  ```
 
 ---
 
@@ -233,8 +362,9 @@ print(f"Is Feb 13th an exam date? {AdvProgMember.is_exam_date("Feb 13th")}")
 
 - The `self` in Python is equivalent to the `this` pointer in C++.
 
-- All class members (including the data members) are *public* and all the methods are *virtual* in Python. **One exception**: If you use data members with names using the _double underscore prefix_ such as `__myvar`, Python uses name-mangling to effectively make it a private variable.
+- All class members (including the data members) are *public* and all the methods are *virtual* in Python.
 
+- If you use data members with names using the _double underscore prefix_ such as `__myvar`, Python uses name-mangling to effectively make it (almost) a private variable. Any identifier of the form `__myvar` (at least two leading underscores or at most one trailing underscore) is replaced with `_MyClass__myvar`, where `MyClass` is the current class name with a leading underscore(s) stripped. After all, private members can still be accessed... You can check using the built-in `dir()` function.
 
 ---
 
@@ -270,20 +400,10 @@ def my_decorator(original_func):
         print(f"A decoration after {original_func.__name__}.")
         return result
     return wrapper
-```
 
----
-
-# Using decorators
-
-As a function was returned to us, we can execute it by adding parentheses:
-
-```python
 my_decorator(original_func)()
-```
 
-Or we can re-assign the original name `original_func` with the action of the decorator on it:
-```python
+# Or, re-assigning the original symbol:
 original_func = my_decorator(original_func)
 original_func()
 ```
@@ -302,14 +422,9 @@ def original_func():
 
 original_func()
 ```
-
-Output:
-
-```
-A decoration before original_func.
-I'm the original function!
-A decoration after original_func.
-```
+> A decoration before original_func.
+> I'm the original function!
+> A decoration after original_func.
 
 ---
 
@@ -330,7 +445,7 @@ def timer(my_function):
     return wrapper
 ```
 
-More details about `import` later...
+(More details about `import` wil follow).
 
 ---
 
@@ -347,17 +462,12 @@ def silly_function():
 
 silly_function()
 ```
-
-Output:
-
-```
-0
-1000000
-2000000
-...
-9000000
-silly_function ran in 0.601 sec
-```
+> 0
+> 1000000
+> 2000000
+> ...
+> 9000000
+> silly_function ran in 0.601 sec
 
 ---
 
@@ -426,7 +536,7 @@ student_1 = AdvProgStudent('John', 'Smith')
 print(student_1.role)
 ```
 
-Adding an `instance attribute` like `grade` using `super()`, or the base class name:
+Adding an *instance attribute* like `grade` using `super()`, or the base class name:
 
 ```python
 class AdvProgStudent(AdvProgMember):
@@ -436,12 +546,8 @@ class AdvProgStudent(AdvProgMember):
         # super().__init__(first, last) # Or the following:
         AdvProgMember.__init__(first, last)
         self.grade = grade
-```
 
-Instances of `AdvProgStudent` now include the `grade` attribute:
-
-```python
-student_1 = AdvProgStudent('John', 'Smith', 'B+')
+student_1 = AdvProgStudent('John', 'Smith', 28)
 ```
 
 ---
@@ -464,12 +570,10 @@ class AdvProgInstructor(AdvProgMember):
     def remove_course(self, student):
         self.students.remove(student)
 
-```
-
-Instances of `AdvProgInstructor` can manage students:
-
-```python
-instructor_1 = AdvProgInstructor('Pasquale', 'Africa', [student_1, student_2])
+instructor_1 = AdvProgInstructor('Pasquale', 'Africa')
+instructor_1.add_student(student1)
+instructor_1.add_student(student2)
+instructor_1.remove_student(student1)
 ```
 
 ---
@@ -641,6 +745,8 @@ _class: titlepage
 
 In Python, the ability to reuse code is facilitated by modules. A module is a file with a `.py` extension that contains functions and variables. There are various methods to write modules, including using languages like C to create compiled modules.
 
+When importing a module, to enhance import performance, Python creates byte-compiled files (`__pycache__/filename.pyc`). These files, platform-independent and located in the same directory as the corresponding `.py` files, speed up subsequent imports by storing preprocessed code.
+
 ---
 
 # Using Standard Library Modules
@@ -655,12 +761,6 @@ print("Command line arguments:", sys.argv)
 ```
 
 When executed, this program prints the command line arguments provided to it. The `sys.argv` variable holds these arguments as a list. For instance, running `python module_using_sys.py we are arguments` results in `sys.argv[0]` being `'module_using_sys.py'`, `sys.argv[1]` being `'we'`, `sys.argv[2]` being `'are'`, and `sys.argv[3]` being `'arguments'`.
-
----
-
-# Byte-compiled .pyc Files
-
-To enhance import performance, Python creates byte-compiled files (`.pyc`). These files, platform-independent and located in the same directory as the corresponding `.py` files, speed up subsequent imports by storing preprocessed code.
 
 ---
 
@@ -716,7 +816,7 @@ print("Version:", mymodule.__version__)
 
 # The `dir` function
 
-The built-in `dir()` function lists names defined in an object. For a module, it includes functions, classes, and variables. It can also be used without arguments to list names in the current module.
+The built-in `dir()` function lists all symbols defined in an object. For a module, it includes functions, classes, and variables. It can also be used without arguments to list names in the current module.
 
 ```python
 # Example: Using the dir function.
@@ -895,7 +995,7 @@ Next, we will delve into common Python packages for scientific computing, namely
 _class: titlepage
 -->
 
-# **Zen of Python**:<br>"Explicit is better than Implicit."<br>Run `import this` in Python to learn more.
+# **Zen of Python**:<br>"Explicit is better than implicit."<br>Run `import this` in Python to learn more.
 
 ---
 
@@ -903,4 +1003,4 @@ _class: titlepage
 _class: titlepage
 -->
 
-# :arrow_right: Introduction to NumPy and SciPy for scientific computing. <br> Plotting. Introduction to pandas for data analysis. 
+# :arrow_right: Introduction to NumPy and SciPy for scientific computing. Plotting.<br>Introduction to pandas for data analysis. 

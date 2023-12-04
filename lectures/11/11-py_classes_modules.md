@@ -38,12 +38,6 @@ _class: titlepage
 
 # Object-oriented programming in Python
 
-In Python, classes are a powerful tool for creating custom data types, allowing us to bundle data and functionality together. Instances of a class, known as objects, offer a structured and efficient way to manage and manipulate data. Let's delve deeper into classes, exploring their benefits and practical applications.
-
----
-
-# Understanding classes and objects
-
 We've encountered built-in data types like `dict` and `list`. However, Python allows us to define our own data types using classes. A class serves as a blueprint for creating objects, following the principles of [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming).
 
 ```python
@@ -103,18 +97,18 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.com"
+        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
 ```
 
 ---
 
 # The `self`
 
-Class methods have only one specific difference from ordinary functions - they must have an extra first name that has to be added to the beginning of the parameter list, but you **do not** give a value for this parameter when you call the method, Python will provide it. This particular variable refers to the object *itself*, and by convention, it is given the name `self`.
+Class methods have **only one** specific difference from ordinary functions: they must have an extra first name that has to be added to the beginning of the parameter list, but you **do not** give a value for this parameter when you call the method, Python will provide it. This particular variable refers to the object *itself*, and by convention, it is given the name `self`.
 
 You must be wondering how Python gives the value for `self` and why you don't need to give a value for it. An example will make this clear. Say you have a class called `MyClass` and an instance of this class called `myobject`. When you call a method of this object as `myobject.method(arg1, arg2)`, this is automatically converted by Python into `MyClass.method(myobject, arg1, arg2)` - this is all the special `self` is about.
 
-This also means that if you have a method which takes no arguments, then you still have to have one argument - the `self`.
+This also means that if you have a method which takes no arguments, then you still have to have one argument, i.e. the `self`.
 
 ---
 
@@ -144,15 +138,11 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.com"
+        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
 
     def full_name(self): # Notice 'self' as an input argument.
         return f"{self.first} {self.last}"
-```
 
-Using the method:
-
-```python
 advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(advprog_1.full_name())
 ```
@@ -171,7 +161,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.com"
+        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
 
 advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(f"{advprog_1.first} is at campus {advprog_1.campus}.")
@@ -376,7 +366,7 @@ _class: titlepage
 
 ---
 
-# Understanding and creating Python decorators
+# Decorators
 
 Decorators in Python offer a powerful way to enhance the functionality of functions or methods. They act as wrappers, allowing you to extend or modify the behavior of the original function. Let's delve deeper into decorators with examples and explore their practical applications.
 
@@ -390,7 +380,7 @@ from_csv = classmethod(from_csv)
 
 # Defining decorators
 
-Decorators are essentially functions that take another function as input, enhance its capabilities, and return a modified version of the original function. To illustrate, consider the following decorator:
+Decorators are essentially functions that take another function as input, enhance its capabilities, and return a modified version of the original function.
 
 ```python
 def my_decorator(original_func):
@@ -407,6 +397,8 @@ my_decorator(original_func)()
 original_func = my_decorator(original_func)
 original_func()
 ```
+
+**NB**: `__name__` is a special attribute that returns the name of a function, class or module as a string.
 
 ---
 
@@ -476,6 +468,53 @@ silly_function()
 Python comes with built-in decorators like `classmethod` and `staticmethod`, which are implemented in C for efficiency. Although we won't dive into their implementation, they are widely used in practice.
 
 In conclusion, decorators provide a flexible and elegant way to enhance the behavior of functions in Python. While creating custom decorators may not be a daily necessity, understanding them is crucial for leveraging Python's full potential. Explore built-in decorators and consider creating your own when specific functionality is needed.
+
+---
+
+# Decorators and classes (1/2)
+
+A decorator can be applied to classes as well:
+
+```python
+def add_method(cls):
+    def new_method(self):
+        return f"Hello from the new method of {cls.__name__}!"
+
+    cls.new_method = new_method
+
+    return cls
+
+@add_method
+class MyClass:
+    def existing_method(self):
+        return "Hello from the existing method!"
+
+result_new = obj.new_method()
+```
+
+---
+
+# Decorators and classes (2/2)
+
+... or be a class itself:
+
+```python
+class CustomDecorator:
+    def __init__(self, func):
+        self.func = func
+
+    def __call__(self, *args, **kwargs):
+        print(f"Decorating function {self.func.__name__}")
+        result = self.func(*args, **kwargs)
+        print(f"Function {self.func.__name__} finished execution")
+        return result
+
+@CustomDecorator
+def my_function():
+    print("Executing my_function")
+
+my_function()
+```
 
 ---
 
@@ -631,7 +670,7 @@ class AdvProgMember:
 
     @property
     def email(self):
-        return self.first.lower() + "." + self.last.lower() + "@advprog.com"
+        return self.first.lower() + "." + self.last.lower() + "@advprog.edu"
 ```
 
 ---

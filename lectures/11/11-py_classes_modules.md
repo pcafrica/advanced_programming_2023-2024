@@ -94,7 +94,7 @@ We enhance this blueprint by adding an `__init__` method to initialize instances
 
 ```python
 class AdvProgMember:
-    def __init__(self, first, last, email):
+    def __init__(self, first, last):
         self.first = first
         self.last = last
         self.email = first.lower() + "." + last.lower() + "@sissa.it"
@@ -121,7 +121,7 @@ The `__init__` method is run as soon as an object of a class is instantiated (i.
 We do not explicitly call the `__init__` method, but it is automatically invoked when creating an instance of a class:
 
 ```python
-advprog_1 = AdvProgMember('Pasquale', 'Africa', 'pasquale.africa@sissa.it)
+advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
@@ -135,7 +135,7 @@ To simplify accessing a member's full name, we integrate it as a class method:
 
 ```python
 class AdvProgMember:
-    def __init__(self, first, last, email):
+    def __init__(self, first, last):
         self.first = first
         self.last = last
         self.email = first.lower() + "." + last.lower() + "@sissa.it"
@@ -183,7 +183,7 @@ class AdvProgMember:
         first, last = csv_name.split(',')
         return cls(first, last)
 
-advprog_1 = AdvProgMember.from_csv('Pasquale,Africa,pasquale.africa@sissa.it')
+advprog_1 = AdvProgMember.from_csv('Pasquale,Africa')
 advprog_1.full_name()
 ```
 

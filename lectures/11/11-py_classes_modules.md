@@ -244,8 +244,8 @@ obj1 = CustomObject(42)
 obj2 = CustomObject(42)
 print(obj1 == obj2)  # Output: True
 
-result = obj(1, 2, key="value")
-print(result)  # Output: Called with args: (1, 2), kwargs: {'key': 'value'}
+result = obj1(1, 2, key="value")
+print(result)  # Output: Called with args=(1, 2), kwargs={'key': 'value'}
 ```
 
 ---
@@ -481,6 +481,7 @@ class MyClass:
     def existing_method(self):
         return "Hello from the existing method!"
 
+obj = MyClass()
 result_new = obj.new_method()
 ```
 
@@ -689,7 +690,7 @@ advprog_1 = AdvProgMember('Pasqulae', 'Africa')
 advprog_1.first = 'Pasquale'
 print(advprog_1.first)
 print(advprog_1.last)
-print(advprog_1.email) # Now the correct version is printed.
+print(advprog_1.email) # Now the correct value is printed.
 print(advprog_1.full_name())
 ```
 
@@ -739,7 +740,7 @@ class AdvProgMember:
 Setting the `full_name` now updates the attributes:
 
 ```python
-advprog_1 = AdvProgMember('P', 'A')
+advprog_1 = AdvProgMember('X', 'Y')
 advprog_1.full_name = 'Pasquale Africa'
 ```
 

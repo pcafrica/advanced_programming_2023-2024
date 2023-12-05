@@ -463,14 +463,6 @@ silly_function()
 
 ---
 
-# Built-in decorators
-
-Python comes with built-in decorators like `classmethod` and `staticmethod`, which are implemented in C for efficiency. Although we won't dive into their implementation, they are widely used in practice.
-
-In conclusion, decorators provide a flexible and elegant way to enhance the behavior of functions in Python. While creating custom decorators may not be a daily necessity, understanding them is crucial for leveraging Python's full potential. Explore built-in decorators and consider creating your own when specific functionality is needed.
-
----
-
 # Decorators and classes (1/2)
 
 A decorator can be applied to classes as well:
@@ -515,6 +507,16 @@ def my_function():
 
 my_function()
 ```
+
+---
+
+# Built-in decorators
+
+Python comes with built-in decorators like `classmethod` and `staticmethod`, which are implemented in C for efficiency. Although we won't dive into their implementation, they are widely used in practice.
+
+Other than logging and timing/profiling, decorators can be used to **add validation checks for input parameters** and **output cleanup** to functions or methods, or to implement **caching** mechanisms, where the result of a function is stored for a specific set of inputs, and subsequent calls with the same inputs can return the cached result.
+
+In conclusion, decorators provide a flexible and elegant way to enhance the behavior of functions in Python. While creating custom decorators may not be a daily necessity, understanding them is crucial for leveraging Python's full potential.
 
 ---
 

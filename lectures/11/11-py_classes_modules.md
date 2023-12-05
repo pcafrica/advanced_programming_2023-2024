@@ -64,7 +64,7 @@ We refer to `d` as an **instance** of the **type** `dict`.
 
 Custom classes become invaluable when we need to organize and manage complex data structures efficiently. Let's illustrate this with an example involving the Advanced Programming course (`AdvProg`) members. Initially, we store information in a dictionary:
 ```python
-advprog_1 = {'first': Pasquale', 'last': 'Africa', 'email': 'pafrica@sissa.it'}
+advprog_1 = {'first': Pasquale', 'last': 'Africa', 'email': 'pasquale.africa@sissa.it'}
 ```
 
 To extract a member's full name, we define a function:
@@ -75,7 +75,7 @@ def full_name(first, last):
 
 This approach requires repetitive code for each member:
 ```python
-advprog_2 = {'first': 'Marco', 'last': 'Feder', 'email': mfeder@sissa.it'}
+advprog_2 = {'first': 'Marco', 'last': 'Feder', 'email': marco.feder@sissa.it'}
 full_name(advprog_2['first'], advprog_2['last'])
 ```
 
@@ -97,7 +97,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
+        self.email = first.lower() + "." + last.lower() + "@sissa.it"
 ```
 
 ---
@@ -121,7 +121,7 @@ The `__init__` method is run as soon as an object of a class is instantiated (i.
 We do not explicitly call the `__init__` method, but it is automatically invoked when creating an instance of a class:
 
 ```python
-advprog_1 = AdvProgMember('Pasquale', 'Africa', 'pafrica@sissa.it)
+advprog_1 = AdvProgMember('Pasquale', 'Africa', 'pasquale.africa@sissa.it)
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
@@ -138,7 +138,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
+        self.email = first.lower() + "." + last.lower() + "@sissa.it"
 
     def full_name(self): # Notice 'self' as an input argument.
         return f"{self.first} {self.last}"
@@ -161,7 +161,7 @@ class AdvProgMember:
     def __init__(self, first, last, email):
         self.first = first
         self.last = last
-        self.email = first.lower() + "." + last.lower() + "@advprog.edu"
+        self.email = first.lower() + "." + last.lower() + "@sissa.it"
 
 advprog_1 = AdvProgMember('Pasquale', 'Africa')
 print(f"{advprog_1.first} is at campus {advprog_1.campus}.")
@@ -183,7 +183,7 @@ class AdvProgMember:
         first, last = csv_name.split(',')
         return cls(first, last)
 
-advprog_1 = AdvProgMember.from_csv('Pasquale,Africa,pafrica@sissa.it')
+advprog_1 = AdvProgMember.from_csv('Pasquale,Africa,pasquale.africa@sissa.it')
 advprog_1.full_name()
 ```
 
@@ -631,17 +631,20 @@ In contrast, if we have not defined an  `__init__`  method in a subclass, Python
 
 # Getters, setters, deleters
 
-For effective class management, Python provides getters, setters, and deleters. Consider a simplified `AdvProgMember` class:
+For effective class management, Python provides getters, setters, and deleters. Consider the former `AdvProgInstructor` class:
 
 ```python
-class AdvProgMember:
+class AdvProgInstructor(AdvProgMember):
+    role = "AdvProg instructor"
+    
     # ...
 ```
 
 Instances of `AdvProgMember` can be created and accessed:
 
 ```python
-advprog_1 = AdvProgMember('Pasqulae', 'Africa')
+advprog_1 = AdvProgMember('Pasqulae', 'Africa') # Typo!
+                           ^^^^^^^^
 print(advprog_1.first)
 print(advprog_1.last)
 print(advprog_1.email)
@@ -652,17 +655,17 @@ print(advprog_1.full_name())
 
 # The `@property` decorator (1/2)
 
-Imagine that I mis-spelled the name of this class instance and wanted to correct it. Watch what happens.
+Imagine that I mis-spelled the name of the first name and wanted to correct it. Watch what happens.
 
 ```python
 advprog_1.first = 'Pasquale'
 print(advprog_1.first)
 print(advprog_1.last)
-print(advprog_1.email)
+print(advprog_1.email) # Still prints pasqulae.africa@sissa.it!
 print(advprog_1.full_name())
 ```
 
-Utilizing a `@property` decorator defines `email` like a method, but keeps it as an attribute:
+Utilizing a `@property` decorator defines `email` like a method, but keeps it as an **attribute**:
 
 ```python
 class AdvProgMember:
@@ -670,7 +673,7 @@ class AdvProgMember:
 
     @property
     def email(self):
-        return self.first.lower() + "." + self.last.lower() + "@advprog.edu"
+        return self.first.lower() + "." + self.last.lower() + "@sissa.it"
 ```
 
 ---
@@ -684,11 +687,11 @@ advprog_1 = AdvProgMember('Pasqulae', 'Africa')
 advprog_1.first = 'Pasquale'
 print(advprog_1.first)
 print(advprog_1.last)
-print(advprog_1.email)
+print(advprog_1.email) # Now the correct version is printed.
 print(advprog_1.full_name())
 ```
 
-We could do the same with the `full_name()` method if we wanted to:
+We could do the same with the `full_name()` method:
 
 ```python
 class AdvProgMember:
@@ -803,9 +806,9 @@ When executed, this program prints the command line arguments provided to it. Th
 
 ---
 
-# The `from ... import ...` Statement
+# The `from... import...` Statement
 
-You can selectively import variables from a module using the `from ... import ...` statement. However, it's generally advised to use the `import` statement to avoid potential name clashes and enhance readability.
+You can selectively import variables from a module using the `from... import...` statement. However, it's generally advised to use the `import` statement to avoid potential name clashes and enhance readability.
 
 ```python
 from math import sqrt

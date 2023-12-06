@@ -529,7 +529,7 @@ _class: titlepage
 
 ---
 
-# Inheritance and subclasses
+# Inheritance and subclasses (1/4)
 
 Inheritance in Python enables classes to inherit methods and attributes from other classes. Previously, we worked with the `AdvProgMember` class, but now let's delve into creating more specialized classes like `AdvProgStudent` and `AdvProgInstructor`.
 
@@ -547,7 +547,7 @@ class AdvProgStudent(AdvProgMember):
 
 ---
 
-# Inheritance and subclasses
+# Inheritance and subclasses (2/4)
 
 Creating instances of `AdvProgStudent` and accessing inherited methods:
 
@@ -569,7 +569,7 @@ class AdvProgStudent(AdvProgMember):
 
 ---
 
-# Inheritance and subclasses
+# Inheritance and subclasses (3/4)
 
 Now, creating a student instance reflects the updated role:
 
@@ -594,7 +594,7 @@ student_1 = AdvProgStudent('John', 'Smith', 28)
 
 ---
 
-# Inheritance and subclasses
+# Inheritance and subclasses (4/4)
 
 Creating another subclass, `AdvProgInstructor`, with additional methods:
 

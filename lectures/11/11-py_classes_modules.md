@@ -586,7 +586,7 @@ class AdvProgStudent(AdvProgMember):
 
     def __init__(self, first, last, grade):
         # super().__init__(first, last) # Or the following:
-        AdvProgMember.__init__(first, last)
+        AdvProgMember.__init__(self, first, last)
         self.grade = grade
 
 student_1 = AdvProgStudent('John', 'Smith', 28)

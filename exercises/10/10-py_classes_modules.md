@@ -21,7 +21,7 @@ _class: titlepage
 
 # Exercise 1: generators for the solution of ODEs
 
-Solving the differential equation $u' = -sin(u)$ by applying the explicit Euler method results in the recursion:
+Solving the differential equation $u' = -\sin(u)$ by applying the explicit Euler method results in the recursion:
 
 $$
 u_{n+1} = u_n - h \sin\left(u_n\right)

@@ -24,12 +24,12 @@ _class: titlepage
 Solving the differential equation $u' = -\sin(u)$ by applying the explicit Euler method results in the recursion:
 
 $$
-u_{n+1} = u_n - h \sin\left(u_n\right)
+u_{n+1} = u_n - h \sin\left(u_n\right).
 $$
 
-Write a generator that computes the solution values $u_n$ for a given initial value $u_0 = 1$ and a given value of the time step $h = 0.1$.
+1. Write a generator that computes the solution values $u_n$ for a given initial value $u_0 = 1$ and a given value of the time step $h = 0.1$.
 
-Implement a function decorator `step_counter` that counts how many time steps have been performed.
+2. Implement a generator decorator `step_counter` that counts how many time steps have been performed.
 
 ---
 
@@ -49,29 +49,29 @@ You are tasked with implementing a Python class called `Polynomial` that represe
 
 4. **Class method to create from string**: Implement a `@classmethod` called `from_string` that creates a Polynomial object from a string representation. Assume that the input string will be a polynomial in the form of `"a + bx + ... + cx^(n-1) + dx^n"`.
 
-The base class `Polynomial` should be extended by two subclasses:
-- `StandardPolynomialEvaluator`: Implements the standard polynomial evaluation method:
-$$
-P(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 + \ldots + a_n \cdot x^n
-$$
-- `HornerPolynomialEvaluator`: Implements Horner's rule for polynomial evaluation:
-$$
-P(x) = a_0 + x \cdot (a_1 + x \cdot (a_2 + \ldots + x \cdot (a_{n-1} + x \cdot a_n) \ldots))
-$$
+5. The base class `Polynomial` should be extended by two subclasses:
+   - `StandardPolynomialEvaluator`: Implements the standard polynomial evaluation method:
+   $$
+   P(x) = a_0 + a_1 \cdot x + a_2 \cdot x^2 + \ldots + a_n \cdot x^n
+   $$
+   - `HornerPolynomialEvaluator`: Implements Horner's rule for polynomial evaluation:
+   $$
+   P(x) = a_0 + x \cdot (a_1 + x \cdot (a_2 + \ldots + x \cdot (a_{n-1} + x \cdot a_n) \ldots))
+   $$
 
 ---
 
 # Exercise 2: `Polynomial class` (3/3)
 
-- Implement the `measure_time` decorator, which measures the time taken by a function to execute.
+6. Implement a `measure_time` decorator, which measures the time taken by a function to execute.
 
-- Instantiate objects of both `StandardPolynomialEvaluator` and `HornerPolynomialEvaluator` with the same set of coefficients.
+7. Instantiate objects of both `StandardPolynomialEvaluator` and `HornerPolynomialEvaluator` with the same set of coefficients.
 
-- Evaluate the polynomial at the same 1000 points using both methods and compare the results. Raise an assertion error if the results do not match.
+8. Apply the `measure_time` decorator to a function that takes a `PolynomialEvaluator` object and evaluates it at a given list of points.
 
-- Apply the `measure_time` decorator to a function that takes a `PolynomialEvaluator` object and evaluates it at a given list of points.
+9. Evaluate the polynomial at the same 1000 points using both methods and compare the results. Raise an assertion error if the results do not match.
 
-- Use the decorated function to evaluate the polynomial using both the standard method and Horner's rule, and observe the logged results and execution times.
+10. Use the decorated function to evaluate the polynomial using both the standard method and Horner's rule, and observe the logged results and execution times.
 
 ---
 
@@ -83,7 +83,5 @@ Refactor the existing data processing code provided in `hints/ex3.py` into a mod
      - `__init__.py`: Entry point for the package, import necessary functions, classes, and data. Implement `__all__`.
      - `operations.py`: Contains functions for data processing and analysis.
      - `data_analysis.py`: Introduce a class `DataAnalyzer` that encapsulates data processing and analysis functionalities.
-
 2. **Documentation:** Provide docstrings for functions and classes. Explain the purpose and usage of each function and configuration option.
-
 3. **Test cases:** Create a test `main.py` script to demonstrate the usage of the package.

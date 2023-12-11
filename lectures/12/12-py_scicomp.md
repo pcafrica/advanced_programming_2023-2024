@@ -21,27 +21,35 @@ _class: titlepage
 
 # Outline
 
+<div class="columns">
+<div>
+
 1. The role of Python in modern scientific computing
 
 2. NumPy
-   - Introduction
    - Creating and manipulating arrays
    - Linear and matrix algebra
    - Data processing and beyond
 
-3. Overview of SciPy
+3. SciPy
    - Relationship between NumPy and SciPy
    - Core modules in SciPy
-   - Interpolation with Scipy
-   - Optimization with SciPy
-   - Integration with SciPy
-   - Solving differential equations with SciPy
 
-4. Plotting
+</div>
+<div>
+
+4. Data visualization
    - Overview of Matplotlib for plotting
-   - Creating basic 2D plots using Matplotlib
-   - Creating basic 3D plots using Matplotlib
    - Introduction to seaborn
+
+5. pandas
+   - Dataframes
+   - Operations on dataframes
+
+</div>
+</div>
+
+Part of these notes is re-adapted from [these lectures](http://github.com/jrjohansson/scientific-python-lectures) ([CC BY 3.0 DEED](https://creativecommons.org/licenses/by/3.0/) license).
 
 ---
 
@@ -55,77 +63,46 @@ _class: titlepage
 
 # The role of Python in modern scientific computing
 
-Slide 1: Title
+- Python has become a cornerstone in the realm of scientific computing due to:
+    - Flexible and readable syntax.
+    - Broad ecosystem of libraries and tools.
 
-    Title: "The Crucial Role of Python in Scientific Computing"
-    Subtitle: "Empowering Scientific Discovery Through Python"
+- Python's flexibility accommodates a wide range of scientific disciplines:
+    - Physics, biology, chemistry, astronomy, applied mathematics, ...
+    - Simulations, data analysis, image processing, climate modeling, drug discovery, genomic research, and more.
 
-Slide 2: Introduction
+---
 
-    Opening Statement: "Python, a versatile programming language, has become a cornerstone in the realm of scientific computing."
-    Key Points:
-        Flexible and readable syntax.
-        Broad ecosystem of libraries and tools.
+# Python's library ecosystem for scientific computing
 
-Slide 3: Python's Versatility
+- Python owes much of its scientific prowess to its rich library ecosystem:
+    - NumPy, SciPy, and pandas for data manipulation.
+    - Matplotlib and Seaborn for visualization.
+    - TensorFlow and PyTorch for machine learning.
 
-    Key Message: "Python's flexibility accommodates a wide range of scientific disciplines."
-    Examples:
-        Physics, biology, chemistry, astronomy, and more.
-        Adaptability for diverse scientific tasks.
+- Python lowers entry barriers for researchers and scientists and thrives on collaboration within the open-source community.
 
-Slide 4: Widely Adopted Libraries
+---
 
-    Key Message: "Python owes much of its scientific prowess to its rich library ecosystem."
-    Examples:
-        NumPy, SciPy, and Pandas for data manipulation.
-        Matplotlib and Seaborn for visualization.
-        TensorFlow and PyTorch for machine learning.
+# How to get your system ready
 
-Slide 5: Accessibility for Researchers
+Most Python libraries can be installed with `pip`, with [`Conda`](https://conda.io), with a package manager on Linux and macOS, or from source.
 
-    Key Message: "Python lowers entry barriers for researchers and scientists."
-    Points to Highlight:
-        Easy to learn and teach.
-        Readable syntax enhances collaboration.
-        Extensive documentation and community support.
+- Using `pip`:
 
-Slide 6: Open Source Collaboration
+  ```bash
+  pip install numpy
+  ```
 
-    Key Message: "Python thrives on collaboration within the open-source community."
-    Highlights:
-        Crowdsourced development and improvement.
-        Shared libraries and tools benefit the entire community.
-        Encourages transparency and innovation.
+- Using `Conda`:
 
-Slide 7: Reproducibility and Workflow
+  ```bash
+  conda create -n my-env
+  conda activate my-env
+  
+  conda install numpy
+  ```
 
-    Key Message: "Python facilitates reproducible and streamlined workflows."
-    Key Features:
-        Jupyter Notebooks for interactive and documented analysis.
-        Integration with version control systems.
-        Seamless transition from research to production.
-
-Slide 8: Scalability and Performance
-
-    Key Message: "Python's performance capabilities meet the demands of scientific computing."
-    Points to Emphasize:
-        NumPy and SciPy optimizations.
-        Integration with high-performance computing (HPC) environments.
-        Interface with compiled languages for critical sections.
-
-Slide 9: Real-world Applications
-
-    Key Message: "Python plays a pivotal role in groundbreaking scientific applications."
-    Examples:
-        Simulations, data analysis, image processing.
-        Climate modeling, drug discovery, and genomic research.
-
-Slide 10: Conclusion
-
-    Closing Statement: "Python's impact on scientific computing is profound and continues to shape the future of research and discovery."
-    Call to Action: "Explore the dynamic world of Python in scientific computing and join the community driving innovation."
-    
 ---
 
 <!--
@@ -138,21 +115,21 @@ _class: titlepage
 
 # Introduction
 
-The `NumPy` module plays a crucial role in Python's numerical computation, providing high-performance structures for vectors, matrices, and multidimensional data. Implemented in C and Fortran, it excels in vectorized operations, showcasing superior performance.
+The NumPy module plays a crucial role in Python's numerical computation, providing high-performance structures for vectors, matrices, and multidimensional data. Implemented in C and Fortran, it excels in vectorized operations, showcasing superior performance.
 
-To utilize `NumPy`, import the module, such as:
+To utilize NumPy, import the module, such as:
 
 ```python
 import numpy as np
 ```
 
-Within the `NumPy` package, arrays represent vectors, matrices, and higher-dimensional datasets.
+Within the NumPy package, arrays represent vectors, matrices, and higher-dimensional datasets.
 
 ---
 
-# Creating `NumPy` arrays
+# Creating NumPy arrays
 
-Initializing `NumPy` arrays can be achieved through various methods:
+Initializing NumPy arrays can be achieved through various methods:
 
 - Conversion from Python lists or tuples.
 - Utilizing dedicated array-generating functions such as `np.arange`, `np.linspace`, etc.
@@ -172,7 +149,7 @@ v = np.array([1, 2, 3, 4])
 M = np.array([[1, 2], [3, 4]])
 ```
 
-Both `v` and `M` are instances of the `ndarray` type provided by the `NumPy` module.
+Both `v` and `M` are instances of the `ndarray` type provided by the NumPy module.
 
 ---
 
@@ -196,7 +173,7 @@ M.shape
 
 # Lists vs. NumPy arrays
 
-While `NumPy.ndarray` may seem similar to Python lists, using Python lists for numerical computations is suboptimal due to their generality and dynamic typing. In contrast, `NumPy` arrays are statically typed, homogeneous, memory-efficient, and support efficient mathematical operations implemented in compiled languages like C and Fortran.
+While `NumPy.ndarray` may seem similar to Python lists, using Python lists for numerical computations is suboptimal due to their generality and dynamic typing. In contrast, NumPy arrays are statically typed, homogeneous, memory-efficient, and support efficient mathematical operations implemented in compiled languages like C and Fortran.
 
 ---
 
@@ -234,7 +211,7 @@ Common data types for `dtype` include `int`, `float`, `complex`, `bool`, and oth
 
 # Using array-generating functions (1/2)
 
-For larger arrays, manual initialization becomes impractical, leading to the use of array-generating functions in `NumPy`:
+For larger arrays, manual initialization becomes impractical, leading to the use of array-generating functions in NumPy:
 
 ```python
 x = np.arange(0, 10, 1)  # Arguments: start, stop, step.
@@ -268,14 +245,14 @@ np.ones((3, 3))
 
 ## Comma-separated values (CSV)
 
-Reading data from comma-separated values (CSV) files into `NumPy` arrays is accomplished using `np.genfromtxt`:
+Reading data from comma-separated values (CSV) files into NumPy arrays is accomplished using `np.genfromtxt`:
 
 ```python
 data = np.genfromtxt('filename.csv')
 data.shape
 ```
 
-Storing a `NumPy` array to a CSV file can be done with `np.savetxt`:
+Storing a NumPy array to a CSV file can be done with `np.savetxt`:
 
 ```python
 M = random.rand(3, 3)
@@ -289,7 +266,7 @@ np.savetxt("random-matrix.csv", M, fmt='%.5f')  # fmt specifies the format.
 
 ## NumPy's native file format
 
-`NumPy` provides its own file format for storing and reading array data using `np.save` and `np.load`:
+NumPy provides its own file format for storing and reading array data using `np.save` and `np.load`:
 
 ```python
 np.save("random-matrix.npy", M)
@@ -482,12 +459,11 @@ Many other functions and methods in the `array` and `matrix` classes accept the 
 The shape of a NumPy array can be modified without copying the underlying data, making it a fast operation even for large arrays:
 
 ```python
-A
 n, m = A.shape
 B = A.reshape((1, n * m))
 
 B[0, 0:5] = 5  # Modify the array.
-A  # The original variable is also changed. B is only a different view of the same data.
+# The original variable is also changed. B is only a different view of the same data.
 ```
 
 We can also use the function `flatten` to make a higher-dimensional array into a vector. But this function creates a copy of the data:
@@ -507,12 +483,14 @@ With `newaxis`, we can insert new dimensions in an array, for example converting
 v = np.array([1, 2, 3])
 np.shape(v)
 ```
-
 > (3,)
 
 ```python
 # Make a column matrix of the vector v.
 v[:, np.newaxis]
+
+# Make a row matrix of the vector v.
+v[np.newaxis,:]
 ```
 
 ---
@@ -523,6 +501,7 @@ Using functions `repeat`, `tile`, `vstack`, `hstack`, and `concatenate`, we can 
 
 ```python
 a = np.array([[1, 2], [3, 4]])
+
 # Repeat each element 3 times.
 np.repeat(a, 3)
 ```
@@ -679,9 +658,8 @@ M3 = M.astype(bool)
 
 # Further reading
 
-- [NumPy Documentation](http://NumPy.scipy.org)
-- [Tentative NumPy Tutorial](http://scipy.org/Tentative_NumPy_Tutorial)
-- [NumPy for MATLAB Users](http://scipy.org/NumPy_for_Matlab_Users) - A NumPy guide for MATLAB users.
+- [NumPy documentation](https://numpy.org/doc/stable/user/index.html)
+- [NumPy tutorials](https://numpy.org/numpy-tutorials/index.html)
 
 ---
 
@@ -693,6 +671,368 @@ _class: titlepage
 
 ---
 
+# SciPy overview
+
+- **Foundation**: Built on top of NumPy, SciPy leverages its array structures and operations.
+- **Scientific Algorithms**: Offers higher-level scientific algorithms beyond NumPy.
+- **Modules**: Includes sub-modules for optimization, integration, signal processing, linear algebra, and more.
+
+**Relationship between NumPy and SciPy**:
+- NumPy serves as the foundation for numerical operations in SciPy.
+- SciPy utilizes NumPy arrays for efficient data representation.
+- Seamless interoperability between NumPy and SciPy.
+
+**Best Practice**: *NumPy for basic operations, SciPy for specialized tasks*.
+
+---
+
+# SciPy modules
+
+- Special functions ([`scipy.special`](https://docs.scipy.org/doc/scipy/reference/special.html))
+- Numerical integration ([`scipy.integrate`](https://docs.scipy.org/doc/scipy/reference/integrate.html))
+- Optimization ([`scipy.optimize`](https://docs.scipy.org/doc/scipy/reference/optimize.html))
+- Interpolation ([`scipy.interpolate`](https://docs.scipy.org/doc/scipy/reference/interpolate.html))
+- Fourier transforms ([`scipy.fft`](https://docs.scipy.org/doc/scipy/reference/fft.html))
+- Signal processing ([`scipy.signal`](https://docs.scipy.org/doc/scipy/reference/signal.html))
+- Sparse matrices ([`scipy.sparse`](https://docs.scipy.org/doc/scipy/reference/sparse.html))
+- Linear algebra ([`scipy.linalg`](https://docs.scipy.org/doc/scipy/reference/linalg.html))
+- Statistics ([`scipy.stats`](https://docs.scipy.org/doc/scipy/reference/stats.html))
+- Multi-dimensional image processing ([`scipy.ndimage`](https://docs.scipy.org/doc/scipy/reference/ndimage.html))
+- File IO ([`scipy.io`](https://docs.scipy.org/doc/scipy/reference/io.html))
+
+---
+
+# Importing SciPy
+
+In this lecture, we will explore how to use some of these subpackages.
+
+To access the SciPy package in a Python program, we start by importing everything from the `scipy` module:
+```python
+from scipy import *
+```
+
+If we only need to use part of the SciPy framework, we can selectively include only those modules we are interested in. For example, to include the linear algebra package under the name `la`, we can do:
+
+```python
+import scipy.linalg as la
+```
+
+---
+
+# Numerical integration (1/3)
+
+For the numerical evaluation of a definite integral of the type $\int\_a^b f(x),\mathrm{d}x$, SciPy provides a series of functions for different kinds of quadrature, such as `quad`, `dblquad`, and `tplquad` for single, double, and triple integrals, respectively.
+
+```python
+from scipy.integrate import quad, dblquad, tplquad
+```
+
+The `quad` function takes a large number of optional arguments, which can be used to fine-tune the behavior of the function (try `help(quad)` for details).
+
+---
+
+# Numerical integration (2/3)
+
+The basic usage is as follows:
+
+```python
+def f(x):
+    return x
+
+x_lower = 0
+x_upper = 1
+
+val, abserr = quad(f, x_lower, x_upper)
+```
+
+For simple functions, we can use a lambda function:
+
+```python
+val, abserr = quad(lambda x: exp(-x ** 2), -Inf, Inf)
+```
+
+---
+
+# Numerical integration (3/3)
+
+Higher-dimensional integration works in the same way:
+
+```python
+def integrand(x, y):
+    return exp(-x**2 - y**2)
+
+x_lower = 0
+x_upper = 10
+y_lower = lambda x: x
+y_upper = lambda x: x + 1
+
+val, abserr = dblquad(integrand, x_lower, x_upper, y_lower, y_upper)
+```
+
+---
+
+# Ordinary Differential Equations (ODEs) (1/2)
+
+A system of ODEs is usually formulated in standard form before it is attacked numerically. The standard form is
+
+$$y' = f(y, t),$$
+
+where $y = [y\_1(t), y\_2(t), ..., y\_n(t)]$, and $f$ is some function that gives the derivatives of the function $y\_i(t)$.
+
+To solve an ODE, we need to know the function $f$ and an initial condition, $y(0)$.
+
+Note that higher-order ODEs can always be written in this form by introducing new variables for the intermediate derivatives.
+
+---
+
+# Ordinary Differential Equations (ODEs) (2/2)
+
+SciPy provides two different ways to solve ODEs: an API based on the function `odeint` and an object-oriented API based on the class `ode`. Usually, `odeint` is easier to get started with, but the `ode` class offers some finer level of control. Here we will use the `odeint` functions. For more information about the class `ode`, try `help(ode)`.
+
+To use `odeint`, first import it from the `scipy.integrate` module
+
+```python
+from scipy.integrate import odeint, ode
+```
+
+Once we have defined the Python function `f` and array `y_0`, we can use `odeint` as:
+
+```python
+y_t = odeint(f, y_0, t)
+```
+
+where `t` is an array with time-coordinates for which to solve the ODE problem. `y_t` is an array with one row for each point in time in `t`, where each column corresponds to a solution $y\_i(t)$ at that point in time.
+
+---
+
+# Fourier transform
+
+Fourier transform is a universal tool in computational physics, appearing repeatedly in different contexts.
+
+Here is an example of how to use the `fft` module in a Python program:
+
+```python
+from scipy.fft import fft, ifft, fftfreq
+import numpy as np
+
+N = 600 # Number of sample points.
+
+T = 1.0 / 800.0 # Sample spacing.
+
+x = np.linspace(0.0, N*T, N, endpoint=False)
+y = np.sin(50.0 * 2.0*np.pi*x) + 0.5*np.sin(80.0 * 2.0*np.pi*x)
+
+yf = fft(y)
+xf = fftfreq(N, T)[:N//2]
+```
+
+---
+
+# Linear algebra
+
+The linear algebra module contains various matrix-related functions, including linear equation solving, eigenvalue solvers, matrix functions (e.g., matrix exponentiation), different decompositions (SVD, LU, Cholesky), etc.
+
+## Linear systems
+
+```python
+from scipy.linalg import *
+
+A = array([[1,2,3], [4,5,6], [7,8,9]])
+b = array([1,2,3])
+
+x = solve(A, b)
+```
+
+---
+
+# Linear algebra
+
+## Eigenvalues and eigenvectors
+
+The eigenvalue problem for a matrix $A$ reads $A v\_n = \lambda\_n v\_n$, where $v\_n$ is the $n$th eigenvector and $\lambda\_n$ is the $n$th eigenvalue.
+
+To calculate eigenvalues of a matrix, use the `eigvals`, and for calculating both eigenvalues and eigenvectors, use the function `eig`:
+
+```python
+lambda = eigvals(A)
+lambda, v = eig(A)
+```
+
+The eigenvectors corresponding to the $n$th eigenvalue (stored in `lambda[n]`) is the $n$th *column* in `v`, i.e., `v[:,n]`.
+
+There are also more specialized eigensolvers, like the `eigh` for Hermitian matrices.
+
+---
+
+# Linear algebra
+
+## Matrix operations
+
+```python
+inv(A) # Matrix inverse.
+det(A) # Matrix determinant.
+
+# Matrix norms of various orders.
+norm(A, ord=1)
+norm(A, ord=2)
+norm(A, ord=Inf)
+```
+
+---
+
+# Linear algebra
+
+## Sparse matrices (1/3)
+
+Sparse matrices are often useful in numerical simulations dealing with large systems, where the problem can be described in matrix form, and matrices or vectors mostly contain zeros. SciPy has good support for sparse matrices, with basic linear algebra operations (e.g., equation solving, eigenvalue calculations, etc.).
+
+There are many possible strategies for storing sparse matrices efficiently, such as coordinate form (COO), list of lists (LIL) form, and compressed-sparse column CSC (and row, CSR). Each format has some advantages and disadvantages. Most computational algorithms (equation solving, matrix-matrix multiplication, etc.) can be efficiently implemented using CSR or CSC formats, but they are not so intuitive and not so easy to initialize. So often, a sparse matrix is initially created in COO or LIL format (where we can efficiently add elements to the sparse matrix data), and then converted to CSC or CSR before used in real calculations.
+
+---
+
+# Linear algebra
+
+## Sparse matrices (2/3)
+
+When we create a sparse matrix, we have to choose which format it should be stored in. For example,
+
+```python
+from scipy.sparse import *
+
+# Dense matrix.
+M = array([[1,0,0,0], [0,3,0,0], [0,1,1,0], [1,0,0,1]])
+
+# Convert from dense to sparse.
+A = csr_matrix(M)
+
+# Convert from sparse to dense.
+A.todense()
+```
+
+---
+
+# Linear algebra
+
+## Sparse matrices (3/3)
+
+More efficient way to create sparse matrices: create an empty matrix and populate it using matrix indexing (avoids creating a potentially large dense matrix).
+
+```python
+A = lil_matrix((4,4)) # Empty 4x4 sparse matrix.
+A[0,0] = 1
+A[1,1] = 3
+A[2,2] = A[2,1] = 1
+A[3,3] = A[3,0] = 1
+
+# Sparse matrix - dense array multiplication.
+A * v
+```
+
+*LIL* stands for *LI*sts of *L*ists.
+
+---
+
+# Optimization
+
+Optimization (finding minima or maxima of a function) is a large field in mathematics, and optimization of complicated functions or in many variables can be rather involved.
+
+## Finding minima
+
+We can use several algorithms to find the minima of a function:
+
+```python
+from scipy import optimize
+
+def f(x):
+    return 4*x**3 + (x-2)**2 + x**4
+
+x_min1 = optimize.fmin_bfgs(f, -2)
+x_min2 = optimize.brent(f)
+x_min3 = optimize.fminbound(f, -4, 2)
+```
+
+---
+
+# Optimization
+
+## Finding function roots
+
+To find the root for a function of the form $f(x) = 0$, we can use the `fsolve` function. It requires an initial guess:
+
+```python
+from scipy import optimize
+
+def f(omega):
+    return tan(2 * np.pi * omega) - 3.0 / omega
+
+optimize.fsolve(f, 0.1)
+```
+
+---
+
+# Interpolation
+
+The `interp1d` function, when given arrays describing X and Y data, returns an object that behaves like a function that can be called for an arbitrary value of x (in the range covered by X), and it returns the corresponding interpolated y value:
+
+```python
+from scipy.interpolate import *
+
+def f(x):
+    return sin(x)
+
+n = arange(0, 10)
+x_meas = linspace(0, 9, 100)
+y_meas = f(n) + 0.1 * randn(len(n))
+
+linear_interpolation = interp1d(x_meas, y_meas)
+y_interp1 = linear_interpolation(x)
+
+cubic_interpolation = interp1d(x_meas, y_meas, kind='cubic')
+y_interp2 = cubic_interpolation(x)
+```
+
+---
+
+# Statistics
+
+The `scipy.stats` module contains a large number of statistical distributions, statistical functions, and tests.
+
+```python
+from scipy import stats
+
+X = stats.poisson(3.5)
+Y = stats.norm()
+
+X.mean(), X.std(), X.var()
+Y.mean(), Y.std(), Y.var()
+```
+
+---
+
+# Statistical tests
+
+Calculate the T-test for the means of two independent samples:
+
+```python
+t_statistic, p_value = stats.ttest_ind(X.rvs(size=1000), X.rvs(size=1000))
+```
+
+Test if the mean of a single sample of data is 0.1:
+
+```python
+stats.ttest_1samp(Y.rvs(size=1000), 0.1)
+```
+
+A low p-value means that we can reject the hypothesis.
+
+---
+
+# Further reading
+
+- [SciPy documentation](https://docs.scipy.org/doc/scipy/index.html)
+
+---
+
 <!--
 _class: titlepage
 -->
@@ -701,11 +1041,167 @@ _class: titlepage
 
 ---
 
-<!--
-_class: titlepage
--->
+# Introduction to Matplotlib and Seaborn
 
-# Pandas
+Data visualization is a crucial aspect of data analysis, and Python offers powerful libraries for creating stunning visualizations. Two popular libraries for creating static, interactive, and aesthetically pleasing visualizations are Matplotlib and Seaborn. In this tutorial, we will explore the basics of Matplotlib and Seaborn and demonstrate how to create various types of plots.
+
+---
+
+# Matplotlib (1/2)
+
+Matplotlib is a widely-used 2D plotting library in Python. It provides a high-level interface for drawing attractive and informative statistical graphics. Let's start with a simple example to create a basic line plot:
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate data.
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# Create a simple line plot.
+plt.plot(x, y, label='sin(x)')
+plt.title('Simple line plot')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.legend()
+plt.show()
+```
+
+---
+
+# Matplotlib (2/2)
+
+In this example, we use NumPy to generate data points for the x-axis and calculate corresponding y-values. The `plot` function is then used to create a line plot. Finally, `title`, `xlabel`, `ylabel`, and `legend` functions are used to add a title, axis labels, and a legend to the plot.
+
+Matplotlib supports various types of plots, including scatter plots, bar plots, histograms, and more. Explore the documentation for more plot types and customization options.
+
+---
+
+# 2D plots with Matplotlib
+
+Let's create a 2D contour plot using Matplotlib.
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Generate data.
+x = np.linspace(-5, 5, 100)
+y = np.linspace(-5, 5, 100)
+X, Y = np.meshgrid(x, y)
+Z = np.sin(np.sqrt(X**2 + Y**2))
+
+# Create a 2D contour plot.
+plt.contourf(X, Y, Z, cmap='viridis')
+plt.colorbar(label='sin(sqrt(x^2 + y^2))')
+plt.title('Contour Plot')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.show()
+```
+
+---
+
+# Seaborn
+
+Seaborn is built on top of Matplotlib and provides a high-level interface for creating informative statistical graphics. It comes with several built-in themes and color palettes to make your visualizations more attractive. Let's create a simple scatter plot using Seaborn:
+
+```python
+import seaborn as sns
+import numpy as np
+
+# Generate data.
+x = np.random.randn(100)
+y = 2 * x + np.random.randn(100)
+
+# Create a scatter plot using Seaborn.
+sns.scatterplot(x=x, y=y, color='blue')
+plt.title('Scatter Plot with Seaborn')
+plt.xlabel('x-axis')
+plt.ylabel('y-axis')
+plt.show()
+```
+
+---
+
+# Customizing histograms with Seaborn
+
+Let's create a customized histogram with Seaborn, including specific bin edges, colors, and additional statistical annotations.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load a dataset.
+tips = sns.load_dataset('tips')
+
+# Create a histogram with customizations.
+sns.histplot(tips['total_bill'], bins=[10, 20, 30, 40, 50], color='salmon')
+plt.title('Customized histogram')
+plt.xlabel('Total bill ($)')
+plt.ylabel('Frequency')
+
+# Annotate with mean and median.
+plt.axvline(tips['total_bill'].mean(), color='blue', linestyle='dashed', linewidth=2, label='Mean')
+plt.axvline(tips['total_bill'].median(), color='green', linestyle='dashed', linewidth=2, label='Median')
+
+plt.legend()
+plt.show()
+```
+
+---
+
+# Scatter plots with Seaborn
+
+Create a scatter plot with Seaborn that includes a regression line, different colors based on a categorical variable, and markers with varied sizes.
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load a dataset.
+tips = sns.load_dataset('tips')
+
+# Create a scatter plot.
+sns.scatterplot(x='total_bill', y='tip', hue='day', size='size', sizes=(20, 200),
+                data=tips, palette='Set2', alpha=0.8)
+plt.title('Advanced Scatter Plot')
+plt.xlabel('Total Bill ($)')
+plt.ylabel('Tip ($)')
+plt.legend(title='Day')
+plt.show()
+```
+
+---
+
+# Combining Matplotlib and Seaborn
+
+One of the strengths of Seaborn is its ability to work seamlessly with Matplotlib. You can use Matplotlib functions alongside Seaborn to customize your plots further. Here's an example combining Matplotlib and Seaborn to create a histogram with a kernel density estimate:
+
+```python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+# Load a dataset.
+tips = sns.load_dataset('tips')
+
+# Create a histogram with a Kernel Density Estimate using Seaborn.
+sns.histplot(tips['total_bill'], kde=True, color='skyblue')
+
+# Customize Matplotlib features.
+plt.title('Histogram with KDE')
+plt.xlabel('Total bill ($)')
+plt.ylabel('Frequency')
+plt.show()
+```
+
+---
+
+# Further reading
+
+- [Matplotlib documentation](https://matplotlib.org/)
+- [Seaborn documentation](https://seaborn.pydata.org/)
 
 ---
 
@@ -713,4 +1209,275 @@ _class: titlepage
 _class: titlepage
 -->
 
-# :arrow_right:
+# pandas
+
+---
+
+# pandas overview
+
+In the pandas library, the standard import convention involves using the aliases `np` for NumPy and `pd` for pandas:
+
+```python
+import numpy as np
+import pandas as pd
+```
+
+## Fundamental data structures in pandas
+
+pandas offers two essential classes for data manipulation:
+
+1. **Series**: A one-dimensional labeled array that can hold various data types.
+2. **DataFrame**: A two-dimensional data structure resembling a table with rows and columns.
+
+---
+
+# Creating objects (1/2)
+
+## Series creation
+
+You can create a Series by providing a list of values. pandas will generate a default RangeIndex:
+```python
+s = pd.Series([1, 3, 5, np.nan, 6, 8])
+```
+
+## DataFrame creation
+
+Creating a DataFrame involves passing a NumPy array with a datetime index and labeled columns:
+```python
+dates = pd.date_range("20130101", periods=6)
+df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
+```
+
+---
+
+# Creating objects (2/2)
+
+## DataFrame creation
+
+Alternatively, a DataFrame can be formed from a dictionary of objects:
+
+```python
+df2 = pd.DataFrame(
+    {
+        "A": 1.0,
+        "B": pd.Timestamp("20130102"),
+        "C": pd.Series(1, index=list(range(4)), dtype="float32"),
+        "D": np.array([3] * 4, dtype="int32"),
+        "E": pd.Categorical(["test", "train", "test", "train"]),
+        "F": "foo",
+    }
+)
+```
+
+The resulting DataFrame has diverse [data types](#basics.dtypes).
+
+---
+
+# Viewing data
+
+To examine the top and bottom rows of a DataFrame, use `head()` and `tail()`:
+
+```python
+df.head()
+df.tail(3)
+```
+
+Retrieve the DataFrame's index or column labels:
+
+```python
+df.index
+df.columns
+```
+
+Convert the DataFrame to a NumPy array with `to_numpy()`:
+
+```python
+df.to_numpy()
+```
+
+**Note:** **NumPy arrays have one dtype for the entire array while pandas DataFrames have one dtype per column**. When you call `DataFrame.to_numpy()`, pandas will find the NumPy dtype that can hold *all* of the dtypes in the DataFrame. If the common data type is `object`, `DataFrame.to_numpy` will require copying data.
+
+
+---
+
+# Data selection (1/3)
+
+pandas offers various methods for data selection. We'll explore both label-based and position-based approaches.
+
+## Getitem (`[]`)
+
+For a **DataFrame**, passing a single label selects a columns and yields a **Series** equivalent to `df.A`:
+
+```python
+df["A"]
+```
+
+For a **DataFrame**, passing a slice `:` selects matching rows:
+
+```python
+df[0:3]
+df["20130102":"20130104"]
+```
+
+---
+
+# Data selection (2/3)
+
+## Label-based selection
+
+Use `loc` and `at` for label-based indexing:
+
+```python
+df.loc[dates[0]] # Selecting a row by label.
+df.loc[:, ["A", "B"]] # Selecting all rows for specific columns.
+df.loc["20130102":"20130104", ["A", "B"]] # Both endpoints are included.
+df.at[dates[0], "A"] # Fast scalar access.
+```
+
+## Position-based selection
+
+For position-based indexing, employ `iloc` and `iat`:
+
+```python
+df.iloc[3] # Selecting via position.
+df.iloc[3:5, 0:2] # Slicing rows and columns.
+df.iat[1, 1] # Fast scalar access.
+```
+
+---
+
+# Data selection (3/3)
+
+Selecting values from a **DataFrame** where a boolean condition is met:
+
+```python
+df[df > 0]
+```
+Select rows based on a condition:
+
+```python
+df[df["A"] > 0]
+```
+
+Use `Series.isin` method for filtering:
+
+```python
+df2 = df.copy()
+df2["E"] = ["one", "one", "two", "three", "four", "three"]
+df2[df2["E"].isin(["two", "four"])]
+```
+
+---
+
+# Viewing and sorting data
+
+Generate quick statistics using `describe()`:
+
+```python
+df.describe()
+```
+
+Transpose the DataFrame with `.T`:
+
+```python
+df.T
+```
+
+Sort the DataFrame by index or values:
+
+```python
+df.sort_index(axis=1, ascending=False) # Sort by index.
+df.sort_values(by="B") # Sort by values.
+```
+
+---
+
+# Operations (1/2)
+
+## Statistics
+
+Compute the mean for each column or row:
+
+```python
+df.mean()
+df.mean(axis=1)
+```
+
+## Operations with Series or DataFrame
+
+Perform operations with another Series or DataFrame:
+
+```python
+s = pd.Series([1, 3, 5, np.nan, 6, 8], index=dates).shift(2)
+df.sub(s, axis="index")
+```
+
+---
+
+# Operations (2/2)
+
+## User-defined functions
+
+Apply user-defined functions using `agg` and `transform`:
+
+```python
+df.agg(lambda x: np.mean(x) * 5.6)
+df.transform(lambda x: x * 101.2)
+```
+
+## Value counts
+
+Compute value counts for a Series:
+
+```python
+s = pd.Series(np.random.randint(0, 7, size=10))
+s.value_counts()
+```
+
+---
+
+# Plotting
+
+pandas integrates with Matplotlib for easy data visualization. Here's a basic example:
+
+```python
+import matplotlib.pyplot as plt
+
+ts = pd.Series(np.random.randn(1000), index=pd.date_range("1/1/2000", periods=1000))
+ts = ts.cumsum()
+
+ts.plot()
+plt.show()
+```
+
+---
+
+# Importing and exporting data
+
+## CSV
+```python
+df = pd.DataFrame(np.random.randint(0, 5, (10, 5)))
+df.to_csv("foo.csv")
+pd.read_csv("foo.csv")
+```
+
+## Excel
+```python
+df.to_excel("foo.xlsx", sheet_name="Sheet1")
+pd.read_excel("foo.xlsx", "Sheet1", index_col=None, na_values=["NA"])
+```
+
+---
+
+# Further reading
+
+- [pandas documentation](https://pandas.pydata.org/)
+- [10 minutes to pandas](https://pandas.pydata.org/docs/user_guide/10min.html)
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# :arrow_right: Integrating C++ and Python codes.

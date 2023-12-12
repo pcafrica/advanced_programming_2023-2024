@@ -63,24 +63,43 @@ _class: titlepage
 
 # The role of Python in modern scientific computing
 
-- Python has become a cornerstone in the realm of scientific computing due to:
-    - Flexible and readable syntax.
-    - Broad ecosystem of libraries and tools.
+Python has emerged as a pivotal language in scientific computing, distinguished by:
 
-- Python's flexibility accommodates a wide range of scientific disciplines:
-    - Physics, biology, chemistry, astronomy, applied mathematics, ...
-    - Simulations, data analysis, image processing, climate modeling, drug discovery, genomic research, and more.
+- Intuitive and readable syntax, making coding accessible to scientists from various fields.
+- A vast array of libraries and tools tailored for scientific applications.
+
+Python's versatility extends across numerous scientific domains:
+
+- In physics, it's used for simulations and theoretical calculations.
+- In biology and chemistry, Python aids in molecular modeling and genomic data analysis.
+- Its application in astronomy includes data processing from telescopes and space missions.
+- In environmental science, it's pivotal in climate modeling and biodiversity studies.
 
 ---
 
 # Python's library ecosystem for scientific computing
 
-- Python owes much of its scientific prowess to its rich library ecosystem:
-    - NumPy, SciPy, and pandas for data manipulation.
-    - Matplotlib and Seaborn for visualization.
-    - TensorFlow and PyTorch for machine learning.
+The power of Python in scientific computing is amplified by its extensive library ecosystem:
 
-- Python lowers entry barriers for researchers and scientists and thrives on collaboration within the open-source community.
+- NumPy and SciPy are fundamental for numerical computations.
+- pandas enhances data manipulation and analysis capabilities.
+- Matplotlib and Seaborn excel in creating scientific visualizations.
+- TensorFlow and PyTorch are at the forefront of machine learning research and applications.
+
+Python's role in democratizing scientific research is underscored by its open-source nature, fostering collaboration and innovation.
+
+---
+
+# Real-world applications of Python in scientific research
+
+Python's impact in scientific research is evident through numerous real-world applications:
+
+- In physics, it has been used to analyze data from the Large Hadron Collider.
+- In biology, Python is integral in genome sequencing projects like the Human Genome Project.
+- Environmental scientists utilize Python in modeling the effects of climate change on different ecosystems.
+- In astronomy, it played a key role in processing the first image of a black hole.
+
+These applications underscore Python's versatility and effectiveness in advancing scientific knowledge.
 
 ---
 
@@ -90,18 +109,19 @@ Most Python libraries can be installed with `pip`, with [`Conda`](https://conda.
 
 - Using `pip`:
 
-  ```bash
-  pip install numpy
-  ```
+    ```bash
+    pip install numpy scipy matplotlib seaborn pandas
+    ```
 
 - Using `Conda`:
 
-  ```bash
-  conda create -n my-env
-  conda activate my-env
+    ```bash
+    conda create -n sci-env
+    conda activate sci-env
+    conda install numpy scipy matplotlib seaborn pandas
+    ```
 
-  conda install numpy
-  ```
+Best practices in setting up a scientific computing environment include creating isolated environments and maintaining updated library versions.
 
 ---
 
@@ -115,63 +135,60 @@ _class: titlepage
 
 # Introduction
 
-The NumPy module plays a crucial role in Python's numerical computation, providing high-performance structures for vectors, matrices, and multidimensional data. Implemented in C and Fortran, it excels in vectorized operations, showcasing superior performance.
+NumPy is a core library for numerical computing in Python, offering an efficient interface for working with arrays and matrices. Known for its high performance, it forms the basis of many other scientific computing tools.
 
-To utilize NumPy, import the module, such as:
+To get started with NumPy:
 
 ```python
 import numpy as np
 ```
 
-Within the NumPy package, arrays represent vectors, matrices, and higher-dimensional datasets.
+NumPy arrays provide an efficient way to store and manipulate numerical data, offering advantages over traditional Python lists, particularly in terms of performance and functionality.
 
 ---
 
 # Creating NumPy arrays
 
-Initializing NumPy arrays can be achieved through various methods:
+There are several ways to create arrays in NumPy:
 
-- Conversion from Python lists or tuples.
-- Utilizing dedicated array-generating functions such as `np.arange`, `np.linspace`, etc.
-- Reading data from external files.
+- Converting from Python lists or tuples.
+- Using array-generating functions like `np.arange`, `np.linspace`, etc.
+- Reading data from files.
 
 ---
 
 # From lists
 
-For instance, creating vector and matrix arrays from Python lists is accomplished using the `np.array` function:
+Creating arrays from Python lists:
 
 ```python
-# A vector: the argument is a Python list.
-v = np.array([1, 2, 3, 4])
+# Creating a vector from a list
+vector = np.array([1, 2, 3, 4])
 
-# A matrix: the argument is a nested Python list.
-M = np.array([[1, 2], [3, 4]])
+# Creating a matrix from a nested list
+matrix = np.array([[1, 2], [3, 4]])
 ```
 
-Both `v` and `M` are instances of the `ndarray` type provided by the NumPy module.
+These arrays are instances of NumPy's `ndarray` type.
 
----
-
-# Array shape
-
-Distinguishing between array shapes can be done using the `ndarray.shape` property:
+The shape of an array can be accessed using the `shape` attribute:
 
 ```python
-v.shape
+print(vector.shape)  # Output: (4,)
+print(matrix.shape)  # Output: (2, 2)
 ```
-> (4,)
-
-```python
-M.shape
-```
-> (2, 2)
 
 ---
 
 # Lists vs. NumPy arrays
 
-While `NumPy.ndarray` may seem similar to Python lists, using Python lists for numerical computations is suboptimal due to their generality and dynamic typing. In contrast, NumPy arrays are statically typed, homogeneous, memory-efficient, and support efficient mathematical operations implemented in compiled languages like C and Fortran.
+NumPy arrays offer several advantages over Python lists, such as:
+
+- Faster access in reading and writing items.
+- More convenient and efficient for mathematical operations.
+- Occupying less memory.
+
+Unlike Python lists, NumPy arrays are statically typed, homogeneous, memory-efficient, and support efficient mathematical operations implemented in compiled languages like C and Fortran.
 
 ---
 
@@ -182,7 +199,6 @@ The `dtype` (data type) property reveals the type of an array's data:
 ```python
 M.dtype
 ```
-
 > dtype('int64')
 
 Attempting to assign an incompatible type raises an error:
@@ -190,7 +206,6 @@ Attempting to assign an incompatible type raises an error:
 ```python
 M[0, 0] = "hello"
 ```
-
 > ValueError: invalid literal for long() with base 10: 'hello'
 
 ---
@@ -209,7 +224,7 @@ Common data types for `dtype` include `int`, `float`, `complex`, `bool`, and oth
 
 # Using array-generating functions (1/2)
 
-For larger arrays, manual initialization becomes impractical, leading to the use of array-generating functions in NumPy:
+NumPy provides various functions to generate arrays:
 
 ```python
 x = np.arange(0, 10, 1)  # Arguments: start, stop, step.
@@ -217,6 +232,7 @@ x = np.arange(0, 10, 1)  # Arguments: start, stop, step.
 # Using linspace, where both end points are included.
 x = np.linspace(0, 10, 25)
 
+# Create an array with logarithmically spaced elements.
 x = np.logspace(0, 10, 10, base=np.e)
 
 x, y = np.mgrid[0:5, 0:5]  # Similar to 'meshgrid' in MATLAB.
@@ -307,8 +323,8 @@ A[0:2] = [-2, -3]
 
 A[::]  # Lower, upper, and step default to the beginning, end, and 1.
 A[::2]  # Step is 2, lower and upper default to the beginning and end.
-A[:3]  # First three elements
-A[3:]  # Elements from index 3
+A[:3]  # First three elements.
+A[3:]  # Elements from index 3.
 
 # Negative indices count from the end of the array.
 A[-1]  # The last element in the array.
@@ -344,7 +360,11 @@ x[mask]
 
 # Linear algebra (1/2)
 
-Efficient numerical calculations with Python/NumPy rely on **vectorizing** code, emphasizing matrix and vector operations like matrix-matrix multiplication.
+NumPy is well-suited for linear algebra operations:
+
+- Scalar-array and element-wise array-array operations.
+- Matrix multiplication using the `dot` function or `@` operator.
+- Computing inverses, determinants, and solving linear equations.
 
 ## Scalar-array operations
 
@@ -381,9 +401,10 @@ A * v1
 
 # Matrix algebra (1/2)
 
-What about matrix multiplication? There are two ways. We can either use the `dot` function, which applies a matrix-matrix, matrix-vector, or inner vector multiplication to its arguments:
+What about matrix multiplication? There are two ways. We can either use the `@` or `dot` function, which applies a matrix-matrix, matrix-vector, or inner vector multiplication to its arguments:
 
 ```python
+A @ A
 np.dot(A, A)
 np.dot(A, v1)
 np.dot(v1, v1)
@@ -395,9 +416,7 @@ Alternatively, we can cast the array objects to the type `matrix`. This changes 
 M = np.matrix(A)
 v = np.matrix(v1).T  # Make it a column vector.
 M * M
-M * v
-v.T * v  # Inner product.
-v + M * v
+v.T * v, v + M * v
 ```
 
 ---
@@ -671,9 +690,7 @@ _class: titlepage
 
 # SciPy overview
 
-- **Foundation**: Built on top of NumPy, SciPy leverages its array structures and operations.
-- **Scientific Algorithms**: Offers higher-level scientific algorithms beyond NumPy.
-- **Modules**: Includes sub-modules for optimization, integration, signal processing, linear algebra, and more.
+SciPy, built on NumPy's foundation, offers higher-level scientific algorithms and modules for specialized tasks like optimization, integration, signal processing, and linear algebra. It provides seamless interoperability with NumPy for efficient data representation and manipulation.
 
 **Relationship between NumPy and SciPy**:
 - NumPy serves as the foundation for numerical operations in SciPy.
@@ -686,17 +703,17 @@ _class: titlepage
 
 # SciPy modules
 
-- Special functions ([`scipy.special`](https://docs.scipy.org/doc/scipy/reference/special.html))
-- Numerical integration ([`scipy.integrate`](https://docs.scipy.org/doc/scipy/reference/integrate.html))
-- Optimization ([`scipy.optimize`](https://docs.scipy.org/doc/scipy/reference/optimize.html))
-- Interpolation ([`scipy.interpolate`](https://docs.scipy.org/doc/scipy/reference/interpolate.html))
-- Fourier transforms ([`scipy.fft`](https://docs.scipy.org/doc/scipy/reference/fft.html))
-- Signal processing ([`scipy.signal`](https://docs.scipy.org/doc/scipy/reference/signal.html))
-- Sparse matrices ([`scipy.sparse`](https://docs.scipy.org/doc/scipy/reference/sparse.html))
-- Linear algebra ([`scipy.linalg`](https://docs.scipy.org/doc/scipy/reference/linalg.html))
-- Statistics ([`scipy.stats`](https://docs.scipy.org/doc/scipy/reference/stats.html))
-- Multi-dimensional image processing ([`scipy.ndimage`](https://docs.scipy.org/doc/scipy/reference/ndimage.html))
-- File IO ([`scipy.io`](https://docs.scipy.org/doc/scipy/reference/io.html))
+- [`scipy.special`](https://docs.scipy.org/doc/scipy/reference/special.html) for special functions like Bessel or gamma functions.
+- [`scipy.integrate`](https://docs.scipy.org/doc/scipy/reference/integrate.html) for numerical integration and solving differential equations.
+- [`scipy.optimize`](https://docs.scipy.org/doc/scipy/reference/optimize.html) for optimization algorithms.
+- [`scipy.interpolate`](https://docs.scipy.org/doc/scipy/reference/interpolate.html) for interpolating functions and data.
+- [`scipy.fft`](https://docs.scipy.org/doc/scipy/reference/fft.html) for Fourier transforms.
+- [`scipy.signal`](https://docs.scipy.org/doc/scipy/reference/signal.html) for signal processing tools.
+- [`scipy.sparse`](https://docs.scipy.org/doc/scipy/reference/sparse.html) for sparse matrices and related algorithms.
+- [`scipy.linalg`](https://docs.scipy.org/doc/scipy/reference/linalg.html) for advanced linear algebra operations.
+- [`scipy.stats`](https://docs.scipy.org/doc/scipy/reference/stats.html) for statistical distributions and functions.
+- [`scipy.ndimage`](https://docs.scipy.org/doc/scipy/reference/ndimage.html) for multi-dimensional image processing.
+- [`scipy.io`](https://docs.scipy.org/doc/scipy/reference/io.html) for file I/O operations.
 
 ---
 
@@ -805,9 +822,7 @@ where `t` is an array with time-coordinates for which to solve the ODE problem. 
 
 # Fourier transform
 
-Fourier transform is a universal tool in computational physics, appearing repeatedly in different contexts.
-
-Here is an example of how to use the `fft` module in a Python program:
+SciPy's `fft` module enables easy computation of Fourier transforms, a critical tool in computational physics, signal processing and data analysis.
 
 ```python
 from scipy.fft import fft, ifft, fftfreq
@@ -828,7 +843,7 @@ xf = fftfreq(N, T)[:N//2]
 
 # Linear algebra
 
-The linear algebra module contains various matrix-related functions, including linear equation solving, eigenvalue solvers, matrix functions (e.g., matrix exponentiation), different decompositions (SVD, LU, Cholesky), etc.
+The linear algebra module contains various matrix-related functions, including linear equation solving, eigenvalue solvers, matrix functions (e.g., matrix exponentiation), decompositions (SVD, LU, Cholesky), etc.
 
 ## Linear systems
 
@@ -878,9 +893,7 @@ norm(A, ord=Inf)
 
 ---
 
-# Linear algebra
-
-## Sparse matrices (1/3)
+# Sparse matrices (1/3)
 
 Sparse matrices are often useful in numerical simulations dealing with large systems, where the problem can be described in matrix form, and matrices or vectors mostly contain zeros. SciPy has good support for sparse matrices, with basic linear algebra operations (e.g., equation solving, eigenvalue calculations, etc.).
 
@@ -888,9 +901,7 @@ There are many possible strategies for storing sparse matrices efficiently, such
 
 ---
 
-# Linear algebra
-
-## Sparse matrices (2/3)
+# Sparse matrices (2/3)
 
 When we create a sparse matrix, we have to choose which format it should be stored in. For example,
 
@@ -909,9 +920,7 @@ A.todense()
 
 ---
 
-# Linear algebra
-
-## Sparse matrices (3/3)
+# Sparse matrices (3/3)
 
 More efficient way to create sparse matrices: create an empty matrix and populate it using matrix indexing (avoids creating a potentially large dense matrix).
 
@@ -1009,6 +1018,8 @@ Y.mean(), Y.std(), Y.var()
 
 # Statistical tests
 
+SciPy includes functions for conducting statistical tests, like t-tests and ANOVA, aiding in hypothesis testing and data analysis.
+
 Calculate the T-test for the means of two independent samples:
 
 ```python
@@ -1041,7 +1052,7 @@ _class: titlepage
 
 # Introduction to Matplotlib and Seaborn
 
-Data visualization is a crucial aspect of data analysis, and Python offers powerful libraries for creating stunning visualizations. Two popular libraries for creating static, interactive, and aesthetically pleasing visualizations are Matplotlib and Seaborn. In this tutorial, we will explore the basics of Matplotlib and Seaborn and demonstrate how to create various types of plots.
+Data visualization plays a vital role in data analysis, enabling the effective communication of complex information. Matplotlib and Seaborn are two widely-used Python libraries for data visualization. Matplotlib offers a wide range of plotting tools, while Seaborn provides a high-level interface for drawing attractive statistical graphics.
 
 ---
 
@@ -1103,7 +1114,7 @@ plt.show()
 
 # Seaborn
 
-Seaborn is built on top of Matplotlib and provides a high-level interface for creating informative statistical graphics. It comes with several built-in themes and color palettes to make your visualizations more attractive. Let's create a simple scatter plot using Seaborn:
+Seaborn, built on Matplotlib, provides a more intuitive interface for creating statistical plots. It integrates well with pandas data structures and offers built-in themes for enhanced visual appeal.
 
 ```python
 import seaborn as sns
@@ -1196,6 +1207,23 @@ plt.show()
 
 ---
 
+# Advanced plotting
+
+Matplotlib supports advanced plots like contour plots, 3D plots, and subplots:
+
+- Contour plots for visualizing three-dimensional data.
+- Subplots for displaying multiple plots in a single figure.
+
+Seaborn excels in creating complex statistical plots:
+
+- Heatmaps for representing matrix data.
+- Pair plots for exploring relationships in a dataset.
+- Facet grids for plotting subsets of data on multiple axes.
+
+Matplotlib and Seaborn can directly plot from pandas DataFrame, simplifying the workflow in data analysis tasks.
+
+---
+
 # Further reading
 
 - [Matplotlib documentation](https://matplotlib.org/)
@@ -1213,6 +1241,8 @@ _class: titlepage
 
 # pandas overview
 
+pandas is a powerful Python library for data manipulation and analysis. It provides fast, flexible data structures like Series and DataFrame, designed to work with structured data intuitively and efficiently.
+
 In the pandas library, the standard import convention involves using the aliases `np` for NumPy and `pd` for pandas:
 
 ```python
@@ -1222,10 +1252,8 @@ import pandas as pd
 
 ## Fundamental data structures in pandas
 
-pandas offers two essential classes for data manipulation:
-
-1. **Series**: A one-dimensional labeled array that can hold various data types.
-2. **DataFrame**: A two-dimensional data structure resembling a table with rows and columns.
+- **Series**: A one-dimensional labeled array that can hold various data types.
+- **DataFrame**: A two-dimensional, size-mutable, and potentially heterogeneous tabular data structure with labeled axes (rows and columns).
 
 ---
 
@@ -1267,7 +1295,7 @@ df2 = pd.DataFrame(
 )
 ```
 
-The resulting DataFrame has diverse [data types](#basics.dtypes).
+The resulting DataFrame has diverse data types.
 
 ---
 
@@ -1285,12 +1313,8 @@ Retrieve the DataFrame's index or column labels:
 ```python
 df.index
 df.columns
-```
 
-Convert the DataFrame to a NumPy array with `to_numpy()`:
-
-```python
-df.to_numpy()
+df.to_numpy()  # Convert the DataFrame to a NumPy array.
 ```
 
 **Note:** **NumPy arrays have one dtype for the entire array while pandas DataFrames have one dtype per column**. When you call `DataFrame.to_numpy()`, pandas will find the NumPy dtype that can hold *all* of the dtypes in the DataFrame. If the common data type is `object`, `DataFrame.to_numpy` will require copying data.
@@ -1390,7 +1414,7 @@ df.sort_values(by="B") # Sort by values.
 
 ---
 
-# Operations (1/2)
+# Operations (1/3)
 
 ## Statistics
 
@@ -1412,7 +1436,7 @@ df.sub(s, axis="index")
 
 ---
 
-# Operations (2/2)
+# Operations (2/3)
 
 ## User-defined functions
 
@@ -1434,6 +1458,18 @@ s.value_counts()
 
 ---
 
+# Operations (3/3)
+
+pandas simplifies handling missing data using methods like `dropna()`, `fillna()`, and `interpolate()`.
+
+Transform data using operations like pivoting, melting, and applying custom functions.
+
+pandas excels in time series data analysis, offering functionalities for resampling, shifting, and window operations.
+
+pandas supports categorical data types, which can be more efficient and expressive for certain types of data.
+
+---
+
 # Plotting
 
 pandas integrates with Matplotlib for easy data visualization. Here's a basic example:
@@ -1451,6 +1487,8 @@ plt.show()
 ---
 
 # Importing and exporting data
+
+pandas can read and write to various file formats, including CSV, Excel, SQL, and more.
 
 ## CSV
 ```python

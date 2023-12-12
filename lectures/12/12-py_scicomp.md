@@ -375,7 +375,7 @@ v1 = np.arange(0, 5)
 v1 * 2
 v1 + 2
 A * 2
-A +2
+A + 2
 ```
 
 ---
@@ -462,9 +462,9 @@ When functions such as `min`, `max`, etc. are applied to multidimensional arrays
 ```python
 M = random.rand(3, 3)
 
-m.max()  # Global max.
-m.max(axis=0)  # Max in each column.
-m.max(axis=1)  # Max in each row.
+M.max()  # Global max.
+M.max(axis=0)  # Max in each column.
+M.max(axis=1)  # Max in each row.
 ```
 
 Many other functions and methods in the `array` and `matrix` classes accept the same (optional) `axis` keyword argument.
@@ -696,8 +696,7 @@ SciPy, built on NumPy's foundation, offers higher-level scientific algorithms an
 - NumPy serves as the foundation for numerical operations in SciPy.
 - SciPy utilizes NumPy arrays for efficient data representation.
 - Seamless interoperability between NumPy and SciPy.
-
-**Best Practice**: *NumPy for basic operations, SciPy for specialized tasks*.
+- *NumPy for basic operations, SciPy for specialized tasks*.
 
 ---
 
@@ -736,7 +735,7 @@ import scipy.linalg as la
 
 # Numerical integration (1/3)
 
-For the numerical evaluation of a definite integral of the type $\int\_a^b f(x),\mathrm{d}x$, SciPy provides a series of functions for different kinds of quadrature, such as `quad`, `dblquad`, and `tplquad` for single, double, and triple integrals, respectively.
+For the numerical evaluation of a definite integral of the type $\int_a^b f(x),\mathrm{d}x$, SciPy provides a series of functions for different kinds of quadrature, such as `quad`, `dblquad`, and `tplquad` for single, double, and triple integrals, respectively.
 
 ```python
 from scipy.integrate import quad, dblquad, tplquad
@@ -792,7 +791,7 @@ A system of ODEs is usually formulated in standard form before it is attacked nu
 
 $$y' = f(y, t),$$
 
-where $y = [y\_1(t), y\_2(t), ..., y\_n(t)]$, and $f$ is some function that gives the derivatives of the function $y\_i(t)$.
+where $y = [y_1(t), y_2(t), ..., y_n(t)]$, and $f$ is some function that gives the derivatives of the function $y_i(t)$.
 
 To solve an ODE, we need to know the function $f$ and an initial condition, $y(0)$.
 
@@ -816,7 +815,7 @@ Once we have defined the Python function `f` and array `y_0`, we can use `odeint
 y_t = odeint(f, y_0, t)
 ```
 
-where `t` is an array with time-coordinates for which to solve the ODE problem. `y_t` is an array with one row for each point in time in `t`, where each column corresponds to a solution $y\_i(t)$ at that point in time.
+where `t` is an array with time-coordinates for which to solve the ODE problem. `y_t` is an array with one row for each point in time in `t`, where each column corresponds to a solution $y_i(t)$ at that point in time.
 
 ---
 
@@ -862,7 +861,7 @@ x = solve(A, b)
 
 ## Eigenvalues and eigenvectors
 
-The eigenvalue problem for a matrix $A$ reads $A v\_n = \lambda\_n v\_n$, where $v\_n$ is the $n$th eigenvector and $\lambda\_n$ is the $n$th eigenvalue.
+The eigenvalue problem for a matrix $A$ reads $A v_n = \lambda_n v_n$, where $v_n$ is the $n$th eigenvector and $\lambda_n$ is the $n$th eigenvalue.
 
 To calculate eigenvalues of a matrix, use the `eigvals`, and for calculating both eigenvalues and eigenvectors, use the function `eig`:
 
@@ -1326,15 +1325,13 @@ df.to_numpy()  # Convert the DataFrame to a NumPy array.
 
 pandas offers various methods for data selection. We'll explore both label-based and position-based approaches.
 
-## Getitem (`[]`)
-
 For a **DataFrame**, passing a single label selects a columns and yields a **Series** equivalent to `df.A`:
 
 ```python
 df["A"]
 ```
 
-For a **DataFrame**, passing a slice `:` selects matching rows:
+Passing a slice `:` selects matching rows:
 
 ```python
 df[0:3]
@@ -1443,7 +1440,11 @@ df.sub(s, axis="index")
 Apply user-defined functions using `agg` and `transform`:
 
 ```python
+# Calculate the mean of each column and then multiply it by 5.6.
+# The result will be a pandas Series with the aggregated value for each column in df.
 df.agg(lambda x: np.mean(x) * 5.6)
+
+# Apply a function to each element of the DataFrame.
 df.transform(lambda x: x * 101.2)
 ```
 

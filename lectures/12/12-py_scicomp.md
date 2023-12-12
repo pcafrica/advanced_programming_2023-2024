@@ -99,7 +99,7 @@ Most Python libraries can be installed with `pip`, with [`Conda`](https://conda.
   ```bash
   conda create -n my-env
   conda activate my-env
-  
+
   conda install numpy
   ```
 
@@ -160,13 +160,11 @@ Distinguishing between array shapes can be done using the `ndarray.shape` proper
 ```python
 v.shape
 ```
-
 > (4,)
 
 ```python
 M.shape
 ```
-
 > (2, 2)
 
 ---

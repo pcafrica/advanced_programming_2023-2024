@@ -950,7 +950,7 @@ We can use several algorithms to find the minima of a function:
 from scipy import optimize
 
 def f(x):
-    return 4*x**3 + (x-2)**2 + x**4
+    return x**4 + 4*x**3 + (x-2)**2
 
 x_min1 = optimize.fmin_bfgs(f, -2)
 x_min2 = optimize.brent(f)

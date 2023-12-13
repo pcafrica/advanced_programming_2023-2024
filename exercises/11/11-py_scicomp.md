@@ -65,7 +65,7 @@ _class: titlepage
 
 1. **DataFrame operations and visualization**
    1. Import the `sales_data.txt` dataset as a pandas DataFrame.
-   2. Filter data in the 'South' region, sort them by descending 'Quantity' and add a new column 'Total revenue' as 'Quantity' $\times$ 'Price'.
+   2. Filter data in the 'South' region, sort them by descending 'Quantity' and add a new column 'Total revenue' $=$ 'Quantity' $\times$ 'Price'.
    3. Visualize trends of 'Total revenue' by 'Date' (line plot) and by 'Product' (bar plot).
 
 2. **Exploratory data analysis with the *iris* dataset**

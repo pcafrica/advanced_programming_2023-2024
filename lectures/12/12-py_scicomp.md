@@ -866,11 +866,11 @@ The eigenvalue problem for a matrix $A$ reads $A v_n = \lambda_n v_n$, where $v_
 To calculate eigenvalues of a matrix, use the `eigvals`, and for calculating both eigenvalues and eigenvectors, use the function `eig`:
 
 ```python
-lambda = eigvals(A)
-lambda, v = eig(A)
+lam = eigvals(A)
+lam, v = eig(A)
 ```
 
-The eigenvectors corresponding to the $n$th eigenvalue (stored in `lambda[n]`) is the $n$th *column* in `v`, i.e., `v[:,n]`.
+The eigenvectors corresponding to the $n$th eigenvalue (stored in `lam[n]`) is the $n$th *column* in `v`, i.e., `v[:,n]`.
 
 There are also more specialized eigensolvers, like the `eigh` for Hermitian matrices.
 

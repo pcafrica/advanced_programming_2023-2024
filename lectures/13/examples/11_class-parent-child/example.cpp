@@ -4,44 +4,35 @@
 #include <string>
 
 // ------------------
-// regular C++ header
+// Regular C++ header
 // ------------------
 
 // parent class
-class Animal
-{
+class Animal {
 public:
-  virtual std::string
-  talk(int n_times) const = 0;
+  virtual std::string talk(int n_times) const = 0;
 };
 
 // derived class
-class Dog : public Animal
-{
+class Dog : public Animal {
 public:
-  virtual std::string
-  talk(int n_times) const override;
+  virtual std::string talk(int n_times) const override;
 };
 
 // derived class
-class Cat : public Animal
-{
+class Cat : public Animal {
 public:
-  virtual std::string
-  talk(int n_times) const override;
+  virtual std::string talk(int n_times) const override;
 };
 
 // function that takes the parent and all derived classes
-std::string
-talk(const Animal &animal, int n_times = 1);
+std::string talk(const Animal &animal, int n_times = 1);
 
 // ----------------
-// regular C++ code
+// Regular C++ code
 // ----------------
 
-inline std::string
-Dog::talk(int n_times) const
-{
+inline std::string Dog::talk(int n_times) const {
   std::string result;
 
   for (int i = 0; i < n_times; ++i)
@@ -50,10 +41,7 @@ Dog::talk(int n_times) const
   return result;
 }
 
-
-inline std::string
-Cat::talk(int n_times) const
-{
+inline std::string Cat::talk(int n_times) const {
   std::string result;
 
   for (int i = 0; i < n_times; ++i)
@@ -62,10 +50,7 @@ Cat::talk(int n_times) const
   return result;
 }
 
-
-std::string
-talk(const Animal &animal, int n_times)
-{
+std::string talk(const Animal &animal, int n_times) {
   return animal.talk(n_times);
 }
 
@@ -73,21 +58,18 @@ talk(const Animal &animal, int n_times)
 // Python interface - trampoline
 // -----------------------------
 
-class PyAnimal : public Animal
-{
+class PyAnimal : public Animal {
 public:
-  // inherit the constructors
+  // Inherit the constructors.
   using Animal::Animal;
 
-  // trampoline (one for each virtual function)
-  virtual std::string
-  talk(int n_times) const override
-  {
+  // Trampoline (one for each virtual function).
+  virtual std::string talk(int n_times) const override {
     PYBIND11_OVERLOAD_PURE(
-      std::string, /* Return type */
-      Animal,      /* Parent class */
-      talk,        /* Name of function in C++ (must match Python name) */
-      n_times      /* Argument(s) */
+        std::string, /* Return type. */
+        Animal,      /* Parent class. */
+        talk,        /* Name of function in C++ (must match Python name). */
+        n_times      /* Argument(s). */
     );
   }
 };
@@ -98,11 +80,10 @@ public:
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   py::class_<Animal, PyAnimal>(m, "Animal")
-    .def(py::init<>())
-    .def("talk", &Animal::talk);
+      .def(py::init<>())
+      .def("talk", &Animal::talk);
 
   py::class_<Dog, Animal>(m, "Dog").def(py::init<>());
 

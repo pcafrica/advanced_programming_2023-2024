@@ -7,22 +7,15 @@
 // Regular C++ code
 // ----------------
 
-// multiply all entries by 2.0
-// input:  nested std::vector ([[...],[...]]) (read-only)
-// output: nested std::vector ([[...],[...]]) (new copy)
+// Multiply all entries by 2.0.
 std::vector<std::vector<double>>
-modify(const std::vector<std::vector<double>> &input)
-{
+modify(const std::vector<std::vector<double>> &input) {
   std::vector<std::vector<double>> output;
 
-  std::transform(input.begin(),
-                 input.end(),
-                 std::back_inserter(output),
+  std::transform(input.begin(), input.end(), std::back_inserter(output),
                  [](const std::vector<double> &iv) {
                    std::vector<double> dv;
-                   std::transform(iv.begin(),
-                                  iv.end(),
-                                  std::back_inserter(dv),
+                   std::transform(iv.begin(), iv.end(), std::back_inserter(dv),
                                   [](double x) -> double { return 2. * x; });
                    return dv;
                  });
@@ -36,8 +29,7 @@ modify(const std::vector<std::vector<double>> &input)
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   m.doc() = "pybind11 example plugin";
 
   m.def("modify", &modify, "Multiply all entries of a nested list by 2.0");

@@ -6,19 +6,15 @@
 #include <Eigen/LU>
 
 // ----------------
-// regular C++ code
+// Regular C++ code
 // ----------------
 
-Eigen::MatrixXd
-multiply(const Eigen::MatrixXd &xs, double fac)
-{
+Eigen::MatrixXd multiply(const Eigen::MatrixXd &xs, double fac) {
   std::cout << "Double" << std::endl;
   return fac * xs;
 }
 
-Eigen::MatrixXi
-multiply(const Eigen::MatrixXi &xs, int fac)
-{
+Eigen::MatrixXi multiply(const Eigen::MatrixXi &xs, int fac) {
   std::cout << "Int" << std::endl;
   return fac * xs;
 }
@@ -29,8 +25,7 @@ multiply(const Eigen::MatrixXi &xs, int fac)
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   m.doc() = "pybind11 example plugin";
 
   // N.B. the order here is crucial, in the reversed order every "int" is

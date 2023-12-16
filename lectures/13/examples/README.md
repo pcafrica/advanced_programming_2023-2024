@@ -257,7 +257,7 @@ c++ -O3 -shared -std=gnu++11 -I /usr/local/Cellar/eigen/3.3.1/include/eigen3 -I 
 
 A custom `CustomVectorXd` class with one function `multiply`. This class uses the Eigen library. It also includes a default argument.
 
-Furthermore, this example has a function `trans` (totally unrelated to the custom `CustomVectorXd` class). It's purpose is to show how to return a new `Eigen::VectorXi` (or NumPy-array).
+Furthermore, this example has a function `flip` (totally unrelated to the custom `CustomVectorXd` class). It's purpose is to show how to return a new `Eigen::VectorXi` (or NumPy-array).
 
 ## [07_cpp-overload-scalar](07_cpp-overload-scalar)
 

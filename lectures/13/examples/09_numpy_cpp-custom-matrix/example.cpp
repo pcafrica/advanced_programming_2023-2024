@@ -2,12 +2,10 @@
 #include "pybind_matrix.hpp"
 
 // ----------------
-// regular C++ code
+// Regular C++ code
 // ----------------
 
-Matrix<double>
-multiply(const Matrix<double> &A, const Matrix<double> &B)
-{
+Matrix<double> multiply(const Matrix<double> &A, const Matrix<double> &B) {
   if (A.shape() != B.shape())
     throw std::length_error("Matrix 'A' and 'B' are inconsistent");
 
@@ -25,8 +23,7 @@ multiply(const Matrix<double> &A, const Matrix<double> &B)
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   m.doc() = "pybind11 example plugin";
 
   m.def("multiply", &multiply);

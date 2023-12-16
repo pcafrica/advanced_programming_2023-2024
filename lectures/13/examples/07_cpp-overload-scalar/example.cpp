@@ -3,19 +3,15 @@
 #include <iostream>
 
 // ----------------
-// regular C++ code
+// Regular C++ code
 // ----------------
 
-double
-multiply(double a, double b)
-{
+double multiply(double a, double b) {
   std::cout << "Double" << std::endl;
   return a * b;
 }
 
-int
-multiply(int a, int b)
-{
+int multiply(int a, int b) {
   std::cout << "Int" << std::endl;
   return a * b;
 }
@@ -26,8 +22,7 @@ multiply(int a, int b)
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   m.doc() = "pybind11 example plugin";
 
   m.def("multiply", py::overload_cast<int, int>(&multiply));

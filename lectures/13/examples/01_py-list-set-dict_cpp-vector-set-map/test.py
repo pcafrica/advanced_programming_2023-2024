@@ -1,10 +1,10 @@
 import example
 
-A = [1.,2.,3.,4.]
+a = [1., 2., 3., 4.]
 
-B = example.modify(A)
+b = example.modify(a)
 
-print(B)
+print(b)
 
 # In C++ a std::map is sorted by ascending key.
 map_int_double = example.create_map(

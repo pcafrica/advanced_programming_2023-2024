@@ -4,25 +4,21 @@
 #include <string>
 
 // ------------------
-// regular C++ header
+// Regular C++ header
 // ------------------
 
-struct Type
-{
-  enum class Value : int
-  {
+struct Type {
+  enum class Value : int {
     Cat,
     Dog,
   };
 };
 
 // ----------------
-// regular C++ code
+// Regular C++ code
 // ----------------
 
-void
-which_animal(Type::Value animal)
-{
+void which_animal(Type::Value animal) {
   if (animal == Type::Value::Cat)
     std::cout << "Cat" << std::endl;
   else if (animal == Type::Value::Dog)
@@ -37,14 +33,13 @@ which_animal(Type::Value animal)
 
 namespace py = pybind11;
 
-PYBIND11_MODULE(example, m)
-{
+PYBIND11_MODULE(example, m) {
   py::module sm = m.def_submodule("Type", "Type enumerator");
 
   py::enum_<Type::Value>(sm, "Type")
-    .value("Cat", Type::Value::Cat)
-    .value("Dog", Type::Value::Dog)
-    .export_values();
+      .value("Cat", Type::Value::Cat)
+      .value("Dog", Type::Value::Dog)
+      .export_values();
 
   m.def("which_animal", &which_animal, py::arg("animal"));
 }

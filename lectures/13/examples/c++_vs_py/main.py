@@ -3,7 +3,7 @@ import time
 import numpy as np
 
 # Create random matrices.
-n = 200
+n = 500
 mat1 = np.random.rand(n, n)
 mat2 = np.random.rand(n, n)
 

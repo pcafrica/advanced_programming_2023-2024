@@ -49,7 +49,7 @@ _class: titlepage
 </div>
 </div>
 
-Part of these notes is re-adapted from [these lectures](http://github.com/jrjohansson/scientific-python-lectures) ([CC BY 3.0 DEED](https://creativecommons.org/licenses/by/3.0/) license).
+Part of these notes is re-adapted from [these lectures](http://github.com/jrjohansson/scientific-python-lectures) ([license](LICENSE_CC-BY-3.0-DEED.md)).
 
 ---
 

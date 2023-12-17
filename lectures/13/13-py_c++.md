@@ -32,9 +32,7 @@ _class: titlepage
 
 3. Examples
 
-Part of these notes is re-adapted from [the official pybind11 documentation](https://github.com/pybind/pybind11/tree/master/docs) ([license](LICENSE_pybind11.md)).
-
-Part of the lecture examples is re-adapted from [this repository](https://github.com/tdegeus/pybind11_examples) ([license](LICENSE_pybind11_examples.md)).
+Part of these lecture notes and examples is re-adapted from [the official pybind11 documentation](https://github.com/pybind/pybind11/tree/master/docs) ([license](LICENSE_pybind11.md)) and from [this repository](https://github.com/tdegeus/pybind11_examples) ([license](LICENSE_pybind11_examples.md)).
 
 ---
 

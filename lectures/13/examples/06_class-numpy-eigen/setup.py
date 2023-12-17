@@ -106,8 +106,8 @@ class CMakeBuild(build_ext):
 setup(
     name="example_06_class_numpy_eigen",
     version="0.0.1",
-    author="Dean Moldovan",
-    author_email="dean0x7d@gmail.com",
+    author="Your Name",
+    author_email="your.email@example.com",
     description="A test project using pybind11 and CMake",
     long_description="",
     ext_modules=[CMakeExtension("cmake_example")],

@@ -173,7 +173,7 @@ pybind11 is a lightweight, header-only library that connects C++ types with Pyth
 
 ---
 
-# How to install
+# How to install (1/4)
 
 There are multiple methods to acquire the pybind11 source, available on [GitHub](https://github.com/pybind/pybind11). The recommended approaches include via PyPI, through Conda, building from source, or importing it as a Git submodule.
 
@@ -195,7 +195,7 @@ This approach is advisable for virtual environments or within a `pyproject.toml`
 
 ---
 
-# How to install
+# How to install (2/4)
 
 ## Include with conda-forge
 
@@ -215,7 +215,7 @@ brew install pybind11
 
 ---
 
-# How to install
+# How to install (3/4)
 
 ## Build from source
 
@@ -234,7 +234,7 @@ cmake .. -DCMAKE_INSTALL_PREFIX=/opt/pybind11
 
 ---
 
-# How to install
+# How to install (4/4)
 
 ## Include as a submodule
 
@@ -251,47 +251,25 @@ After setup, include `extern/pybind11/include` in your project, or employ pybind
 
 ---
 
-<!--
-_class: titlepage
--->
+# How to compile test cases on Linux/macOS
 
-# pybind11: basics
-
----
-
-# First steps
-
-This sections demonstrates the basic features of pybind11. Before getting
-started, make sure that development environment is set up to compile the
-included set of test cases.
-
-# Compiling the test cases
-
-1. Linux/macOS
-
-On Linux  you'll need to install the **python-dev** or **python3-dev** packages as
-well as **cmake**. On macOS, the included python version works out of the box,
-but **cmake** must still be installed.
+On Linux  you'll need to install the **python-dev** or **python3-dev** packages as well as **cmake**. On macOS, the included python version works out of the box, but **cmake** must still be installed.
 
 After installing the prerequisites, run
-
 ```bash
 mkdir build
 cd build
 cmake ..
-make check -j 4
+make check -j4
 ```
 
 ---
 
-The last line will both compile and run the tests.
-
-1. Windows
+# How to compile test cases on Windows
 
 On Windows, only **Visual Studio 2017** (MSVC 14.1) and newer are supported, adding the [`/permissive`](https://docs.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=vs-2017) compiler flag
 
 To compile and run the tests:
-
 ```batch
 mkdir build
 cd build
@@ -299,14 +277,23 @@ cmake ..
 cmake --build . --config Release --target check
 ```
 
-This will create a Visual Studio project, compile and run the target, all from the
-command line.
+This will create a Visual Studio project, compile and run the target, all from the command line.
 
 ---
 
 # Note
 
 If all tests fail, make sure that the Python binary and the testcases are compiled for the same processor type and bitness (i.e. either **i386** or **x86_64**). You can specify **x86_64** as the target architecture for the generated Visual Studio project using `cmake -A x64 ..`.
+
+---
+
+<!--
+_class: titlepage
+-->
+
+# pybind11: basics
+
+---
 
 # Header and namespace conventions
 
@@ -323,19 +310,7 @@ Some features may require additional headers, but those will be specified as nee
 
 # Creating bindings for a simple function
 
-Let's start by creating Python bindings for an extremely simple function, which
-adds two numbers and returns their result:
-
-```cpp
-int add(int i, int j) {
-    return i + j;
-}
-```
-
-For simplicity, we'll put both this function and the binding code into
-a file named :file:`example.cpp` with the following contents:
-
----
+Let's start by creating Python bindings for an extremely simple function, which adds two numbers and returns their result. For simplicity, we'll put both this function and the binding code into a file named `example.cpp` with the following contents:
 
 ```cpp
 #include <pybind11/pybind11.h>
@@ -353,12 +328,11 @@ PYBIND11_MODULE(example, m) {
 
 In practice, implementation and binding code will generally be located in separate files.
 
-The `PYBIND11_MODULE` macro creates a function that will be called when an
-`import` statement is issued from within Python. The module name (`example`)
-is given as the first macro argument (it should not be in quotes). The second
-argument (`m`) defines a variable of type `py::module_ <module>` which
-is the main interface for creating bindings. The method `module_::def`
-generates binding code that exposes the `add()` function to Python.
+---
+
+# The `PYBIND11_MODULE` macro
+
+The `PYBIND11_MODULE` macro creates a function that will be called when an `import` statement is issued from within Python. The module name (`example`) is given as the first macro argument (it should not be in quotes). The second argument (`m`) defines a variable of type `py::module_ <module>` which is the main interface for creating bindings. The method `module_::def` generates binding code that exposes the `add()` function to Python.
 
 ---
 
@@ -366,88 +340,74 @@ generates binding code that exposes the `add()` function to Python.
 
 Notice how little code was needed to expose our function to Python: all details regarding the function's parameters and return value were automatically inferred using template metaprogramming. This overall approach and the used syntax are borrowed from Boost.Python, though the underlying implementation is very different.
 
-pybind11 is a header-only library, hence it is not necessary to link against
-any special libraries and there are no intermediate (magic) translation steps.
-On Linux, the above example can be compiled using the following command:
+pybind11 is a header-only library, hence it is not necessary to link against any special libraries and there are no intermediate (magic) translation steps. On Linux, the above example can be compiled using the following command:
 
 ```bash
-c++ -O3 -Wall -shared -std=c++11 -fPIC $(python3 -m pybind11 --includes) example.cpp -o example$(python3-config --extension-suffix)
+c++ -O3 -Wall -shared -std=c++11 -fPIC \
+    $(python3 -m pybind11 --includes) \
+    example.cpp -o example$(python3-config --extension-suffix)
 ```
-
-The `python3 -m pybind11 --includes` command fetches the include paths for
-both pybind11 and Python headers. This assumes that pybind11 has been installed
-using `pip` or `conda`. If it hasn't, you can also manually specify
-`-I <path-to-pybind11>/include` together with the Python includes path
-`python3-config --includes`.
-
-On macOS: the build command is almost the same but it also requires passing
-the `-undefined dynamic_lookup` flag so as to ignore missing symbols when
-building the module:
 
 ---
 
 # Note
 
-If you used `include_as_a_submodule` to get the pybind11 source, then use `$(python3-config --includes) -Iextern/pybind11/include` instead of `$(python3 -m pybind11 --includes)` in the above compilation, as explained in `building_manually`.
+The `python3 -m pybind11 --includes` command fetches the include paths for both pybind11 and Python headers. This assumes that pybind11 has been installed using `pip` or `conda`. If it hasn't, you can also manually specify `-I <path-to-pybind11>/include` together with the Python includes path `python3-config --includes`.
 
-For more details on the required compiler flags on Linux and macOS, see
-`building_manually`. For complete cross-platform compilation instructions,
-refer to the `compiling` page.
+On macOS: the build command is almost the same but it also requires passing the `-undefined dynamic_lookup` flag so as to ignore missing symbols when building the module.
 
-The `python_example`_ and `cmake_example`_ repositories are also a good place
-to start. They are both complete project examples with cross-platform build
-systems. The only difference between the two is that `python_example`_ uses
-Python's `setuptools` to build the module, while `cmake_example`_ uses CMake
-(which may be preferable for existing C++ projects).
+---
 
-python_example: https://github.com/pybind/python_example
-cmake_example: https://github.com/pybind/cmake_example
+# Note
 
-Building the above C++ code will produce a binary module file that can be
-imported to Python. Assuming that the compiled module is located in the
-current directory, the following interactive Python session shows how to
-load and execute the example:
+If you included pybind11 as a Git submodule, then use `$(python3-config --includes) -Iextern/pybind11/include` instead of `$(python3 -m pybind11 --includes)` in the above compilation.
+
+The [Python example](https://github.com/pybind/python_example) and [CMake example](https://github.com/pybind/cmake_example) repositories are also a good place to start. They are both complete project examples with cross-platform build systems. The only difference between the two is that Python example uses Python's `setuptools` to build the module, whereas CMake example uses CMake (which may be preferable for existing C++ projects).
+
+Building the above C++ code will produce a binary module file that can be imported to Python. Assuming that the compiled module is located in the current directory, the following interactive Python session shows how to load and execute the example:
 
 ```python
 import example
-example.add(1, 2)
+example.add(1, 2) # Output: 3
 ```
-> 3
 
 ---
 
 # Keyword arguments
 
-With a simple code modification, it is possible to inform Python about the
-names of the arguments ("i" and "j" in this case).
+With a simple code modification, it is possible to inform Python about the names of the arguments ("i" and "j" in this case).
 
 ```cpp
 m.def("add", &add, "A function which adds two numbers",
       py::arg("i"), py::arg("j"));
 ```
 
-`arg` is one of several special tag classes which can be used to pass
-metadata into `module_::def`. With this modified binding code, we can now
-call the function using keyword arguments, which is a more readable alternative
-particularly for functions taking many parameters:
+`arg` is one of several special tag classes which can be used to pass metadata into `module_::def`. With this modified binding code, we can now call the function using keyword arguments, which is a more readable alternative particularly for functions taking many parameters:
 
 ```python
 import example
-example.add(i=1, j=2)
+example.add(i=1, j=2) # Output: 3L
 ```
-> 3L
+
+---
+
+# Documentation
 
 The keyword names also appear in the function signatures within the documentation.
 
 ```python
 help(example)
 ```
-> ...
-> FUNCTIONS
->     add(...)
->         Signature : (i: int, j: int) -> int
-> 
->         A function which adds two numbers
+>    ```
+>    ...
+>    FUNCTIONS
+>        add(...)
+>            Signature : (i: int, j: int) -> int
+>
+>            A function which adds two numbers
+>    ```
+
+---
 
 A shorter notation for named arguments is also available:
 
@@ -459,7 +419,7 @@ using namespace pybind11::literals;
 m.def("add2", &add, "i"_a, "j"_a);
 ```
 
-The :var:`_a` suffix forms a C++11 literal which is equivalent to `arg`.
+The `_a` suffix forms a C++11 literal which is equivalent to `arg`.
 Note that the literal operator must first be made visible with the directive
 `using namespace pybind11::literals`. This does not bring in anything else
 from the `pybind11` namespace except for literals.
@@ -477,39 +437,20 @@ int add(int i = 1, int j = 2) {
 ```
 
 Unfortunately, pybind11 cannot automatically extract these parameters, since they are not part of the function's type information. However, they are simple to specify using an extension of `arg`:
-
 ```cpp
-m.def("add", &add, "A function which adds two numbers",
-      py::arg("i") = 1, py::arg("j") = 2);
+m.def("add", &add, "A function which adds two numbers", py::arg("i") = 1, py::arg("j") = 2);
+
+# Or, shorthand:
+m.def("add2", &add, "i"_a=1, "j"_a=2);
 ```
 
 The default values also appear within the documentation.
 
-```python
-help(example)
-```
-> ....
-> FUNCTIONS
->    add(...)
->        Signature : (i: int = 1, j: int = 2) -> int
->
->        A function which adds two numbers
-
-The shorthand notation is also available for default arguments:
-
-```cpp
-// Regular notation.
-m.def("add1", &add, py::arg("i") = 1, py::arg("j") = 2);
-// Shorthand.
-m.def("add2", &add, "i"_a=1, "j"_a=2);
-```
+---
 
 # Exporting variables
 
-To expose a value from C++, use the `attr` function to register it in a
-module as shown below. Built-in types and general objects (more on that later)
-are automatically converted when assigned as attributes, and can be explicitly
-converted using the function `py::cast`.
+To expose a value from C++, use the `attr` function to register it in a module as shown below. Built-in types and general objects (more on that later) are automatically converted when assigned as attributes, and can be explicitly converted using the function `py::cast`.
 
 ```cpp
 PYBIND11_MODULE(example, m) {
@@ -531,8 +472,8 @@ example.what # Output: 'World'
 
 # Supported data types
 
-A large number of data types are supported out of the box and can be used
-seamlessly as functions arguments, return values or with `py::cast` in general.
+A large number of data types are supported out of the box and can be used seamlessly as functions arguments, return values or with `py::cast` in general.
+
 For a full overview, see the [official documentation](https://pybind11.readthedocs.io/en/stable/advanced/cast/index.html).
 
 ---
@@ -547,8 +488,7 @@ _class: titlepage
 
 # Creating bindings for a custom type
 
-Let's now look at a more complex example where we'll create bindings for a
-custom C++ data structure named `Pet`. Its definition is given below:
+Let's now look at a more complex example where we'll create bindings for a custom C++ data structure named `Pet`. Its definition is given below:
 
 ```cpp
 struct Pet {
@@ -575,11 +515,7 @@ PYBIND11_MODULE(example, m) {
 }
 ```
 
-`class_` creates bindings for a C++ *class* or *struct*-style data
-structure. `init` is a convenience function that takes the types of a
-constructor's parameters as template arguments and wraps the corresponding
-constructor (see the `custom_constructors` section for details). An
-interactive Python session demonstrating this example is shown below:
+`class_` creates bindings for a C++ *class* or *struct*-style data structure. `init` is a convenience function that takes the types of a constructor's parameters as template arguments and wraps the corresponding constructor (see the `custom_constructors` section for details). An interactive Python session demonstrating this example is shown below:
 
 ```python
 import example
@@ -596,9 +532,9 @@ p.getName() # Output: 'Charly'
 
 # Keyword and default arguments
 
-It is possible to specify keyword and default arguments using the syntax
-discussed in the previous chapter. Refer to the sections `keyword_args`
-and `default_args` for details.
+It is possible to specify keyword and default arguments using the syntax discussed in the previous chapter. Refer to the sections `keyword_args` and `default_args` for details.
+
+---
 
 # Binding lambda functions
 
@@ -608,11 +544,11 @@ Note how `print(p)` produced a rather useless summary of our data structure in t
 print(p) # Output: <example.Pet object at 0x10cd98060>
 ```
 
-To address this, we could bind a utility function that returns a human-readable
-summary to the special method slot named `__repr__`. Unfortunately, there is no
-suitable functionality in the `Pet` data structure, and it would be nice if
-we did not have to change it. This can easily be accomplished by binding a
-Lambda function instead:
+To address this, we could bind a utility function that returns a human-readable summary to the special method slot named `__repr__`. Unfortunately, there is no suitable functionality in the `Pet` data structure, and it would be nice if we did not have to change it.
+
+---
+
+This can easily be accomplished by binding a lambda function instead:
 
 ```cpp
 py::class_<Pet>(m, "Pet")
@@ -626,22 +562,17 @@ py::class_<Pet>(m, "Pet")
     );
 ```
 
-Both stateless [#f1]_ and stateful lambda closures are supported by pybind11.
 With the above change, the same Python code now produces the following output:
 
 ```python
 print(p) # Output: <example.Pet named 'Molly'>
 ```
 
-.. [#f1] Stateless closures are those with an empty pair of brackets `[]` as the capture object.
-
-.. _properties:
+---
 
 # Instance and static fields
 
-We can also directly expose the `name` field using the
-`class_::def_readwrite` method. A similar `class_::def_readonly`
-method also exists for `const` fields.
+We can also directly expose the `name` field using the `class_::def_readwrite` method. A similar `class_::def_readonly` method also exists for `const` fields.
 
 ```cpp
 py::class_<Pet>(m, "Pet")
@@ -673,20 +604,16 @@ private:
 };
 ```
 
-In this case, the method `class_::def_property`
-(`class_::def_property_readonly` for read-only data) can be used to
-provide a field-like interface within Python that will transparently call
-the setter and getter functions:
+In this case, the method `class_::def_property` (`class_::def_property_readonly` for read-only data) can be used to provide a field-like interface within Python that will transparently call the setter and getter functions:
 
 ```cpp
 py::class_<Pet>(m, "Pet")
     .def(py::init<const std::string &>())
     .def_property("name", &Pet::getName, &Pet::setName)
-    // ... remainder ...
+    // ...
 ```
 
-Write only properties can be defined by passing `nullptr` as the
-input for the read function.
+Write only properties can be defined by passing `nullptr` as the input for the read function.
 
 .. seealso::
 
@@ -741,11 +668,10 @@ Now everything works as expected:
 
 ```python
 p = example.Pet()
-p.name = "Charly" # Ok: overwrite value in C++
-p.age = 2 # Ok: dynamically add a new attribute
-p.__dict__  # Just like a native Python class
+p.name = "Charly" # Ok: overwrite value in C++.
+p.age = 2 # Ok: dynamically add a new attribute.
+p.__dict__  # Output: {'age': 2}
 ```
-> {'age': 2}
 
 Note that there is a small runtime cost for a class with dynamic attributes.
 Not only because of the addition of a `__dict__`, but also because of more
@@ -779,190 +705,142 @@ pybind11: the first specifies the C++ base class as an extra template
 parameter of the `class_`:
 
 ```cpp
-    py::class_<Pet>(m, "Pet")
-       .def(py::init<const std::string &>())
-       .def_readwrite("name", &Pet::name);
+py::class_<Pet>(m, "Pet")
+    .def(py::init<const std::string &>())
+    .def_readwrite("name", &Pet::name);
 
-    // Method 1: template parameter:
-    py::class_<Dog, Pet /* <- specify C++ parent type */>(m, "Dog")
-        .def(py::init<const std::string &>())
-        .def("bark", &Dog::bark);
+// Method 1: template parameter:
+py::class_<Dog, Pet /* <- specify C++ parent type */>(m, "Dog")
+    .def(py::init<const std::string &>())
+    .def("bark", &Dog::bark);
 ```
 
 Alternatively, we can also assign a name to the previously bound `Pet`
 `class_` object and reference it when binding the `Dog` class:
 
 ```cpp
-    py::class_<Pet> pet(m, "Pet");
-    pet.def(py::init<const std::string &>())
-       .def_readwrite("name", &Pet::name);
+py::class_<Pet> pet(m, "Pet");
+pet.def(py::init<const std::string &>())
+   .def_readwrite("name", &Pet::name);
 
-    // Method 2: pass parent class_ object:
-    py::class_<Dog>(m, "Dog", pet /* <- specify Python parent type */)
-        .def(py::init<const std::string &>())
-        .def("bark", &Dog::bark);
+// Method 2: pass parent class_ object:
+py::class_<Dog>(m, "Dog", pet /* <- specify Python parent type */)
+    .def(py::init<const std::string &>())
+    .def("bark", &Dog::bark);
 ```
 
-Functionality-wise, both approaches are equivalent. Afterwards, instances will
-expose fields and methods of both types:
+Functionality-wise, both approaches are equivalent. Afterwards, instances will expose fields and methods of both types:
 
 ```python
-    >>> p = example.Dog("Molly")
-    >>> p.name
-    'Molly'
-    >>> p.bark()
-    'woof!'
+p = example.Dog("Molly")
+p.name # Output: 'Molly'
+p.bark() # Output: 'woof!'
 ```
 
-The C++ classes defined above are regular non-polymorphic types with an
-inheritance relationship. This is reflected in Python:
+The C++ classes defined above are regular non-polymorphic types with an inheritance relationship. This is reflected in Python:
 
 ```cpp
-    // Return a base pointer to a derived instance
-    m.def("pet_store", []() { return std::unique_ptr<Pet>(new Dog("Molly")); });
+// Return a base pointer to a derived instance
+m.def("pet_store", []() { return std::unique_ptr<Pet>(new Dog("Molly")); });
 ```
 
 ```python
-    >>> p = example.pet_store()
-    >>> type(p)  # `Dog` instance behind `Pet` pointer
-    Pet          # no pointer downcasting for regular non-polymorphic types
-    >>> p.bark()
-    AttributeError: 'Pet' object has no attribute 'bark'
+p = example.pet_store()
+type(p) # Output: Pet
+# No pointer downcasting for regular non-polymorphic types.
+p.bark()
 ```
+> AttributeError: 'Pet' object has no attribute 'bark'
 
-The function returned a `Dog` instance, but because it's a non-polymorphic
-type behind a base pointer, Python only sees a `Pet`. In C++, a type is only
-considered polymorphic if it has at least one virtual function and pybind11
-will automatically recognize this:
+The function returned a `Dog` instance, but because it's a non-polymorphic type behind a base pointer, Python only sees a `Pet`. In C++, a type is only considered polymorphic if it has at least one virtual function and pybind11 will automatically recognize this:
 
 ```cpp
-    struct PolymorphicPet {
-        virtual ~PolymorphicPet() = default;
-    };
+struct PolymorphicPet {
+    virtual ~PolymorphicPet() = default;
+};
 
-    struct PolymorphicDog : PolymorphicPet {
-        std::string bark() const { return "woof!"; }
-    };
+struct PolymorphicDog : PolymorphicPet {
+    std::string bark() const { return "woof!"; }
+};
 
-    // Same binding code
-    py::class_<PolymorphicPet>(m, "PolymorphicPet");
-    py::class_<PolymorphicDog, PolymorphicPet>(m, "PolymorphicDog")
-        .def(py::init<>())
-        .def("bark", &PolymorphicDog::bark);
+// Same binding code.
+py::class_<PolymorphicPet>(m, "PolymorphicPet");
+py::class_<PolymorphicDog, PolymorphicPet>(m, "PolymorphicDog")
+    .def(py::init<>())
+    .def("bark", &PolymorphicDog::bark);
 
-    // Again, return a base pointer to a derived instance
-    m.def("pet_store2", []() { return std::unique_ptr<PolymorphicPet>(new PolymorphicDog); });
+// Again, return a base pointer to a derived instance.
+m.def("pet_store2", []() { return std::unique_ptr<PolymorphicPet>(new PolymorphicDog); });
 ```
 
 ```python
-    >>> p = example.pet_store2()
-    >>> type(p)
-    PolymorphicDog  # automatically downcast
-    >>> p.bark()
-    'woof!'
+p = example.pet_store2()
+type(p) # Output: PolymorphicDog
+p.bark() # Output: 'woof!'
 ```
 
-Given a pointer to a polymorphic base, pybind11 performs automatic downcasting
-to the actual derived type. Note that this goes beyond the usual situation in
-C++: we don't just get access to the virtual functions of the base, we get the
-concrete derived type including functions and attributes that the base type may
-not even be aware of.
-
-.. seealso::
-
-    For more information about polymorphic behavior see `overriding_virtuals`.
+Given a pointer to a polymorphic base, pybind11 performs automatic downcasting to the actual derived type. Note that this goes beyond the usual situation in C++: we don't just get access to the virtual functions of the base, we get the concrete derived type including functions and attributes that the base type may not even be aware of.
 
 ---
 
 # Overloaded methods
 
-Sometimes there are several overloaded C++ methods with the same name taking
-different kinds of input arguments:
+Sometimes there are several overloaded C++ methods with the same name taking different kinds of input arguments:
 
 ```cpp
-    struct Pet {
-        Pet(const std::string &name, int age) : name(name), age(age) { }
+struct Pet {
+    Pet(const std::string &name, int age) : name(name), age(age) { }
 
-        void set(int age_) { age = age_; }
-        void set(const std::string &name_) { name = name_; }
+    void set(int age_) { age = age_; }
+    void set(const std::string &name_) { name = name_; }
 
-        std::string name;
-        int age;
-    };
+    std::string name;
+    int age;
+};
 ```
 
-Attempting to bind `Pet::set` will cause an error since the compiler does not
-know which method the user intended to select. We can disambiguate by casting
-them to function pointers. Binding multiple functions to the same Python name
-automatically creates a chain of function overloads that will be tried in
-sequence.
+Attempting to bind `Pet::set` will cause an error since the compiler does not know which method the user intended to select. We can disambiguate by casting them to function pointers. Binding multiple functions to the same Python name automatically creates a chain of function overloads that will be tried in sequence.
 
 ```cpp
-    py::class_<Pet>(m, "Pet")
-       .def(py::init<const std::string &, int>())
-       .def("set", static_cast<void (Pet::*)(int)>(&Pet::set), "Set the pet's age")
-       .def("set", static_cast<void (Pet::*)(const std::string &)>(&Pet::set), "Set the pet's name");
+py::class_<Pet>(m, "Pet")
+    .def(py::init<const std::string &, int>())
+    .def("set", static_cast<void (Pet::*)(int)>(&Pet::set), "Set the pet's age")
+    .def("set", static_cast<void (Pet::*)(const std::string &)>(&Pet::set), "Set the pet's name");
 ```
 
-The overload signatures are also visible in the method's docstring:
+The overload signatures are also visible in the method's docstring.
 
-```python
-    >>> help(example.Pet)
-
-    class Pet(__builtin__.object)
-     |  Methods defined here:
-     |
-     |  __init__(...)
-     |      Signature : (Pet, str, int) -> NoneType
-     |
-     |  set(...)
-     |      1. Signature : (Pet, int) -> NoneType
-     |
-     |      Set the pet's age
-     |
-     |      2. Signature : (Pet, str) -> NoneType
-     |
-     |      Set the pet's name
-```
-
-If you have a C++14 compatible compiler [#cpp14]_, you can use an alternative
-syntax to cast the overloaded function:
+If you have a C++14 compatible compiler, you can use an alternative syntax to cast the overloaded function:
 
 ```cpp
-    py::class_<Pet>(m, "Pet")
-        .def("set", py::overload_cast<int>(&Pet::set), "Set the pet's age")
-        .def("set", py::overload_cast<const std::string &>(&Pet::set), "Set the pet's name");
+py::class_<Pet>(m, "Pet")
+    .def("set", py::overload_cast<int>(&Pet::set), "Set the pet's age")
+    .def("set", py::overload_cast<const std::string &>(&Pet::set), "Set the pet's name");
 ```
 
-Here, `py::overload_cast` only requires the parameter types to be specified.
-The return type and class are deduced. This avoids the additional noise of
-`void (Pet::*)()` as seen in the raw cast. If a function is overloaded based
-on constness, the `py::const_` tag should be used:
+Here, `py::overload_cast` only requires the parameter types to be specified. The return type and class are deduced. This avoids the additional noise of `void (Pet::*)()` as seen in the raw cast. If a function is overloaded based on constness, the `py::const_` tag should be used:
 
 ```cpp
-    struct Widget {
-        int foo(int x, float y);
-        int foo(int x, float y) const;
-    };
+struct Widget {
+    int foo(int x, float y);
+    int foo(int x, float y) const;
+};
 
-    py::class_<Widget>(m, "Widget")
-       .def("foo_mutable", py::overload_cast<int, float>(&Widget::foo))
-       .def("foo_const",   py::overload_cast<int, float>(&Widget::foo, py::const_));
+py::class_<Widget>(m, "Widget")
+    .def("foo_mutable", py::overload_cast<int, float>(&Widget::foo))
+    .def("foo_const",   py::overload_cast<int, float>(&Widget::foo, py::const_));
 ```
 
-If you prefer the `py::overload_cast` syntax but have a C++11 compatible compiler only,
-you can use `py::detail::overload_cast_impl` with an additional set of parentheses:
+If you prefer the `py::overload_cast` syntax but have a C++11 compatible compiler only, you can use `py::detail::overload_cast_impl` with an additional set of parentheses:
 
 ```cpp
-    template <typename... Args>
-    using overload_cast_ = pybind11::detail::overload_cast_impl<Args...>;
+template <typename... Args>
+using overload_cast_ = pybind11::detail::overload_cast_impl<Args...>;
 
-    py::class_<Pet>(m, "Pet")
-        .def("set", overload_cast_<int>()(&Pet::set), "Set the pet's age")
-        .def("set", overload_cast_<const std::string &>()(&Pet::set), "Set the pet's name");
+py::class_<Pet>(m, "Pet")
+    .def("set", overload_cast_<int>()(&Pet::set), "Set the pet's age")
+    .def("set", overload_cast_<const std::string &>()(&Pet::set), "Set the pet's name");
 ```
-
-.. [#cpp14] A compiler which supports the `-std=c++14` flag.
 
 .. note::
 
@@ -977,93 +855,81 @@ you can use `py::detail::overload_cast_impl` with an additional set of parenthes
 Let's now suppose that the example class contains internal types like enumerations, e.g.:
 
 ```cpp
-    struct Pet {
-        enum Kind {
-            Dog = 0,
-            Cat
-        };
-
-        struct Attributes {
-            float age = 0;
-        };
-
-        Pet(const std::string &name, Kind type) : name(name), type(type) { }
-
-        std::string name;
-        Kind type;
-        Attributes attr;
+struct Pet {
+    enum Kind {
+        Dog = 0,
+        Cat
     };
+
+    struct Attributes {
+        float age = 0;
+    };
+
+    Pet(const std::string &name, Kind type) : name(name), type(type) { }
+
+    std::string name;
+    Kind type;
+    Attributes attr;
+};
 ```
 
 The binding code for this example looks as follows:
 
 ```cpp
-    py::class_<Pet> pet(m, "Pet");
+py::class_<Pet> pet(m, "Pet");
 
-    pet.def(py::init<const std::string &, Pet::Kind>())
-        .def_readwrite("name", &Pet::name)
-        .def_readwrite("type", &Pet::type)
-        .def_readwrite("attr", &Pet::attr);
+pet.def(py::init<const std::string &, Pet::Kind>())
+    .def_readwrite("name", &Pet::name)
+    .def_readwrite("type", &Pet::type)
+    .def_readwrite("attr", &Pet::attr);
 
-    py::enum_<Pet::Kind>(pet, "Kind")
-        .value("Dog", Pet::Kind::Dog)
-        .value("Cat", Pet::Kind::Cat)
-        .export_values();
+py::enum_<Pet::Kind>(pet, "Kind")
+    .value("Dog", Pet::Kind::Dog)
+    .value("Cat", Pet::Kind::Cat)
+    .export_values();
 
-    py::class_<Pet::Attributes>(pet, "Attributes")
-        .def(py::init<>())
-        .def_readwrite("age", &Pet::Attributes::age);
+py::class_<Pet::Attributes>(pet, "Attributes")
+    .def(py::init<>())
+    .def_readwrite("age", &Pet::Attributes::age);
 ```
 
-To ensure that the nested types `Kind` and `Attributes` are created within the scope of `Pet`, the
-`pet` `class_` instance must be supplied to the `enum_` and `class_`
-constructor. The `enum_::export_values` function exports the enum entries
-into the parent scope, which should be skipped for newer C++11-style strongly
-typed enums.
+---
+
+To ensure that the nested types `Kind` and `Attributes` are created within the scope of `Pet`, the `pet` `class_` instance must be supplied to the `enum_` and `class_` constructor. The `enum_::export_values` function exports the enum entries into the parent scope, which should be skipped for newer C++11-style strongly typed enums.
 
 ```python
-    >>> p = Pet("Lucy", Pet.Cat)
-    >>> p.type
-    Kind.Cat
-    >>> int(p.type)
-    1L
+p = Pet("Lucy", Pet.Cat)
+p.type # Output: Kind.Cat
+int(p.type) # Output: 1L
 ```
 
 The entries defined by the enumeration type are exposed in the `__members__` property:
 
 ```python
-    >>> Pet.Kind.__members__
-    {'Dog': Kind.Dog, 'Cat': Kind.Cat}
+Pet.Kind.__members__ # Output: {'Dog': Kind.Dog, 'Cat': Kind.Cat}
 ```
 
 The `name` property returns the name of the enum value as a unicode string.
 
 .. note::
 
-    It is also possible to use `str(enum)`, however these accomplish different
-    goals. The following shows how these two approaches differ.
+    It is also possible to use `str(enum)`, however these accomplish different goals. The following shows how these two approaches differ.
 
     ```python
-        >>> p = Pet("Lucy", Pet.Cat)
-        >>> pet_type = p.type
-        >>> pet_type
-        Pet.Cat
-        >>> str(pet_type)
-        'Pet.Cat'
-        >>> pet_type.name
-        'Cat'
+    p = Pet("Lucy", Pet.Cat)
+    pet_type = p.type
+    pet_type # Output: Pet.Cat
+    str(pet_type) # Output: 'Pet.Cat'
+    pet_type.name # Output: 'Cat'
     ```
 
 .. note::
 
-    When the special tag `py::arithmetic()` is specified to the `enum_`
-    constructor, pybind11 creates an enumeration that also supports rudimentary
-    arithmetic and bit-level operations like comparisons, and, or, xor, negation,
-    etc.
+    When the special tag `py::arithmetic()` is specified to the `enum_` constructor, pybind11 creates an enumeration that also supports rudimentary arithmetic and bit-level operations like comparisons, and, or, xor, negation, etc.
 
     ```cpp
-        py::enum_<Pet::Kind>(pet, "Kind", py::arithmetic())
-        ...
+    py::enum_<Pet::Kind>(pet, "Kind", py::arithmetic())
+    ...
     ```
     
     By default, these are omitted to conserve space.
@@ -1072,7 +938,7 @@ The `name` property returns the name of the enum value as a unicode string.
 
     Contrary to Python customs, enum values from the wrappers should not be compared using `is`, but with `==` (see `#1177 <https://github.com/pybind/pybind11/issues/1177>`_ for background).
 
----opo
+---
 
 <!--
 _class: titlepage
@@ -1082,18 +948,20 @@ _class: titlepage
 
 ---
 
-# How to Compile
+# How to compile
 
 To compile C++ code with Pybind11, use the following command:
 ```bash
-g++ -std=gnu++11 -O3 -shared -fPIC -isystem /path/to/pybind11/include $(python3-config --cflags --ldflags --libs) example.cpp -o example.so
+g++ -std=gnu++11 -O3 -shared -fPIC \
+    -isystem /path/to/pybind11/include $(python3-config --cflags --ldflags --libs) \
+    example.cpp -o example.so
 ```
 
 Alternatively, you can use CMake with the provided `CMakeLists.txt`.
 
 ---
 
-# How to Compile (using CMake) and run
+# How to compile using CMake
 
 To compile and run your Pybind11 code with CMake, follow these steps:
 ```bash
@@ -1106,7 +974,7 @@ For running the compiled module, adjust your `PYTHONPATH` accordingly.
 
 ---
 
-# Using `setup.py`
+# How to compile using `setup.py`
 
 `setup.py` is a Python script commonly used in Python projects for tasks like building, distributing, and installing module packages. In Pybind11, it compiles and links C++ code into Python modules.
 
@@ -1181,116 +1049,74 @@ setup(
 
 # Building with setuptools
 
-For projects on PyPI, building with setuptools is the way to go. Sylvain Corlay
-has kindly provided an example project which shows how to set up everything,
-including automatic generation of documentation using Sphinx. Please refer to
-the [python example](https://github.com/pybind/python_example) repository.
+For projects on PyPI, building with setuptools is the way to go. Sylvain Corlay has kindly provided an example project which shows how to set up everything, including automatic generation of documentation using Sphinx. Please refer to the [python example](https://github.com/pybind/python_example) repository.
 
 A helper file is provided with pybind11 that can simplify usage with setuptools.
 
-To use pybind11 inside your `setup.py`, you have to have some system to
-ensure that `pybind11` is installed when you build your package. There are
-four possible ways to do this, and pybind11 supports all four: You can ask all
-users to install pybind11 beforehand (bad), you can use
-`setup_helpers-pep518` (good, but very new and requires Pip 10),
-`setup_helpers-setup_requires` (discouraged by Python packagers now that
-PEP 518 is available, but it still works everywhere), or you can
-`setup_helpers-copy-manually` (always works but you have to manually sync
-your copy to get updates).
+To use pybind11 inside your `setup.py`, you have to have some system to ensure that `pybind11` is installed when you build your package. There are four possible ways to do this, and pybind11 supports all four: You can ask all users to install pybind11 beforehand (bad), you can use `setup_helpers-pep518` (good, but very new and requires Pip 10), `setup_helpers-setup_requires` (discouraged by Python packagers now that PEP 518 is available, but it still works everywhere), or you can `setup_helpers-copy-manually` (always works but you have to manually sync your copy to get updates).
 
 An example of a `setup.py` using pybind11's helpers:
 
 ```python
-    from glob import glob
-    from setuptools import setup
-    from pybind11.setup_helpers import Pybind11Extension
+from glob import glob
+from setuptools import setup
+from pybind11.setup_helpers import Pybind11Extension
 
-    ext_modules = [
-        Pybind11Extension(
-            "python_example",
-            sorted(glob("src/*.cpp")),  # Sort source files for reproducibility
-        ),
-    ]
+ext_modules = [
+    Pybind11Extension(
+        "python_example",
+        sorted(glob("src/*.cpp")),  # Sort source files for reproducibility
+    ),
+]
 
-    setup(..., ext_modules=ext_modules)
+setup(..., ext_modules=ext_modules)
 ```
 
-If you want to do an automatic search for the highest supported C++ standard,
-that is supported via a `build_ext` command override; it will only affect
-`Pybind11Extensions`:
+If you want to do an automatic search for the highest supported C++ standard, that is supported via a `build_ext` command override; it will only affect `Pybind11Extensions`:
 
 ```python
-    from glob import glob
-    from setuptools import setup
-    from pybind11.setup_helpers import Pybind11Extension, build_ext
+from glob import glob
+from setuptools import setup
+from pybind11.setup_helpers import Pybind11Extension, build_ext
 
-    ext_modules = [
-        Pybind11Extension(
-            "python_example",
-            sorted(glob("src/*.cpp")),
-        ),
-    ]
+ext_modules = [
+    Pybind11Extension(
+        "python_example",
+        sorted(glob("src/*.cpp")),
+    ),
+]
 
-    setup(..., cmdclass={"build_ext": build_ext}, ext_modules=ext_modules)
+setup(..., cmdclass={"build_ext": build_ext}, ext_modules=ext_modules)
 ```
 
-If you have single-file extension modules that are directly stored in the
-Python source tree (`foo.cpp` in the same directory as where a `foo.py`
-would be located), you can also generate `Pybind11Extensions` using
-`setup_helpers.intree_extensions`: ``intree_extensions(["path/to/foo.cpp",
-...])` returns a list of `Pybind11Extensions`` which can be passed to
-`ext_modules`, possibly after further customizing their attributes
-(`libraries`, `include_dirs`, etc.).  By doing so, a `foo.*.so` extension
-module will be generated and made available upon installation.
+If you have single-file extension modules that are directly stored in the Python source tree (`foo.cpp` in the same directory as where a `foo.py` would be located), you can also generate `Pybind11Extensions` using `setup_helpers.intree_extensions`: ``intree_extensions(["path/to/foo.cpp", ...])` returns a list of `Pybind11Extensions`` which can be passed to `ext_modules`, possibly after further customizing their attributes (`libraries`, `include_dirs`, etc.).  By doing so, a `foo.*.so` extension module will be generated and made available upon installation.
 
-`intree_extension` will automatically detect if you are using a `src`-style
-layout (as long as no namespace packages are involved), but you can also
-explicitly pass `package_dir` to it (as in `setuptools.setup`).
+`intree_extension` will automatically detect if you are using a `src`-style layout (as long as no namespace packages are involved), but you can also explicitly pass `package_dir` to it (as in `setuptools.setup`).
 
-Since pybind11 does not require NumPy when building, a light-weight replacement
-for NumPy's parallel compilation distutils tool is included. Use it like this:
+Since pybind11 does not require NumPy when building, a light-weight replacement for NumPy's parallel compilation distutils tool is included. Use it like this:
 
 ```python
-    from pybind11.setup_helpers import ParallelCompile
+from pybind11.setup_helpers import ParallelCompile
 
-    # Optional multithreaded build
-    ParallelCompile("NPY_NUM_BUILD_JOBS").install()
+# Optional multithreaded build.
+ParallelCompile("NPY_NUM_BUILD_JOBS").install()
 
-    setup(...)
+setup(...)
 ```
 
-The argument is the name of an environment variable to control the number of
-threads, such as `NPY_NUM_BUILD_JOBS` (as used by NumPy), though you can set
-something different if you want; `CMAKE_BUILD_PARALLEL_LEVEL` is another choice
-a user might expect. You can also pass `default=N` to set the default number
-of threads (0 will take the number of threads available) and `max=N`, the
-maximum number of threads; if you have a large extension you may want set this
-to a memory dependent number.
+The argument is the name of an environment variable to control the number of threads, such as `NPY_NUM_BUILD_JOBS` (as used by NumPy), though you can set something different if you want; `CMAKE_BUILD_PARALLEL_LEVEL` is another choice a user might expect. You can also pass `default=N` to set the default number of threads (0 will take the number of threads available) and `max=N`, the maximum number of threads; if you have a large extension you may want set this to a memory dependent number.
 
-If you are developing rapidly and have a lot of C++ files, you may want to
-avoid rebuilding files that have not changed. For simple cases were you are
-using `pip install -e .` and do not have local headers, you can skip the
-rebuild if an object file is newer than its source (headers are not checked!)
-with the following:
+If you are developing rapidly and have a lot of C++ files, you may want to avoid rebuilding files that have not changed. For simple cases were you are using `pip install -e .` and do not have local headers, you can skip the rebuild if an object file is newer than its source (headers are not checked!) with the following:
 
 ```python
-    from pybind11.setup_helpers import ParallelCompile, naive_recompile
-    ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
+from pybind11.setup_helpers import ParallelCompile, naive_recompile
+ParallelCompile("NPY_NUM_BUILD_JOBS", needs_recompile=naive_recompile).install()
 ```
 
 
-If you have a more complex build, you can implement a smarter function and pass
-it to `needs_recompile`, or you can use [Ccache]_ instead. ``CXX="cache g++"
-pip install -e .`` would be the way to use it with GCC, for example. Unlike the
-simple solution, this even works even when not compiling in editable mode, but
-it does require Ccache to be installed.
+If you have a more complex build, you can implement a smarter function and pass it to `needs_recompile`, or you can use [Ccache]_ instead. ``CXX="cache g++" pip install -e .`` would be the way to use it with GCC, for example. Unlike the simple solution, this even works even when not compiling in editable mode, but it does require Ccache to be installed.
 
-Keep in mind that Pip will not even attempt to rebuild if it thinks it has
-already built a copy of your code, which it deduces from the version number.
-One way to avoid this is to use [setuptools_scm]_, which will generate a
-version number that includes the number of commits since your last tag and a
-hash for a dirty directory. Another way to force a rebuild is purge your cache
-or use Pip's `--no-cache-dir` option.
+Keep in mind that Pip will not even attempt to rebuild if it thinks it has already built a copy of your code, which it deduces from the version number. One way to avoid this is to use [setuptools_scm]_, which will generate a version number that includes the number of commits since your last tag and a hash for a dirty directory. Another way to force a rebuild is purge your cache or use Pip's `--no-cache-dir` option.
 
 1. PEP 518 requirements (Pip 10+ required)
 
@@ -1342,6 +1168,8 @@ requirements.
 This is obviously more of a hack than the PEP 518 method, but it supports
 ancient versions of Pip.
 
+---
+
 1. Copy manually
 
 You can also copy `setup_helpers.py` directly to your project; it was
@@ -1360,13 +1188,15 @@ you want to input it manually.
 Suggested usage if you have pybind11 as a submodule in `extern/pybind11`:
 
 ```python
-    DIR = os.path.abspath(os.path.dirname(__file__))
+DIR = os.path.abspath(os.path.dirname(__file__))
 
-    sys.path.append(os.path.join(DIR, "extern", "pybind11"))
-    from pybind11.setup_helpers import Pybind11Extension  # noqa: E402
+sys.path.append(os.path.join(DIR, "extern", "pybind11"))
+from pybind11.setup_helpers import Pybind11Extension  # noqa: E402
 
-    del sys.path[-1]
+del sys.path[-1]
 ```
+
+---
 
 # Building with CMake
 
@@ -1374,21 +1204,21 @@ For C++ codebases that have an existing CMake-based build system, a Python
 extension module can be created with just a few lines of code:
 
 ```cmake
-    cmake_minimum_required(VERSION 3.5...3.27)
-    project(example LANGUAGES CXX)
+cmake_minimum_required(VERSION 3.5...3.27)
+project(example LANGUAGES CXX)
 
-    add_subdirectory(pybind11)
-    pybind11_add_module(example example.cpp)
+add_subdirectory(pybind11)
+pybind11_add_module(example example.cpp)
 ```
 
 This assumes that the pybind11 repository is located in a subdirectory named
-:file:`pybind11` and that the code is located in a file named :file:`example.cpp`.
+`pybind11` and that the code is located in a file named `example.cpp`.
 The CMake command `add_subdirectory` will import the pybind11 project which
 provides the `pybind11_add_module` function. It will take care of all the
 details needed to build a Python extension module on any platform.
 
-A working sample project, including a way to invoke CMake from :file:`setup.py` for
-PyPI integration, can be found in the [cmake example](https://github.com/pybind/cmake_example) repository.
+A working sample project, including a way to invoke CMake from `setup.py` for
+PyPI integration, can be found in the [CMake example](https://github.com/pybind/cmake_example) repository.
 
 1. pybind11_add_module
 
@@ -1491,12 +1321,12 @@ an external installation can be detected through `find_package(pybind11)`.
 See the `Config file`_ docstring for details of relevant CMake variables.
 
 ```cmake
+cmake_minimum_required(VERSION 3.4...3.18)
+project(example LANGUAGES CXX)
 
-    cmake_minimum_required(VERSION 3.4...3.18)
-    project(example LANGUAGES CXX)
-
-    find_package(pybind11 REQUIRED)
-    pybind11_add_module(example example.cpp)
+find_package(pybind11 REQUIRED)
+pybind11_add_module(example example.cpp)
+```
 
 Note that `find_package(pybind11)` will only work correctly if pybind11
 has been correctly installed on the system, e. g. after downloading or cloning
@@ -1513,153 +1343,8 @@ make -j<N> install
 Once detected, the aforementioned `pybind11_add_module` can be employed as
 before. The function usage and configuration variables are identical no matter
 if pybind11 is added as a subdirectory or found as an installed package. You
-can refer to the same [cmake_example]_ repository for a full sample project
+can refer to the same [CMake example](https://github.com/pybind/cmake_example) repository for a full sample project
 -- just swap out `add_subdirectory` for `find_package`.
-
-1. FindPython mode
-
-CMake 3.12+ (3.15+ recommended, 3.18.2+ ideal) added a new module called
-FindPython that had a highly improved search algorithm and modern targets
-and tools. If you use FindPython, pybind11 will detect this and use the
-existing targets instead:
-
-```cmake
-cmake_minimum_required(VERSION 3.15...3.22)
-project(example LANGUAGES CXX)
-
-find_package(Python 3.6 COMPONENTS Interpreter Development REQUIRED)
-find_package(pybind11 CONFIG REQUIRED)
-# or add_subdirectory(pybind11)
-
-pybind11_add_module(example example.cpp)
-```
-
-You can also use the targets (as listed below) with FindPython. If you define
-`PYBIND11_FINDPYTHON`, pybind11 will perform the FindPython step for you
-(mostly useful when building pybind11's own tests, or as a way to change search
-algorithms from the CMake invocation, with `-DPYBIND11_FINDPYTHON=ON`.
-
-.. warning::
-
-    If you use FindPython to multi-target Python versions, use the individual
-    targets listed below, and avoid targets that directly include Python parts.
-
-There are `many ways to hint or force a discovery of a specific Python
-installation <https://cmake.org/cmake/help/latest/module/FindPython.html>`_),
-setting `Python_ROOT_DIR` may be the most common one (though with
-virtualenv/venv support, and Conda support, this tends to find the correct
-Python version more often than the old system did).
-
-.. warning::
-
-    When the Python libraries (i.e. `libpythonXX.a` and `libpythonXX.so`
-    on Unix) are not available, as is the case on a manylinux image, the
-    `Development` component will not be resolved by `FindPython`. When not
-    using the embedding functionality, CMake 3.18+ allows you to specify
-    `Development.Module` instead of `Development` to resolve this issue.
-
-1. Advanced: interface library targets
-
-Pybind11 supports modern CMake usage patterns with a set of interface targets,
-available in all modes. The targets provided are:
-
-   `pybind11::headers`
-     Just the pybind11 headers and minimum compile requirements
-
-   `pybind11::pybind11`
-     Python headers + `pybind11::headers`
-
-   `pybind11::python_link_helper`
-     Just the "linking" part of pybind11:module
-
-   `pybind11::module`
-     Everything for extension modules - `pybind11::pybind11` + `Python::Module` (FindPython CMake 3.15+) or `pybind11::python_link_helper`
-
-   `pybind11::embed`
-     Everything for embedding the Python interpreter - `pybind11::pybind11` + `Python::Python` (FindPython) or Python libs
-
-   `pybind11::lto` / `pybind11::thin_lto`
-     An alternative to `INTERPROCEDURAL_OPTIMIZATION` for adding link-time optimization.
-
-   `pybind11::windows_extras`
-     `/bigobj` and `/mp` for MSVC.
-
-   `pybind11::opt_size`
-     `/Os` for MSVC, `-Os` for other compilers. Does nothing for debug builds.
-
-Two helper functions are also provided:
-
-    `pybind11_strip(target)`
-      Strips a target (uses `CMAKE_STRIP` after the target is built)
-
-    `pybind11_extension(target)`
-      Sets the correct extension (with SOABI) for a target.
-
-You can use these targets to build complex applications. For example, the
-`add_python_module` function is identical to:
-
-```cmake
-
-    cmake_minimum_required(VERSION 3.5...3.27)
-    project(example LANGUAGES CXX)
-
-    find_package(pybind11 REQUIRED)  # or add_subdirectory(pybind11)
-
-    add_library(example MODULE main.cpp)
-
-    target_link_libraries(example PRIVATE pybind11::module pybind11::lto pybind11::windows_extras)
-
-    pybind11_extension(example)
-    if(NOT MSVC AND NOT ${CMAKE_BUILD_TYPE} MATCHES Debug|RelWithDebInfo)
-        # Strip unnecessary sections of the binary on Linux/macOS
-        pybind11_strip(example)
-    endif()
-
-    set_target_properties(example PROPERTIES CXX_VISIBILITY_PRESET "hidden"
-                                             CUDA_VISIBILITY_PRESET "hidden")
-```
-
-Instead of setting properties, you can set `CMAKE_*` variables to initialize these correctly.
-
-.. warning::
-
-    Since pybind11 is a metatemplate library, it is crucial that certain
-    compiler flags are provided to ensure high quality code generation. In
-    contrast to the `pybind11_add_module()` command, the CMake interface
-    provides a *composable* set of targets to ensure that you retain flexibility.
-    It can be especially important to provide or set these properties; the
-    `FAQ <faq:symhidden>` contains an explanation on why these are needed.
-
-1. Advanced: NOPYTHON mode
-
-If you want complete control, you can set `PYBIND11_NOPYTHON` to completely
-disable Python integration (this also happens if you run `FindPython2` and
-`FindPython3` without running `FindPython`). This gives you complete
-freedom to integrate into an existing system (like `Scikit-Build's
-<https://scikit-build.readthedocs.io>`_ `PythonExtensions`).
-`pybind11_add_module` and `pybind11_extension` will be unavailable, and the
-targets will be missing any Python specific behavior.
-
-1. Embedding the Python interpreter
-
-In addition to extension modules, pybind11 also supports embedding Python into
-a C++ executable or library. In CMake, simply link with the `pybind11::embed`
-target. It provides everything needed to get the interpreter running. The Python
-headers and libraries are attached to the target. Unlike `pybind11::module`,
-there is no need to manually set any additional properties here. For more
-information about usage in C++, see :doc:`/advanced/embedding`.
-
-```cmake
-cmake_minimum_required(VERSION 3.5...3.27)
-project(example LANGUAGES CXX)
-
-find_package(pybind11 REQUIRED)  # or add_subdirectory(pybind11)
-
-add_executable(example main.cpp)
-target_link_libraries(example PRIVATE pybind11::embed)
-```
-
----
 
 <!--
 _class: titlepage
@@ -1671,15 +1356,20 @@ _class: titlepage
 
 # Benchmark
 
+The example provided in the `c++_vs_py` folder showcases a performance comparison test between bound C++ code and native Python code on a simple linear algebra operation, such as a matrix-matrix product.
+
+The code can be compiled with:
 ```bash
-g++ -O3 -Wall -shared -std=c++11 -fPIC `python3 -m pybind11 --includes` matrix_multiplication.cpp -o matrix_ops`python3-config --extension-suffix`
+g++ -O3 -Wall -shared -std=c++11 -fPIC \
+    $(python3 -m pybind11 --includes) \
+    matrix_multiplication.cpp -o matrix_ops$(python3-config --extension-suffix)
 ```
 
 **Expected results**
 Typically, the C++ implementation should be significantly faster than the pure Python implementation for several reasons:
-- Execution Speed: C++ is a compiled language and is generally faster than Python, an interpreted language, especially for computation-intensive tasks.
-- Optimization: Compilers for C++ can optimize the code for performance, whereas Python's flexibility and dynamic typing can introduce overhead.
-- Handling of loops: C++ is more efficient in handling loops and arithmetic operations compared to Python.
+- **Execution speed**: C++ is a compiled language and is generally faster than Python, an interpreted language, especially for computation-intensive tasks.
+- **Optimization**: Compilers for C++ can optimize the code for performance, whereas Python's flexibility and dynamic typing can introduce overhead.
+- **Handling of loops**: C++ is more efficient in handling loops and arithmetic operations compared to Python.
 
 ---
 
@@ -1691,11 +1381,9 @@ Typically, the C++ implementation should be significantly faster than the pure P
 
 ---
 
-# Examples
+# Other examples
 
-The examples provided are adapted and extended versions from [this GitHub repository](https://github.com/tdegeus/pybind11_examples). They demonstrate the use of Pybind11 in various scenarios. Remember to load the necessary modules, like Pybind11 and Eigen, before starting.
-
----
+The examples provided in the `examples` folder are adapted and extended versions from [this GitHub repository](https://github.com/tdegeus/pybind11_examples). They demonstrate the use of Pybind11 in various scenarios.
 
 # Further readings
 

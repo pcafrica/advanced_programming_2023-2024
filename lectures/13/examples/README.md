@@ -1,83 +1,26 @@
-# Contents
-
-<!-- MarkdownTOC -->
-
-- [Introduction](#introduction)
-- [Cloning this repository](#cloning-this-repository)
-- [Dependencies](#dependencies)
-- [Compiling strategies](#compiling-strategies)
-    - [DIY](#diy)
-    - [CMake](#cmake)
-        - [Basic usage](#basic-usage)
-        - [Using Eigen](#using-eigen)
-        - [Using the C++14 standard](#using-the-c14-standard)
-    - [setup.py](#setuppy)
-- [Examples](#examples)
-    - [01_py-list-set-dict_cpp-vector-set-map](#01_py-list-set-dict_cpp-vector-set-map)
-    - [02_py-nested-list_cpp-nested-vector](#02_py-nested-list_cpp-nested-vector)
-    - [03_numpy-1D_cpp-vector](#03_numpy-1d_cpp-vector)
-    - [04_numpy-2D_cpp-vector](#04_numpy-2d_cpp-vector)
-    - [05_numpy-2D_cpp-eigen](#05_numpy-2d_cpp-eigen)
-    - [06_class-numpy-eigen](#06_class-numpy-eigen)
-    - [07_cpp-overload-scalar](#07_cpp-overload-scalar)
-    - [08_cpp-overload-eigen](#08_cpp-overload-eigen)
-    - [09_numpy_cpp-custom-matrix](#09_numpy_cpp-custom-matrix)
-    - [10_enum](#10_enum)
-    - [11_class-parent-child](#11_class-parent-child)
-
-<!-- /MarkdownTOC -->
-
-
 # Introduction
 
 The power of [pybind11](https://github.com/pybind/pybind11) is captured by the following citation from pybind11's readme:
 
->   pybind11 is a lightweight header-only library that exposes C++ types in Python and vice versa, mainly to create Python bindings of existing C++ code. Its goals and syntax are similar to the excellent Boost.Python library by David Abrahams ...
+> pybind11 is a lightweight header-only library that exposes C++ types in Python and vice versa, mainly to create Python bindings of existing C++ code. Its goals and syntax are similar to the excellent Boost.Python library by David Abrahams ...
 >
->   The main issue with Boost.Python - and the reason for creating such a similar project — is Boost. Boost is an enormously large and complex suite of utility libraries that works with almost every C++ compiler in existence. ... Now that C++11-compatible compilers are widely available, this heavy machinery has become an excessively large and unnecessary dependency.
+> The main issue with Boost.Python - and the reason for creating such a similar project — is Boost. Boost is an enormously large and complex suite of utility libraries that works with almost every C++ compiler in existence. ... Now that C++11-compatible compilers are widely available, this heavy machinery has become an excessively large and unnecessary dependency.
 
-This repository contains several examples for the usage of pybind11. Even though the [online documentation](http://pybind11.readthedocs.io) provided by the developers of pybind11 makes the usage of it relatively straightforward, several examples - such as provided here - make pybind11 even easier to use. These examples are meant for you to start quicker with pybind11. They are, however, by no means exhaustive, and do not always provide the optimal choice. Therefore it is highly advisable to **think for yourself**. Furthermore, **contributions with similar simple examples (or by further improving existing examples) are highly welcome**. Please file a pull request or an issue on [GitHub](https://github.com/tdegeus/pybind11_examples), or [contact me](mailto:tom_AT_geus.me).
+This repository contains several examples for the usage of pybind11. Even though the [online documentation](https://pybind11.readthedocs.io) provided by the developers of pybind11 makes the usage of it relatively straightforward, several examples - such as provided here - make pybind11 even easier to use. These examples are meant for you to start quicker with pybind11. They are, however, by no means exhaustive, and do not always provide the optimal choice. Therefore it is highly advisable to **think for yourself**. Furthermore, **contributions with similar simple examples (or by further improving existing examples) are highly welcome**. Please file a pull request or an issue on [GitHub](https://github.com/tdegeus/pybind11_examples), or [contact me](mailto:tom_AT_geus.me).
 
 To give credit where credit is due:
 
-*   The creators of pybind11 have done a great job! It is really easy to use, and very lightweight. Also the [documentation](http://pybind11.readthedocs.io) is already quite complete.
+- The creators of pybind11 have done a great job! It is really easy to use, and very lightweight. Also the [documentation](https://pybind11.readthedocs.io) is already quite complete.
 
-*   The examples made available by [Cliburn Chan and Janice McCarthy, at Duke University](http://people.duke.edu/~ccc14/sta-663-2016/18G_C++_Python_pybind11.html) have been of enormous help. Please also read their [documentation](http://people.duke.edu/~ccc14/sta-663-2016/18G_C++_Python_pybind11.html).
+- The examples made available by [Cliburn Chan and Janice McCarthy, at Duke University](http://people.duke.edu/~ccc14/sta-663-2016/18G_C++_Python_pybind11.html) have been of enormous help. Please also read their [documentation](http://people.duke.edu/~ccc14/sta-663-2016/18G_C++_Python_pybind11.html).
 
 Note that there are also test cases that double as examples in the [pybind11 repository](https://github.com/pybind/pybind11), but these are not very insightful when you are new to pybind11.
 
-Finally, pybind11 is actively used. So one can look in actively maintained libraries for specific solutions. For example:
-
-*   [cppmat](http://cppmat.geus.me) is a library that provided multidimensional arrays in C++, much like the [Eigen](http://eigen.tuxfamily.org) library does for one- and two-dimensional arrays. It also provides a pybind11 interface, such that creating a Python module that uses cppmat objects as (return) arguments in the back end functions becomes trivial.
-
-# Cloning this repository
-
-The pybind11 module (which is header only!) is included as a submodule of this repository. This requires some attention when cloning this project. There are two options:
-
-*   The simplest option is:
-
-    ```bash
-    git clone --recursive https://github.com/tdegeus/pybind11_examples.git
-    ```
-
-    This will download the submodule up to the version that is used in this project. To update to the latest commit of the submodule itself:
-
-    ```bash
-    git submodule update --remote
-    ```
-
-*   One could also directly download the submodule from the source:
-
-    ```bash
-    git clone https://github.com/tdegeus/pybind11_examples.git
-    cd pybind11_examples
-    git submodule init
-    git submodule update
-    ```
+Finally, pybind11 is actively used. So one can look in actively maintained libraries for specific solutions. For example, the [Eigen](https://eigen.tuxfamily.org) library provides one- and two-dimensional arrays in C++. It also provides a pybind11 interface, such that creating a Python module that uses cppmat objects as (return) arguments in the back end functions becomes trivial.
 
 # Dependencies
 
-The [Eigen](http://eigen.tuxfamily.org) library is used in some of the NumPy examples. From these examples it can be observed that through pybind11, Eigen and NumPy are really handshake modules. Almost no code is needed to create the C++/Python interface. Note that most of the simplicity depends on copies being passed, some attention is needed if one wants to pass purely by reference.
+The [Eigen](https://eigen.tuxfamily.org) library is used in some of the NumPy examples. From these examples it can be observed that through pybind11, Eigen and NumPy are really handshake modules. Almost no code is needed to create the C++/Python interface. Note that most of the simplicity depends on copies being passed, some attention is needed if one wants to pass purely by reference.
 
 Eigen does not need installation because it is also header only. One just needs to download the files and include the headers at compile time.
 
@@ -129,7 +72,7 @@ g++ -std=gnu++11 -O3 -shared -fPIC \
 pybind11 applications can be compiled very easy using CMake. For simplicity pybind11 is included as a sub-folder of the examples below (in fact using a symbolic link to over many copies), so that we can use a `CMakeLists.txt` like:
 
 ```cmake
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.0.0)
 project(example)
 
 add_subdirectory(pybind11)
@@ -139,7 +82,7 @@ pybind11_add_module(example example.cpp)
 or:
 
 ```cmake
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.0.0)
 project(example)
 
 find_package(pybind11 REQUIRED)
@@ -275,7 +218,7 @@ To compile, make sure that the C++14 standard is used.
 
 This example includes a custom matrix class in C++ (in `matrix.hpp`). This class is coupled to a NumPy-array using a simple interface (in `pybind_matrix.hpp`). Consequently the functions (in `example.cpp`) do not necessitate any special wrapper code.
 
-See also [this](http://stackoverflow.com/questions/42645228/cast-numpy-array-to-from-custom-c-matrix-class-using-pybind11) discussion of Stack Overflow.
+See also [this](https://stackoverflow.com/questions/42645228/cast-numpy-array-to-from-custom-c-matrix-class-using-pybind11) discussion of Stack Overflow.
 
 ## [10_enum](10_enum)
 
@@ -284,5 +227,4 @@ This example features a way to interface with an enumerator in C++. In principle
 ## [11_class-parent-child](11_class-parent-child)
 
 This example contains a classical example where one or more classes are derived from a certain parent or template. This particular example contains two animals, a `Dog` and a `Cat`, that are both derived from a generic `Animal` class. There is a function `talk` that accepts the generic `Animal` and thus any of the derived classes. 
-
-This particular case requires more involved interface, as is described in [the documentation](http://pybind11.readthedocs.io/en/stable/advanced/classes.html).
+This particular case requires more involved interface, as is described in [the documentation](https://pybind11.readthedocs.io/en/stable/advanced/classes.html).

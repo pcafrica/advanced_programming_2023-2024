@@ -404,11 +404,11 @@ A shorter notation for named arguments is also available:
 m.def("add1", &add, py::arg("i"), py::arg("j"));
 
 // Shorthand.
-using namespace pybind11::literals;
+using namespace py::literals;
 m.def("add2", &add, "i"_a, "j"_a);
 ```
 
-The `_a` suffix forms a C++11 literal which is equivalent to `arg`. Note that the literal operator must first be made visible with the directive `using namespace pybind11::literals`. This does not bring in anything else from the `pybind11` namespace except for literals.
+The `_a` suffix forms a C++11 literal which is equivalent to `arg`. Note that the literal operator must first be made visible with the directive `using namespace py::literals`. This does not bring in anything else from the `pybind11` namespace except for literals.
 
 ---
 

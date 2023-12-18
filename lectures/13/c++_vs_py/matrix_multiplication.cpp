@@ -4,8 +4,6 @@
 
 #include <vector>
 
-namespace py = pybind11;
-
 std::vector<std::vector<double>>
 matrix_multiply(const std::vector<std::vector<double>> &mat1,
                 const std::vector<std::vector<double>> &mat2) {
@@ -24,6 +22,8 @@ matrix_multiply(const std::vector<std::vector<double>> &mat1,
 
   return result;
 }
+
+namespace py = pybind11;
 
 PYBIND11_MODULE(matrix_ops, m) {
   m.def("matrix_multiply", &matrix_multiply,

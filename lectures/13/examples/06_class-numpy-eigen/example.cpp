@@ -59,7 +59,7 @@ PYBIND11_MODULE(example_06_class_numpy_eigen, m) {
   // is called from Python on an object "array" of type "CustomVectorXd".
   py::class_<CustomVectorXd>(m, "CustomVectorXd")
       .def(py::init<Eigen::VectorXd>())
-      .def("multiply", &CustomVectorXd::multiply, pybind11::arg("factor") = 1.)
+      .def("multiply", &CustomVectorXd::multiply, py::arg("factor") = 1.)
       .def("__repr__", [](const CustomVectorXd &a) {
         return "<example_06_class_numpy_eigen.CustomVectorXd>";
       });

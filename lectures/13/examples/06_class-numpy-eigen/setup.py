@@ -110,7 +110,7 @@ setup(
     author_email="your.email@example.com",
     description="A test project using pybind11 and CMake",
     long_description="",
-    ext_modules=[CMakeExtension("cmake_example")],
+    ext_modules=[CMakeExtension("example_06_class_numpy_eigen")],
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
 )

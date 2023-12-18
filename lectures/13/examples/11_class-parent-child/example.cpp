@@ -7,25 +7,25 @@
 // Regular C++ header
 // ------------------
 
-// parent class
+// Parent class.
 class Animal {
 public:
   virtual std::string talk(int n_times) const = 0;
 };
 
-// derived class
+// Derived class.
 class Dog : public Animal {
 public:
   virtual std::string talk(int n_times) const override;
 };
 
-// derived class
+// Derived class.
 class Cat : public Animal {
 public:
   virtual std::string talk(int n_times) const override;
 };
 
-// function that takes the parent and all derived classes
+// Function that takes the parent polymorphically.
 std::string talk(const Animal &animal, int n_times = 1);
 
 // ----------------
@@ -65,7 +65,7 @@ public:
 
   // Trampoline (one for each virtual function).
   virtual std::string talk(int n_times) const override {
-    PYBIND11_OVERLOAD_PURE(
+    PYBIND11_OVERRIDE_PURE(
         std::string, /* Return type. */
         Animal,      /* Parent class. */
         talk,        /* Name of function in C++ (must match Python name). */

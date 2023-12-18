@@ -11,12 +11,13 @@
 std::vector<double> length(const std::vector<double> &pos) {
   size_t N = pos.size() / 2;
 
-  std::vector<double> output(N * 3);
+  std::vector<double> output(3 * N);
 
   for (size_t i = 0; i < N; ++i) {
-    output[i * 3 + 0] = pos[i * 2 + 0];
-    output[i * 3 + 1] = pos[i * 2 + 1];
-    output[i * 3 + 2] = std::pow(pos[i * 2 + 0] * pos[i * 2 + 1], .5);
+    output[3 * i + 0] = pos[2 * i + 0];
+    output[3 * i + 1] = pos[2 * i + 1];
+    output[3 * i + 2] = std::sqrt(pos[2 * i + 0] * pos[2 * i + 0] +
+                                  pos[2 * i + 1] * pos[2 * i + 1]);
   }
 
   return output;
@@ -53,12 +54,12 @@ py_length(const py::array_t<double, py::array::c_style | py::array::forcecast>
 
   // Return 2-D NumPy array.
   return py::array(
-      py::buffer_info(result.data(),  /* data as contiguous array  */
-                      sizeof(double), /* size of one scalar        */
-                      py::format_descriptor<double>::format(), /* data type */
-                      ndim,   /* number of dimensions      */
-                      shape,  /* shape of the matrix       */
-                      strides /* strides for each axis     */
+      py::buffer_info(result.data(),  /* Data as contiguous array. */
+                      sizeof(double), /* Size of one scalar. */
+                      py::format_descriptor<double>::format(), /* Data type. */
+                      ndim,   /* Number of dimensions. */
+                      shape,  /* Shape of the matrix. */
+                      strides /* Strides for each axis. */
                       ));
 }
 

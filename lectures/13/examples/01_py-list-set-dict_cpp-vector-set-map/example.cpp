@@ -14,13 +14,6 @@ std::vector<double> modify(const std::vector<double> &input) {
   std::transform(input.begin(), input.end(), std::back_inserter(output),
                  [](double x) -> double { return 2. * x; });
 
-  // N.B.: this is equivalent to (but there are also other ways to do the same)
-  //
-  // std::vector<double> output(input.size());
-
-  // for (size_t i = 0; i < input.size(); ++i)
-  //   output[i] = 2. * input[i];
-
   return output;
 }
 
@@ -59,7 +52,7 @@ PYBIND11_MODULE(example, m) {
   // from Python.
   m.def("modify", &modify, "Multiply all entries of a list by 2.0");
 
-  // Binding templates requires explicit instantiation.
+  // Binding templates requires explicit instantiation!
   // A std::map is bound into a Python dictionary.
   // A std::set is bound into a Python set.
   m.def("create_map", &create_map<int, double>,

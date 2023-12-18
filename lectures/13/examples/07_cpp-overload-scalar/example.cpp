@@ -7,12 +7,12 @@
 // ----------------
 
 double multiply(double a, double b) {
-  std::cout << "Double" << std::endl;
+  std::cout << "double" << std::endl;
   return a * b;
 }
 
 int multiply(int a, int b) {
-  std::cout << "Int" << std::endl;
+  std::cout << "int" << std::endl;
   return a * b;
 }
 

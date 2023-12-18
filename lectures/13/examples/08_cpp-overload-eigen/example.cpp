@@ -10,12 +10,12 @@
 // ----------------
 
 Eigen::MatrixXd multiply(const Eigen::MatrixXd &xs, double fac) {
-  std::cout << "Double" << std::endl;
+  std::cout << "double" << std::endl;
   return fac * xs;
 }
 
 Eigen::MatrixXi multiply(const Eigen::MatrixXi &xs, int fac) {
-  std::cout << "Int" << std::endl;
+  std::cout << "int" << std::endl;
   return fac * xs;
 }
 

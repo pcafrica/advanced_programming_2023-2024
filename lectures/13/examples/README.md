@@ -21,7 +21,9 @@ make
 Or, compile directly using:
 
 ```bash
-g++ -O3 -shared -std=gnu++11 -I ./pybind11/include `python3-config --cflags --ldflags --libs` example.cpp -o example.so -fPIC
+g++ -O3 -Wall -shared -std=c++11 -fPIC \
+    $(python3 -m pybind11 --includes) \
+    example.cpp -o example$(python3-config --extension-suffix)
 ```
 
 Run the example by:
@@ -29,6 +31,8 @@ Run the example by:
 ```bash
 python3 test.py
 ```
+
+In order to be able to import the compiled module in Python, add the folder containing your dynamic library to the environment variable `PYTHONPATH` accordingly.
 
 ## [02_py-nested-list_cpp-nested-vector](02_py-nested-list_cpp-nested-vector)
 

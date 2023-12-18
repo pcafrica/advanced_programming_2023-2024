@@ -930,7 +930,6 @@ _class: titlepage
 
 In order to be able to import the compiled module in Python, add the folder containing your dynamic library to the environment variable `PYTHONPATH` accordingly.
 
-
 ---
 
 # Manual compilation

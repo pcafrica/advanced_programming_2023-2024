@@ -52,7 +52,7 @@ Optional oral exams will follow in subsequent days.
 
 # Homeworks
 
-:warning: **Homework 03 under preparation!**
+:warning: **Homework 03 is online!**
 
 :warning: **Deadline: 12 Jan 2024, 23:59**
 
@@ -62,7 +62,7 @@ Optional oral exams will follow in subsequent days.
 
 - Homework 02 [[Markdown](homeworks/homework_02.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_02.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjM5OTQwMjE4NjIy/details)]
 
-- Homework 03 [[Markdown](homeworks/homework_03.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_03.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_03.pdf)] [Google Classroom (???)]
+- Homework 03 [[Markdown](homeworks/homework_03.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_03.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_03.pdf)] [Google Classroom (https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjQ5NTMzMzQwNzE4/details)]
 
 ---
 

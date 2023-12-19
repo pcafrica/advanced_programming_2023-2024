@@ -28,9 +28,9 @@ _class: titlepage
    - Basics
    - Binding object-oriented code
 
-3. Building
+3. How to build and import pybind11 modules
 
-3. Examples
+4. Examples
 
 Part of these lecture notes and examples is re-adapted from [the official pybind11 documentation](https://github.com/pybind/pybind11/tree/master/docs) ([license](LICENSE_pybind11.md)) and from [this repository](https://github.com/tdegeus/pybind11_examples) ([license](LICENSE_pybind11_examples.md)).
 
@@ -647,7 +647,7 @@ p.age = 2
 
 # Dynamic attributes (3/3)
 
-To enable dynamic attributes for C++ classes, the `py::dynamic_attr` tag must be added to the `py::class_` constructor:
+The `py::dynamic_attr` tag enables dynamic attributes for C++ classes:
 
 ```cpp
 py::class_<Pet>(m, "Pet", py::dynamic_attr())
@@ -918,15 +918,15 @@ The `name` property returns the name of the enum value as a unicode string. Cont
 _class: titlepage
 -->
 
-# pybind11: building
+# How to build and import pybind11 modules
 
 ---
 
-# Compilation
+# How to build and import pybind11 modules
 
-1. Manual compilation
-2. Compilation using `CMake`
-3. Compilation using `setuptools`
+1. Manual compilation.
+2. Compilation using `CMake`.
+3. Compilation using `setuptools`.
 
 In order to be able to import the compiled module in Python, add the folder containing your dynamic library to the environment variable `PYTHONPATH` accordingly.
 
@@ -1007,6 +1007,11 @@ For projects on PyPI, building with setuptools is the way to go. Sylvain Corlay 
 
 # How to compile using `setuptools` (2/3)
 
+Example of a `setup.py` file:
+
+<div class="columns">
+<div>
+
 ```python
 from setuptools import setup, Extension
 from setuptools.command.build_ext import build_ext
@@ -1030,7 +1035,12 @@ ext_modules = [
         language='c++'
     ),
 ]
+```
 
+</div>
+<div>
+
+```python
 setup(
     name='your_module_name',
     version='0.1',
@@ -1045,20 +1055,19 @@ setup(
 )
 ```
 
+</div>
+
 ---
 
 # How to compile using `setuptools` (3/3)
 
 1. **Create the `setup.py` file**: Place it in your project's root directory.
-
 2. **Modify the file**: Change `your_module_name` and `your_module.cpp` to your module's name and C++ source file name. Adjust paths as needed.
-
 3. **Build the module**:
    ```bash
    python setup.py build_ext --inplace
    ```
    This compiles the C++ code into a shared object file (.so).
-
 4. **Install the module**:
    ```bash
    python setup.py install

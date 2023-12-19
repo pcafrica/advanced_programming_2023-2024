@@ -319,12 +319,6 @@ import example
 example.add(1, 2) # Output: 3
 ```
 
-## Other minimal examples
-
-The [Python example](https://github.com/pybind/python_example) and [CMake example](https://github.com/pybind/cmake_example) repositories are also a good place to start. They are both complete project examples with cross-platform build systems. The only difference between the two is that Python example uses Python's `setuptools` to build the module, whereas CMake example uses CMake (which may be preferable for existing C++ projects).
-
-More on these topics later.
-
 ---
 
 # Keyword arguments
@@ -892,6 +886,8 @@ _class: titlepage
 
 # How to build and import pybind11 modules
 
+The [Python example](https://github.com/pybind/python_example) and [CMake example](https://github.com/pybind/cmake_example) repositories good places to start to understand how to build and import pybind11 modules. There are three main ways to do it:
+
 1. Manual compilation.
 2. Compilation using `CMake`.
 3. Compilation using `setuptools`.
@@ -938,7 +934,7 @@ include_directories(SYSTEM ${pybind11_INCLUDE_DIRS})
 pybind11_add_module(example example.cpp)
 ```
 
-or:
+or, if pybind11 is included as a subfolder:
 
 ```cmake
 cmake_minimum_required(VERSION 3.5)
@@ -1041,7 +1037,9 @@ setup(
    python setup.py install # Or: pip install .
    ```
 
-The build step of `setuptools` can be run through CMake itself. The [CMake example](https://github.com/pybind/cmake_example) repository provides a prototype `setup.py` to adjust to your needs.
+The build step of `setuptools` can be run through CMake itself. The [CMake example](https://github.com/pybind/cmake_example) repository provides a prototype `setup.py` to adjust to your needs
+
+**Note**: A similar approach using a [`pyproject.toml`](https://github.com/pybind/cmake_example/blob/master/pyproject.toml) file is also possible.
 
 ---
 

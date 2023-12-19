@@ -239,38 +239,6 @@ After setup, include `extern/pybind11/include` in your project, or employ pybind
 
 ---
 
-# How to compile test cases on Linux/macOS
-
-On Linux  you'll need to install the **python-dev** or **python3-dev** packages as well as **cmake**. On macOS, the included python version works out of the box, but **cmake** must still be installed.
-
-After installing the prerequisites, run
-```bash
-mkdir build
-cd build
-cmake ..
-make check -j4
-```
-
-If all tests fail, make sure that the Python binary and the testcases are compiled for the same processor type and bitness (i.e. either **i386** or **x86_64**). You can specify **x86_64** as the target architecture for the generated Visual Studio project using `cmake -A x64 ..`.
-
----
-
-# How to compile test cases on Windows
-
-On Windows, only **Visual Studio 2017** (MSVC 14.1) and newer are supported, adding the [`/permissive`](https://docs.microsoft.com/en-us/cpp/build/reference/permissive-standards-conformance?view=vs-2017) compiler flag
-
-To compile and run the tests:
-```batch
-mkdir build
-cd build
-cmake ..
-cmake --build . --config Release --target check
-```
-
-This will create a Visual Studio project, compile and run the target, all from the command line.
-
----
-
 <!--
 _class: titlepage
 -->
@@ -302,7 +270,7 @@ int add(int i, int j) {
 }
 
 PYBIND11_MODULE(example, m) {
-    m.doc() = "pybind11 example plugin"; // optional module docstring
+    m.doc() = "pybind11 example plugin"; // Optional module docstring.
 
     m.def("add", &add, "A function that adds two numbers");
 }
@@ -533,8 +501,8 @@ This can easily be accomplished by binding a lambda function instead:
 ```cpp
 py::class_<Pet>(m, "Pet")
     .def(py::init<const std::string &>())
-    .def("setName", &Pet::setName)
-    .def("getName", &Pet::getName)
+    .def("set_name", &Pet::set_name)
+    .def("get_name", &Pet::get_name)
     .def("__repr__",
          [](const Pet &a) {
              return "<example.Pet named '" + a.name + "'>";
@@ -942,13 +910,13 @@ g++ -O3 -Wall -shared -std=c++11 -fPIC \
     example.cpp -o example$(python3-config --extension-suffix)
 
 # pybind11 built from source.
-g++ -std=gnu++11 -O3 -shared -fPIC \
-    -I /path/to/pybind11/include $(python3-config --cflags --ldflags --libs) \
+g++ -std=c++11 -O3 -shared -fPIC \
+    -I/path/to/pybind11/include $(python3-config --cflags --ldflags --libs) \
     example.cpp -o example$(python3-config --extension-suffix)
 
 # pybind11 included as a Git submodule.
-g++ -std=gnu++11 -O3 -shared -fPIC \
-    -I extern/pybind11/include $(python3-config --cflags --ldflags --libs) \
+g++ -std=c++11 -O3 -shared -fPIC \
+    -Iextern/pybind11/include $(python3-config --cflags --ldflags --libs) \
     example.cpp -o example$(python3-config --extension-suffix)
 
 ```
@@ -959,7 +927,7 @@ On macOS: add the `-undefined dynamic_lookup` flag so as to ignore missing symbo
 
 # How to compile using CMake (1/2)
 
-To compile and run your pybind11 code with CMake, create a `CMakeLists` script as follows:
+To compile and run your pybind11 code with CMake, create a `CMakeLists.txt` script as follows:
 
 ```cmake
 cmake_minimum_required(VERSION 3.5)
@@ -992,7 +960,7 @@ Then:
 cd /path/to/example/
 mkdir build && cd build
 cmake -Dpybind11_DIR=/path/to/pybind ..
-make
+make -j<N>
 ```
 
 ---
@@ -1070,7 +1038,7 @@ setup(
    This compiles the C++ code into a shared object file (.so).
 4. **Install the module**:
    ```bash
-   python setup.py install
+   python setup.py install # Or: pip install .
    ```
 
 The build step of `setuptools` can be run through CMake itself. The [CMake example](https://github.com/pybind/cmake_example) repository provides a prototype `setup.py` to adjust to your needs.

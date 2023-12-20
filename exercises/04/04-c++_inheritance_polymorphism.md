@@ -19,7 +19,7 @@ _class: titlepage
 
 ---
 
-# Exercise 1: a framework for automatic differentiation
+# Exercise 1: automatic differentiation (1/2)
 
 Implement a C++ framework for computing derivatives of arbitrary functions using a polymorphic approach. The goal is to create a structure that can handle common arithmetic operations, such as addition, subtraction, multiplication, division, and exponentiation, on values and their derivatives.
  
@@ -27,7 +27,7 @@ Test the program to compute the value and the derivative of the polynomial $f(x)
 
 ---
 
-# Exercise 1
+# Exercise 1: automatic differentiation (2/2)
 
 1. Define an abstract base class `ADExpression` with two pure virtual functions:
    - `double evaluate()`: This function returns the value of the variable.
@@ -57,7 +57,7 @@ In the context of data analysis, create a C++ program that models different type
 
 1. Define an abstract class `DataSource` with a string attribute `name`, a vector `data`, a method `display_info()` and a pure virtual method `read_data()`.
 2. Implement a constructor and a virtual destructor in the `DataSource` class with.
-3. Create derived classes `FileDataSource` and `VectorDataSource` that inherit from `DataSource`.
+3. Create derived classes `FileDataSource` and `ConsoleDataSource` that inherit from `DataSource`.
 4. Implement constructors for all classes to model different data source types. For example, `FileDataSource` should initialize a `filename` and an input file, `ConsoleDataSource` should have a default constructor.
 2. Implement destructors for the derived classes. For example, the `FileDataSource` constructor should open the file, and its destructor should close it.
 

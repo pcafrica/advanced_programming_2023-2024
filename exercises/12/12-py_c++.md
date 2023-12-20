@@ -50,8 +50,4 @@ Provide Python bindings using pybind11 for the code provided as the solution to 
 2. Provide Python bindings using pybind11 for the code implemented.
 3. Use CMake and `setuptools` to setup the build process.
 4. Write a Python script to test the performance of the Eigen-based operations. Implement a `log_execution_time` decorator to print the execution time of a function.
-5. Compare the execution time of these operations to equivalent operations in NumPy (e.g., `numpy.matmul` for multiplication and `numpy.linalg.inv` for inversion). Use large random matrices (e.g., $1000 \times 1000$) for the test to highlight performance differences.
-6. How is performance affected when building the C++ module using the following flags?
-   ```bash
-   -O3 -DNDEBUG -march=native
-   ```
+5. Compare the execution time of these operations to equivalent operations in NumPy (e.g., `numpy.matmul` for multiplication and `numpy.linalg.inv` for inversion). Use a large matrix (e.g., $1000 \times 1000$) of random integers between 0 and 1000 for the test.

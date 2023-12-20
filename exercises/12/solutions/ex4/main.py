@@ -13,25 +13,25 @@ def log_execution_time(func):
 
 @log_execution_time
 def test_eigen_product(A, B):
-    eigen_product = eigen_ops.matrix_multiply(A, B)
+    return eigen_ops.matrix_multiply(A, B)
 
 @log_execution_time
-def test_eigen_inversion(A, B):
-    eigen_inversion = eigen_ops.matrix_invert(A)
+def test_eigen_inversion(A):
+    return eigen_ops.matrix_invert(A)
 
 @log_execution_time
 def test_numpy_product(A, B):
-    numpy_product = np.matmul(A, B)
+    return np.matmul(A, B)
 
 @log_execution_time
-def test_numpy_inversion(A, B):
-    numpy_inversion = np.linalg.inv(A)
+def test_numpy_inversion(A):
+    return np.linalg.inv(A)
 
 n = 1000
-A = np.random.rand(n, n)
-B = np.random.rand(n, n)
+A = np.random.randint(0, 1001, size=(n, n))
+B = np.random.randint(0, 1001, size=(n, n))
 
 test_eigen_product(A, B)
-test_eigen_inversion(A, B)
+test_eigen_inversion(A)
 test_numpy_product(A, B)
-test_numpy_inversion(A, B)
+test_numpy_inversion(A)

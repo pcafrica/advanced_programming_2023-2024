@@ -1,54 +1,46 @@
-#include "data_source.hpp"
-#include "data_transformer.hpp"
+#include "newton.hpp"
+#include <complex>
+#include <functional>
+#include <iostream>
 
 int main() {
-  DataSource *data;
+  // Function with real root: f(x) = x^2 - 1 = 0.
+  {
+    // Define function and its derivative.
+    auto f = [](const double &x) { return x * x - 1.0; };
+    auto df = [](const double &x) { return 2.0 * x; };
 
-  std::string input_type;
-  std::cout << "Select input format (File | Console): ";
-  std::cin >> input_type;
+    // Create a NewtonSolver instance and find the root.
+    const double x0 = 0.5;
+    NewtonSolver<double> solver(f, df, x0);
 
-  if (input_type == "File") {
-    const std::string filename = "../../data.txt";
-    data = new FileDataSource("File", filename);
-  } else if (input_type == "Console") {
-    data = new ConsoleDataSource("Console");
-  } else {
-    std::cerr << "Error: Invalid source type." << std::endl;
-    return 1;
+    const double root = solver.solve();
+
+    if (root != std::numeric_limits<double>::quiet_NaN()) {
+      std::cout << "Approximate root: " << root << std::endl;
+    } else {
+      std::cout << "Failed to converge to a root." << std::endl;
+    }
   }
 
-  data->display_info();
-  data->read_data();
+  // Function with complex root: f(x) = x^2 + 1 = 0.
+  {
+    // Define function and its derivative.
+    auto f = [](const std::complex<double> &x) { return x * x + 1.0; };
+    auto df = [](const std::complex<double> &x) { return 2.0 * x; };
 
-  std::cout << std::endl << "Original data: " << std::endl;
-  std::cout << *data << std::endl;
-  std::cout << std::endl;
+    // Create a NewtonSolver instance and find the root.
+    const std::complex<double> x0{0.5, 0.5};
+    NewtonSolver<std::complex<double>> solver(f, df, x0);
 
-  // Define polymorphic transformer.
-  DataTransformer *transformer;
+    const std::complex<double> root = solver.solve();
 
-  std::string transformation_type;
-  std::cout << "Select transformation to apply (Linear | Log | Standard): ";
-  std::cin >> transformation_type;
-
-  if (transformation_type == "Linear") {
-    transformer = new LinearScaler(*data, 0.5);
-  } else if (transformation_type == "Log") {
-    transformer = new LogTransformer(*data);
-  } else if (transformation_type == "Standard") {
-    transformer = new StandardScaler(*data);
-  } else {
-    std::cerr << "Error: Invalid transformation type." << std::endl;
-    return 1;
+    if (root != std::numeric_limits<std::complex<double>>::quiet_NaN()) {
+      std::cout << "Approximate root: " << root << std::endl;
+    } else {
+      std::cout << "Failed to converge to a root." << std::endl;
+    }
   }
-
-  transformer->apply();
-  std::cout << std::endl << "Transformed data: " << std::endl;
-  std::cout << *data << std::endl << std::endl;
-
-  delete transformer;
-  delete data;
 
   return 0;
 }

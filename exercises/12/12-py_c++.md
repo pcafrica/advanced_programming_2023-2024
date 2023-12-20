@@ -30,21 +30,19 @@ Provide Python bindings using pybind11 for the code provided as the solution to 
 
 ---
 
-# Exercise 2: binding polymorphic classes
-
-Provide Python bindings using pybind11 for the code provided as the solution to exercise 2 from session 04.
-
-# decorators, ... exceptions
-
----
-
-# Exercise 3: binding class templates
+# Exercise 2: binding class templates
 
 Provide Python bindings using pybind11 for the code provided as the solution to exercise 2 from session 05.
 
+1. Modify the `NewtonSolver::solve()` method in order to throw a `std::runtime_error` exception instead of returning `NaN` when failed to converge to a root.
+2. Bind the `NewtonClass` class and its member functions, providing explicit instantiations for `double` and `std::complex<double>` numbers. The Python interface should provide consistent default arguments. Python bindings should be implemented in a separate `newton_py.cpp` file. Translate the `std::runtime_error` C++ exception to a `RuntimeError` Python exception.
+3. Use CMake to setup the build process.
+4. Write a Python script to replicate the functionalities implemented in the `main.cpp` file.
+5. Verify that exception handling works properly.
+
 ---
 
-# Exercise 4: binding with external libraries
+# Exercise 3: binding with external libraries
 
 1. Implement C++ functions using the Eigen library to perform matrix-matrix multiplication and matrix inversion.
 2. Provide Python bindings using pybind11 for the code implemented.

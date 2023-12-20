@@ -1,4 +1,5 @@
 #include "newton.hpp"
+
 #include <cmath>
 #include <complex>
 
@@ -27,7 +28,8 @@ template <typename T> T NewtonSolver<T>::solve() {
   }
 
   // Indicates failure to converge.
-  return std::numeric_limits<T>::quiet_NaN();
+  throw std::runtime_error(
+      "Failed to converge within the maximum number of iterations.");
 }
 
 template class NewtonSolver<double>;

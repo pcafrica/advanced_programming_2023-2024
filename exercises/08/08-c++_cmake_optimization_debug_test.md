@@ -126,8 +126,8 @@ The content of `examples/debug` was inspired by [this repository](https://github
 
 ## Further readings
 - [Defensive programming and debugging](https://gjbex.github.io/Defensive_programming_and_debugging/).
-- [Cpp Undefined Behaviour 101](https://mohitmv.github.io/blog/Cpp-Undefined-Behaviour-101/)
-- [Shocking Undefined Behaviour In Action](https://mohitmv.github.io/blog/Shocking-Undefined-Behaviour-In-Action/)
+- [Cpp undefined behaviour 101](https://mohitmv.github.io/blog/Cpp-Undefined-Behaviour-101/)
+- [Shocking undefined behaviour in action](https://mohitmv.github.io/blog/Shocking-Undefined-Behaviour-In-Action/)
 
 ---
 

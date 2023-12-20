@@ -1,5 +1,10 @@
+#define STR_(x) #x
+#define STR(x) STR_(x)
+
 #include <pybind11/eigen.h>
 #include <pybind11/pybind11.h>
+
+#include <iostream>
 
 #include <Eigen/LU>
 
@@ -27,13 +32,17 @@ CustomVectorXd::CustomVectorXd(const Eigen::VectorXd &data) : m_data(data) {}
 
 // Return the custom vector, multiplied by a factor.
 Eigen::VectorXd CustomVectorXd::multiply(double factor) {
+  std::cout << "C++ bindings, version " << STR(VERSION_INFO) << std::endl;
+
   return factor * m_data;
 }
 
 // A function that has nothing to do with the class.
 // The point is to show how one can return a "Eigen::VectorXd" by copy.
 Eigen::VectorXi flip(const Eigen::VectorXi &array) {
-  auto N = array.size();
+  std::cout << "C++ bindings, version " << STR(VERSION_INFO) << std::endl;
+
+  const auto N = array.size();
 
   Eigen::VectorXi out(N);
 
@@ -54,8 +63,7 @@ PYBIND11_MODULE(example_06_class_numpy_eigen, m) {
 
   m.def("flip", &flip);
 
-  // "__repr__()" or "__str__()" are invoked whenever
-  // print(array)
+  // "__repr__()" or "__str__()" are invoked whenever print(array)
   // is called from Python on an object "array" of type "CustomVectorXd".
   py::class_<CustomVectorXd>(m, "CustomVectorXd")
       .def(py::init<Eigen::VectorXd>())

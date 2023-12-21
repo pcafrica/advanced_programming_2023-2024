@@ -125,8 +125,8 @@ PYBIND11_MODULE(data_processor, m) {
       .def("__getitem__",
            (const double &(DataProcessor::*)(const unsigned int &) const) &
                DataProcessor::operator[])
-      .def("__setitem__", [](DataProcessor *dp, unsigned int index,
-                             double value) { (*dp)[index] = value; })
+      .def("__setitem__", [](DataProcessor &dp, unsigned int index,
+                             double value) { dp[index] = value; })
       .def("__repr__", [](const DataProcessor &dp) {
         std::ostringstream ss;
         ss << dp;

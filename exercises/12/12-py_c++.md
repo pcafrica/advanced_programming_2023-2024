@@ -49,3 +49,9 @@ Provide Python bindings using pybind11 for the code provided as the solution to 
 3. Use CMake and `setuptools` to setup the build process.
 4. Write a Python script to test the performance of the Eigen-based operations. Implement a `log_execution_time` decorator to print the execution time of a function.
 5. Compare the execution time of these operations to equivalent operations in NumPy (e.g., `numpy.matmul` for multiplication and `numpy.linalg.inv` for inversion). Use a large matrix (e.g., $1000 \times 1000$) of random integers between 0 and 1000 for the test.
+
+---
+
+# Exercise 4: code obfuscation
+
+What's the output resulting from the execution of the code contained in `wish.cpp`?

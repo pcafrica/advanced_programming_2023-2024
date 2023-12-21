@@ -9,6 +9,3 @@ include_directories(SYSTEM ${pybind11_INCLUDE_DIRS})
 
 pybind11_add_module(eigen_ops src/eigen_ops.cpp)
 target_include_directories(eigen_ops PRIVATE include)
-target_link_libraries(eigen_ops PRIVATE Eigen3::Eigen)
-
-target_compile_options(eigen_ops PRIVATE -O3 -DNDEBUG -march=native)

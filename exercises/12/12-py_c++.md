@@ -30,7 +30,7 @@ Provide Python bindings using pybind11 for the code provided as the solution to 
 
 ---
 
-# Exercise 2: binding class templates
+# Exercise 2: binding class templates and exceptions
 
 Provide Python bindings using pybind11 for the code provided as the solution to exercise 2 from session 05.
 

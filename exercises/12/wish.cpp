@@ -1,8 +1,10 @@
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <iostream>
 #include <random>
 #include <string>
+#include <thread>
 #include <vector>
 
 inline static constexpr std::string_view reset_color = "\u001B[0m";
@@ -17,8 +19,6 @@ std::string_view get_color(unsigned int c) {
 
   throw std::invalid_argument("Invalid color index.");
 }
-
-#include <vector>
 
 std::string char_code_to_string(const std::vector<int> &codes) {
   std::string result;
@@ -100,7 +100,11 @@ int main(int argc, char **argv) {
     }
   }
 
-  print(params);
+  while (true) {
+    system("clear");
+    print(params);
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
 
   return 0;
 }

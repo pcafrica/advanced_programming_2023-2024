@@ -34,6 +34,10 @@ class CMakeBuild(build_ext):
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
         ]
+
+        if "CMAKE_ARGS" in os.environ:
+            cmake_args += [item for item in os.environ["CMAKE_ARGS"].split(" ") if item]
+
         build_args = []
 
         # Set CMAKE_BUILD_PARALLEL_LEVEL to control the parallel build level

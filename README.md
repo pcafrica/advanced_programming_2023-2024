@@ -54,7 +54,7 @@ Optional oral exams will follow in subsequent days.
 
 :warning: **Homework 03 is online!**
 
-:warning: **Deadline: 12 Jan 2024, 23:59**
+:warning: **Deadline: Sunday 14 Jan 2024, 23:59**
 
 :warning: **Homework solutions must be submitted on Google Classroom.**
 

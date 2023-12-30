@@ -8,10 +8,10 @@ Dr. Pasquale Claudio Africa <<pafrica@sissa.it>>
 Dr. Marco Feder <<mfeder@sissa.it>>
 
 ### Programs
-- (M.Sc.) Data Science and Artificial Intelligence @ UniTS
-- (M.Sc.) Scientific and Data Intensive Computing @ UniTS
-- (M.Sc.) Mathematics @ UniTS
-- (Ph.D.) Mathematical Analysis, Modelling, and Applications @ SISSA
+- (M.Sc.) Data Science and Artificial Intelligence @ UniTS.
+- (M.Sc.) Scientific and Data Intensive Computing @ UniTS.
+- (M.Sc.) Mathematics @ UniTS.
+- (Ph.D.) Mathematical Analysis, Modelling, and Applications @ SISSA.
 
 ---
 

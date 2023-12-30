@@ -41,6 +41,7 @@ Optional oral exams will follow in subsequent days.
 # Documents
 - [Syllabus](syllabus.md).
 - [Homework assignment rules](homework_rules.md).
+- [Exam rules](exam_rules.md).
 
 # Links and resources
 - [Course material](https://pcafrica.github.io/advanced_programming_2023-2024/).

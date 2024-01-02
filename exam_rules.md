@@ -33,20 +33,24 @@ Please register by sending the instructor an email.
 
 # Exam format
 
-Exams will be held **in-person**.
-Students with special needs should contact the instructor in due time.
+- Exams will be held **in-person** and will be computer-based.
+- Students are required to bring their own laptop.
+- A **Google account** is required to take the exam and receive the evaluation.
+- Students with special needs should reach the instructor well before the expected exam session.
+
+:warning: **NB**: Please make sure to have access to the course page on the [**Google Classroom**](https://classroom.google.com/c/NjI5MDE3NzM1NDE4?cjc=yzsb2zu) platform.
 
 ## Exam structure
-The exam will consist of
+The exam will consist of:
 - 10 open-ended questions.
-- 1 or 2 programming exercises.
+- 1 programming exercise.
 - An optional oral exam, upon request by either the student or the instructor.
 
-Allowed programming languages include C++, Python, GNU Makefile, CMake, and Bash.
+Allowed programming languages include C++, Python, GNU Makefile, CMake, and shell scripting languages.
 
 ## Question types
 - Open-ended and oral questions will test theoretical understanding and application of concepts.
-- Programming exercises will assess practical skills in coding and problem-solving.
+- The programming exercise will assess practical skills in coding and problem-solving.
 
 ## Content
 The exam will encompass all the topics and material outlined in the [course syllabus](syllabus.md). This includes, but is not limited to, lecture notes, recordings, examples, exercises and their solutions, and any additional resources referenced. Students are expected to be familiar with the entire range of content covered throughout the course for the examination.
@@ -55,13 +59,9 @@ The exam will encompass all the topics and material outlined in the [course syll
 
 # Time allocation
 
-The exam will be 3 hours long.
-
-Each section has a different time allocation:
-- 1 hour will be allocated for the 10 open-ended questions.
-- The remaining time will be reserved for the programming exercises.
-
-Submissions after the deadline will not be accepted.
+- The exam will be 3 hours long.
+- It is recommended, although not mandatory, to allocate around 1 hour for the 10 open-ended questions and 2 hours for the programming exercise.
+- Submissions after the deadline will not be accepted.
 
 ---
 
@@ -82,10 +82,14 @@ Students may refer to textbooks, notes, and other resources. This policy is desi
 The exam submissions will be conducted through the Google Form system. Please make sure to provide valid personal information and email address.
 
 ## Open-ended questions
-Answers to open-ended questions should be provided in their proper text box, or, where appropriate, uploaded as single source files (`hpp`, `cpp`, `py`, `ipynb` or related file extensions allowed.)
+Answers to open-ended questions should be provided in their proper text box, or, where appropriate, uploaded as single source files (`hpp`, `cpp`, `py`, `ipynb`, or related file extensions are allowed.)
 
-## Programming exercises
-Programming exercises must be submitted as a single `.zip` or `.tar` archive containing only source code files, documentation and any other relevant information. **NB**: no object or binary file should be uploaded. Name the archive file with your student ID or name followed by the exercise number (e.g., `123456_ex1.zip`, `Surname_Name_ex1.tar.gz`). Please provide a README.md file with a brief explanation of the code structure and instructions for building and running your code.
+## Programming exercise
+- Solutions to the programming exercise must be submitted as a single `.zip` or `.tar` archive containing only source code files, documentation and any other relevant information.
+- Name the archive file with your student ID or full name (e.g., `123456.zip`, `Surname_Name.tar.gz`).
+- Please provide a README.md file with a brief explanation of the code structure and instructions for building and running your code.
+
+**NB**: no object or binary file should be uploaded. 
 
 ---
 
@@ -94,9 +98,8 @@ Programming exercises must be submitted as a single `.zip` or `.tar` archive con
 ## Honesty and plagiarism
 Academic integrity must be upheld. Plagiarism will not be tolerated. Always cite your sources and ensure that your work is entirely your own. Any form of academic dishonesty and cheating will result in severe penalties or disqualification.
 
-
 ## Questions and technical issues
-If you encounter questions or technical issues during the exam, please inform the exam invigilator immediately.
+If you have questions or experience technical issues during the exam, please inform the exam invigilator immediately.
 
 ---
 
@@ -109,7 +112,7 @@ All the answers and code must be original and written by the student. You are en
 - Depth of understanding of the theoretical concepts.
 - Application and analysis of knowledge.
 
-## Programming exercises (up to 15 points)
+## Programming exercise (up to 15 points)
 - Correctness and efficiency of the code.
 - Clarity and organization of code.
 - Code testing and syntax correctness.
@@ -118,18 +121,22 @@ All the answers and code must be original and written by the student. You are en
 - Successful compilation and execution, fulfilling the given problem statement.
 - Use of programming constructs and data structures beyond the course content.
 
-## Homework assignments (up to 3 points, optional)
+## (Optional) Oral exam (increase or decrease by up to 3 points)
+- Clarity of expression.
+- Depth of understanding of the theoretical concepts.
+- Application and analysis of knowledge.
+
+## (Optional) Homework assignments (increase by up to 3 points)
 The average of students' scores for homework assignment, divided by 10, will be added to the exam grade.
 
 ## The maximum achievable grade is 30.
 Honors may be granted in exceptional cases, provided the final grade exceeds 30.
 
-The optional oral exam may increase or decrease the student's grade by up to 3 points.
-
 ---
 
 # Special instructions
-- Ensure your computer power and internet connection are stable.
+- Ensure your computer is charged or plugged into a power socket.
+- Ensure your internet connection are stable.
 - Keep track of time and manage it effectively.
 - Read each question carefully before answering.
 - Double-check all submissions before the final upload.

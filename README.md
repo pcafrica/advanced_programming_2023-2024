@@ -22,6 +22,12 @@ This work is licensed under a
 
 ---
 
+# :warning: Exam rules
+
+:warning: Detailed exam rules are available [here](exam_rules.md).
+
+---
+
 # :calendar: Exam dates
 
 **:warning: 17 Jan 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
@@ -30,7 +36,6 @@ This work is licensed under a
 
 
 Optional oral exams will follow in subsequent days.
-
 
 :information_source: Students from UniTS: please register on Esse3.<br>
 
@@ -41,7 +46,7 @@ Optional oral exams will follow in subsequent days.
 # Documents
 - [Syllabus](syllabus.md).
 - [Homework assignment rules](homework_rules.md).
-- [Exam rules](exam_rules.md).
+- :warning: (**NEW**) [Exam rules](exam_rules.md).
 
 # Links and resources
 - [Course material](https://pcafrica.github.io/advanced_programming_2023-2024/).

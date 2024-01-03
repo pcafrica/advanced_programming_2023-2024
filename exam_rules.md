@@ -117,7 +117,7 @@ All the answers and code must be original and written by the student. You are en
 - Clarity and organization of code.
 - Code testing and syntax correctness.
 - Proper use of programming constructs and data structures covered during the course.
-- Code documentation and comments, explaining how to build and run the program, its logic and flow.
+- Code documentation and comments, explaining your design choices, how to build and run the program, its logic and flow.
 - Successful compilation and execution, fulfilling the given problem statement.
 - Use of programming constructs and data structures beyond the course content.
 

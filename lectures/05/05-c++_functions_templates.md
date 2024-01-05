@@ -964,7 +964,7 @@ public:
 template <typename T>
 class Derived : Base<T> {
 public:
-    void foo() { my_fun(); ... } // Which myfun()???
+    void foo() { my_fun(); ... } // Which 'myfun'?
 };
 ```
 

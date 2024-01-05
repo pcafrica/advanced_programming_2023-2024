@@ -258,7 +258,7 @@ Constructors are special member functions that initialize objects when they are 
 ```cpp
 class MyClass {
 public:
-    // Default constructor
+    // Default constructor.
     MyClass() {
         // Initialization code (if needed).
     }

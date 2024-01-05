@@ -81,15 +81,19 @@ Students may refer to textbooks, notes, and other resources. This policy is desi
 ## Format
 The exam submissions will be conducted through the Google Form system. Please make sure to provide valid personal information and email address.
 
+**Maintain backups of your work to prevent data loss.**
+
 ## Open-ended questions
-Answers to open-ended questions should be provided in their proper text box, or, where appropriate, uploaded as single source files (`hpp`, `cpp`, `py`, `ipynb`, or related file extensions are allowed.)
+- Answers to open-ended questions must be compiled into a single text file. This file can be either in plain text format or formatted using Markdown.
+- Answers must be written inline in the provided `part1.md` prompt file.
+- Rename the answer file with your full name and/or student ID as `part1_Surname_Name_ID.md`.
 
 ## Programming exercise
 - Solutions to the programming exercise must be submitted as a single `.zip` or `.tar` archive containing only source code files, documentation and any other relevant information.
-- Name the archive file with your student ID or full name (e.g., `123456.zip`, `Surname_Name.tar.gz`).
-- Please provide a README.md file with a brief explanation of the code structure and instructions for building and running your code.
+- Please include a README.md file with a brief explanation of the code structure and instructions for building and running your code.
+- Name the archive file with your full name and/or student ID as `part2_Surname_Name_ID.{zip,tar.gz}`.
 
-**NB**: no object or binary file should be uploaded. 
+:warning: **NB**: no object or binary file should be uploaded. 
 
 ---
 
@@ -140,4 +144,4 @@ Honors may be granted in exceptional cases, provided the final grade exceeds 30.
 - Keep track of time and manage it effectively.
 - Read each question carefully before answering.
 - Double-check all submissions before the final upload.
-- Maintain backups of your work to prevent data loss.
+- **Maintain backups of your work to prevent data loss.**

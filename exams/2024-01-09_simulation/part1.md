@@ -1,4 +1,4 @@
-# Part 1 - Open-ended questions
+# Part 1: Open-ended questions
 
 ## Question 1
 What is a preprocessor and what is it used for?<br>

@@ -41,16 +41,17 @@ Please register by sending the instructor an email.
 :warning: **NB**: Please make sure to have access to the course page on the [**Google Classroom**](https://classroom.google.com/c/NjI5MDE3NzM1NDE4?cjc=yzsb2zu) platform.
 
 ## Exam structure
-The exam will consist of:
-- 10 open-ended questions.
-- 1 programming exercise.
-- An optional oral exam, upon request by either the student or the instructor.
+The main exam will consist of two parts:
+- Part 1: 10 open-ended questions.
+- Part 2: 1 programming exercise.
+
+Optionally and after the main exam, an oral exam may be requested by either the student or the instructor.
 
 Allowed programming languages include C++, Python, GNU Makefile, CMake, and shell scripting languages.
 
 ## Question types
-- Open-ended and oral questions will test theoretical understanding and application of concepts.
-- The programming exercise will assess practical skills in coding and problem-solving.
+- Part 1: Open-ended and oral questions will test theoretical understanding and application of concepts.
+- Part 2: The programming exercise will assess practical skills in coding and problem-solving.
 
 ## Content
 The exam will encompass all the topics and material outlined in the [course syllabus](syllabus.md). This includes, but is not limited to, lecture notes, recordings, examples, exercises and their solutions, and any additional resources referenced. Students are expected to be familiar with the entire range of content covered throughout the course for the examination.
@@ -83,12 +84,12 @@ The exam submissions will be conducted through the Google Form system. Please ma
 
 **Maintain backups of your work to prevent data loss.**
 
-## Open-ended questions
-- Answers to open-ended questions must be compiled into a single text file. This file can be either in plain text format or formatted using Markdown.
+## Part 1: Open-ended questions
+- Answers to open-ended questions must be compiled into a single text file. This file can be either in plain text format or [formatted using Markdown](https://www.markdownguide.org/cheat-sheet/).
 - Answers must be written inline in the provided `part1.md` prompt file.
 - Rename the answer file with your full name and/or student ID as `part1_Surname_Name_ID.md`.
 
-## Programming exercise
+## Part 2: Programming exercise
 - Solutions to the programming exercise must be submitted as a single `.zip` or `.tar` archive containing only source code files, documentation and any other relevant information.
 - Please include a README.md file with a brief explanation of the code structure and instructions for building and running your code.
 - Name the archive file with your full name and/or student ID as `part2_Surname_Name_ID.{zip,tar.gz}`.
@@ -111,19 +112,21 @@ If you have questions or experience technical issues during the exam, please inf
 
 All the answers and code must be original and written by the student. You are encouraged to use any resource, including books, notes, and online documentation, for reference and learning. However, make sure to acknowledge any external sources you consult in your documentation.
 
-## 10 open-ended questions (up to 1.5 points each)
+## Part 1: 10 open-ended questions (up to 1.5 points each)
 - Clarity of expression.
 - Depth of understanding of the theoretical concepts.
 - Application and analysis of knowledge.
 
-## Programming exercise (up to 15 points)
-- Correctness and efficiency of the code.
+## Part 2: Programming exercise (up to 15 points)
+- Syntactical and logical correctness of the code.
 - Clarity and organization of code.
-- Code testing and syntax correctness.
+- Code testing and efficiency.
 - Proper use of programming constructs and data structures covered during the course.
 - Code documentation and comments, explaining your design choices, how to build and run the program, its logic and flow.
 - Successful compilation and execution, fulfilling the given problem statement.
-- Use of programming constructs and data structures beyond the course content.
+- (Bonus) Use of programming constructs and data structures beyond the course content.
+
+Unless otherwise specified, you are encouraged to incorporate any third-party open-source library into your project.
 
 ## (Optional) Oral exam (increase or decrease by up to 3 points)
 - Clarity of expression.

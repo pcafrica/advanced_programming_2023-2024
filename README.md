@@ -102,5 +102,5 @@ Optional oral exams will follow in subsequent days.
 | Thu 14 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/11/11-py_scicomp.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/11/11-py_scicomp.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/11/11-py_scicomp.pdf)] |
 | Tue 19 Dec 2023 | 14:00 - 16:00 | 128-129 | Integrating C++ and Python codes. [[Markdown](lectures/13/13-py_c++.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/13/13-py_c++.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/lectures/13/13-py_c++.pdf)] |
 | Tue 21 Dec 2023 | 14:00 - 16:00 | 128-129 | Exercise session. [[Markdown](https://github.com/pcafrica/advanced_programming_2023-2024/blob/main/exercises/12/12-py_c++.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/12/12-py_c++.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/exercises/12/12-py_c++.pdf)] |
-| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. |
-| Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. |
+| Tue 09 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. [[Part 1](exams/2024-01-09_simulation/part1.md)] [[Part 2](exams/2024-01-09_simulation/part2.md)] |
+| Tue 11 Jan 2024 | 14:00 - 16:00 | 005  | Exam simulation. [[Part 1](exams/2024-01-11_simulation/part1.md)] [[Part 2](exams/2024-01-11_simulation/part2.md)] |

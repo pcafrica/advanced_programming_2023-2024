@@ -61,8 +61,6 @@ t_f &= 200 && \text{(Final time.)} \\
 \end{alignat*}
 $$
 
-# Initial numbers of prey and predators
-
 1. **C++ codebase**
    1. Design a class `ForwardEuler` to encapsulate the solver.
    2. Use an integral template parameter `n` to specify the number of state variables in the ODE.

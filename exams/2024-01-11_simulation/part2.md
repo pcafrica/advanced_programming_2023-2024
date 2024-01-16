@@ -86,4 +86,3 @@ $$
 4. **(Bonus) validation and comparison**
    1. Design benchmarks to compare performance metrics between the C++ and Python implementations.
    2. Instead of using a lambda function, consider creating a new abstract class `ODEProblem` working as a functor, and derive a subclass `LotkaVolterra` storing all the related parameters and returning the evaluation of $\mathbf{f}(t, [x, y])$.
-

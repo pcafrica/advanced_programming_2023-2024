@@ -42,6 +42,8 @@ Here,
 - $y$ represents the number of predators (for example, foxes),
 - $\alpha, \beta, \gamma$, and $\delta$ are positive real constants that describe the interaction between the prey and the predators.
 
+---
+
 ## Tasks
 The goal is to implement the Forward Euler method for a generic ODE, and to use it to solve the Lotka-Volterra equations given the following parameters:
 

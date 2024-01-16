@@ -3,6 +3,8 @@
 ## Objective
 Create an advanced C++ library for matrix operations (like matrix multiplication, inversion, and determinant calculation) using object-oriented and generic programming paradigms. Integrate this library with Python using pybind11, and conduct a performance comparison between the C++ implementation and the Python-bound version.
 
+---
+
 ## Tasks
 1. **C++ codebase**
    1. Design a base `Matrix` class with common attributes.

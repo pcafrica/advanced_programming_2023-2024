@@ -46,7 +46,7 @@ Optional oral exams will follow in subsequent days.
 # Documents
 - [Syllabus](syllabus.md).
 - [Homework assignment rules](homework_rules.md).
-- :warning: (**NEW**) [Exam rules](exam_rules.md).
+- [Exam rules](exam_rules.md).
 
 # Links and resources
 - [Course material](https://pcafrica.github.io/advanced_programming_2023-2024/).
@@ -57,12 +57,6 @@ Optional oral exams will follow in subsequent days.
 ---
 
 # Homeworks
-
-:warning: **Homework 03 is online!**
-
-:warning: **Deadline: Sunday 14 Jan 2024, 23:59**
-
-:warning: **Homework solutions must be submitted on Google Classroom.**
 
 - Homework 01 [[Markdown](homeworks/homework_01.md)] [[HTML](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.html)] [[PDF](https://pcafrica.github.io/advanced_programming_2023-2024/homeworks/homework_01.pdf)] [[Google Classroom](https://classroom.google.com/c/NjI5MDE3NzM1NDE4/a/NjMwNDg4NDU0ODIy/details)]
 

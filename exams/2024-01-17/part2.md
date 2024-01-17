@@ -19,9 +19,9 @@ Given a scalar multi-variate function $f(\mathbf{z})$ to optimize, the method co
 5. **Output**: The final parameter values are used as the solution, ideally representing the point where the function attains its minimum value.
 
 ### Gradient descent for linear regression
-In the context of linear regression, Gradient Descent is used to find the parameters (coefficients) $\theta$ of the regression model that minimize the cost function, typically the Mean Squared Error (MSE).
+In the context of linear regression, Gradient Descent is used to find the parameters (coefficients) $\theta$ of the regression model that minimize a cost function, typically the Mean Squared Error (MSE).
 
-Given a set of points $\{(x_j, y_j)\}_{j=1}^m$, the linear regression model predicts the output $y$ as a linear combination of the input features $\mathbf{x}$:
+Given a set of points $\{(\mathbf{x}^{(i)}, y^{(i)})\}_{i=0}^m$ with $x_0^{(i)} = 1$ $\forall i$, the linear regression model computes a prediction $\hat{y}^{(i)}$ of the output $y^{(i)}$ as a linear combination of the input features $\mathbf{x}^{(i)}$:
 
 $$
 \hat{y}^{(i)} = \theta_0 + \theta_1 x_1^{(i)} + \dots + \theta_n x_n^{(i)}.
@@ -30,13 +30,13 @@ $$
 The MSE cost function for linear regression, to be minimized with respect to the vector $\theta$, is
 
 $$
-J(\theta) = \frac{1}{2m} \sum_{i=1}^{m} (\hat{y}^{(i)} - y^{(i)})^2
+J(\theta) = \frac{1}{2m} \sum_{i=0}^{m} (\hat{y}^{(i)} - y^{(i)})^2.
 $$
 
-and its gradient
+The gradient of the cost function is
 
 $$
-\frac{\partial J}{\partial \theta_j} = \frac{1}{m} \sum_{i=1}^{m} \left[(\hat{y}^{(i)} - y^{(i)}) x_j^{(i)}\right].
+\frac{\partial J}{\partial \theta_j}(\theta) = \frac{1}{m} \sum_{i=0}^{m} \left[(\hat{y}^{(i)} - y^{(i)}) x_j^{(i)}\right].
 $$
 
 The final values of $\theta_0, \theta_1, \dots, \theta_n$ represent the best-fit parameters for the linear model.
@@ -50,7 +50,7 @@ The goal is to implement a Gradient Descent solver to solve the following two pr
 Minimize the scalar quadratic function $f(x)=(x-1)^2$. For such a function, a moderate learning rate, such as $\alpha = 0.1$, is typically a good starting point.
 
 ### Problem 2.
-Generate a set of points $\{(x_i, y_i)\}_{i=1}^m$ such that $y_i = 4 + \frac{1}{2} x_i + \epsilon$, where $\epsilon$ is a small random noise and minimize the model $\hat{y} = \theta_0 + \theta_1 \hat{x}$. A smaller learning rate, such as $\alpha = 0.01$ or $\alpha = 0.001$, is often more appropriate for such problems, especially when the data is not normalized.
+Generate a set of points $\{(x^{(i)}, y^{(i)})\}_{i=0}^m$ such that $y^{(i)} = 4 + \frac{1}{2} x^{(i)} + \epsilon$, where $\epsilon$ is a small random noise and minimize the model $\hat{y} = \theta_0 + \theta_1 x$. A smaller learning rate, such as $\alpha = 0.01$ or $\alpha = 0.001$, is often more appropriate for such problems, especially when the data is not normalized.
 
 1. **Design the base class for optimization problems in C++**
    1. Create an abstract base class `OptimizationProblem`. This class will serve as a blueprint for different optimization problems.

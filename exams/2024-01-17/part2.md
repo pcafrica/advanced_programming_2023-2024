@@ -67,14 +67,18 @@ Generate a set of points $\{(x_i, y_i)\}_{i=1}^m$ such that $y_i = 4 + \frac{1}{
    1. Define classes that inherit from `OptimizationProblem` for the two problems at hand, such as `QuadraticOptimizationProblem` and `LinearRegressionProblem`.
    2. Override the objective function and gradient calculation methods specific to each problem.
 
-4. **Python bindings using pybind11**
+4. **Configuration and compilation**
+   1. Develop a CMake script for easy compilation of the C++ library.
+   2. Provide clear instructions on compiling the library.
+
+5. **Python bindings using pybind11**
    1. Bind the C++ functions, classes and their methods to Python, properly handling exceptions.
    2. Ensure the Python interface is user-friendly and adheres to Python conventions.
    3. Create Python scripts to test the functionality of the solver through the bindings.
    4. Validate the solution to Problem 1 by computing the error against the exact solution $x = 1$.
    5. Plot the solution to Problem 2, plot the cost function vs. the Gradient Descent iterations, and evaluate the MSE cost function at the optimal value.
 
-4. **(Bonus) validation and comparison**
+6. **(Bonus) validation and comparison**
    1. Let the class `GradientDescent` be templated over the type of optimization problem to be solved.
    2. Validate and compare the results of Problem 1 against the [`minimize_scalar` function](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize_scalar.html) from the Python module `scipy.optimize` and of Problem 2 against the [`linregress` function](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.linregress.html) from the Python module `scipy.stats`.
    3. Design benchmarks to compare performance metrics between the C++ and Python implementations.

@@ -55,7 +55,7 @@ Generate a set of points $\{(x_i, y_i)\}_{i=1}^m$ such that $y_i = 4 + \frac{1}{
 1. **Design the base class for optimization problems in C++**
    1. Create an abstract base class `OptimizationProblem`. This class will serve as a blueprint for different optimization problems.
    2. Include a virtual method `double evaluate(const std::vector<double> &input)` for evaluating the objective function.
-   3. Include a virtual method `std::vector<double> evaluate(const std::vector<double> &input)` for evaluating its gradient. The former two methods will be overridden in derived classes.
+   3. Include a virtual method `std::vector<double> evaluate_gradient(const std::vector<double> &input)` for evaluating its gradient. The former two methods will be overridden in derived classes.
 
 2. **Implement a Gradient Descent solver class**
    1. Develop a class `GradientDescent`, receiving a polymorphic `OptimizationProblem` object.

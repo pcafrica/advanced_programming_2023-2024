@@ -51,9 +51,9 @@ Implement a module to perform statistical analyses on data imported from a `CSV`
 
 # B) Interpolation module
 
-Implement a module to support [**composite** linear and polynomial interpolation](https://en.wikipedia.org/wiki/Polynomial_interpolation), and (**bonus**) [cardinal cubic B-spline interpolation](https://live.boost.org/doc/libs/1_72_0/libs/math/doc/html/math_toolkit/cardinal_cubic_b.html) of a given set of data $\{(x_i, y_i)\} \subset \mathbb{R}^2$.
+Implement a module to support [**composite** linear and polynomial interpolation](https://en.wikipedia.org/wiki/Polynomial_interpolation), and (**bonus**) [cardinal cubic B-spline interpolation](https://live.boost.org/doc/libs/1_72_0/libs/math/doc/html/math_toolkit/cardinal_cubic_b.html) of a given set of data $\lbrace(x_i, y_i)\rbrace \subset \mathbb{R}^2$.
 
-- Implement a common interface that stores a list of nodes $\{x_i\}$ over an interval $[a, b]$ and the corresponding observed values $\{y_i\}$ for all kinds of interpolation.
+- Implement a common interface that stores a list of nodes $\lbrace x_i \rbrace$ over an interval $[a, b]$ and the corresponding observed values $\lbrace y_i \rbrace$ for all kinds of interpolation.
 - The implemented class(es) should expose a call operator (`operator()`) returning the interpolated value at a given point.
 - Test your implementation through practical examples. Showcase the accuracy, efficiency, and order of convergence of each method implemented.
 
@@ -67,7 +67,7 @@ $$
 \int_a^b f(x) dx \approx \sum_{i=1}^N w_i f(x_i),
 $$
 
-where $\{w_i\}$ and $\{x_i\}$ are the weights and nodes of the quadrature formula, respectively.
+where $\lbrace w_i \rbrace$ and $\lbrace x_i \rbrace$ are the weights and nodes of the quadrature formula, respectively.
 
 - Consider methods such as the [midpoint rule, the trapezoidal rule, Simpson's rule](https://math.umd.edu/~petersd/460/numint460.pdf), and (**bonus**) [Gaussian quadrature formulas](https://en.wikipedia.org/wiki/Gaussian_quadrature).
 - Test your implementation through practical examples. Showcase the accuracy, efficiency, and order of convergence of each method implemented.

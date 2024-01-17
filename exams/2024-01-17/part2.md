@@ -21,7 +21,7 @@ Given a scalar multi-variate function $f(\mathbf{z})$ to optimize, the method co
 ### Gradient descent for linear regression
 In the context of linear regression, Gradient Descent is used to find the parameters (coefficients) $\theta$ of the regression model that minimize a cost function, typically the Mean Squared Error (MSE).
 
-Given a set of points $\{(\mathbf{x}^{(i)}, y^{(i)})\}_{i=0}^m$ with $x_0^{(i)} = 1$ $\forall i$, the linear regression model computes a prediction $\hat{y}^{(i)}$ of the output $y^{(i)}$ as a linear combination of the input features $\mathbf{x}^{(i)}$:
+Given a set of points $\lbrace(\mathbf{x}^{(i)}, y^{(i)})\rbrace_{i=0}^m$ with $x_0^{(i)} = 1$ $\forall i$, the linear regression model computes a prediction $\hat{y}^{(i)}$ of the output $y^{(i)}$ as a linear combination of the input features $\mathbf{x}^{(i)}$:
 
 $$
 \hat{y}^{(i)} = \theta_0 + \theta_1 x_1^{(i)} + \dots + \theta_n x_n^{(i)}.
@@ -50,7 +50,7 @@ The goal is to implement a Gradient Descent solver to solve the following two pr
 Minimize the scalar quadratic function $f(x)=(x-1)^2$. For such a function, a moderate learning rate, such as $\alpha = 0.1$, is typically a good starting point.
 
 ### Problem 2.
-Generate a set of points $\{(x^{(i)}, y^{(i)})\}_{i=0}^m$ such that $y^{(i)} = 4 + \frac{1}{2} x^{(i)} + \epsilon$, where $\epsilon$ is a small random noise and minimize the model $\hat{y} = \theta_0 + \theta_1 x$. A smaller learning rate, such as $\alpha = 0.01$ or $\alpha = 0.001$, is often more appropriate for such problems, especially when the data is not normalized.
+Generate a set of points $\lbrace(x^{(i)}, y^{(i)})\rbrace_{i=0}^m$ such that $y^{(i)} = 4 + \frac{1}{2} x^{(i)} + \epsilon$, where $\epsilon$ is a small random noise and minimize the model $\hat{y} = \theta_0 + \theta_1 x$. A smaller learning rate, such as $\alpha = 0.01$ or $\alpha = 0.001$, is often more appropriate for such problems, especially when the data is not normalized.
 
 1. **Design the base class for optimization problems in C++**
    1. Create an abstract base class `OptimizationProblem`. This class will serve as a blueprint for different optimization problems.

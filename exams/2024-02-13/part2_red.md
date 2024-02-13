@@ -57,7 +57,7 @@ $$
 -\frac{\mathrm{d}^2 u}{\mathrm{d}x^2} = f(x),
 $$
 
-where $u$ is the temperature, $x$ is the spatial variable, and $f(x) = -\sin(\pi x)$ represents the heat source term.
+where $u$ is the temperature, $x$ is the spatial variable, and $f(x) = \sin(\pi x)$ represents the heat source term.
 
 Consider the domain $[0, 1]$, with boundary conditions $u(0) = u(1) = 0$.
 
@@ -72,12 +72,12 @@ where
 $$
 A = \begin{bmatrix}
 1 & 0 & 0 & \cdots & \cdots & \cdots & \cdots & 0\\
-1 & -2 & 1 & 0 & & & & \vdots\\
-0 & 1 & -2 & 1 & \ddots & & & \vdots\\
+-1 & 2 & -1 & 0 & & & & \vdots\\
+0 & -1 & 2 & -1 & \ddots & & & \vdots\\
 \vdots & 0 & \ddots & \ddots & \ddots & \ddots & & \vdots\\
 \vdots & & \ddots & \ddots & \ddots & \ddots & 0 & \vdots\\
-\vdots & & & \ddots & 1 & -2 & 1 & 0\\
-\vdots & & & & 0 & 1 & -2 & 1\\
+\vdots & & & \ddots & -1 & 2 & -1 & 0\\
+\vdots & & & & 0 & -1 & 2 & -1\\
 0 & \cdots & \cdots  & \cdots & \cdots & 0 & 0 & 1\\
 \end{bmatrix},
 \quad
@@ -110,7 +110,7 @@ The above linear system is tridiagonal, thus it can be solved using the Thomas a
    3. Derive a `TridiagonalMatrix` class from `Matrix`. Implement proper constructors to initialize it given the diagonal vectors `a`, `b`, and `c`. Override the `solve` method to implement the Thomas algorithm.
 
 2. (3 points) **Solve the heat diffusion problem**:
-   1. Create a class `HeatDiffusion` representing the heat diffusion problem and exposing its relevant parameters (domain, boundary conditions, forcing term).
+   1. Create a class `HeatDiffusion` representing the heat diffusion problem and exposing its relevant parameters (domain, boundary conditions, forcing term $f$).
    2. `HeatDiffusion` should create and store a `TridiagonalMatrix` object as a class member and use it to solve the heat equation.
 
 3. (2 points) **Configuration and compilation**

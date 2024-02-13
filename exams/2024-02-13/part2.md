@@ -72,12 +72,12 @@ where
 $$
 A = \begin{bmatrix}
 1 & 0 & 0 & \cdots & \cdots & \cdots & \cdots & 0\\
-1 & -2 & 1 & 0 & & & & \vdots\\
-0 & 1 & -2 & 1 & \ddots & & & \vdots\\
+-1 & 2 & -1 & 0 & & & & \vdots\\
+0 & -1 & 2 & -1 & \ddots & & & \vdots\\
 \vdots & 0 & \ddots & \ddots & \ddots & \ddots & & \vdots\\
 \vdots & & \ddots & \ddots & \ddots & \ddots & 0 & \vdots\\
-\vdots & & & \ddots & 1 & -2 & 1 & 0\\
-\vdots & & & & 0 & 1 & -2 & 1\\
+\vdots & & & \ddots & -1 & 2 & -1 & 0\\
+\vdots & & & & 0 & -1 & 2 & -1\\
 0 & \cdots & \cdots  & \cdots & \cdots & 0 & 0 & 1\\
 \end{bmatrix},
 \quad
@@ -100,7 +100,7 @@ $$
 
 The above linear system is tridiagonal, thus it can be solved using the Thomas algorithm.
 
-For a concrete example involving the heat equation, consider the following data: $L = 1, f(x) = -\sin(\pi x), \alpha = \beta = 0$, leading to the exact analytical solution
+For a concrete example involving the heat equation, consider the following data: $L = 1, f(x) = \sin(\pi x), \alpha = \beta = 0$, leading to the exact analytical solution
 
 $$
 u_\mathrm{ex}(x) = \frac{\sin(\pi x)}{\pi^2}.
@@ -117,7 +117,7 @@ $$
    4. Check size compatibility via exception handling.
 
 2. (3 points) **Solve the heat diffusion problem**:
-   1. Create a class `HeatDiffusion` representing the heat diffusion problem and exposing its relevant parameters (domain, boundary conditions, forcing term).
+   1. Create a class `HeatDiffusion` representing the heat diffusion problem and exposing its relevant parameters (domain, boundary conditions, forcing term $f$).
    2. Use the `TridiagonalMatrix` class to solve the heat equation from a given `HeatDiffusion` object instance. The way `HeatDiffusion` and `TridiagonalMatrix` classes interact (e.g., inheritance, composition, ...) is up to you. Explain your design choices.
    3. Validate the solution against the exact solution by computing the error $\left\|u - u_\mathrm{ex}\right\|$ in Euclidean norm to assess the correctness of the implementation.
 

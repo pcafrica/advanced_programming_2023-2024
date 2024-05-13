@@ -30,9 +30,9 @@ Unless otherwise specified, all content here is licensed under a
 
 # :calendar: Exam dates
 
-**:warning: 17 Jan 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
+**:warning: 11 Jun 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
 
-**:warning: 13 Feb 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
+**:warning: 17 Jul 2024, 09:00. Room 128-129 @ SISSA.** (written + computer-based exam)
 
 
 Optional oral exams will follow in subsequent days.

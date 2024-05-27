@@ -112,6 +112,6 @@ The environment must have a C++ compiler installed with full support for C++17, 
 
 The environment must have Python 3 installed. The presence of Jupyter is recommended, but not mandatory.
 
-The environment must meet the minimum system requirements for running a Linux or Unix environment with the necessary software and tools for the course.
+The environment must meet the minimum system requirements for running a Linux or UNIX environment with the necessary software and tools for the course.
 
 Any recent Linux distribution, such as Ubuntu 22.04 or newer, or Debian 11 or newer, or macOS system that meets these requirements should be suitable for the course.

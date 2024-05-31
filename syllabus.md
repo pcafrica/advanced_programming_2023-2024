@@ -20,16 +20,16 @@ Dr. Marco Feder <<mfeder@sissa.it>>
 ## 1. Knowledge and understanding
 Students will acquire a comprehensive understanding of advanced programming concepts, specifically in C++ and Python. They will become familiar with object-oriented and generic programming paradigms, as well as proficient in utilizing common data structures, algorithms, and relevant libraries and frameworks for scientific computing. Furthermore, students will be introduced to fundamental software development tools in a Linux environment, encompassing essential aspects like software documentation, version control, testing, and project management.
 
-## 2. Practical application of knowledge
+## 2. Applying knowledge and understanding
 Students will be adept at applying their advanced programming knowledge to solve both familiar and novel coding challenges. They will be able to develop advanced programs in C++ and Python, choosing and designing appropriate data structures and algorithms to address complex real-world computational problems.
 
-## 3. Cognitive skills
+## 3. Making judgments
 Students will develop critical thinking and analytical skills, enabling them to assess the effectiveness, flexibility, and efficiency of code implementations. They will be capable of evaluating different approaches to problem-solving and selecting optimal solutions based on informed analysis. By the end of the course, students will have developed the ability to design, implement, test, debug, and optimize complex scientific software.
 
 ## 4. Communication skills
 Through a combination of homework assignments, code documentation, and presentations, students will learn to effectively communicate their design decisions, code rationale, and problem-solving strategies. They will be skilled at conveying technical information to both technical and non-technical audiences.
 
-## 5. Autonomy and professional development
+## 5. Learning skills
 Students will acquire self-directed learning abilities, enabling them to stay current with evolving and new programming languages, tools, and technologies. They will be equipped to independently identify and troubleshoot coding issues and propose innovative solutions. They will also gain experience in team-based software development practices by working on group programming projects.
 
 ---

@@ -86,7 +86,6 @@ def reverse2(lst):
 ---
 
 ## Question 8
-How does this difference affect their usage in programs?
 Given the following Python code, which *unit tests* would you perform and why?
 
 ```python
